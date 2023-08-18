@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{71D43856-1C11-4489-3E44-BF4B16A752AF}</ProjectGuid>
+    <ProjectGuid>{4528C679-430A-E0DA-3B5E-183325AEA4DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\Player\</OutputPath>
-    <DefineConstants>UNITY_2022_3_0;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2022_3_0;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;DEVELOPMENT_BUILD;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;FIRST_PERSON_CONTROLLER;THIRD_PERSON_CONTROLLER;ULTIMATE_CHARACTER_CONTROLLER_HDRP;TEXTMESH_PRO_PRESENT;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;ULTIMATE_CHARACTER_CONTROLLER_MULTIPLAYER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -58,10 +58,79 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CameraOrbit.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
+    <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\LightTilt.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\ThirdPersonController\Scripts\ThirdPersonController.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
+    <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\InputSystem\StarterAssetsInputs.cs" />
+    <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+    <Compile Include="Assets\_DLNK\_DLNK Source\Source Demos\FreeCamera.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\FirstPersonController\FirstPersonController.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
+    <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
+    <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\OnTriggerActivator.cs" />
+    <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CharControlSimple.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
+    <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Transform\Compass.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
+    <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
+    <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\3 Special\ShadowPass.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[ASE Shaders]\Nature\WaterSimple.shader" />
+    <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\3 Special\AdvancedLeaves.shader" />
+    <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\2 FXs\DLNKWater01.shader" />
+    <None Include="Assets\Opsive\UltimateCharacterController\Demo\Shaders\ShieldBubble.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\Opsive\UltimateCharacterController\Demo\Shaders\VolumetricCone.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll" />
+    <None Include="Assets\Opsive\UltimateCharacterController\Demo\Shaders\Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[ASE Shaders]\Nature\LeavesAnim.shader" />
+    <None Include="Assets\Opsive\UltimateCharacterController\Shaders\InvisibleShadowCaster.shader" />
+    <None Include="Assets\Opsive\UltimateCharacterController\Demo\Shaders\TerrainSurface.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Opsive\UltimateCharacterController\README.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Opsive\UltimateCharacterController\Demo\Shaders\UIBlur.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\2 FXs\WaterFx2.shader" />
+    <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
+    <None Include="Assets\Photon\PhotonChat\Demos\DemoChat\Files\eurof_tt.txt" />
+    <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll" />
+    <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.dll" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
+    <None Include="Assets\Opsive\UltimateCharacterController\Demo\README.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\_DLNK\Alien Terrain Pack\README.txt" />
+    <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -265,8 +334,26 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="Opsive.Shared.Utility">
+      <HintPath>Assets\Opsive\Shared\Utility\Opsive.Shared.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Opsive.Shared.Events">
+      <HintPath>Assets\Opsive\Shared\Events\Opsive.Shared.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="Opsive.Shared.Game">
+      <HintPath>Assets\Opsive\Shared\Game\Opsive.Shared.Game.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="Opsive.Shared.Inventory">
+      <HintPath>Assets\Opsive\Shared\Inventory\Opsive.Shared.Inventory.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -636,72 +723,116 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player.csproj">
-      <Project>{789F7F58-83B6-B54D-0CDE-81B3937B66B4}</Project>
-      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VisualEffectGraph.Runtime.Player.csproj">
-      <Project>{51EFD7A0-97B9-3061-CAE6-AD9F56D11AAD}</Project>
+      <Project>{3442347C-4F56-D94E-F470-0C92AEDA72C6}</Project>
       <Name>Unity.VisualEffectGraph.Runtime.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.Player.csproj">
-      <Project>{7F3A23BD-C207-3546-FA09-5A92637D96DD}</Project>
+      <Project>{A2A04B6E-EB23-61EF-D43D-5B9420BE6987}</Project>
       <Name>Unity.RenderPipelines.Core.Runtime.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Runtime.Player.csproj">
+      <Project>{085E2111-BB6C-18E7-453A-36C85688BD49}</Project>
+      <Name>Unity.Postprocessing.Runtime.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Opsive.UltimateCharacterController.Demo.Player.csproj">
+      <Project>{F982DA28-77FC-E6F8-0B9D-C4ACA06D013B}</Project>
+      <Name>Opsive.UltimateCharacterController.Demo.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Opsive.UltimateCharacterController.AddOns.Multiplayer.PhotonPUN.Player.csproj">
+      <Project>{1CFD75D7-F59A-9DF3-161C-9061BDC142BD}</Project>
+      <Name>Opsive.UltimateCharacterController.AddOns.Multiplayer.PhotonPUN.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Opsive.UltimateCharacterController.Player.csproj">
+      <Project>{85A87E42-79E9-3F97-3192-77B78E5B7943}</Project>
+      <Name>Opsive.UltimateCharacterController.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.Flow.Player.csproj">
+      <Project>{7E006970-9F2F-86D5-32E7-25C8503F2B61}</Project>
+      <Name>Unity.VisualScripting.Flow.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonChat.Player.csproj">
+      <Project>{693616D6-027C-B774-9F29-CDA93AE32394}</Project>
+      <Name>PhotonChat.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Opsive.Shared.Player.csproj">
+      <Project>{EA2C9E5C-6B1D-9629-B380-51912BC51A50}</Project>
+      <Name>Opsive.Shared.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime.Player.csproj">
+      <Project>{7F58FA0A-9843-4F64-2681-04E106F6C128}</Project>
+      <Name>Unity.RenderPipelines.HighDefinition.Config.Runtime.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonUnityNetworking.Player.csproj">
+      <Project>{1D47E42C-FD15-67C2-3073-9BA9F72967E7}</Project>
+      <Name>PhotonUnityNetworking.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.Player.csproj">
+      <Project>{87127475-1403-95C6-B794-08147BB67162}</Project>
+      <Name>Unity.RenderPipelines.Core.ShaderLibrary.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonUnityNetworking.Demos.Player.csproj">
+      <Project>{7C4BAF58-E29E-678E-ADBD-14798C46C79E}</Project>
+      <Name>PhotonUnityNetworking.Demos.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonUnityNetworking.Utilities.Player.csproj">
+      <Project>{34FCFDA2-EAC1-7DC5-EE3E-47BFDAC62F2F}</Project>
+      <Name>PhotonUnityNetworking.Utilities.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
+      <Project>{FA698167-5AE3-3685-E35E-E46F293C73E5}</Project>
+      <Name>Unity.TextMeshPro.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player.csproj">
+      <Project>{E3FC08F9-AD95-926A-4EFD-7B377770A110}</Project>
+      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Burst.Player.csproj">
-      <Project>{059F06E5-4D05-36C0-4C7A-A97F342B1EB8}</Project>
+      <Project>{12AD43E1-049B-3767-75E9-3024F187E31D}</Project>
       <Name>Unity.Burst.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Tutorials.Core.Player.csproj">
-      <Project>{B21037F4-EE56-5DB5-99CD-AFDE300886A2}</Project>
+      <Project>{0F0CD4AD-72A6-B3E0-7428-B1E3C0D64E6F}</Project>
       <Name>Unity.Tutorials.Core.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.Player.csproj">
-      <Project>{E3BB2713-91FD-BD8D-5ACD-C5619A4626AE}</Project>
+      <Project>{13B3A66A-8546-C536-75E4-4A2E93930A7D}</Project>
       <Name>Unity.VisualScripting.Core.Player</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{729A3397-88FE-31DD-1B0A-F8D792FCE0DC}</Project>
+      <Project>{B0012813-9340-8E6A-BD01-508C6E4DBD41}</Project>
       <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.Flow.Player.csproj">
-      <Project>{6045D2FE-252F-0276-6CF9-24311FBCE4F6}</Project>
-      <Name>Unity.VisualScripting.Flow.Player</Name>
+    <ProjectReference Include="Opsive.UltimateCharacterController.AddOns.Multiplayer.PhotonPUN.Demo.Player.csproj">
+      <Project>{FF377DA7-EC2E-219F-CE19-14D207EE8172}</Project>
+      <Name>Opsive.UltimateCharacterController.AddOns.Multiplayer.PhotonPUN.Demo.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonRealtime.Player.csproj">
+      <Project>{11642A04-D89C-D7D4-9527-129F20CF8965}</Project>
+      <Name>PhotonRealtime.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Player.csproj">
-      <Project>{9183248A-DB95-1FB8-576E-B117ED373FFA}</Project>
+      <Project>{0240678B-1C44-0747-93F1-EFF2B1B76433}</Project>
       <Name>Unity.Timeline.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.InputSystem.Player.csproj">
-      <Project>{FC72C54B-64FA-07AB-45B5-429B9A471EA6}</Project>
+      <Project>{44E789F9-573A-7974-26B4-9914906980E3}</Project>
       <Name>Unity.InputSystem.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime.Player.csproj">
-      <Project>{96393B1D-8A9B-8EF5-64B9-D4F104B47B6E}</Project>
-      <Name>Unity.RenderPipelines.HighDefinition.Config.Runtime.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.Player.csproj">
-      <Project>{167E893A-DEDD-6B52-5862-0DAA3652374C}</Project>
-      <Name>Unity.RenderPipelines.Core.ShaderLibrary.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Player.csproj">
-      <Project>{8F86ACD8-D9D8-5198-723C-52F25F76461F}</Project>
+      <Project>{71491D92-D204-F345-25ED-E8A8C82715DF}</Project>
       <Name>Unity.Mathematics.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
-      <Project>{7566FFB0-F958-8CDD-03DF-763076D16443}</Project>
-      <Name>Unity.TextMeshPro.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
-      <Project>{FDCCF358-75B8-235A-DA12-9C656BA799F6}</Project>
+      <Project>{D2F9CD86-761A-FE47-016D-DEFABCB3F1EB}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Cinemachine.Player.csproj">
-      <Project>{E36F1186-1C0F-9C03-174B-352FC860FC19}</Project>
+      <Project>{B7372012-42D8-6F64-6ADD-23FE259C1BD0}</Project>
       <Name>Cinemachine.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Runtime.Player.csproj">
-      <Project>{D3C9032E-114B-45FC-83F7-54B9C26172B7}</Project>
+      <Project>{8BA42B79-7C42-3288-0911-A874D412ECC4}</Project>
       <Name>Unity.RenderPipelines.HighDefinition.Runtime.Player</Name>
     </ProjectReference>
   </ItemGroup>
