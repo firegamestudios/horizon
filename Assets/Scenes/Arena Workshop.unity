@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1089510636}
-  m_IndirectSpecularColor: {r: 2694.3801, g: 1700.638, b: 1199.7638, a: 1}
+  m_IndirectSpecularColor: {r: 2674.594, g: 1711.7083, b: 1258.4025, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -8218,7 +8218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &439671183
 MonoBehaviour:
@@ -9037,7 +9037,7 @@ RectTransform:
   - {fileID: 388749410}
   - {fileID: 1360613584}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16622,7 +16622,7 @@ MonoBehaviour:
   m_SpawnLocationOffset: {x: 2, y: 0, z: 0}
   m_SpawnPointGrouping: 1
   m_InactiveTimeout: 60
-  m_Character: {fileID: 1180196092799179058, guid: 248da63918e350040be5c3f12e43c089, type: 3}
+  m_Character: {fileID: 5330175794356405469, guid: 248da63918e350040be5c3f12e43c089, type: 3}
 --- !u!114 &978654626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16649,7 +16649,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &981874249
 MonoBehaviour:
@@ -28989,7 +28989,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1376411953
 PrefabInstance:
@@ -36928,7 +36928,7 @@ Transform:
   - {fileID: 1268688062}
   - {fileID: 901112451}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1822525742
 PrefabInstance:
@@ -38821,7 +38821,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1948835250
 MonoBehaviour:
@@ -39628,7 +39628,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026014042
 GameObject:
