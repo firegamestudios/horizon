@@ -25,3 +25,12 @@ The following packages were added:
   com.unity.ide.vscode@1.2.5
   com.unity.postprocessing@3.2.2
   com.unity.test-framework@1.1.33
+
+=== Wed Aug 23 13:22:47 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.cinemachine from version 2.8.9 to 2.9.5
+  com.unity.timeline from version 1.6.5 to 1.7.4

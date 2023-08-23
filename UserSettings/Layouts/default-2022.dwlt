@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -213,8 +213,8 @@ MonoBehaviour:
     y: 0
     width: 301
     height: 665
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -437,9 +437,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: cafaffff
+      m_SelectedIDs: 36900000
+      m_LastClickedID: 36918
+      m_ExpandedIDs: d6faffffc08f000016900000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -884,9 +884,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 946.54675, y: 525.73535, z: 1.1840994}
+    m_Target: {x: 956.0246, y: 536.1847, z: 1.6392335}
     speed: 2
-    m_Value: {x: 946.54675, y: 525.73535, z: 1.1840994}
+    m_Value: {x: 956.0246, y: 536.1847, z: 1.6392335}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -936,9 +936,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 630.64966
+    m_Target: 574.0035
     speed: 2
-    m_Value: 630.64966
+    m_Value: 574.0035
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -999,42 +999,8 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_ViewTransforms:
     m_KeySerializationHelper:
-    - {fileID: 110700000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
-    - {fileID: 110298501, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
     - {fileID: 1107364442111729044, guid: 0a6700c4ba8525f4c94592b1ec4b259c, type: 2}
     m_ValueSerializationHelper:
-    - e00: 1
-      e01: 0
-      e02: 0
-      e03: -267
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 106
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 0.5695122
-      e01: 0
-      e02: 0
-      e03: 179.95122
-      e10: 0
-      e11: 0.5695122
-      e12: 0
-      e13: 12.152435
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
     - e00: 1
       e01: 0
       e02: 0
@@ -1114,7 +1080,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1122,16 +1088,17 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Opsive
+  - Assets/Photon
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Git\Horizon\horizon
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 111}
-    m_SelectedIDs: cc9b0000
-    m_LastClickedID: 39884
-    m_ExpandedIDs: 000000007c9b00007e9b0000809b0000829b0000849b0000869b0000889b00008a9b00008c9b000000ca9a3b
+    scrollPos: {x: 0, y: 43}
+    m_SelectedIDs: 769b0000
+    m_LastClickedID: 39798
+    m_ExpandedIDs: 00000000769b0000789b00007c9b00007e9b0000809b0000829b0000849b0000869b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1159,7 +1126,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007c9b00007e9b0000809b0000829b0000849b0000869b0000889b00008a9b00008c9b0000
+    m_ExpandedIDs: 00000000769b0000789b00007a9b00007c9b00007e9b0000809b0000829b0000849b0000869b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
