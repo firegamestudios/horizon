@@ -10,19 +10,19 @@ public class TooltipButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [TextArea(3,4)]
     public string description;
 
+    public Vector2 offset;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!Tooltip.active)
         {
-            Tooltip.SetupTooltip(title, description);
+            Tooltip.SetupTooltip(title, description, offset);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(Tooltip.active)
-        Tooltip.ClearTooltip();
+        if (Tooltip.active)
+            Tooltip.ClearTooltip();
     }
-
-   
 }

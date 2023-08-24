@@ -9,41 +9,192 @@ using UnityEngine;
 
 public class CreationManager : MonoBehaviour
 {
-    int race;
-    int classe;
+    string race;
+    string classe;
 
     public static List<int> attributes = new();
 
     static int pointsRemaining;
 
     public TMP_Text raceText;
-
+    public TMP_Text classeText;
+    public List<TMP_Text> atts;
+    public List<TMP_Text> sheetAtts;
+    public TMP_Text prText;
+    public List<TMP_Text> statsTexts;
+    public TMP_Text skillsText;
+         
     private void Start()
     {
-        race = 0;
-        classe = 0;
+        race = "Male Human";
+        classe = "Fighter";
+        SetupRace("Male Human");
+        SetupClasse("Fighter");
 
-        //Start attributes
+        //add 5 attributes
+        for (int i = 0; i < 5; i++)
+        {
+            attributes.Add(0);
+        }
+
+        ClearRP();
+    }
+
+    public void RaceRandomizer()
+    {
+        int dice = Random.Range(0, 4);
+        switch (dice) {
+            case 0:
+                SetupRace("Male Human");
+                break;
+            case 1:
+                SetupRace("Female Human");
+                break;
+            case 2:
+                SetupRace("Droid");
+                break;
+            case 3:
+                SetupRace("Alien");
+                break;
+
+        }
+    }
+    public void ClasseRandomizer()
+    {
+        int dice = Random.Range(0, 5);
+        switch (dice)
+        {
+            case 0:
+                SetupClasse("Fighter");
+                break;
+            case 1:
+                SetupClasse("Biologist");
+                break;
+            case 2:
+                SetupClasse("Engineer");
+                break;
+            case 3:
+                SetupClasse("Hunter");
+                break;
+            case 4:
+                SetupClasse("Hacker");
+                break;
+        }
+    }
+
+    public void RandomizeAttributes()
+    {
+        ClearRP();
+
+        while(pointsRemaining > 0)
+        {
+            int dice = Random.Range(0, 5);
+           AttributeIncrease(dice);
+            
+        }
+    }
+
+    public void UpdateAttributes()
+    {
+        for (int i = 0; i < atts.Count; i++)
+        {
+            atts[i].text = attributes[i].ToString();
+            sheetAtts[i].text = attributes[i].ToString();
+        }
+        prText.text = "Points remaining: "+pointsRemaining.ToString();
+
+        statsTexts[0].text = (attributes[2] * 10).ToString();
+        statsTexts[1].text = (attributes[0] + attributes[2]).ToString();
+        statsTexts[2].text = (attributes[0] * attributes[1]).ToString();
+
+        UpdateSkills();
+    }
+
+    void UpdateSkills()
+    {
+        string raceBased = "";
+        switch (race) {
+            case "Male Human":
+                raceBased = "No race based skills \n";
+                break;
+            case "Female Human":
+                raceBased = "Healing +1 \n Leadership +1 \n";
+                break;
+            case "Droid":
+                raceBased = "No race based skills \n";
+                break;
+            case "Alien":
+                raceBased = "Genetics Engineering +1 \n Piloting +1 \n";
+                break;
+            default:
+                raceBased = "No skills based on race";
+                break;
+        }
+        string classeBased = "";
+        switch (classe)
+        {
+            case "Fighter":
+                classeBased = "No race based skills \n";
+                break;
+            case "Hunter":
+                classeBased = "Healing +1 \n Leadership +1 \n";
+                break;
+            case "Biologist":
+                classeBased = "No race based skills \n";
+                break;
+            case "Engineer":
+                classeBased = "Genetics Engineering +1 \n Piloting +1 \n";
+                break;
+            case "Hacker":
+                classeBased = "Genetics Engineering +1 \n Piloting +1 \n";
+                break;
+            default:
+                classeBased = "No class based on race";
+                break;
+        }
+    }
+
+    void ClearRP()
+    {
+        pointsRemaining = 15;
         for (int i = 0; i < attributes.Count; i++)
         {
             attributes[i] = 3;
         }
-
-        pointsRemaining = 15;
+        UpdateAttributes();
     }
 
-    public void SetupRace(int _race)
+    public void SetupRace(string _race)
     {
         race = _race;
-        raceText.text = "Level 1 " + race;
+       
+        raceText.text = race;
+    }
+
+    public void SetupClasse(string _classe)
+    {
+        classe = _classe;
+
+        classeText.text = "level 1 " + classe;
     }
 
     public void AttributeIncrease(int att)
     {
+        if(pointsRemaining <= 0) { return; }
 
+        pointsRemaining--;
+        attributes[att]++;
+
+        UpdateAttributes();
     }
     public void AttributeDecrease(int att)
     {
+        if(pointsRemaining > 14) { return; }
+        if (attributes[att] == 3) { return; }
 
+        pointsRemaining++;
+        attributes[att]--;
+
+        UpdateAttributes();
     }
 }
