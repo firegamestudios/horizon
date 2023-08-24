@@ -181,8 +181,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Data\VFXDataParticle.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Core\VFXLibrary.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Expressions\VFXExpressionLoadCameraBuffer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Expressions\VFXExpressionSampleTextureCube.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\GraphView\Views\Properties\SpaceablePropertiesRM.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Expressions\VFXExpressionSampleTextureCube.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Slots\Implementations\VFXSlotObject.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\DistanceToSphere.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\SquaredDistance.cs" />
@@ -353,8 +353,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\VoroNoise2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\GraphView\BoundsRecorder\VFXBoundsSelector.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\Discretize.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Deprecated\CrossProductDeprecated.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\GraphView\Elements\VFXNodeUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Deprecated\CrossProductDeprecated.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\SampleBezier.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\Switch.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Expressions\VFXExpressionSampleTexture3D.cs" />
@@ -516,8 +516,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Types\VFXTorusGizmos.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\GraphView\Elements\3D\Preview3D.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\ChangeSpace.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\VFXOperator.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\SampleCurve.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\VFXOperator.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\VFXSystemNames.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Contexts\Implementations\VFXStaticMeshOutput.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualeffectgraph@14.0.7\Editor\Models\Operators\Implementations\SampleBuffer.cs" />

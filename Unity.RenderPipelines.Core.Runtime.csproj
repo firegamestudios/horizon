@@ -63,8 +63,8 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Lights\LightAnchor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\RenderGraph\RenderGraphResources.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Common\ListBuffer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Debugging\Prefabs\Scripts\DebugUIHandlerValueTuple.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Debugging\Prefabs\Scripts\DebugUIHandlerGroup.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Debugging\Prefabs\Scripts\DebugUIHandlerValueTuple.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Lighting\ProbeVolume\ProbeVolumeAsset.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Utilities\BitArray.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@14.0.7\Runtime\Common\DynamicResolutionHandler.cs" />

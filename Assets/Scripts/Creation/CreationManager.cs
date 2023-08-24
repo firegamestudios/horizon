@@ -28,15 +28,15 @@ public class CreationManager : MonoBehaviour
     {
         race = "Male Human";
         classe = "Fighter";
-        SetupRace("Male Human");
-        SetupClasse("Fighter");
+       
 
         //add 5 attributes
         for (int i = 0; i < 5; i++)
         {
             attributes.Add(0);
         }
-
+        SetupRace("Male Human");
+        SetupClasse("Fighter");
         ClearRP();
     }
 
@@ -134,24 +134,26 @@ public class CreationManager : MonoBehaviour
         switch (classe)
         {
             case "Fighter":
-                classeBased = "No race based skills \n";
+                classeBased = "+1d4 melee damage \n +5 health per level \n";
                 break;
             case "Hunter":
-                classeBased = "Healing +1 \n Leadership +1 \n";
+                classeBased = "+1d4 ranged weapon damage \n Tracking +1 \n";
                 break;
             case "Biologist":
-                classeBased = "No race based skills \n";
+                classeBased = "genetics engineering +1 \n Taming +1";
                 break;
             case "Engineer":
-                classeBased = "Genetics Engineering +1 \n Piloting +1 \n";
+                classeBased = "Crafting +1 \n Piloting +1 \n";
                 break;
             case "Hacker":
-                classeBased = "Genetics Engineering +1 \n Piloting +1 \n";
+                classeBased = "Never fails hacking \n Unlock +1 \n";
                 break;
             default:
                 classeBased = "No class based on race";
                 break;
         }
+
+        skillsText.text = raceBased + classeBased;
     }
 
     void ClearRP()
@@ -169,6 +171,8 @@ public class CreationManager : MonoBehaviour
         race = _race;
        
         raceText.text = race;
+
+        UpdateAttributes();
     }
 
     public void SetupClasse(string _classe)
@@ -176,6 +180,8 @@ public class CreationManager : MonoBehaviour
         classe = _classe;
 
         classeText.text = "level 1 " + classe;
+
+        UpdateAttributes();
     }
 
     public void AttributeIncrease(int att)

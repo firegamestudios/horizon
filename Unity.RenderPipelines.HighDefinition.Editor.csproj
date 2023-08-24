@@ -78,8 +78,8 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Decal\ShaderGraph\DecalShaderGraphGUI.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\PostProcessing\VignetteEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\RenderPipeline\Settings\SerializedVirtualTexturingSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\UIBlocks\UnlitSurfaceInputsUIBlock.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Lighting\ScreenSpaceAmbientOcclusionEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\UIBlocks\UnlitSurfaceInputsUIBlock.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\VFXGraph\Outputs\VFXLitSphereOutput.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\ShaderGraph\DiffusionProfileShaderProperty.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\ShaderGraph\Legacy\FabricMasterNode1.cs" />
@@ -222,8 +222,8 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Hair\ShaderGraph\HairSubTarget.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Lighting\VolumetricLighting\SerializedLocalVolumetricFog.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\UIBlocks\LightingShaderGraphGUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Water\ShaderGraph\Node\EvaluateFoamData_Water.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\RenderPipeline\Settings\SerializedHDRenderPipelineAsset.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Water\ShaderGraph\Node\EvaluateFoamData_Water.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\UIBlocks\LitShaderGraphGUI.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Hair\ShaderGraph\CreateHairShaderGraph.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\TerrainLit\TerrainLitGUI.cs" />
@@ -434,8 +434,8 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\RenderPipeline\Settings\SerializedScalableSetting.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Compositor\CompositionFilterUI.Drawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Decal\DecalUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Eye\ShaderGraph\Node\CirclePupilAnimation.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Lighting\DiffusionProfileListEditor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Eye\ShaderGraph\Node\CirclePupilAnimation.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Lit\ShaderGraph\HDLitSubTarget.Migration.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Upgraders\UpgradeStandardShaderMaterials.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\ShaderGraph\Nodes\CustomPassNodes.cs" />
@@ -455,8 +455,8 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\Lit\LitShaderPreprocessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Lighting\Reflection\HDScreenSpaceReflectionEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\RenderPipeline\CustomPass\CustomPassVolumeGizmoDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\ShaderGraph\HDShaderPasses.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\RenderPipeline\Settings\QualitySettingsPanel.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\ShaderGraph\HDShaderPasses.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Lighting\Reflection\SerializedHDReflectionProbe.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Lighting\Shadow\ContactShadowsEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Editor\Material\DiffusionProfile\DiffusionProfileSettingsEditor.cs" />
