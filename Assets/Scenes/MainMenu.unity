@@ -1185,7 +1185,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &623534847
 MonoBehaviour:
@@ -1557,9 +1557,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CharacterCreation, Assembly-CSharp
-        m_MethodName: OnCreationEntered
+      - m_Target: {fileID: 623534847}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1708,7 +1708,7 @@ Transform:
   m_Children:
   - {fileID: 1050212767}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &883444471
 MonoBehaviour:
@@ -2279,7 +2279,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1393674804
 MonoBehaviour:
@@ -3606,7 +3606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000002
 --- !u!144 &362791124970668933
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -3745,7 +3744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259de180f6aec024e8af5ebcd379cc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 0
 --- !u!137 &419309936933137173
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -4416,7 +4414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000009
 --- !u!144 &706556391818342268
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -7214,7 +7211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000003
 --- !u!54 &3463164775119208122
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7578,7 +7574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000005
 --- !u!1 &3936700071487890278
 GameObject:
   m_ObjectHideFlags: 0
@@ -8880,7 +8875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000000
 --- !u!114 &5401010331114743980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8893,7 +8887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000007
 --- !u!136 &5438917175545584305
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9103,7 +9096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000008
 --- !u!4 &5616820361625771165
 Transform:
   m_ObjectHideFlags: 0
@@ -10309,7 +10301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259de180f6aec024e8af5ebcd379cc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1
 --- !u!4 &6690946962065693630
 Transform:
   m_ObjectHideFlags: 0
@@ -10389,7 +10380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000001
 --- !u!54 &6859864294966529743
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10446,7 +10436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000010
 --- !u!4 &7053652932137145784
 Transform:
   m_ObjectHideFlags: 0
@@ -11218,7 +11207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000004
 --- !u!137 &7986014367682763494
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -11772,7 +11760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebcf42a9d8f9145a73c60c46c60bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ID: 1000000006
 --- !u!1 &8395536630731832866
 GameObject:
   m_ObjectHideFlags: 0

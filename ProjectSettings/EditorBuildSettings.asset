@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Creation.unity
     guid: f9ae48c2ed8ca124aa7717d0d709164b
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 7e974f983e1658441a67d044e09c68bc
+  - enabled: 1
+    path: Assets/Scenes/Junk Processing Plant.unity
+    guid: 7f7097ca2bc28194d81004c084e4617b
   m_configObjects: {}
