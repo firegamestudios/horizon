@@ -93,7 +93,7 @@ MonoBehaviour:
   SpeedSets: []
   ID: {fileID: 11400000, guid: adfa24f62d6db4d40a1d837f4ec1a6e9, type: 2}
   DisableAllComponents: 0
-  RemoveAllColliders: 0
+  RemoveAllColliders: 1
   RemoveAllTriggers: 0
   IsKinematic: 1
   DisableModes: 1

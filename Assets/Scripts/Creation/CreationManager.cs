@@ -22,6 +22,10 @@ public class CreationManager : MonoBehaviour
     float energy;
     float resistance;
 
+    float healthBonus = 0;
+    float meleeBonus = 0;
+    float rangedBonus = 0;
+
     //skills
     float meleeDamage = 1;
     float rangedDamage = 1;
@@ -41,6 +45,7 @@ public class CreationManager : MonoBehaviour
     public TMP_Text prText;
     public List<TMP_Text> statsTexts;
     public TMP_Text skillsText;
+    public List<TMP_Text> skillsTexts;
 
     GameObject startButton;
 
@@ -50,8 +55,10 @@ public class CreationManager : MonoBehaviour
     private void Awake()
     {
         startButton = GameObject.Find("Canvas").transform.Find("Start Button").gameObject;
-        playerData = new PlayerData();
+        
         saveLoadManager = GetComponentInChildren<SaveLoadManager>();
+
+        playerData = saveLoadManager.playerData;
     }
 
     private void Start()
@@ -68,7 +75,9 @@ public class CreationManager : MonoBehaviour
         }
         SetupRace("Male Human");
         SetupClasse("Fighter");
-        ClearRP();
+        RaceRandomizer();
+        ClasseRandomizer();
+        RandomizeAttributes();
     }
 
     #region Randomizers
@@ -90,6 +99,7 @@ public class CreationManager : MonoBehaviour
                 break;
 
         }
+        UpdateAttributes();
     }
     public void ClasseRandomizer()
     {
@@ -112,6 +122,7 @@ public class CreationManager : MonoBehaviour
                 SetupClasse("Hacker");
                 break;
         }
+        UpdateAttributes();
     }
     public void RandomizeAttributes()
     {
@@ -123,6 +134,8 @@ public class CreationManager : MonoBehaviour
            AttributeIncrease(dice);
             
         }
+
+        UpdateAttributes();
     }
     #endregion
 
@@ -136,6 +149,8 @@ public class CreationManager : MonoBehaviour
     }
     public void UpdateAttributes()
     {
+        UpdateSkills();
+
         for (int i = 0; i < atts.Count; i++)
         {
             atts[i].text = attributes[i].ToString();
@@ -144,18 +159,34 @@ public class CreationManager : MonoBehaviour
         prText.text = "Points remaining: "+pointsRemaining.ToString();
 
         //Stats logic
-        health = (attributes[2] * 10);
+        health = (attributes[2] * 10) + healthBonus;
         energy = (attributes[0] + attributes[2]);
         resistance = (attributes[0] * attributes[1]);
         statsTexts[0].text = health.ToString();
         statsTexts[1].text = energy.ToString();
         statsTexts[2].text = resistance.ToString();
-
-        UpdateSkills();
+        meleeDamage = 1 + meleeBonus;
+        rangedDamage = 1 + rangedBonus;
+        
     }
 
     void UpdateSkills()
     {
+        //Reset colors
+        for (int i = 0; i < skillsTexts.Count; i++)
+        {
+            skillsTexts[i].color = new Color(255, 255, 255);
+        }
+        //Reset bonus
+        healthBonus = 0;
+        meleeBonus = 0;
+        rangedBonus = 0;
+        //Reset attribute colors
+        for (int i = 0; i < 5; i++)
+        {
+            sheetAtts[i].color = new Color(255, 255, 255);
+        }
+
         string raceBased = "";
         switch (race) {
             case "Male Human":
@@ -163,12 +194,21 @@ public class CreationManager : MonoBehaviour
                 break;
             case "Female Human":
                 raceBased = "Based on race: \n Healing +1 \n Leadership +1 \n\n";
+                healing++;
+                skillsTexts[2].color = new Color(255, 0, 0);
+                leadership++;
+                skillsTexts[3].color = new Color(255, 0, 0);
                 break;
             case "Droid":
                 raceBased = "Based on race: \n No race based skills \n\n";
+               
                 break;
             case "Alien":
-                raceBased = "Based on race: \n Genetics Engineering +1 \n Piloting +1 \n\n";
+                raceBased = "Based on race: \n Genetic Engineering +1 \n Piloting +1 \n\n";
+                genengineering++;
+                skillsTexts[5].color = new Color(255, 0, 0);
+                piloting++;
+                skillsTexts[6].color = new Color(255, 0, 0);
                 break;
             default:
                 raceBased = "No skills based on race";
@@ -178,19 +218,38 @@ public class CreationManager : MonoBehaviour
         switch (classe)
         {
             case "Fighter":
-                classeBased = "Based on class: \n +1d4 melee damage \n +5 health per level \n\n";
+                classeBased = "Based on class: \n +4 melee damage \n +5 health per level \n\n";
+                healthBonus = 5;
+                meleeBonus = 4;
+                skillsTexts[0].color = new Color(255, 0, 0);
                 break;
             case "Hunter":
-                classeBased = "Based on class: \n +1d4 ranged weapon damage \n Tracking +1 \n\n";
+                classeBased = "Based on class: \n +3 ranged weapon damage \n Tracking +1 \n\n";
+                tracking++;
+                skillsTexts[7].color = new Color(255, 0, 0);
+                rangedBonus = 3;
+                skillsTexts[1].color = new Color(255, 0, 0);
                 break;
             case "Biologist":
-                classeBased = "Based on class: \n genetics engineering +1 \n Taming +1 \n\n";
+                classeBased = "Based on class: \n Genetic Engineering +1 \n Taming +1 \n\n";
+                genengineering++;
+                skillsTexts[5].color = new Color(255, 0, 0);
+                taming++;
+                skillsTexts[8].color = new Color(255, 0, 0);
                 break;
             case "Engineer":
                 classeBased = "Based on class: \n Crafting +1 \n Piloting +1 \n\n";
+                attributes[3]++;
+                sheetAtts[3].color = new Color(255, 0, 0);
+                piloting++;
+                skillsTexts[6].color = new Color(255, 0, 0);
                 break;
             case "Hacker":
                 classeBased = "Based on class: \n Never fails hacking \n Unlock +1 \n\n";
+                hacking++;
+                skillsTexts[4].color = new Color(255, 0, 0);
+                unlock++;
+                skillsTexts[9].color = new Color(255, 0, 0);
                 break;
             default:
                 classeBased = "No class based on race";
@@ -198,6 +257,26 @@ public class CreationManager : MonoBehaviour
         }
 
         skillsText.text = raceBased + classeBased;
+
+        if(healthBonus > 0)
+        {
+            statsTexts[0].color = new Color(255, 0, 0);
+        }
+        else
+        {
+            statsTexts[0].color = new Color(255,255,255);
+        }
+
+        skillsTexts[0].text = "Melee Damage: " + meleeDamage.ToString();
+        skillsTexts[1].text = "Ranged Damage: " + rangedDamage.ToString();
+        skillsTexts[2].text = "Healing: " + healing.ToString();
+        skillsTexts[3].text = "Leadership: " + leadership.ToString();
+        skillsTexts[4].text = "Hacking: " + hacking.ToString();
+        skillsTexts[5].text = "Genetic Engineering: " + genengineering.ToString();
+        skillsTexts[6].text = "Piloting: " + piloting.ToString();
+        skillsTexts[7].text = "Tracking: " + tracking.ToString();
+        skillsTexts[8].text = "Taming: " + taming.ToString();
+        skillsTexts[9].text = "Unlock: " + unlock.ToString();
     }
 
     void ClearRP()
@@ -207,6 +286,17 @@ public class CreationManager : MonoBehaviour
         {
             attributes[i] = 3;
         }
+        meleeDamage = 1;
+        rangedDamage = 1;
+        hacking = 2;
+        healing = 1;
+        leadership = 1;
+        genengineering = 1;
+        piloting = 1;
+        tracking = 1;
+        taming = 1;
+        unlock = 1;
+
         UpdateAttributes();
     }
 
@@ -214,6 +304,10 @@ public class CreationManager : MonoBehaviour
 
     #region Setup Methods
 
+    public void SetupName()
+    {
+
+    }
     public void SetupRace(string _race)
     {
         race = _race;
@@ -260,6 +354,7 @@ public class CreationManager : MonoBehaviour
         playerData.playerName = playerName;
         playerData.race = race;
         playerData.classe = classe;
+        playerData.Level = 1;
 
         //Attributes
         playerData.attributes = new int[5];
@@ -285,8 +380,7 @@ public class CreationManager : MonoBehaviour
         playerData.Taming = taming;
         playerData.Unlock = unlock;
 
-        saveLoadManager.SavePlayerData();
-
+        if(saveLoadManager.SavePlayerData())
         SceneManager.LoadScene("Junk Processing Plant");
     }
     #endregion

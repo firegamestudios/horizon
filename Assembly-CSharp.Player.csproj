@@ -60,12 +60,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Loading\LoadingScreenController.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationButton.cs" />
+    <Compile Include="Assets\RandomSpawner.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CameraOrbit.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\LightTilt.cs" />
     <Compile Include="Assets\Scripts\UI Tools\Tooltip.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\PC\PC.cs" />
-    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\BulletTimeManager.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\Scripts\Creation\CharacterCreation.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\InputSystem\StarterAssetsInputs.cs" />
@@ -726,6 +728,10 @@
     <ProjectReference Include="Unity.Postprocessing.Runtime.Player.csproj">
       <Project>{085E2111-BB6C-18E7-453A-36C85688BD49}</Project>
       <Name>Unity.Postprocessing.Runtime.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Player.csproj">
+      <Project>{E4766208-693D-0092-80E9-E489268EC385}</Project>
+      <Name>Unity.AI.Navigation.Player</Name>
     </ProjectReference>
     <ProjectReference Include="MoreMountains.Tools.Player.csproj">
       <Project>{2ABAB11A-5A4D-B9BF-7206-5C34E0468921}</Project>

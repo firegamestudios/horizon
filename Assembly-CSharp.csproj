@@ -60,12 +60,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Loading\LoadingScreenController.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationButton.cs" />
+    <Compile Include="Assets\RandomSpawner.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CameraOrbit.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\LightTilt.cs" />
     <Compile Include="Assets\Scripts\UI Tools\Tooltip.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\PC\PC.cs" />
-    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\BulletTimeManager.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\Scripts\Creation\CharacterCreation.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\InputSystem\StarterAssetsInputs.cs" />
@@ -786,6 +788,10 @@
       <Project>{47517942-2355-E1A5-5788-72514780CC1A}</Project>
       <Name>Unity.Burst.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.csproj">
+      <Project>{E3E1BA8E-E3FA-0437-4390-FE458C80A8DA}</Project>
+      <Name>Unity.AI.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="MoreMountains.Tools.csproj">
       <Project>{AA0E32CF-15C1-83A1-00FA-4B755328B519}</Project>
       <Name>MoreMountains.Tools</Name>
@@ -838,13 +844,17 @@
       <Project>{4751840F-9C51-010A-4910-DA717A75EF8E}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VSCode.Editor.csproj">
-      <Project>{496351F8-9583-0905-E4E7-330BF0A31237}</Project>
-      <Name>Unity.VSCode.Editor</Name>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj">
+      <Project>{735B3F3E-7C4D-3B6B-EA73-0B831D9D3CF8}</Project>
+      <Name>Unity.AI.Navigation.Editor.ConversionSystem</Name>
     </ProjectReference>
     <ProjectReference Include="MoreMountains.InventoryEngine.csproj">
       <Project>{C3F91CA2-F5A4-5F25-CC3B-9C7F22F108F1}</Project>
       <Name>MoreMountains.InventoryEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VSCode.Editor.csproj">
+      <Project>{496351F8-9583-0905-E4E7-330BF0A31237}</Project>
+      <Name>Unity.VSCode.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="MalbersAnimations.csproj">
       <Project>{40F2162B-2CB8-4B92-1EAE-B581418212DA}</Project>
@@ -946,6 +956,10 @@
       <Project>{96226880-6D0F-5E74-5FBA-43A307E08ADD}</Project>
       <Name>Unity.TestTools.CodeCoverage.Editor.OpenCover.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Updater.csproj">
+      <Project>{97A12491-5EE4-A062-9535-9170FC8C3B6A}</Project>
+      <Name>Unity.AI.Navigation.Updater</Name>
+    </ProjectReference>
     <ProjectReference Include="MoreMountains.Tools.Editor.csproj">
       <Project>{85F2A37D-5AA8-100C-FE3B-277F70578481}</Project>
       <Name>MoreMountains.Tools.Editor</Name>
@@ -969,6 +983,10 @@
     <ProjectReference Include="Unity.Searcher.Editor.csproj">
       <Project>{182F95B6-72ED-05CF-3A7B-120B1485A447}</Project>
       <Name>Unity.Searcher.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj">
+      <Project>{D1FDA3D6-E3A6-24F3-FD3E-FA09731F9FD3}</Project>
+      <Name>Unity.AI.Navigation.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{A1A05B56-782E-9CE9-9D79-96D58AB0BF89}</Project>
