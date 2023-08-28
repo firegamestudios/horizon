@@ -59,21 +59,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Loading\LoadingScreenController.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_RenderDepth.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationButton.cs" />
-    <Compile Include="Assets\RandomSpawner.cs" />
+    <Compile Include="Assets\Blood.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CameraOrbit.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\LightTilt.cs" />
     <Compile Include="Assets\Scripts\UI Tools\Tooltip.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_ManualAnimationUpdate.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\DemoScene\BFX_DemoTest.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_BloodDecalLayers.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_DecaGizmo.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\ThirdPersonController\Scripts\ThirdPersonController.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_MouseOrbit.cs" />
     <Compile Include="Assets\Scripts\PC\PC.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Spawner\RandomSpawner.cs" />
     <Compile Include="Assets\Scripts\Manager\BulletTimeManager.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\BasicRigidBodyPush.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_BloodSettings.cs" />
     <Compile Include="Assets\Scripts\Creation\CharacterCreation.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Scripts\UI Tools\TooltipButton.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_DecalSettings.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\Source Demos\FreeCamera.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\FirstPersonController\FirstPersonController.cs" />
+    <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_ShaderProperies.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationManager.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\Creation\RacePanel.cs" />
@@ -82,6 +92,8 @@
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Transform\Compass.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPC.cs" />
+    <Compile Include="Assets\Scripts\Workshop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -111,6 +123,8 @@
     <None Include="Assets\InventoryEngine\InventoryEngine\readme.txt" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Color4x3.shader" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Wind Shader.shader" />
+    <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Blood.shader" />
+    <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Decal_Plane.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -126,9 +140,11 @@
     <None Include="Assets\InventoryEngine\InventoryEngine\license.txt" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_Holographic_Sign.shader" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_Skybox.shader" />
+    <None Include="Assets\KriptoFX\VolumetricBloodFX\Readme.txt" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Color4x4 Unlit.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\_DLNK\Alien Terrain Pack\README.txt" />
+    <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Decal.shader" />
     <None Include="Assets\Fonts\droid-sans-mono\LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

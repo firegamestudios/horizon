@@ -364,8 +364,8 @@
     <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Drawing\Controllers\SGController.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Data\Nodes\Channel\SwizzleNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Data\Implementation\Edge.cs" />
-    <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Generation\Enumerations\StructFieldOptions.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Data\Nodes\NormalMapSpace.cs" />
+    <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Generation\Enumerations\StructFieldOptions.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Data\Nodes\Procedural\CheckerboardNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Data\Nodes\Input\Texture\Texture3DAssetNode.cs" />
     <Compile Include="Library\PackageCache\com.unity.shadergraph@14.0.7\Editor\Generation\Contexts\TargetPropertyGUIContext.cs" />
