@@ -8560,7 +8560,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 69e70d70d4cea1442bdbe47dc487a263, type: 2}
+  m_Motion: {fileID: 2897413406300659444, guid: 938d3cbafefb0d6438f13cf1cd71b277, type: 3}
   m_Tag: Death
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -20,6 +20,8 @@ public class Blood : MonoBehaviour
     {
         dice = Random.Range(0, bloods.Count);
         bloods[dice].gameObject.SetActive(true);
+        if (bloods[dice].transform.childCount == 2)
+        bloods[dice].transform.GetChild(0).SetParent(null);
         StartCoroutine(DeactivateWithDelay());
     }
 

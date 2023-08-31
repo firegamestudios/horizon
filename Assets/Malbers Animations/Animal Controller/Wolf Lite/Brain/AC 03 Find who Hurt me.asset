@@ -69,7 +69,7 @@ MonoBehaviour:
   LookMultiplier: 0.9
   LookRange:
     UseConstant: 1
-    ConstantValue: 6
+    ConstantValue: 50
     Variable: {fileID: 0}
   LookAngle: 360
   lookFor: 1

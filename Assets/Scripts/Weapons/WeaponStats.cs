@@ -51,10 +51,10 @@ public class WeaponStats : MonoBehaviour
 
         if (melee)
         {
-            float currentMin = shootable.statModifier.MinValue;
-            float currentMax = shootable.statModifier.MaxValue;
-            melee.statModifier.MinValue = currentMin + playerData.RangedDamage + playerData.RangedBonus;
-            melee.statModifier.MaxValue = currentMax + playerData.RangedDamage + playerData.RangedBonus + playerData.Leadership;
+            float currentMin = melee.statModifier.MinValue;
+            float currentMax = melee.statModifier.MaxValue;
+            melee.statModifier.MinValue = currentMin + playerData.MeleeDamage + playerData.MeleeBonus;
+            melee.statModifier.MaxValue = currentMax + playerData.MeleeDamage + playerData.MeleeBonus + playerData.Leadership;
         }
         if (shootable)
         {
