@@ -1,4 +1,5 @@
 using MalbersAnimations;
+using MalbersAnimations.Controller;
 using MalbersAnimations.Reactions;
 using MalbersAnimations.Weapons;
 using System.Collections;
@@ -21,10 +22,13 @@ public class Radioactive : MonoBehaviour
     float originalMin;
     float originalMax;
 
+    MAnimal animal;
+
     private void Start()
     {
         originalMin = damage.MinValue.Value;
         originalMax = damage.MaxValue.Value;
+
     }
 
     /// <summary>

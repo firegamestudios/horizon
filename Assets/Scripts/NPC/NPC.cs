@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+
+
     #region OnHit and OnDeath
     public void OnHit()
     {

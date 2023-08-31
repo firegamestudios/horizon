@@ -9,6 +9,8 @@ public class WeaponStats : MonoBehaviour
     PlayerData playerData;
 
     MMelee melee;
+    MShootable shootable;
+    MBow bow;
 
     public bool equipped = false;
 
@@ -16,7 +18,15 @@ public class WeaponStats : MonoBehaviour
 
     private void Awake()
     {
-        melee = GetComponent<MMelee>(); 
+        if(GetComponent<MMelee>() != null)
+            melee = GetComponent<MMelee>();
+
+        if (GetComponent<MShootable>() != null)
+            shootable = GetComponent<MShootable>();
+
+        if (GetComponent<MBow>() != null)
+            bow = GetComponent<MBow>();
+
         weaponDamageText = GameObject.Find("Weapon Damage Text").GetComponent<TMP_Text>();
     }
 
@@ -24,7 +34,12 @@ public class WeaponStats : MonoBehaviour
     {
         if(equipped)
         {
-            weaponDamageText.text = "Weapon Damage\n Min: " + melee.statModifier.MinValue.Value.ToString() + "\n Max: " + melee.statModifier.MaxValue.Value.ToString();
+            if(melee)
+                weaponDamageText.text = "Weapon Damage\n Min: " + melee.statModifier.MinValue.Value.ToString() + "\n Max: " + melee.statModifier.MaxValue.Value.ToString();
+            if (shootable)
+                weaponDamageText.text = "Weapon Damage\n Min: " + shootable.statModifier.MinValue.Value.ToString() + "\n Max: " + shootable.statModifier.MaxValue.Value.ToString();
+            if (bow)
+                weaponDamageText.text = "Weapon Damage\n Min: " + bow.statModifier.MinValue.Value.ToString() + "\n Max: " + bow.statModifier.MaxValue.Value.ToString();
         }
     }
 
@@ -34,10 +49,27 @@ public class WeaponStats : MonoBehaviour
     {
         playerData = FindAnyObjectByType<PC>().PlayerData;
 
-        float currentMin = melee.statModifier.MinValue;
-        float currentMax = melee.statModifier.MaxValue;
-        melee.statModifier.MinValue = currentMin + playerData.MeleeDamage + playerData.MeleeBonus;
-        melee.statModifier.MaxValue = currentMax + playerData.MeleeDamage + playerData.MeleeBonus + playerData.Leadership;
+        if (melee)
+        {
+            float currentMin = shootable.statModifier.MinValue;
+            float currentMax = shootable.statModifier.MaxValue;
+            melee.statModifier.MinValue = currentMin + playerData.RangedDamage + playerData.RangedBonus;
+            melee.statModifier.MaxValue = currentMax + playerData.RangedDamage + playerData.RangedBonus + playerData.Leadership;
+        }
+        if (shootable)
+        {
+            float currentMin = shootable.statModifier.MinValue;
+            float currentMax = shootable.statModifier.MaxValue;
+            shootable.statModifier.MinValue = currentMin + playerData.RangedDamage + playerData.RangedBonus;
+            shootable.statModifier.MaxValue = currentMax + playerData.RangedDamage + playerData.RangedBonus + playerData.Leadership;
+        }
+        if (bow)
+        {
+            float currentMin = bow.statModifier.MinValue;
+            float currentMax = bow.statModifier.MaxValue;
+            bow.statModifier.MinValue = currentMin + playerData.RangedDamage + playerData.RangedBonus;
+            bow.statModifier.MaxValue = currentMax + playerData.RangedDamage + playerData.RangedBonus + playerData.Leadership;
+        }
         equipped = true;
         print("Equipped");
     }
