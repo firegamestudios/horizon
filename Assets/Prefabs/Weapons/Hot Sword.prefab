@@ -235,10 +235,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
-  MinDistance: 1.5
-  MaxDistance: 5
+  MinDistance: 4.9504952
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -273,7 +273,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 3296424427589199206}
   - component: {fileID: 2036501427629665393}
   - component: {fileID: 1591409267108847108}
+  - component: {fileID: 6500638848427912532}
   m_Layer: 30
   m_Name: Hot Sword
   m_TagString: Untagged
@@ -343,7 +344,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9017008985721291511}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.64, y: 0.15999997, z: -1.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -353,7 +354,7 @@ Transform:
   - {fileID: 1479469825274293116}
   - {fileID: 6456487937488717979}
   - {fileID: 2725264465444211630}
-  - {fileID: 3605422891647844849}
+  - {fileID: 205668823618410360}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -378,7 +379,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue:
       serializedVersion: 2
-      m_Bits: 3230662657
+      m_Bits: 3297771521
     Variable: {fileID: 0}
   triggerInteraction: 1
   owner: {fileID: 9017008985721291511}
@@ -415,11 +416,11 @@ MonoBehaviour:
     modify: 3
     MinValue:
       UseConstant: 1
-      ConstantValue: 10
+      ConstantValue: 2
       Variable: {fileID: 0}
     MaxValue:
       UseConstant: 1
-      ConstantValue: 20
+      ConstantValue: 4
       Variable: {fileID: 0}
     enable:
       UseConstant: 1
@@ -427,7 +428,7 @@ MonoBehaviour:
       Variable: {fileID: 0}
   m_cChance:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 0.1
     Variable: {fileID: 0}
   cMultiplier:
     UseConstant: 1
@@ -700,8 +701,8 @@ MonoBehaviour:
     Rotation: {x: 0, y: 179.99997, z: 179.99995}
     Scale: {x: 1, y: 1, z: 1}
   RightHandOffset:
-    Position: {x: -0.119, y: 0.024, z: 0.001}
-    Rotation: {x: -3, y: 0, z: 0}
+    Position: {x: 0.101, y: -0.025, z: 0.013}
+    Rotation: {x: -167.51, y: -180, z: -180}
     Scale: {x: 1, y: 1, z: 1}
   Sounds:
   - {fileID: 8300000, guid: 6f45d27fd173aef4ba40357906e28656, type: 3}
@@ -736,9 +737,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6500638848427912532}
+        m_TargetAssemblyTypeName: WeaponStats, Assembly-CSharp
+        m_MethodName: OnEquipped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnUnequiped:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6500638848427912532}
+        m_TargetAssemblyTypeName: WeaponStats, Assembly-CSharp
+        m_MethodName: OnUnequipped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCharged:
     m_PersistentCalls:
       m_Calls: []
@@ -754,8 +779,8 @@ MonoBehaviour:
   OnReleaseFreeHand:
     m_PersistentCalls:
       m_Calls: []
-  Editor_Tabs1: 1
-  Editor_Tabs2: 4
+  Editor_Tabs1: 4
+  Editor_Tabs2: 3
   meleeTrigger: {fileID: 872899020855261596}
   ignoreStaticObjects: 1
   OnCauseDamage:
@@ -789,8 +814,9 @@ MonoBehaviour:
     Variable: {fileID: 0}
   materialSounds:
   - Sounds:
-    - {fileID: 8300000, guid: 6fa6f8e3d0b17884588ddd02f9b6cd09, type: 3}
-    - {fileID: 8300000, guid: 74123cd0d58cf434ba3a5be785d5505a, type: 3}
+    - {fileID: 8300000, guid: 9d7fc4aa506b46e4ca2214beaefe6127, type: 3}
+    - {fileID: 8300000, guid: f12f83223ab689a4895180090cdf1dfd, type: 3}
+    - {fileID: 8300000, guid: 8a9a6e9a8731fdc4fa7c1a4a071241e3, type: 3}
     material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
   audioSource: {fileID: 7445149203703591480}
 --- !u!114 &8484846050731437973
@@ -1040,6 +1066,19 @@ MonoBehaviour:
   m_colliders:
   - {fileID: 3296424427589199206}
   EditorTabs: 1
+--- !u!114 &6500638848427912532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017008985721291511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4709f5ee01447ce44b7d010d629eb907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipped: 0
 --- !u!1001 &382832124335009939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1113,7 +1152,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d79351d59abe0a4cba31d4bbdd9ecce, type: 3}
---- !u!4 &3605422891647844849 stripped
+--- !u!4 &205668823618410360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1d79351d59abe0a4cba31d4bbdd9ecce, type: 3}
   m_PrefabInstance: {fileID: 382832124335009939}
@@ -1176,7 +1215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9181817740155613070, guid: 1c7a0f3efad6ffd4898f40074ea5bcc2, type: 3}
       propertyPath: onEnable.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: Collect
+      value: Small Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

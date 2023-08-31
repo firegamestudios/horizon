@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void NewGame()
+
+    public void OnResumeClicked()
     {
-        SceneManager.LoadScene("Creation");
+
+    }
+    public void OnNewGameClicked()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void OnQuitGameClicked()
+    {
+
     }
 }

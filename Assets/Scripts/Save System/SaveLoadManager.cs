@@ -17,6 +17,8 @@ public class PlayerData
     public int XP;
     //Skills
     public float MeleeDamage = 1;
+    public float MeleeBonus = 0;
+    public float RangedBonus = 0;
     public float RangedDamage = 1;
     public float Hacking = 2;
     public float Healing = 1;

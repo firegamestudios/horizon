@@ -149,6 +149,7 @@ public class CreationManager : MonoBehaviour
     }
     public void UpdateAttributes()
     {
+        ClearSkills();
         UpdateSkills();
 
         for (int i = 0; i < atts.Count; i++)
@@ -267,8 +268,8 @@ public class CreationManager : MonoBehaviour
             statsTexts[0].color = new Color(255,255,255);
         }
 
-        skillsTexts[0].text = "Melee Damage: " + meleeDamage.ToString();
-        skillsTexts[1].text = "Ranged Damage: " + rangedDamage.ToString();
+        skillsTexts[0].text = "Melee Damage: " + ((meleeDamage + meleeBonus) + " to " + (meleeDamage+leadership+meleeBonus)).ToString();
+        skillsTexts[1].text = "Ranged Damage: " + ((rangedDamage + meleeBonus) + " to " + (rangedDamage + leadership+rangedBonus)).ToString();
         skillsTexts[2].text = "Healing: " + healing.ToString();
         skillsTexts[3].text = "Leadership: " + leadership.ToString();
         skillsTexts[4].text = "Hacking: " + hacking.ToString();
@@ -286,6 +287,12 @@ public class CreationManager : MonoBehaviour
         {
             attributes[i] = 3;
         }
+
+        UpdateAttributes();
+    }
+
+    void ClearSkills()
+    {
         meleeDamage = 1;
         rangedDamage = 1;
         hacking = 2;
@@ -297,7 +304,6 @@ public class CreationManager : MonoBehaviour
         taming = 1;
         unlock = 1;
 
-        UpdateAttributes();
     }
 
     #endregion
@@ -370,6 +376,8 @@ public class CreationManager : MonoBehaviour
 
         //Skills
         playerData.MeleeDamage = meleeDamage;
+        playerData.MeleeBonus = meleeBonus;
+        playerData.RangedBonus = rangedBonus;
         playerData.RangedDamage = rangedDamage;
         playerData.Hacking = hacking;
         playerData.Healing = healing;

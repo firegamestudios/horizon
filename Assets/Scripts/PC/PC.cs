@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using MalbersAnimations;
 using TMPro;
+using MalbersAnimations.Controller;
 
 public class PC : MonoBehaviour
 {
-    string race;
-    string gender;
-    string classe;
-
+   
     SaveLoadManager saveLoadManager;
     PlayerData playerData;
     BulletTimeManager bulletTimeManager;
 
     //Malbers
     Stats stats;
+
+    public MAttackTrigger attackTriggerKick;
+    public MAttackTrigger attackTriggerLeftHand;
+    public MAttackTrigger attackTriggerRightHand;
 
    //UI 
    UIManager uiManager;
@@ -54,7 +56,10 @@ public class PC : MonoBehaviour
         stats.stats[2].Value = playerData.Resistance;
         stats.stats[2].MaxValue = playerData.Resistance;
 
-       
+        //Melee Damage
+        attackTriggerKick.statModifier.MinValue = playerData.MeleeDamage + playerData.MeleeBonus;
+        attackTriggerKick.statModifier.MaxValue = playerData.MeleeDamage + playerData.Leadership + playerData.MeleeBonus;
+
     }
 
     #endregion
@@ -79,6 +84,10 @@ public class PC : MonoBehaviour
         bulletTimeManager.BulletTime(index);
     }
 
+    #endregion
+
+    #region My PlayerData
+    public PlayerData PlayerData { get { return playerData; } }
     #endregion
 
 }

@@ -230,8 +230,8 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\RenderPipeline\Raytracing\HDRenderPipeline.RaytracingDeferredLightLoop.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\Utilities\HDTextureUtilities.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\Material\AxF\AxF.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\Lighting\VolumetricLighting\HDRenderPipeline.VolumetricCloudsLighting.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\Lighting\Reflection\ReflectionSystemParameters.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\Lighting\VolumetricLighting\HDRenderPipeline.VolumetricCloudsLighting.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\RenderPipeline\Camera\HDCamera.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\PostProcessing\Components\ColorCurves.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.7\Runtime\Material\Builtin\BuiltinData.cs" />
