@@ -1,7 +1,9 @@
+using Cinemachine;
 using MalbersAnimations;
 using MalbersAnimations.Controller;
 using MalbersAnimations.Reactions;
 using MalbersAnimations.Weapons;
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,14 +11,18 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    //Components
+    //My Components
     MAnimal animal;
-   
     MDamageable damageable;
     Reaction customReaction;
     Animator anim;
+    CinemachineVirtualCamera myVirtualCam;
 
+    //The player
+    PC pc;
+    MAnimal pcAnimal;
 
+   
 
     /* -> Weapon that will deal the damage.
      * Recreate and make it in a way that detects the player's current weapon. !!
@@ -47,13 +53,30 @@ public class NPC : MonoBehaviour
     private float frozenTimer;
     [SerializeField] private bool frozen;
 
-    private void Start()
+    private void Awake()
     {
+        pc = FindAnyObjectByType<PC>();
         damageable = GetComponent<MDamageable>();
         anim = GetComponent<Animator>();
-
-        regularAnimSpeed = anim.speed;
+        pcAnimal = pc.GetComponent<MAnimal>();
+        myVirtualCam = GetComponentInChildren<CinemachineVirtualCamera>();
     }
+
+    private void Start()
+    {
+        //Setup the regular animation speed
+       regularAnimSpeed = anim.speed;
+       
+    }
+
+    private void OnEnable()
+    {
+        DialogueManager.instance.conversationStarted += OnConversationStarted;
+        DialogueManager.instance.conversationEnded += OnConversationEnded;
+    }
+
+  
+
     public void OnCauseDamage(StatModifier _poisonDamage, StatElement statElement, float _poisonPotency, float _poisonDuration)
     {
         string elementName = statElement.DisplayName;
@@ -79,6 +102,7 @@ public class NPC : MonoBehaviour
         Paralyzed();
         Burned();
         Frozen();
+
     }
     void Poisoned()
     {
@@ -152,17 +176,37 @@ public class NPC : MonoBehaviour
     #endregion
 
     #region OnHit and OnDeath
+    /// <summary>
+    /// Methods called when taking damage and on death
+    /// </summary>
     public void OnHit()
     {
 
     }
     #endregion
 
-    #region Effect of Elements
+    #region OnConversation
+    /// <summary>
+    /// Methods called on conversation and for player control during them. These events are called when conversation starts or ends.
+    /// </summary>
 
   
+    private void OnConversationStarted(Transform t)
+    {
+        print("Conversation started with " + gameObject.name);
+        pcAnimal.State_Force(0);
+        pcAnimal.Sleep = true;
+        myVirtualCam.Priority = 100;
+    }
 
-  
+    private void OnConversationEnded(Transform t)
+    {
+        print("Conversation ended with " + gameObject.name);
+        myVirtualCam.Priority = -50;
+        pcAnimal.Sleep = false;
+    }
 
     #endregion
+
+
 }

@@ -113,10 +113,11 @@
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\OnTriggerActivator.cs" />
     <Compile Include="Assets\Scripts\Weapons\ArrowStats.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CharControlSimple.cs" />
-    <Compile Include="Assets\DiceMaster\Scripts\Actors\Spinner.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Miscellaneous\DiceTester.cs" />
+    <Compile Include="Assets\DiceMaster\Scripts\Actors\Spinner.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Scrappy\RollAgility.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Transform\Compass.cs" />
     <Compile Include="Assets\Scripts\NPC\NPC.cs" />
     <Compile Include="Assets\Scripts\Workshop.cs" />
