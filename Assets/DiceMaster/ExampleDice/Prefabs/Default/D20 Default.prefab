@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 11413430}
   - component: {fileID: 8267014}
   - component: {fileID: -2794706999305318697}
+  - component: {fileID: -2603669398127033225}
   m_Layer: 0
   m_Name: D20 Default
   m_TagString: Untagged
@@ -309,8 +310,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d34a8e44b1ec784a8d4d414fcd63226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinTorque: 5
+  spinTorque: 1
   triggerOnStart: 1
   autoDestroy: 1
   axis: {x: 0, y: 1, z: 0}
   randomAxisOffset: 0.1
+--- !u!114 &-2603669398127033225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e201af98245caa044bd01037e28ce335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwStrength: 0.1
+  triggerOnStart: 1
+  autoDestroy: 1
+  direction: {x: 0, y: 1, z: 0.1}
+  randomDirectionOffset: 0.1
