@@ -16,8 +16,6 @@ public class RollAgility : MonoBehaviour
         diceManager = FindAnyObjectByType<DiceManager>();
         saveLoadManager = FindAnyObjectByType<SaveLoadManager>();
 
-        Dice d = diceManager.dice[0];
-        d.onShowNumber.AddListener(RegisterNumber);
     }
 
     public void OnAgilityRolled(GameObject pc)
@@ -29,9 +27,5 @@ public class RollAgility : MonoBehaviour
         diceManager.Roll(pc.transform);
     }
 
-    public void RegisterNumber(int number)
-    {
-        Debug.Log("Got " + number);
-
-    }
+  
 }

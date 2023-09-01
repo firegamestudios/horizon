@@ -50,7 +50,7 @@ public class SaveLoadManager : MonoBehaviour
     private void Awake()
     {
         // Set the save file path based on the application's persistent data path
-        saveFilePath = Path.Combine(Application.persistentDataPath, "/playerdata.json");
+        saveFilePath = Path.Combine(Application.persistentDataPath, "C:/droidzone/playerdata.json");
     }
 
     public bool SavePlayerData()

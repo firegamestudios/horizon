@@ -8,7 +8,8 @@ public class DiceManager : MonoBehaviour
 {
 
     public Dice[] dice;
-    private int total = 0;
+    public int total = 0;
+    Dice currentDice;
 
     int currentDC;
     int currentAtt;
@@ -23,18 +24,27 @@ public class DiceManager : MonoBehaviour
 
     public void Roll(Transform roller)
     {
-        Instantiate(dice[0], roller.position + diceOffset, roller.rotation);
+        total = 0;
+        if(currentDice == null)
+        {
+            Dice newDice = Instantiate(dice[0], roller.position + diceOffset, roller.rotation);
+            currentDice = newDice;
+            currentDice.onShowNumber.AddListener(RegisterNumber);
+        }
+        else
+        {
+
+        }
+       
         PC pc = roller.GetComponent<PC>();
         
     }
 
     public void RegisterNumber(int number)
     {
-       // Debug.Log("Got " + number);
+        Debug.Log("Got " + number);
 
-        total += number;
-       // Debug.Log("Total: " + total);
-
-       
+        total = number;
+      
     }
 }
