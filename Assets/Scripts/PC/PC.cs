@@ -13,6 +13,7 @@ public class PC : MonoBehaviour
     BulletTimeManager bulletTimeManager;
 
     //Malbers
+    MAnimal animal;
     Stats stats;
 
     public MAttackTrigger attackTriggerKick;
@@ -26,6 +27,7 @@ public class PC : MonoBehaviour
         saveLoadManager = FindAnyObjectByType<SaveLoadManager>();
         bulletTimeManager = FindAnyObjectByType<BulletTimeManager>();
         stats = GetComponent<Stats>();
+        animal = GetComponent<MAnimal>();
         uiManager = FindAnyObjectByType<UIManager>();
     }
     // Start is called before the first frame update
@@ -88,6 +90,18 @@ public class PC : MonoBehaviour
 
     #region My PlayerData
     public PlayerData PlayerData { get { return playerData; } }
+    #endregion
+
+    #region Player Control
+    public void FreezePlayer()
+    {
+        animal.State_Force(0);
+        animal.Sleep = true;
+    }
+    public void UnfreezePlayer()
+    {
+        animal.Sleep = false;
+    }
     #endregion
 
 }

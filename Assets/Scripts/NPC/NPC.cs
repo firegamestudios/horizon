@@ -16,12 +16,9 @@ public class NPC : MonoBehaviour
     MDamageable damageable;
     Reaction customReaction;
     Animator anim;
-    CinemachineVirtualCamera myVirtualCam;
-
+   
     //The player
     PC pc;
-    MAnimal pcAnimal;
-
    
 
     /* -> Weapon that will deal the damage.
@@ -37,9 +34,11 @@ public class NPC : MonoBehaviour
     float poisonReset;
     float poisonDuration;
     float poisonDurationReset;
+
+    bool poisoned;
     
-    [SerializeField] private bool poisoned;
-    StatModifier poisonDamage;
+    float minPoisonDamage;
+    float maxPoisonDamage;
 
     // PARALYZE VARIABLES.
     private float paralyzedTimer;
@@ -53,13 +52,13 @@ public class NPC : MonoBehaviour
     private float frozenTimer;
     [SerializeField] private bool frozen;
 
+    
     private void Awake()
     {
         pc = FindAnyObjectByType<PC>();
         damageable = GetComponent<MDamageable>();
         anim = GetComponent<Animator>();
-        pcAnimal = pc.GetComponent<MAnimal>();
-        myVirtualCam = GetComponentInChildren<CinemachineVirtualCamera>();
+       
     }
 
     private void Start()
@@ -75,9 +74,13 @@ public class NPC : MonoBehaviour
         DialogueManager.instance.conversationEnded += OnConversationEnded;
     }
 
-  
+    private void OnDisable()
+    {
+        DialogueManager.instance.conversationStarted -= OnConversationStarted;
+        DialogueManager.instance.conversationEnded -= OnConversationEnded;
+    }
 
-    public void OnCauseDamage(StatModifier _poisonDamage, StatElement statElement, float _poisonPotency, float _poisonDuration)
+    public void OnCauseDamage(float minDamage, float maxDamage, StatElement statElement, float _poisonPotency, float _poisonDuration)
     {
         string elementName = statElement.DisplayName;
 
@@ -120,6 +123,9 @@ public class NPC : MonoBehaviour
 
             if (poisonPotency <= 0)
             {
+                StatModifier poisonDamage = new StatModifier();
+                poisonDamage.MinValue.Value = minPoisonDamage;
+                poisonDamage.MaxValue.Value = maxPoisonDamage;
                 damageable.ReceiveDamage(Vector3.forward, weapon, poisonDamage, false, true, customReaction, false);
                 poisonPotency = poisonReset;
             }
@@ -144,33 +150,33 @@ public class NPC : MonoBehaviour
 
     void Paralyzed()
     {
-        if (paralyzed)
-        {
-            animal.Sleep = true; // Não está funcionando.
-            paralyzedTimer -= Time.deltaTime;
+        //if (paralyzed)
+        //{
+        //    animal.Sleep = true; // Não está funcionando.
+        //    paralyzedTimer -= Time.deltaTime;
 
-            if (paralyzedTimer <= 0)
-            {
-                paralyzed = false;
-                paralyzedTimer = Random.Range(1, 5);
-            }
-        }
+        //    if (paralyzedTimer <= 0)
+        //    {
+        //        paralyzed = false;
+        //        paralyzedTimer = Random.Range(1, 5);
+        //    }
+        //}
     }
 
     void Frozen()
     {
-        if (frozen)
-        {
-            anim.speed = 0;
-            frozenTimer -= Time.deltaTime;
+        //if (frozen)
+        //{
+        //    anim.speed = 0;
+        //    frozenTimer -= Time.deltaTime;
 
-            if (frozenTimer <= 0)
-            {
-                frozen = false;
-                anim.speed = regularAnimSpeed;
-                frozenTimer = Random.Range(1, 5);
-            }
-        }
+        //    if (frozenTimer <= 0)
+        //    {
+        //        frozen = false;
+        //        anim.speed = regularAnimSpeed;
+        //        frozenTimer = Random.Range(1, 5);
+        //    }
+        //}
     }
 
     #endregion
@@ -193,17 +199,33 @@ public class NPC : MonoBehaviour
   
     private void OnConversationStarted(Transform t)
     {
+        //This is not a NPC with conversation
+        if (GetComponent<DialogueSystemTrigger>() == null) return;
+
+        //This is not the NPC in the active conversation
+        if(DialogueManager.instance.activeConversation.conversationTitle != GetComponent<DialogueSystemTrigger>().conversation)
+        {
+            return;
+        }
         print("Conversation started with " + gameObject.name);
-        pcAnimal.State_Force(0);
-        pcAnimal.Sleep = true;
-        myVirtualCam.Priority = 100;
+        pc.FreezePlayer();
+        CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
+        MyVirtualCam.Priority = 100;
     }
 
     private void OnConversationEnded(Transform t)
     {
+        //This is not a NPC with conversation
+        if (GetComponent<DialogueSystemTrigger>() == null) return;
+
+        if (DialogueManager.instance.activeConversation.conversationTitle != GetComponent<DialogueSystemTrigger>().conversation)
+        {
+            return;
+        }
         print("Conversation ended with " + gameObject.name);
-        myVirtualCam.Priority = -50;
-        pcAnimal.Sleep = false;
+        CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
+        MyVirtualCam.Priority = -50;
+        pc.UnfreezePlayer();
     }
 
     #endregion

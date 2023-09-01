@@ -16,6 +16,9 @@ public class WeaponStats : MonoBehaviour
 
     TMP_Text weaponDamageText;
 
+    public float minPoisonDamage;
+    public float maxPoisonDamage;
+
     private void Awake()
     {
         if(GetComponent<MMelee>() != null)
