@@ -28,6 +28,11 @@ public class NPC : MonoBehaviour
 
     private float regularAnimSpeed;
 
+    //Effects variables
+    float elementDuration;
+    float elementPotency;
+    float elementReset;
+
     // POISON VARIABLES.
     [Tooltip("Smaller numbers, stronger poison")]
     float poisonPotency;
@@ -43,6 +48,10 @@ public class NPC : MonoBehaviour
     // PARALYZE VARIABLES.
     private float paralyzedTimer;
     [SerializeField] private bool paralyzed;
+   
+
+    // PETRIFIED VARIABLES.
+    [SerializeField] private bool petrified;
 
     // BURNED VARIABLES.
     private float burnedTimer;
@@ -150,17 +159,38 @@ public class NPC : MonoBehaviour
 
     void Paralyzed()
     {
-        //if (paralyzed)
-        //{
-        //    animal.Sleep = true; // Não está funcionando.
-        //    paralyzedTimer -= Time.deltaTime;
+        if (paralyzed)
+        {
+            animal.Sleep = true; 
+            elementDuration -= Time.deltaTime;
 
-        //    if (paralyzedTimer <= 0)
-        //    {
-        //        paralyzed = false;
-        //        paralyzedTimer = Random.Range(1, 5);
-        //    }
-        //}
+            if (elementDuration < 0)
+            {
+                paralyzed = false;
+            }
+
+            elementPotency -= Time.deltaTime;
+
+            if (elementPotency <= 0)
+            {
+                animal.Sleep = false;
+                elementPotency = elementReset;
+            }
+        }
+    }
+
+    void Petrified()
+    {
+        if (petrified)
+        {
+            animal.State_Force(0);
+            animal.Sleep = true;
+        }
+    }
+
+    public void Unpetrify()
+    {
+        animal.Sleep = false;
     }
 
     void Frozen()
@@ -230,5 +260,16 @@ public class NPC : MonoBehaviour
 
     #endregion
 
+    #region NPC Control
+    public void Freeze()
+    {
+        animal.State_Force(0);
+        animal.Sleep = true;
+    }
+    public void Unfreeze()
+    {
+        animal.Sleep = false;
+    }
+    #endregion
 
 }
