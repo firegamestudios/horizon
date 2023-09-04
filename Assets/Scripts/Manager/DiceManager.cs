@@ -33,7 +33,9 @@ public class DiceManager : MonoBehaviour
         }
         else
         {
-
+            currentDice.transform.position = roller.position + diceOffset;
+            currentDice.GetComponent<Spinner>().Trigger();
+            currentDice.onShowNumber.AddListener(RegisterNumber);
         }
        
         PC pc = roller.GetComponent<PC>();

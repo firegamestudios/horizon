@@ -12,13 +12,13 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     //My Components
-    MAnimal animal;
+    protected MAnimal animal;
     MDamageable damageable;
     Reaction customReaction;
     Animator anim;
    
     //The player
-    PC pc;
+    protected PC pc;
    
 
     /* -> Weapon that will deal the damage.
@@ -64,6 +64,7 @@ public class NPC : MonoBehaviour
     
     private void Awake()
     {
+        animal = GetComponent<MAnimal>();
         pc = FindAnyObjectByType<PC>();
         damageable = GetComponent<MDamageable>();
         anim = GetComponent<Animator>();
@@ -74,7 +75,14 @@ public class NPC : MonoBehaviour
     {
         //Setup the regular animation speed
        regularAnimSpeed = anim.speed;
-       
+
+        //Initialization for custom children classes
+        Initialize();
+    }
+
+    public virtual void Initialize()
+    {
+        //do the override in the custom child class
     }
 
     private void OnEnable()
@@ -83,11 +91,6 @@ public class NPC : MonoBehaviour
         DialogueManager.instance.conversationEnded += OnConversationEnded;
     }
 
-    private void OnDisable()
-    {
-        DialogueManager.instance.conversationStarted -= OnConversationStarted;
-        DialogueManager.instance.conversationEnded -= OnConversationEnded;
-    }
 
     public void OnCauseDamage(float minDamage, float maxDamage, StatElement statElement, float _poisonPotency, float _poisonDuration)
     {
@@ -114,6 +117,13 @@ public class NPC : MonoBehaviour
         Paralyzed();
         Burned();
         Frozen();
+
+        //To be called in children classes
+        UpdateNPC();
+    }
+
+    public virtual void UpdateNPC()
+    {
 
     }
     void Poisoned()
@@ -239,6 +249,7 @@ public class NPC : MonoBehaviour
         }
         print("Conversation started with " + gameObject.name);
         pc.FreezePlayer();
+        Freeze();
         CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
         MyVirtualCam.Priority = 100;
     }
@@ -256,6 +267,7 @@ public class NPC : MonoBehaviour
         CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
         MyVirtualCam.Priority = -50;
         pc.UnfreezePlayer();
+        Unfreeze();
     }
 
     #endregion
@@ -269,6 +281,11 @@ public class NPC : MonoBehaviour
     public void Unfreeze()
     {
         animal.Sleep = false;
+    }
+
+    public void StartConversation(string title)
+    {
+        DialogueManager.instance.StartConversation(title, pc.transform, transform);
     }
     #endregion
 

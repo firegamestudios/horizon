@@ -129,7 +129,7 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: e9a3691e367dd6048acfe7537f7c7114, type: 2}
   Jumps:
     UseConstant: 1
-    ConstantValue: 3
+    ConstantValue: 1
     Variable: {fileID: 0}
   DoubleJumpTime:
     UseConstant: 1
@@ -250,7 +250,7 @@ MonoBehaviour:
     WaitForAnimation: 0
   multipleJumps:
   - name: Double Jump
-    JumpNumber: 2
+    JumpNumber: 0
     JumpTime: 0.5
     Height:
       UseConstant: 1
@@ -267,7 +267,7 @@ MonoBehaviour:
       Variable: {fileID: 0}
     WaitForAnimation: 0
   - name: Triple Jump
-    JumpNumber: 3
+    JumpNumber: 0
     JumpTime: 0.5
     Height:
       UseConstant: 1

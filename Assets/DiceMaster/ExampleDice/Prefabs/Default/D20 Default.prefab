@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinTorque: 1
   triggerOnStart: 1
-  autoDestroy: 1
+  autoDestroy: 0
   axis: {x: 0, y: 1, z: 0}
   randomAxisOffset: 0.1
 --- !u!114 &-2603669398127033225
@@ -329,6 +329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwStrength: 0.1
   triggerOnStart: 1
-  autoDestroy: 1
+  autoDestroy: 0
   direction: {x: 0, y: 1, z: 0.1}
   randomDirectionOffset: 0.1

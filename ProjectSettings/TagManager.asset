@@ -12,6 +12,8 @@ TagManager:
   - PW - Prop
   - Animal
   - Water
+  - DiceManager
+  - UIManager
   layers:
   - Default
   - TransparentFX

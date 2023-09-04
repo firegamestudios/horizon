@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4681abb1579a87d4ca46923c098ddece, type: 3}
   m_Name: D_Enemy Spotted!
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   Description: All Decisions on the list  must be TRUE in order to sent a True Decision
   DecisionID:
     UseConstant: 1
