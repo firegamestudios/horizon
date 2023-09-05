@@ -6,10 +6,10 @@ using PixelCrushers.DialogueSystem;
 
 public class NPC_ScrappyIntro : NPC
 {
+    [Header("Scrappy Intro Components")]
     public AudioSource screamSound;
     public GameObject scrappy;
     public Transform wpIncinerator;
-
     public Animator incineratorDoorAnimator;
     public AudioSource doorAudio;
 

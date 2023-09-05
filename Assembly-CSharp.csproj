@@ -88,16 +88,20 @@
     <Compile Include="Assets\DiceMaster\Scripts\Miscellaneous\Simulation.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\DiceDefinition.cs" />
     <Compile Include="Assets\Scripts\Manager\BulletTimeManager.cs" />
+    <Compile Include="Assets\RayFire\Tutorial\Scripts\ConnectivityEventScript.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_BloodSettings.cs" />
     <Compile Include="Assets\Scripts\Creation\CharacterCreation.cs" />
+    <Compile Include="Assets\RayFire\Tutorial\Scripts\TranslateScript.cs" />
     <Compile Include="Assets\DiceMaster\ExampleScenes\ExampleScripts\TestSpawnRegister.cs" />
+    <Compile Include="Assets\RayFire\Tutorial\Scripts\FadingEventScript.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Scripts\UI Tools\TooltipButton.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Miscellaneous\OnHitSound.cs" />
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_DecalSettings.cs" />
     <Compile Include="Assets\Scripts\Dice Roll\RollAgility.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\Source Demos\FreeCamera.cs" />
+    <Compile Include="Assets\RayFire\Tutorial\Scripts\ApplyDamageScript.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Actors\Spawner.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\FirstPersonController\FirstPersonController.cs" />
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_ShaderProperies.cs" />
@@ -110,6 +114,7 @@
     <Compile Include="Assets\DiceMaster\ExampleScenes\ExampleScripts\ResultUI.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationManager.cs" />
     <Compile Include="Assets\Scripts\NPC\Scrappy\NPC_ScrappyIntro.cs" />
+    <Compile Include="Assets\RayFire\Tutorial\Scripts\AddRigidComponent.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\DynamicFace.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Dice.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveLoadManager.cs" />
@@ -122,12 +127,15 @@
     <Compile Include="Assets\DiceMaster\Scripts\Actors\Spinner.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Dice Roll\RollComputer.cs" />
+    <Compile Include="Assets\RayFire\Tutorial\Scripts\ActivationEventScript.cs" />
+    <Compile Include="Assets\RayFire\Tutorial\Scripts\DemolitionEventScript.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Transform\Compass.cs" />
     <Compile Include="Assets\Scripts\NPC\NPC.cs" />
     <Compile Include="Assets\Scripts\Workshop.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\RayFire\Plugins\Windows\x86_x64\RFLib_DotNet_2018.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Mask8Toon.shader" />
     <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\3 Special\ShadowPass.shader" />
@@ -139,12 +147,15 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\3 Special\AdvancedLeaves.shader" />
     <None Include="Assets\DiceMaster\DM_CHANGELOG.txt" />
+    <None Include="Assets\RayFire\Plugins\Android\RFLib_DotNet_2018_andr.dll" />
     <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\2 FXs\DLNKWater01.shader" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Color4x4.shader" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_ColourChange.shader" />
+    <None Include="Assets\RayFire\Plugins\Windows\x86_x64\RFLib_CNative_2018.dll" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Mask4Toon.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Mask4Realistic.shader" />
+    <None Include="Assets\RayFire\Plugins\Linux\RFLib_DotNet_2018_lin.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Golem Shader.shader" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_SciFiPlant.shader" />
@@ -158,6 +169,7 @@
     <None Include="Assets\Malbers Animations\Common\Shaders\Wind Shader.shader" />
     <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Blood.shader" />
     <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Decal_Plane.shader" />
+    <None Include="Assets\RayFire\Plugins\Windows\x86\RFLib_CNative_2018_x86.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -169,17 +181,24 @@
     <None Include="Assets\Malbers Animations\Common\Shaders\AnisotropicCircular.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Shader Library]\[SF Legacy Shaders]\2 FXs\WaterFx2.shader" />
+    <None Include="Assets\RayFire\Info\FAQ.txt" />
     <None Include="Assets\Malbers Animations\Common\Shaders\MWater2.shader" />
     <None Include="Assets\DiceMaster\DM_README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\InventoryEngine\InventoryEngine\license.txt" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_Holographic_Sign.shader" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_Skybox.shader" />
+    <None Include="Assets\RayFire\Plugins\Windows\x86\RFLib_DotNet_2018_x86.dll" />
+    <None Include="Assets\RayFire\Plugins\Ios\RFLib_DotNet_2018_ios.dll" />
     <None Include="Assets\KriptoFX\VolumetricBloodFX\Readme.txt" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Color4x4 Unlit.shader" />
     <None Include="Assets\DiceMaster\ExampleDice\Materials\Custom\ToonBasicOutline.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\RayFire\Info\CHANGELOG.txt" />
     <None Include="Assets\_DLNK\Alien Terrain Pack\README.txt" />
+    <None Include="Assets\RayFire\Plugins\Mac\RFLib_DotNet_2018_osx.dll" />
+    <None Include="Assets\RayFire\Info\README.txt" />
+    <None Include="Assets\RayFire\WhereToStart.txt" />
     <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Decal.shader" />
     <None Include="Assets\Fonts\droid-sans-mono\LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -189,6 +208,7 @@
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_Triplanar_Worlds.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Mask8Realistic.shader" />
+    <None Include="Assets\RayFire\Info\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Malbers Animations\Common\Fonts\OpenSans\License!.txt" />
   </ItemGroup>
@@ -441,6 +461,9 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="RFLib_DotNet_2018">
+      <HintPath>Assets\RayFire\Plugins\Windows\x86_x64\RFLib_DotNet_2018.dll</HintPath>
     </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.2.3\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
@@ -912,6 +935,10 @@
       <Project>{40F2162B-2CB8-4B92-1EAE-B581418212DA}</Project>
       <Name>MalbersAnimations</Name>
     </ProjectReference>
+    <ProjectReference Include="RayFireEditorAssembly.csproj">
+      <Project>{BBC77074-7727-AC94-DECA-8494331D92CA}</Project>
+      <Name>RayFireEditorAssembly</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.HighDefinition.Editor.csproj">
       <Project>{00FC303F-E7FB-2428-CEB7-3629936246C4}</Project>
       <Name>Unity.RenderPipelines.HighDefinition.Editor</Name>
@@ -1003,6 +1030,10 @@
     <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
       <Project>{81B56B4A-7EAE-0518-629D-28118DD00F9B}</Project>
       <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="RayFireAssembly.csproj">
+      <Project>{6611AFB9-C54F-2743-972D-BD98A7084A52}</Project>
+      <Name>RayFireAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.csproj">
       <Project>{96226880-6D0F-5E74-5FBA-43A307E08ADD}</Project>

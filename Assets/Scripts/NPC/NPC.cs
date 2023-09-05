@@ -61,6 +61,10 @@ public class NPC : MonoBehaviour
     private float frozenTimer;
     [SerializeField] private bool frozen;
 
+    [Header("NPC Control")]
+
+    public bool stayFrozenAfterDialogue = false;
+
     
     private void Awake()
     {
@@ -267,7 +271,11 @@ public class NPC : MonoBehaviour
         CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
         MyVirtualCam.Priority = -50;
         pc.UnfreezePlayer();
-        Unfreeze();
+        if(stayFrozenAfterDialogue == false)
+        {
+            Unfreeze();
+        }
+        
     }
 
     #endregion

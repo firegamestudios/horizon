@@ -92,6 +92,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0.5
     Variable: {fileID: 0}
+  slowingDistance:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   direction: 0
   arcsCount: 12
   LookAtTarget: 0
