@@ -801,6 +801,10 @@ PrefabInstance:
       propertyPath: stoppingDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 415213525983066120, guid: d520239042c144f438232f9375004dc2, type: 3}
+      propertyPath: PointStoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 581915193523977688, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: m_Layer
       value: 26
@@ -1207,7 +1211,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 4143bda994ecc0a43ac48624ce20f70f, type: 2}
     - target: {fileID: 7402902085319866278, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: Editor_Tabs1
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402902085319866278, guid: d520239042c144f438232f9375004dc2, type: 3}
+      propertyPath: interact.ConstantValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7402902085319866278, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: statModifier.MaxValue.ConstantValue
@@ -1267,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7403766772878258876, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: Editor_Tabs1
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7403766772878258876, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: Editor_Tabs2
@@ -1464,15 +1472,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.35
+      value: -0.6199999
       objectReference: {fileID: 0}
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6.46
       objectReference: {fileID: 0}
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -84.51
+      value: -83.4
       objectReference: {fileID: 0}
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1643,9 +1651,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8256862547436485366, guid: d520239042c144f438232f9375004dc2, type: 3}
+      propertyPath: Editor_Tabs1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256862547436485366, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: currentState
       value: 
       objectReference: {fileID: 11400000, guid: 7aeddc7f19f7d9a48b115fe9c0581668, type: 2}
+    - target: {fileID: 8256862547436485366, guid: d520239042c144f438232f9375004dc2, type: 3}
+      propertyPath: debugAIStates
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8299893189649051687, guid: d520239042c144f438232f9375004dc2, type: 3}
       propertyPath: m_Layer
       value: 26
@@ -1758,10 +1774,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.41951385
-  m_Height: 1.1339172
+  m_Radius: 0.47637188
+  m_Height: 1.3610821
   m_Direction: 1
-  m_Center: {x: 0.000000083121385, y: 0.76881903, z: 0.4416033}
+  m_Center: {x: 0.00000043321825, y: 0.88240147, z: 0.4984619}
 --- !u!114 &435622937915232405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1788,10 +1804,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcd628d9d213e74b9e1babd9df8f181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisoned: 0
   paralyzed: 0
+  petrified: 0
   burned: 0
   frozen: 0
+  stayFrozenAfterDialogue: 0
 --- !u!95 &137624235770679389 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7385550430283561350, guid: d520239042c144f438232f9375004dc2, type: 3}

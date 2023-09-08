@@ -68,8 +68,12 @@
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_ManualAnimationUpdate.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Actors\Thrower.cs" />
     <Compile Include="Assets\Scripts\Dice Roll\BaseRoll.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\DM.cs" />
     <Compile Include="Assets\Scripts\NPC\Scrappy\NPC_Scrappy.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\DemoScene\BFX_DemoTest.cs" />
     <Compile Include="Assets\Scripts\Manager\DiceManager.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Utilities\SpawnFormat.cs" />
@@ -79,6 +83,7 @@
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_DecaGizmo.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_MouseOrbit.cs" />
+    <Compile Include="Assets\RandomizeName.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Utilities\SpawnSelector.cs" />
     <Compile Include="Assets\Scripts\PC\PC.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
@@ -86,6 +91,7 @@
     <Compile Include="Assets\Scripts\Spawner\RandomSpawner.cs" />
     <Compile Include="Assets\DiceMaster\ExampleScenes\ExampleScripts\TestDiceRegister.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Miscellaneous\Simulation.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\DiceDefinition.cs" />
     <Compile Include="Assets\Scripts\Manager\BulletTimeManager.cs" />
     <Compile Include="Assets\RayFire\Tutorial\Scripts\ConnectivityEventScript.cs" />
@@ -97,6 +103,7 @@
     <Compile Include="Assets\RayFire\Tutorial\Scripts\FadingEventScript.cs" />
     <Compile Include="Assets\SampleSceneAssets\Controllers\Common\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Scripts\UI Tools\TooltipButton.cs" />
+    <Compile Include="Assets\Scripts\Manager\MusicManager.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Miscellaneous\OnHitSound.cs" />
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_DecalSettings.cs" />
     <Compile Include="Assets\Scripts\Dice Roll\RollAgility.cs" />
@@ -110,6 +117,7 @@
     <Compile Include="Assets\Scripts\Weapons\WeaponStats.cs" />
     <Compile Include="Assets\Scripts\FX\Blood.cs" />
     <Compile Include="Assets\DiceMaster\ExampleScenes\ExampleScripts\TestCustomFaces.cs" />
+    <Compile Include="Assets\Scripts\Loot\LootButton.cs" />
     <Compile Include="Assets\Scripts\Weapons\Radioactive.cs" />
     <Compile Include="Assets\DiceMaster\ExampleScenes\ExampleScripts\ResultUI.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationManager.cs" />
@@ -118,19 +126,24 @@
     <Compile Include="Assets\DiceMaster\Scripts\DynamicFace.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Dice.cs" />
     <Compile Include="Assets\Scripts\Save System\SaveLoadManager.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Miscellaneous\PipAnimation.cs" />
     <Compile Include="Assets\Scripts\Creation\RacePanel.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\OnTriggerActivator.cs" />
+    <Compile Include="Assets\Scripts\Loot\Loot.cs" />
     <Compile Include="Assets\Scripts\Weapons\ArrowStats.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CharControlSimple.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Miscellaneous\DiceTester.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\Actors\Spinner.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Dice Roll\RollComputer.cs" />
+    <Compile Include="Assets\ElevatorControls.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\RayFire\Tutorial\Scripts\ActivationEventScript.cs" />
     <Compile Include="Assets\RayFire\Tutorial\Scripts\DemolitionEventScript.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Transform\Compass.cs" />
+    <Compile Include="Assets\Scripts\Loot\LootInteract.cs" />
     <Compile Include="Assets\Scripts\NPC\NPC.cs" />
     <Compile Include="Assets\Scripts\Workshop.cs" />
   </ItemGroup>
@@ -157,6 +170,7 @@
     <None Include="Assets\Malbers Animations\Common\Shaders\Mask4Realistic.shader" />
     <None Include="Assets\RayFire\Plugins\Linux\RFLib_DotNet_2018_lin.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Golem Shader.shader" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_SciFiPlant.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -167,8 +181,10 @@
     <None Include="Assets\InventoryEngine\InventoryEngine\readme.txt" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Color4x3.shader" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Wind Shader.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Blood.shader" />
     <None Include="Assets\KriptoFX\VolumetricBloodFX\Shaders\BFX_Decal_Plane.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
     <None Include="Assets\RayFire\Plugins\Windows\x86\RFLib_CNative_2018_x86.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -195,6 +211,7 @@
     <None Include="Assets\DiceMaster\ExampleDice\Materials\Custom\ToonBasicOutline.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\RayFire\Info\CHANGELOG.txt" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
     <None Include="Assets\_DLNK\Alien Terrain Pack\README.txt" />
     <None Include="Assets\RayFire\Plugins\Mac\RFLib_DotNet_2018_osx.dll" />
     <None Include="Assets\RayFire\Info\README.txt" />
@@ -207,6 +224,7 @@
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_EnvTriplanar.shader" />
     <None Include="Assets\PolygonSciFiWorlds\Shaders\SyntyStudios_Triplanar_Worlds.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
     <None Include="Assets\Malbers Animations\Common\Shaders\Mask8Realistic.shader" />
     <None Include="Assets\RayFire\Info\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

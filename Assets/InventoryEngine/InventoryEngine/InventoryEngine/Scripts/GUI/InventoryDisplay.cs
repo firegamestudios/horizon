@@ -46,11 +46,13 @@ namespace MoreMountains.InventoryEngine
 						if ((inventory.name == TargetInventoryName) && (inventory.PlayerID == PlayerID))
 						{
 							_targetInventory = inventory;
+							print("Target Inventory: " + inventory.name);
 						}
 					}	
 				}
 				return _targetInventory;
 			}
+			set { _targetInventory = value; }
 		}
 		
 		
@@ -242,7 +244,7 @@ namespace MoreMountains.InventoryEngine
 		/// <summary>
 		/// Redraws the inventory display's contents when needed (usually after a change in the target inventory)
 		/// </summary>
-		protected virtual void RedrawInventoryDisplay()
+		public virtual void RedrawInventoryDisplay()
 		{
 			InitializeSprites();
 			AddGridLayoutGroup();
