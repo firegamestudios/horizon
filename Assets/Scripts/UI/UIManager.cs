@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using MalbersAnimations.UI;
 using UnityEngine.UI;
+using MoreMountains.InventoryEngine;
+using MalbersAnimations;
+using Cinemachine;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,6 +22,33 @@ public class UIManager : MonoBehaviour
     public TMP_Text systemMessageText;
     public Animator sysMessageAnim;
 
+    [HideInInspector]
+    public InventoryDisplay inventoryDisplay;
+
+    public PC pc;
+    MalbersInput malbersInput;
+    public CinemachineBrain brain;
+
+    private void Awake()
+    {
+       malbersInput = pc.GetComponent<MalbersInput>();
+    }
+
+    private void Update()
+    {
+       //Inventory priority
+        if (inventoryDisplay.IsOpen)
+        {
+            malbersInput.enabled = false;
+            brain.enabled = false;
+        }
+        else
+        {
+            malbersInput.enabled = true;
+            brain.enabled = true;
+        }
+    }
+
     public void AutoMessage(string message)
     {
         systemMessageText.text = message;
@@ -32,4 +62,11 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(timer);
         sysMessageAnim.SetBool("on", false);
     }
+
+    #region Inventory
+    public void UpdateInventoryDisplay()
+    {
+        inventoryDisplay.RedrawInventoryDisplay();
+    }
+    #endregion
 }

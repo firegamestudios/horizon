@@ -4,6 +4,7 @@ using UnityEngine;
 using MalbersAnimations;
 using TMPro;
 using MalbersAnimations.Controller;
+using MoreMountains.InventoryEngine;
 
 public class PC : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PC : MonoBehaviour
 
    //UI 
    UIManager uiManager;
+
+    //Inventory
+    [HideInInspector] public Inventory inv;
     private void Awake()
     {
         saveLoadManager = FindAnyObjectByType<SaveLoadManager>();
@@ -29,6 +33,7 @@ public class PC : MonoBehaviour
         stats = GetComponent<Stats>();
         animal = GetComponent<MAnimal>();
         uiManager = FindAnyObjectByType<UIManager>();
+        inv = GameObject.Find("RogueMainInventory").GetComponent<Inventory>();  
     }
     // Start is called before the first frame update
     void Start()
@@ -103,5 +108,7 @@ public class PC : MonoBehaviour
         animal.Sleep = false;
     }
     #endregion
+
+   
 
 }

@@ -6,19 +6,15 @@ public class RandomSpawner : MonoBehaviour
 {
     public GameObject prefabToSpawn;
 
-    public float amount = 10000;
+    public float amount = 1;
 
     void Start()
     {
-        int xPos = 0; 
-        int zPos = 0;
-
-        while(xPos < amount)
+       for (int i = 0; i < amount; i++)
         {
-            Instantiate(prefabToSpawn, new Vector3(xPos, 0.5f, zPos), Quaternion.identity);
-            xPos++;
-            zPos++;
+            Instantiate(prefabToSpawn, transform.position, transform.rotation); ;
         }
+       
     }
 
   

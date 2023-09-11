@@ -152,6 +152,7 @@ MonoBehaviour:
   - {fileID: -8424466867942724737}
   - {fileID: 11400000, guid: ff56f4762056add468aeb3b0679896b4, type: 2}
   - {fileID: 11400000, guid: b59e3d9f479a7c946ab9d83ef0251dd8, type: 2}
+  - {fileID: 1871178098001309934}
   transitions:
   - decision: {fileID: 2943419024565079828}
     trueState: {fileID: 0}
@@ -162,6 +163,47 @@ MonoBehaviour:
   GizmoStateColor: {r: 0, g: 1, b: 0.1323154, a: 1}
   CreateTaskAsset: 1
   CreateDecisionAsset: 1
+--- !u!114 &1871178098001309934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa60ebf74a85f644a3d566c06e280b7, type: 3}
+  m_Name: Start Combat
+  m_EditorClassIdentifier: 
+  active: 1
+  Description: Send messages to the Root game Object of the Target or the Animal
+    using the Brain
+  MessageID:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  UpdateInterval: 0.2
+  WaitForPreviousTask: 0
+  affect: 0
+  when: 0
+  UseSendMessage: 1
+  SendToChildren: 0
+  NearTarget: 0
+  SendToRoot: 1
+  messages:
+  - message: OnPlayerPerceived
+    typeM: 4
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    stringValue: 
+    intVarValue: {fileID: 0}
+    transformValue: {fileID: 0}
+    GoValue: {fileID: 0}
+    ComponentValue: {fileID: 0}
+    time: 0
+    sent: 0
+    Active: 1
 --- !u!114 &2943419024565079828
 MonoBehaviour:
   m_ObjectHideFlags: 0

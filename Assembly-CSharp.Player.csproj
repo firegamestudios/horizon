@@ -62,6 +62,7 @@
     <Compile Include="Assets\KriptoFX\VolumetricBloodFX\Scripts\BFX_RenderDepth.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationButton.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\CameraOrbit.cs" />
+    <Compile Include="Assets\TooltipXP.cs" />
     <Compile Include="Assets\_DLNK\_DLNK Source\_DLNK Libraries\[dlnk Script Library]\Basic Scripts\Misc\LightTilt.cs" />
     <Compile Include="Assets\DiceMaster\Scripts\DiceConfig.cs" />
     <Compile Include="Assets\Scripts\UI Tools\Tooltip.cs" />

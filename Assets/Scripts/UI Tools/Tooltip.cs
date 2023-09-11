@@ -24,7 +24,9 @@ public class Tooltip : MonoBehaviour
     {
         transform.position = new Vector3(0, 8000f, 0);  
         offset = new Vector2 (300, -300);
+       
     }
+
 
     private void Update()
     {

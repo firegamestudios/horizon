@@ -1,0 +1,57 @@
+1 gem
+some credits
+one liner reader on use x4
+one liner usable object
+
+Scrappy (Shadowheart)
+
+D1 (Laezel) dialogue:
+1- Woa... I'm not your enemy
+
+1.1 You are not in XXX anymore. Look around.
+
+2- Who are you?
+3- I'm lost and I can't remember anything
+4- What is this place?
+
+Loot:
+speed potion
+skull
+2 bombs: spike and force
+sword
+axe
+ranged
+ranged
+2 credits
+
+prop - med station
+
+healing pack
+2 swords
+
+climb
+
+credits
+
+climb
+
+closed door
+
+controles e um teste para verificar a função
+
+credits
+candle
+key 1
+
+2 healing packs
+
+sword
+key 2
+
+med station
+fire
+
+auto-dialogue D1
+
+creature (stronger than dung eater)
+

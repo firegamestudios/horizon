@@ -33,4 +33,6 @@ public class LootInteract : MonoBehaviour
     {
         canvasGroup.alpha = 0;
     }
+
+   
 }

@@ -16,11 +16,11 @@ public class NPC : MonoBehaviour
     MDamageable damageable;
     Reaction customReaction;
     Animator anim;
+    Blood blood;
    
     //The player
     protected PC pc;
    
-
     /* -> Weapon that will deal the damage.
      * Recreate and make it in a way that detects the player's current weapon. !!
      */
@@ -40,8 +40,8 @@ public class NPC : MonoBehaviour
     float poisonDuration;
     float poisonDurationReset;
 
-    bool poisoned;
-    
+    [SerializeField] bool poisoned;
+
     float minPoisonDamage;
     float maxPoisonDamage;
 
@@ -61,22 +61,33 @@ public class NPC : MonoBehaviour
     private float frozenTimer;
     [SerializeField] private bool frozen;
 
+    // Electrified VARIABLES.
+    private float electrifiedTimer;
+    [SerializeField] private bool electrified;
+
+    // Acid VARIABLES.
+    private float acidTimer;
+    [SerializeField] private bool acidified;
+
     [Header("NPC Control")]
 
     public bool stayFrozenAfterDialogue = false;
 
-    
+   GameManager manager;
+
     private void Awake()
     {
         animal = GetComponent<MAnimal>();
         pc = FindAnyObjectByType<PC>();
         damageable = GetComponent<MDamageable>();
         anim = GetComponent<Animator>();
-       
+      manager = FindAnyObjectByType<GameManager>();
+        blood = GetComponentInChildren<Blood>();
     }
 
     private void Start()
     {
+       
         //Setup the regular animation speed
        regularAnimSpeed = anim.speed;
 
@@ -95,7 +106,7 @@ public class NPC : MonoBehaviour
         DialogueManager.instance.conversationEnded += OnConversationEnded;
     }
 
-
+    #region Called from Battle
     public void OnCauseDamage(float minDamage, float maxDamage, StatElement statElement, float _poisonPotency, float _poisonDuration)
     {
         string elementName = statElement.DisplayName;
@@ -111,8 +122,11 @@ public class NPC : MonoBehaviour
                 poisoned = true;
                 break;
         }
+
+       
     }
 
+    #endregion
     #region Update Methods
 
     private void Update()
@@ -225,14 +239,27 @@ public class NPC : MonoBehaviour
 
     #endregion
 
-    #region OnHit and OnDeath
+    #region Main events
     /// <summary>
     /// Methods called when taking damage and on death
     /// </summary>
     public void OnHit()
     {
+       
+        blood.ActivateBlood();
+    }
+    public void OnDeath()
+    {
+       
+        
 
     }
+
+    public void OnPlayerPerceived()
+    {
+      
+    }
+
     #endregion
 
     #region OnConversation
