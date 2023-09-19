@@ -135,9 +135,9 @@ namespace MalbersAnimations
         #endregion
 
         #region Types
-        
 
-        public static List<Type> GetAllTypes<T>()  
+
+        public static List<Type> GetAllTypes<T>()
         {
             // Store the States type.
             Type classtype = typeof(T);
@@ -159,7 +159,7 @@ namespace MalbersAnimations
             }
 
             // Convert the list to an array and store it.
-           return SubTypeList;
+            return SubTypeList;
         }
 
         public static List<Type> GetAllTypes(Type type)
@@ -321,10 +321,10 @@ namespace MalbersAnimations
             {
                 //Dont Hit anything in this hierarchy
                 if (item.transform.SameHierarchy(origin.transform)) continue; //Don't Find yourself
-                
+
                 //If I hit something behind me skip
-                if (Vector3.Distance(cam.transform.position, item.point) < Vector3.Distance(cam.transform.position, origin.position)) continue; 
-                
+                if (Vector3.Distance(cam.transform.position, item.point) < Vector3.Distance(cam.transform.position, origin.position)) continue;
+
                 if (hit.distance > item.distance) hit = item;
             }
 
@@ -342,7 +342,7 @@ namespace MalbersAnimations
         /// <param name="origin">The start point to calculate the direction</param>
         ///  <param name="hitmask">Just use this layers</param>
         public static Vector3 DirectionFromCamera
-            (Camera cam,Transform origin, Vector3 ScreenPoint, out RaycastHit hit, LayerMask hitmask, Transform Ignore = null)
+            (Camera cam, Transform origin, Vector3 ScreenPoint, out RaycastHit hit, LayerMask hitmask, Transform Ignore = null)
         {
             Ray ray = cam.ScreenPointToRay(ScreenPoint);
             Vector3 dir = ray.direction;
@@ -363,7 +363,7 @@ namespace MalbersAnimations
 
                 //If I hit something behind me skip
                 if (Vector3.Distance(cam.transform.position, item.point) < Vector3.Distance(cam.transform.position, origin.position)) continue;
-                
+
                 if (hit.distance > item.distance) hit = item;
             }
 
@@ -385,7 +385,7 @@ namespace MalbersAnimations
 
         /// <summary> Calculate the direction from the center of the Screen </summary>
         /// <param name="origin">The start point to calculate the direction</param>
-        public static Vector3 DirectionFromCamera(Transform origin, LayerMask layerMask) => 
+        public static Vector3 DirectionFromCamera(Transform origin, LayerMask layerMask) =>
             DirectionFromCamera(origin, 0.5f * Screen.width, 0.5f * Screen.height, out _, layerMask);
 
         #endregion
@@ -407,7 +407,7 @@ namespace MalbersAnimations
 
                 //If I hit something behind me skip
                 if (Vector3.Distance(cam.transform.position, rayhit.point) < Vector3.Distance(cam.transform.position, origin.position)) continue;
-                
+
                 if (hit.distance > rayhit.distance) hit = rayhit;
             }
 
@@ -623,7 +623,7 @@ namespace MalbersAnimations
 
             Vector3 CurrentPos = t1.position;
 
-            t1.SendMessage("ResetDeltaRootMotion", SendMessageOptions.DontRequireReceiver);
+            t1.TryDeltaRootMotion(); //Reset DeltaRootMotion
 
 
             while ((time > 0) && (elapsedTime <= time))
@@ -644,7 +644,7 @@ namespace MalbersAnimations
         }
 
 
-        public static IEnumerator AlignTransform(Transform t1, Vector3 t2Pos, Quaternion t2Rot , float time, AnimationCurve curve = null)
+        public static IEnumerator AlignTransform(Transform t1, Vector3 t2Pos, Quaternion t2Rot, float time, AnimationCurve curve = null)
         {
             float elapsedTime = 0;
 
@@ -653,19 +653,19 @@ namespace MalbersAnimations
 
             var Wait = new WaitForFixedUpdate();
 
-            t1.SendMessage("ResetDeltaRootMotion", SendMessageOptions.DontRequireReceiver);
+            t1.TryDeltaRootMotion();
 
             while ((time > 0) && (elapsedTime <= time))
             {
                 float result = curve != null ? curve.Evaluate(elapsedTime / time) : elapsedTime / time;               //Evaluation of the Pos curve
-                t1.position = Vector3.LerpUnclamped(CurrentPos, t2Pos, result);
-                t1.rotation = Quaternion.LerpUnclamped(CurrentRot, t2Rot, result);
+                t1.SetPositionAndRotation
+                    (Vector3.LerpUnclamped(CurrentPos, t2Pos, result),
+                    Quaternion.LerpUnclamped(CurrentRot, t2Rot, result));
                 elapsedTime += Time.fixedDeltaTime;
 
                 yield return Wait;
             }
-            t1.position = t2Pos;
-            t1.rotation = t2Rot;
+            t1.SetPositionAndRotation(t2Pos, t2Rot);
         }
 
         public static IEnumerator AlignLookAtTransform(Transform t1, Transform t2, float time, AnimationCurve curve = null)
@@ -696,7 +696,7 @@ namespace MalbersAnimations
             Quaternion CurrentRot = t1.rotation;
 
             direction = Vector3.ProjectOnPlane(direction, t1.up);
- 
+
             Quaternion FinalRot = Quaternion.LookRotation(direction);
 
             while ((time > 0) && (elapsedTime <= time))
@@ -756,13 +756,13 @@ namespace MalbersAnimations
 
                 Vector3 CurrentPos = TargetToAlign.position;
 
-                Ray TargetRay = new Ray(AlignOrigin, (TargetToAlign.position - AlignOrigin).normalized);
-             
-                Vector3 TargetPos = TargetRay.GetPoint(radius *  TargetToAlign.localScale.y);
+                Ray TargetRay = new(AlignOrigin, (TargetToAlign.position - AlignOrigin).normalized);
 
-                Debug.DrawRay(TargetRay.origin,TargetRay.direction, Color.white,1f);
+                Vector3 TargetPos = TargetRay.GetPoint(radius);
 
-                TargetToAlign.SendMessage("ResetDeltaRootMotion", SendMessageOptions.DontRequireReceiver); //Send this to the animal
+                Debug.DrawRay(TargetRay.origin, TargetRay.direction, Color.white, 1f);
+
+                TargetToAlign.TryDeltaRootMotion(); //Reset delta RootMotion
 
                 MDebug.DrawWireSphere(TargetPos, Color.red, 0.05f, 3);
 
@@ -859,7 +859,7 @@ namespace MalbersAnimations
         #region Animator
         public static Keyframe[] DefaultCurve = { new Keyframe(0, 0), new Keyframe(1, 1) };
 
-        public static Keyframe[] DefaultCurveLinear = 
+        public static Keyframe[] DefaultCurveLinear =
             { new Keyframe(0, 0, 0,0,0,0)  ,new Keyframe(1, 1,0,0,0,0)  };
 
         public static bool SearchParameter(AnimatorControllerParameter[] parameters, string name)
@@ -962,10 +962,10 @@ namespace MalbersAnimations
         {
             // Limit what we'll connect to
             if (!rTransform.gameObject.activeInHierarchy) { return; }
-            if (!Layer_in_LayerMask(rTransform.gameObject.layer,mask)) { return; }
- 
-           // if (rTransform.name.Contains(" connector", StringComparison.OrdinalIgnoreCase)) { return; }
-           // if (rTransform.gameObject.GetComponent<IWeaponCore>() != null) { return; }
+            if (!Layer_in_LayerMask(rTransform.gameObject.layer, mask)) { return; }
+
+            // if (rTransform.name.Contains(" connector", StringComparison.OrdinalIgnoreCase)) { return; }
+            // if (rTransform.gameObject.GetComponent<IWeaponCore>() != null) { return; }
 
             // If this transform is closer to the hit position, use it
             float lDistance = Vector3.Distance(rPosition, rTransform.position);
@@ -981,9 +981,9 @@ namespace MalbersAnimations
                 GetClosestTransform(rPosition, rTransform.GetChild(i), ref rMinDistance, ref rMinTransform, mask);
             }
         }
-        
-        
-        
+
+
+
         #region Debug and Gizmos 
         /// <summary>  Draw an arrow Using Gizmos  </summary>
         public static void Gizmo_Arrow(Vector3 pos, Vector3 direction, float arrowHeadLength = 0.2f, float arrowHeadAngle = 20.0f)
@@ -1154,7 +1154,7 @@ namespace MalbersAnimations
 #endif
         }
 
-        
+
 
         public static void DrawTriggers(Transform transform, Collider col, Color DebugColor, bool always = false)
         {
@@ -1329,7 +1329,7 @@ namespace MalbersAnimations
                 }
             }
 #endif
-        } 
+        }
         #endregion
 
 
@@ -1348,9 +1348,7 @@ namespace MalbersAnimations
         public static GUIStyle Style(Color color)
         {
             GUIStyle currentStyle = new GUIStyle(GUI.skin.box) { border = new RectOffset(-1, -1, -1, -1) };
-
-
-            Color[] pix = new Color[1];
+             Color[] pix = new Color[1];
             pix[0] = color;
             Texture2D bg = new Texture2D(1, 1);
             bg.SetPixels(pix);
@@ -1358,11 +1356,11 @@ namespace MalbersAnimations
 
             currentStyle.normal.background = bg;
             currentStyle.normal.scaledBackgrounds = new Texture2D[] { };
- 
+
             return currentStyle;
         }
 
-        
+
 
         #region Serialized Property Extensions
 
@@ -1433,8 +1431,8 @@ namespace MalbersAnimations
 
             return attributes.Length > 0 ? attributes[0] : null;
         }
-         #endregion
-      
+        #endregion
+
 
         public static FieldInfo GetFieldViaPath(this Type type, string path)
         {
@@ -1545,10 +1543,10 @@ namespace MalbersAnimations
             }
         }
 
-        public static void DrawScriptableObject(SerializedProperty property,  bool internalInspector = true, bool internalAsset = false, string labelOverride = "")
+        public static void DrawScriptableObject(SerializedProperty property, bool internalInspector = true, bool internalAsset = false, string labelOverride = "")
         {
             if (property == null || property.propertyType != SerializedPropertyType.ObjectReference ||
-                (property.objectReferenceValue != null && !(property.objectReferenceValue is ScriptableObject))) 
+                (property.objectReferenceValue != null && !(property.objectReferenceValue is ScriptableObject)))
             {
                 Debug.LogErrorFormat("Is not a ScriptableObject");
                 return;
@@ -1581,7 +1579,7 @@ namespace MalbersAnimations
                         }
 
                     }
-                    
+
 
                     if (GUI.changed) property.serializedObject.ApplyModifiedProperties();
 
@@ -1589,9 +1587,9 @@ namespace MalbersAnimations
 
                     if (property.isExpanded)
                     {
-                      if (internalAsset)
-                            property.objectReferenceValue.name =  EditorGUILayout.TextField("Name",property.objectReferenceValue.name);
-                       
+                        if (internalAsset)
+                            property.objectReferenceValue.name = EditorGUILayout.TextField("Name", property.objectReferenceValue.name);
+
                         DrawObjectReferenceInspector(property);
                     }
                 }
@@ -1629,24 +1627,24 @@ namespace MalbersAnimations
 
             StatesType.OrderBy(t => t.Name);
 
-           var addMenu = new GenericMenu();
+            var addMenu = new GenericMenu();
 
             for (int i = 0; i < StatesType.Count; i++)
             {
                 Type st = StatesType[i];
 
-                string name =  Regex.Replace(st.Name, @"([a-z])([A-Z])", "$1 $2");
+                string name = Regex.Replace(st.Name, @"([a-z])([A-Z])", "$1 $2");
 
-                addMenu.AddItem(new GUIContent(name), false, () => CreateScriptableAsset(property, st, path ));
+                addMenu.AddItem(new GUIContent(name), false, () => CreateScriptableAsset(property, st, path));
             }
             addMenu.ShowAsContext();
-        } 
+        }
 
-       public static void AddScriptableAssetContextMenuInternal(SerializedProperty property, Type type)
+        public static void AddScriptableAssetContextMenuInternal(SerializedProperty property, Type type)
         {
             var StatesType = MTools.GetAllTypes(type);
 
-           var addMenu = new GenericMenu();
+            var addMenu = new GenericMenu();
 
             for (int i = 0; i < StatesType.Count; i++)
             {
@@ -1656,7 +1654,7 @@ namespace MalbersAnimations
 
             addMenu.ShowAsContext();
         }
-         
+
         public static void AddScriptableAssetContextMenuInternal(SerializedProperty property, Type type, string path)
         {
             var StatesType = MTools.GetAllTypes(type);
@@ -1670,7 +1668,7 @@ namespace MalbersAnimations
 
             addMenu.ShowAsContext();
         }
-         
+
         public static string GetSelectedPathOrFallback()
         {
             string path = "Assets";
@@ -1685,7 +1683,7 @@ namespace MalbersAnimations
                 }
             }
             return path;
-        }  
+        }
 
         public static void CreateAssetWithPath(SerializedProperty property, string selectedAssetPath)
         {
@@ -1716,7 +1714,7 @@ namespace MalbersAnimations
                 type = type.GetGenericArguments()[0];
             }
             property.objectReferenceValue = CreateAssetWithSavePrompt(type, selectedAssetPath);
-        } 
+        }
 
         public static void DrawObjectReferenceInspector(SerializedProperty property)
         {
@@ -1730,11 +1728,11 @@ namespace MalbersAnimations
             {
                 var StatesType = MTools.GetAllTypes(type);
 
-                var addMenu = new GenericMenu(); 
+                var addMenu = new GenericMenu();
 
                 for (int i = 0; i < StatesType.Count; i++)
                 {
-                    Type st = StatesType[i];  
+                    Type st = StatesType[i];
                     addMenu.AddItem(new GUIContent(st.Name), false, () => CreateAsset_SavePrompt(property, st, selectedAssetPath));
                 }
                 addMenu.ShowAsContext();
@@ -1814,7 +1812,7 @@ namespace MalbersAnimations
             path = EditorUtility.SaveFilePanelInProject("Save ScriptableObject", defaultName, "asset", message, path);
 
             if (string.IsNullOrEmpty(path)) return null;
-          
+
 
             ScriptableObject asset = ScriptableObject.CreateInstance(type);
             AssetDatabase.CreateAsset(asset, path);
@@ -1824,7 +1822,7 @@ namespace MalbersAnimations
             EditorGUIUtility.PingObject(asset);
             return asset;
         }
-         
+
 #endif
         #endregion
 
@@ -1852,7 +1850,7 @@ namespace MalbersAnimations
         }
 
 
-        public static void SetDirty( Object ob)
+        public static void SetDirty(Object ob)
         {
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(ob);
@@ -1936,7 +1934,7 @@ namespace MalbersAnimations
     public struct OverrideCapsuleCollider
     {
         public bool enabled;
-        public bool isTrigger;  
+        public bool isTrigger;
         public Vector3 center;
         public float height;
         public int direction;
@@ -1978,13 +1976,13 @@ namespace MalbersAnimations
 
     public enum CapsuleModifier
     {
-        enabled   = 1 << 0,
+        enabled = 1 << 0,
         isTrigger = 1 << 1,
-        center    = 1 << 2,
-        height    = 1 << 3,
-        radius    = 1 << 4,
+        center = 1 << 2,
+        height = 1 << 3,
+        radius = 1 << 4,
         direction = 1 << 5,
-        material  = 1 << 6,
+        material = 1 << 6,
     }
 
 #if UNITY_EDITOR
@@ -1995,7 +1993,7 @@ namespace MalbersAnimations
         {
             EditorGUI.BeginProperty(position, label, property);
 
-           // GUI.Box(position, GUIContent.none, EditorStyles.helpBox);
+            // GUI.Box(position, GUIContent.none, EditorStyles.helpBox);
 
             position.x += 2;
             position.width -= 2;
@@ -2018,7 +2016,7 @@ namespace MalbersAnimations
             var height1 = property.FindPropertyRelative("height");
             var direction = property.FindPropertyRelative("direction");
             var material = property.FindPropertyRelative("material");
-            
+
             #endregion
 
             var line = position;
@@ -2035,7 +2033,7 @@ namespace MalbersAnimations
             modify.intValue = (int)(CapsuleModifier)EditorGUI.EnumFlagsField(line, label, (CapsuleModifier)(modify.intValue));
 
             line.y += height + 2;
-         
+
             int ModifyValue = modify.intValue;
 
             if (Modify(ModifyValue, CapsuleModifier.enabled))
@@ -2067,7 +2065,7 @@ namespace MalbersAnimations
         private void DrawProperty(ref Rect rect, SerializedProperty property)
         {
             EditorGUI.PropertyField(rect, property);
-            rect.y += EditorGUIUtility.singleLineHeight +2 ;
+            rect.y += EditorGUIUtility.singleLineHeight + 2;
         }
 
 

@@ -26,10 +26,13 @@ namespace MalbersAnimations.Controller
     [System.Serializable]
     public struct SlideData
     {
+        [Tooltip("If is set to true then this Ground Changer can activate the Slide State on the Animal")]
         public bool Slide;
         
+        [Tooltip("If true, then the rotation will be ignored in the Slide State")]
         public bool IgnoreRotation;
 
+        [Tooltip("Minimun Slope Direction Angle to activate the Slide State")]
         [Min(0)]public float MinAngle;
     }
 }

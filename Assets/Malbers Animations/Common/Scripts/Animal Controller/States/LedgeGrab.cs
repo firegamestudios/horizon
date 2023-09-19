@@ -11,17 +11,23 @@ namespace MalbersAnimations.Controller
     public class LedgeGrab : State
     {
         public override string StateName => "Ledge Grab";
+        public override string StateIDName => "LedgeGrab";
 
         /// <summary>Air Resistance while falling</summary>
         [Header("Ledge Parameters"), Space]
         [Tooltip("Layer to identify climbable surfaces")]
-        public LayerReference LedgeLayer = new LayerReference(1);
+        public LayerReference LedgeLayer = new(1);
 
         [Tooltip("Climb the Ledge automatically when is near a climbable surface")]
-        public BoolReference automatic = new BoolReference();
+        public BoolReference automatic = new();
+
+
+        [Tooltip("LedgeGrab will be set automatic if any of these state are playing")]
+        public List<StateID> automaticByState = new();
+        public bool Automatic_By_State { get; private set; }
 
         [Tooltip("Set the Animal Rigidbody to Kinematic while is on this state. This avoid the colliders to interfiere with ledge.")]
-        public BoolReference Kinematic = new BoolReference(true);
+        public BoolReference Kinematic = new(true);
 
         [Tooltip("Correct Distance from the wall to the character")]
         [Min(0)] public float wallDistance = 0.5f;
@@ -43,8 +49,7 @@ namespace MalbersAnimations.Controller
         [Min(0)] public float WallChecker = 0.1f;
 
 
-        [Tooltip("Smoothness value to align the animal to the wall")]
-        [Min(0)] public float AlignSmoothness = 10f;
+      
         //[Tooltip("Time to align the animal to the wall")]
         //public float AlignTime = 0.2f;
 
@@ -69,7 +74,7 @@ namespace MalbersAnimations.Controller
 
         public override bool TryActivate()
         {
-            if (automatic || InputValue) return FindLedge();
+            if (automatic || Automatic_By_State || InputValue) return FindLedge();
             return false;
         }
 
@@ -82,8 +87,8 @@ namespace MalbersAnimations.Controller
                 //Check if we are in Vertical Speed Range
                 if (p.MaxVSpeed == 0 || p.MaxVSpeed <= animal.VerticalSmooth)
                 {
-                    var LedgeForwardPoint1 = transform.TransformPoint(new Vector3(0, p.Height, 0));
-                    var WallPoint1 = animal.transform.TransformPoint(new Vector3(0, p.Height - p.LedgeExitDistance - WallChecker, 0));
+                    var LedgeForwardPoint1 = transform.TransformPoint(new Vector3(0, p.Height, 0))+DeltaPos;
+                    var WallPoint1 = animal.transform.TransformPoint(new Vector3(0, p.Height - p.LedgeExitDistance - WallChecker, 0)) + DeltaPos;
 
                     var ForwardDistance = ForwardLength * ScaleFactor * p.ForwardMultiplier;
                     var LedgeExitDistance = p.LedgeExitDistance * ScaleFactor;
@@ -168,6 +173,9 @@ namespace MalbersAnimations.Controller
 
                                     TargetPosition = animal.transform.position + (AlignmentOffset);
 
+
+                                    Debugging($"Distance Ledge and Start Position: {Vector3.Distance(Y_Point,StartPosition):F3}");
+
                                     #region Debug
 
                                     Debug.DrawRay(FoundLedgeHit.point, CrossLedgeHit, Color.white, seg);
@@ -210,7 +218,7 @@ namespace MalbersAnimations.Controller
             base.Activate();
             CheckKinematic();
             SetEnterStatus(LedgeProfile.EnterStatus);
-            animal.StopMoving_Zero(); //Remove all Input stuff
+            animal.Reset_Movement(); //Remove all Input stuff
             animal.Force_Remove(); //Remove all forces when grabbing a ledge
         }
 
@@ -268,7 +276,7 @@ namespace MalbersAnimations.Controller
                 {
                     if (LedgeProfile.Orient)
                     {
-                        float DeltaAngle = Mathf.Lerp(0, AngleDifference, deltatime * AlignSmoothness * 2f);
+                        float DeltaAngle = Mathf.Lerp(0, AngleDifference, deltatime * LedgeProfile.OrientSmoothness * 2f);
                         AngleDifference -= DeltaAngle;
                         //animal.AdditiveRotation *= Quaternion.Euler(0, DeltaAngle, 0); //NOT WORKING DON't KNWO WHY
                         animal.transform.rotation *= Quaternion.Euler(0, DeltaAngle, 0);
@@ -277,10 +285,9 @@ namespace MalbersAnimations.Controller
                     if (LedgeProfile.AdditivePosition)
                     {
                         var time = animal.AnimState.normalizedTime;
-                        // Debug.Log($"animal { time:F3}");
-
-                        animal.AdditivePosition += Up * LedgeProfile.HeightCurve.Evaluate(time) * LedgeProfile.HeightSpeed * deltatime;
-                        animal.AdditivePosition += Forward * LedgeProfile.ForwardCurve.Evaluate(time) * LedgeProfile.ForwardSpeed * deltatime;
+                        //  Debug.Log($"animal { time:F3}");
+                        animal.AdditivePosition += deltatime * LedgeProfile.HeightCurve.Evaluate(time) * LedgeProfile.HeightSpeed * Up;
+                        animal.AdditivePosition += deltatime * LedgeProfile.ForwardCurve.Evaluate(time) * LedgeProfile.ForwardSpeed * Forward;
                     }
                 }
             }
@@ -288,7 +295,8 @@ namespace MalbersAnimations.Controller
 
         public override void TryExitState(float DeltaTime)
         {
-            //Debug.Log("animal.AnimState.normalizedTime = " + animal.AnimState.normalizedTime);
+            // Debug.Log($"AnimState.normalizedTime {animal.AnimState.normalizedTime} LedgeProf {LedgeProfile.ExitTime}");
+   
 
             if (animal.AnimState.normalizedTime > LedgeProfile.ExitTime) //Exit after the Current Ledge Profile time
             {
@@ -299,6 +307,16 @@ namespace MalbersAnimations.Controller
             }
         }
 
+        public override void NewActiveState(StateID newState)
+        {
+            Automatic_By_State = false;
+
+            if (automaticByState.Count > 0)
+            {
+                Automatic_By_State = automaticByState.Contains(newState);
+            }
+        }
+
         public override void ResetStateValues()
         {
             LedgeProfile = null;
@@ -306,6 +324,7 @@ namespace MalbersAnimations.Controller
             ExitTransition = false;
             OrientToWall = false;
             AngleDifference = 0;
+
 
             StartPosition =
             TargetPosition =
@@ -365,10 +384,9 @@ namespace MalbersAnimations.Controller
             }
 
         }
-        void Reset()
+        internal override void Reset()
         {
-            //Surface = MTools.GetResource<PhysicMaterial>("Climbable");
-            ID = MTools.GetInstance<StateID>("LedgeGrab");
+            base.Reset();
 
             automatic.Value = true;
 
@@ -428,8 +446,12 @@ namespace MalbersAnimations.Controller
         public Vector2 AlingOffset;
 
 
-        [Tooltip("Align the Animal to the Wall's normal direction")]
+        [Tooltip("Align the character to the Wall's normal direction")]
         public bool Orient = true;
+
+        [Tooltip("Smoothness value to align the character to the wall")]
+        [Hide("Orient", false)]
+        [Min(0)] public float OrientSmoothness = 10f;
 
         public bool AdditivePosition = false;
 

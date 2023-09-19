@@ -4,7 +4,7 @@ using UnityEngine;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Malbers/Animal Controller/Animal Gravity")]
+    [AddTypeMenu("Malbers/Animal/Gravity")]
     public class GravityReaction : MReaction
     {
         public Gravity_Reaction type = Gravity_Reaction.Enable;

@@ -72,7 +72,7 @@ namespace MalbersAnimations
                 MousePoint.Value.position = hit.point; //Only Update the Point if the Mouse Point is This Transform
 
 
-                MDebug.DebugWireSphere(hit.point, Quaternion.identity, Color.red, 0.02f);
+                MDebug.DrawWireSphere(hit.point, Quaternion.identity, Color.red, 0.02f);
 
             }
         }

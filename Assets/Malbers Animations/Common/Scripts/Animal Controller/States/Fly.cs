@@ -9,6 +9,7 @@ namespace MalbersAnimations.Controller
     public class Fly : State
     {
         public override string StateName => "Fly";
+        public override string StateIDName => "Fly";
         public enum FlyInput { Toggle, Press, None}
 
         [Header("Fly Parameters")]
@@ -388,21 +389,19 @@ namespace MalbersAnimations.Controller
             base.ExitInputValue = false;    //release the base Input value
         }
 
-        public override bool InputValue //lets override to Allow exit when the Input Changes
-        {
-            get => base.InputValue;
-            set
-            {
-                base.InputValue = value;
+        //public override bool InputValue //lets override to Allow exit when the Input Changes
+        //{
+        //    get => base.InputValue;
+        //    set
+        //    {
+        //        base.InputValue = value;
 
-               
-
-                if (InCoreAnimation && IsActiveState && !value && CanExit) //When the Fly Input is false then allow exit
-                {
-                    AllowExit();
-                }
-            }
-        }
+        //        if (InCoreAnimation && IsActiveState && !value && CanExit) //When the Fly Input is false then allow exit
+        //        {
+        //            AllowExit();
+        //        }
+        //    }
+        //}
 
 #if UNITY_EDITOR
 
@@ -428,9 +427,9 @@ namespace MalbersAnimations.Controller
         }
 
 
-        void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Fly");
+            base.Reset();
             Input = "Fly";
 
             EnterTag.Value = "TakeOff";

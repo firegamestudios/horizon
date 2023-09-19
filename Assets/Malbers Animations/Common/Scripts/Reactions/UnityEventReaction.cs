@@ -5,7 +5,7 @@ namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
 
-    [AddTypeMenu("Unity Reactions/Unity Event")]
+    [AddTypeMenu("Unity/Event(Component)")]
 
     public class UnityEventReaction : Reaction
     {

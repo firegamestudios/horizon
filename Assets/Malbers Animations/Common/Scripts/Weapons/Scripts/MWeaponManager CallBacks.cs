@@ -51,7 +51,6 @@ namespace MalbersAnimations
         {
             ActiveHolsterIndex = (ActiveHolsterIndex + 1) % holsters.Count;
             ActiveHolster = holsters[ActiveHolsterIndex];
-
             Draw_Weapon();
         }
 
@@ -237,14 +236,20 @@ namespace MalbersAnimations
             {
                 if (holster.Weapon.IsCollectable != null)
                 {
-                    if (DropPoint != null)
+                    // if we are using Malbers Inventory and it exists
+                    if (DestroyOnDrop) 
                     {
-                      //  Debug.Log("DROP POINT");
-                        holster.Weapon.transform.position = DropPoint.position;
-                        //    holster.Weapon.transform.rotation = DropPoint.rotation;
+                        Destroy(holster.Weapon.gameObject);
                     }
+                    else // if Malbers Inventory doesn't exist
+                    {
+                        if (DropPoint != null)
+                        {
+                            holster.Weapon.transform.position = DropPoint.position;
+                        }
 
-                    holster.Weapon.IsCollectable.Drop();
+                        holster.Weapon.IsCollectable.Drop();
+                    }
                 }
                 else
                 {
@@ -276,7 +281,7 @@ namespace MalbersAnimations
         }
 
 
-        #endregion
+#endregion
 
         #region Equip Weapon
         /// <summary>Sets the weapon equipped by an External Source</summary>
@@ -445,11 +450,51 @@ namespace MalbersAnimations
             if (comboManager) comboManager.SetBranch(Branch); //Set the Branch in the combo 
 
             Attack();
+        } 
+
+        /// <summary>Called to release the Main Attack (Ex release the Arrow on the Bow, the Melee Atack)</summary>
+        public virtual void MainAttackReleased()
+        {
+            if (WeaponIsActive)
+            {
+                //  Debug.Log("Attack Release");
+                Weapon.MainAttack_Released(this);
+            }
         }
 
+        public virtual void SecondAttackReleased()
+        {
+            if (WeaponIsActive)
+            {
+                Weapon.SecondAttack_Released(this);
+            }
+        }
+
+        /// <summary>Called to start the Main Attack [TRUE] and to release the Main Attack [FALSE]</summary>
+        public virtual void MainAttack(bool value)
+        {
+            if (value) MainAttack(); else MainAttackReleased();
+        }
+
+        /// <summary>Called to start the Secondary Attack [TRUE] and to release the Secondary Attack [FALSE]</summary>
+        public virtual void SecondAttack(bool value)
+        {
+            if (value) SecondAttack(); else SecondAttackReleased();
+        }
+
+        /// <summary>Reload the Weapon in case it can be reloaded</summary>
+        public virtual void ReloadWeapon()
+        {
+            if (JustChangedAction) return; //DO Nothing if you just change actions
+
+            if (WeaponIsActive && WeaponAction != Weapon_Action.Reload) //Only Reload Once!
+            {
+                Weapon.TryReload();
+            }
+        }
 
         /// <summary> Start the Main Attack Logic </summary>
-        public virtual void Attack()
+        protected virtual void Attack()
         {
             if (!Active) return;
             if (MountingDismounting) return;    //Do nothing if the character is mounting or dismounting
@@ -457,13 +502,13 @@ namespace MalbersAnimations
 
 
             // Debug.Log($"WeaponIsActive {WeaponIsActive}");
-           //  Debug.Log($"Weapon.CanAttack {Weapon.CanAttack}");
+            //  Debug.Log($"Weapon.CanAttack {Weapon.CanAttack}");
             if (WeaponIsActive)
             {
                 if (Weapon.CanAttack)
                 {
                     if (!Aimer.Active) Aimer.CalculateAiming(); //Quick Aim Calculation in case the Aimer is Disabled
-                 //    Debug.Log("<-------------> Weapon Attack <------------->");
+                                                                //    Debug.Log("<-------------> Weapon Attack <------------->");
                     Weapon.MainAttack_Start(this);
                     // OnMainAttackStart.Invoke(Weapon.gameObject);
                 }
@@ -489,7 +534,6 @@ namespace MalbersAnimations
             }
         }
 
-
         /// <summary>Repeat while the Input is down. This is called in fixed update</summary>
         protected virtual void WeaponCharged(float time)
         {
@@ -498,36 +542,6 @@ namespace MalbersAnimations
             {
                 if (!HasAnimal || animal.ActiveMode == WeaponMode)
                     Weapon.Attack_Charge(this, time);
-            }
-        }
-
-        /// <summary>Called to release the Main Attack (Ex release the Arrow on the Bow, the Melee Atack)</summary>
-        public virtual void MainAttackReleased()
-        {
-            if (WeaponIsActive)
-            {
-                //  Debug.Log("Attack Release");
-                Weapon.MainAttack_Released(this);
-            }
-        }
-
-        public virtual void MainAttack(bool value)
-        {
-            if (value) MainAttack(); else MainAttackReleased();
-        }
-
-
-        public virtual void SecondAttack(bool value)
-        {
-            if (value) SecondAttack(); else SecondAttackReleased();
-        }
-
-
-        public virtual void SecondAttackReleased()
-        {
-            if (WeaponIsActive)
-            {
-                Weapon.SecondAttack_Released(this);
             }
         }
 
@@ -546,15 +560,6 @@ namespace MalbersAnimations
             }
         }
 
-        public virtual void ReloadWeapon()
-        {
-            if (JustChangedAction) return; //DO Nothing if you just change actions
-
-            if (WeaponIsActive && WeaponAction != Weapon_Action.Reload) //Only Reload Once!
-            {
-                Weapon.TryReload();
-            }
-        }
         #endregion
 
         #region Inputs

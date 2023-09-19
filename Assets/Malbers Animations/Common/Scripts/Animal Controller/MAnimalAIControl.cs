@@ -33,6 +33,8 @@ namespace MalbersAnimations.Controller.AI
         /// <summary>Cache if the Animal has an Interactor</summary>
         public IInteractor Interactor { get; internal set; }
 
+        public bool AIReady { get; internal set; }
+
         public bool ArriveLookAt => false; //do this later
 
         public virtual bool Active => enabled && gameObject.activeInHierarchy;
@@ -222,10 +224,25 @@ namespace MalbersAnimations.Controller.AI
         public bool debugGizmos = true;
         public bool debugStatus = true;
         #endregion
+ 
+
+        #region Events
+        [Space]
+        public Vector3Event OnTargetPositionArrived = new();
+        public TransformEvent OnTargetArrived = new();
+        public TransformEvent OnTargetSet = new();
+
+        public TransformEvent TargetSet => OnTargetSet;
+        public TransformEvent OnArrived => OnTargetArrived;
+        public UnityEvent OnEnabled = new();
+        public UnityEvent OnDisabled = new();
+
+        #endregion 
 
         #region Properties 
+
         /// <summary>is the Animal, Flying, swimming, On Free Mode?</summary>
-        public bool FreeMove { get;  set; }
+        public bool FreeMove { get; set; }
 
 
         /// <summary>Default Stopping Distance</summary>
@@ -263,26 +280,10 @@ namespace MalbersAnimations.Controller.AI
         public IAITarget IsAITarget { get; set; }
 
         /// <summary>AITarget Position</summary>
-        public Vector3 AITargetPos => IsAITarget.GetPosition();      //Update the AI Target Pos if the Target moved
+        public Vector3 AITargetPos => IsAITarget.GetCenterPosition();      //Update the AI Target Pos if the Target moved
 
         /// <summary>Is the Target an AITarget</summary>
         public IInteractable IsTargetInteractable { get; protected set; }
-        #endregion 
-
-        #region Events
-        [Space]
-        public Vector3Event OnTargetPositionArrived = new();
-        public TransformEvent OnTargetArrived = new();
-        public TransformEvent OnTargetSet = new();
-
-        public TransformEvent TargetSet => OnTargetSet;
-        public TransformEvent OnArrived => OnTargetArrived;
-        public UnityEvent OnEnabled = new();
-        public UnityEvent OnDisabled = new();
-
-        #endregion 
-
-        #region Properties 
 
         /// <summary>The Target is an Air Target</summary>
         internal bool IsAirDestination => IsAITarget != null && IsAITarget.TargetType == WayPointType.Air;
@@ -293,9 +294,9 @@ namespace MalbersAnimations.Controller.AI
 
         public Transform AgentTransform;
 
-        public virtual Vector3 GetPosition() => AgentTransform.position;
+        public virtual Vector3 GetCenterPosition() => AgentTransform.position;
 
-        public Vector3 GetCenter() => animal.Center;
+        public Vector3 GetCenterY() => animal.Center;
 
         /// <summary> Self Target Type </summary>
         public virtual WayPointType TargetType => animal.FreeMovement ? WayPointType.Air : WayPointType.Ground;
@@ -385,6 +386,7 @@ namespace MalbersAnimations.Controller.AI
 
             IsWaiting = true; //The AI Has not Started yet
             FreeMove = false;
+            AIReady  = false;
 
             if (animal.ActiveState) //If the animal has an active state.
                 FreeMove = (animal.ActiveState.General.FreeMovement);
@@ -394,8 +396,11 @@ namespace MalbersAnimations.Controller.AI
             HasArrived = false;
             TargetIsMoving = false;
 
-          if (target != null)
-                this.Delay_Action(() => StartAI());//Start AI a Frame later; 
+            //if (target != null)
+                this.Delay_Action(StartAI);//Start AI a Frame later; 
+
+
+           // StartAI();
 
             //Disable any Input Source in case it was active
             if (animal.InputSource != null && disableInput)
@@ -424,6 +429,8 @@ namespace MalbersAnimations.Controller.AI
             //    InputSource.MoveCharacter = true;
             //    Debuging("Input Move Enabled");
             //}
+
+            AIReady = false;
         }
 
         protected virtual void Update() { Updating(); }
@@ -497,13 +504,15 @@ namespace MalbersAnimations.Controller.AI
 
         public virtual void StartAI()
         {
-
             var targ = target; target = null;
             SetTarget(targ);                                                  //Set the first Target (IMPORTANT)  it also set the next future targets
 
             if (AgentTransform == animal.transform)
                 Debug.LogWarning("The Nav Mesh Agent needs to be attached to a child Gameobject, not in the same gameObject as the Animal Component");
+            AIReady = true;
         }
+
+   
 
         public virtual void Updating()
         {
@@ -787,7 +796,7 @@ namespace MalbersAnimations.Controller.AI
                 float closeDist = float.PositiveInfinity;
                 foreach (var t in targets)
                 {
-                    var Dist = (transform.position - t.GetPosition()).sqrMagnitude;
+                    var Dist = (transform.position - t.GetCenterPosition()).sqrMagnitude;
 
                     if (closeDist > Dist)
                     {
@@ -803,7 +812,8 @@ namespace MalbersAnimations.Controller.AI
         /// <summary>Set the next Target</summary>   
         public virtual void SetTarget(Transform newTarget, bool move)
         {
-            // if (target == Target && !HasArrived) return;               //Don't assign the same target if we are travelling to that target (Breaks Wander Areas)
+            // if (target == Target && !HasArrived) return;         
+            //Don't assign the same target if we are travelling to that target (Breaks Wander Areas)
 
             target = newTarget;
             OnTargetSet.Invoke(newTarget);                                 //Invoked that the Target has changed.
@@ -835,18 +845,26 @@ namespace MalbersAnimations.Controller.AI
                 //Resume the Agent is MoveAgent is true
                 if (move)
                 {
-
                     ResetAIValues();
-                    if (animal.IsPlayingMode) animal.Mode_Interrupt();      //In Case it was making any Mode Interrupt it because there's a new target to go to.
+                    
+                    
                     CurrentStoppingDistance = GetTargetStoppingDistance();
                     CurrentSlowingDistance = GetTargetSlowingDistance();
 
+                    var OldDest = DestinationPosition;
                     DestinationPosition = GetTargetPosition();
 
                     CalculatePath();
 
                     Move();
                     Debuging($"<color=yellow>is travelling to <B>Target: [{newTarget.name}]</B> → [{DestinationPosition}] </color>");
+
+
+                    ////Meaning we are already going to the same destination
+                    //if ((DestinationPosition - OldDest).sqrMagnitude <= 0.001f) return;
+
+                    ////In Case it was making any Mode Interrupt it because there's a new target to go to.
+                    //if (animal.IsPlayingMode) animal.Mode_Interrupt();
                 }
             }
             else
@@ -956,11 +974,15 @@ namespace MalbersAnimations.Controller.AI
 
             if (newDestination == DestinationPosition) return;  //Means that you're already going to the same point so Skip the code
 
+            //We are already near the destination point
+            if (Vector3.Distance(newDestination, DestinationPosition) < stoppingDistance) return;
+
             CurrentStoppingDistance = PointStoppingDistance;    //Reset the stopping distance when Set Destination is used.
 
             ResetAIValues();
 
-            if (IsOnNonMovingMode) animal.Mode_Interrupt();
+           // if (IsOnNonMovingMode) 
+                animal.Mode_Interrupt();
 
             IsWayPoint = null;
 
@@ -968,8 +990,8 @@ namespace MalbersAnimations.Controller.AI
                 StopCoroutine(I_WaitToNextTarget);                          //if there's a coroutine active then stop it
 
             DestinationPosition = newDestination;                           //Update the Target Position
-                                                                            
-            
+
+         
 
             if (move)
             {
@@ -1248,8 +1270,8 @@ namespace MalbersAnimations.Controller.AI
         }
 
 
-        protected virtual void Debuging(string Log) { if (debug) Debug.Log($"<B>{animal.name} AI:</B> " + Log, this); }
-        protected virtual void Debuging(string Log, GameObject obj) { if (debug) Debug.Log($"<B>{animal.name}:</B> " + Log, obj); }
+        protected virtual void Debuging(string Log) { if (debug) Debug.Log($"<B>[{animal.name} AI]</B> " + Log, this); }
+        protected virtual void Debuging(string Log, GameObject obj) { if (debug) Debug.Log($"<B>[{animal.name} AI]</B> " + Log, obj); }
 
 #if UNITY_EDITOR
         [HideInInspector] public int Editor_Tabs1;
@@ -1424,6 +1446,13 @@ namespace MalbersAnimations.Controller.AI
             serializedObject.Update();
             MalbersEditor.DrawDescription("AI Source. Moves the animal using an AI Agent");
 
+            if (M.Agent != null && M.animal != null && M.Agent.transform == M.animal.transform)
+            {
+                EditorGUILayout.HelpBox("The NavMesh Agent needs to be attached to a child gameObject. " +
+                    "It cannot be in the same gameObject as the Animal Controller", MessageType.Error);
+            }
+
+
             EditorGUI.BeginChangeCheck();
             {
                 // EditorGUILayout.BeginVertical(MalbersEditor.StyleGray);
@@ -1443,11 +1472,7 @@ namespace MalbersAnimations.Controller.AI
                 }
             }
 
-            if (M.Agent != null && M.animal != null && M.Agent.transform == M.animal.transform)
-            {
-                EditorGUILayout.HelpBox("The NavMesh Agent needs to be attached to a child gameObject. " +
-                    "It cannot be in the same gameObject as the Animal Component", MessageType.Error);
-            }
+           
 
             //   EditorGUILayout.EndVertical();
 

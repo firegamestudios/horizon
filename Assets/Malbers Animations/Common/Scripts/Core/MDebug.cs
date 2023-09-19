@@ -3,9 +3,7 @@ using UnityEngine;
 
 namespace MalbersAnimations
 {
-    /// <summary>
-    /// Malbers Debug Class to Draw Different debug shapes
-    /// </summary>
+    /// <summary> Malbers Debug Class to Draw Different debug shapes  </summary>
     public static class MDebug
     {
         /// <summary>  Draw an arrow Using Gizmos  </summary>
@@ -36,14 +34,33 @@ namespace MalbersAnimations
             Debug.DrawRay(pos + direction, arrowHeadLength * length * left, color, duration);
         }
 
-
-
-        public static void DrawWireSphere(Vector3 position, Color color, float radius = 1.0f, float drawDuration = 0, int Steps = 36)
+        public static void DrawCircle(Vector3 position, Quaternion rotation, float radius, Color color, float duration = 0, int Steps = 36)
         {
-            DebugWireSphere(position, Quaternion.identity, color, radius, 1, drawDuration, Steps);
+            //Vector3 forward = rotation * Vector3.forward;
+            //Vector3 endPosition = position;
+
+            var drawAngle = 360 / Steps;
+            Vector3 Lastpoint = position + rotation * new Vector3(Mathf.Cos(0), Mathf.Sin(0)) * radius;
+
+            for (int i = 0; i <= Steps; i++)
+            {
+                float a = i * drawAngle * Mathf.Deg2Rad;
+                Vector3 point = position + rotation * new Vector3(Mathf.Cos(a), 0, Mathf.Sin(a)) * radius;
+                Debug.DrawLine(point, Lastpoint, color,duration,false);
+                Lastpoint = point;
+            }
         }
 
-        public static void DebugWireSphere(Vector3 position, Quaternion rotation, Color color, float radius = 1.0f, float scale = 1f, float drawDuration = 0, int Steps = 36)
+        public static void DrawWireSphere(Vector3 position, Color color, float radius = 1.0f, float drawDuration = 0, int Steps = 36) 
+            => DrawWireSphere(position, Quaternion.identity, color, radius, 1, drawDuration, Steps);
+
+        public static void DrawWireSphere(Vector3 position, float radius, Color color, float drawDuration = 0, int Steps = 36)
+            => DrawWireSphere(position, Quaternion.identity, color, radius, 1, drawDuration, Steps);
+
+        public static void DrawWireSphere(Vector3 position, Quaternion rotation, float radius, Color color, float drawDuration = 0, int Steps = 36)
+            => DrawWireSphere(position, rotation, color, radius, 1, drawDuration, Steps);
+
+        public static void DrawWireSphere(Vector3 position, Quaternion rotation, Color color, float radius = 1.0f, float scale = 1f, float drawDuration = 0, int Steps = 36)
         {
 #if UNITY_EDITOR
             Vector3 forward = rotation * Vector3.forward;

@@ -21,12 +21,17 @@ public class LootInteract : MonoBehaviour
         string lootName = myLoot.name;
         invDisplay.TargetInventoryName = myLoot.name;
         invDisplay.TargetInventory = transform.GetChild(0).GetComponent<Inventory>();
-        invDisplay.SetupInventoryDisplay();
-        invDisplay.AllowMovingObjectsToThisInventory = true;
-        invDisplay.RedrawInventoryDisplay();
+        UpdateInventoryDisplay();
         canvasGroup.alpha = 1;
         
         print("OpenMyLoot()");
+    }
+
+    public void UpdateInventoryDisplay()
+    {
+        invDisplay.SetupInventoryDisplay();
+        invDisplay.AllowMovingObjectsToThisInventory = true;
+        invDisplay.RedrawInventoryDisplay();
     }
 
     public void CloseMyLoot()

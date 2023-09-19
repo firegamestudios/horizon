@@ -1,6 +1,7 @@
 using Cinemachine;
 using MalbersAnimations;
 using MalbersAnimations.Controller;
+using MalbersAnimations.Controller.AI;
 using MalbersAnimations.Reactions;
 using MalbersAnimations.Weapons;
 using PixelCrushers.DialogueSystem;
@@ -8,23 +9,25 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using Droidzone.Core;
 public class NPC : MonoBehaviour
 {
     //My Components
     protected MAnimal animal;
     MDamageable damageable;
-    Reaction customReaction;
+    Rigidbody rb;
+    
     Animator anim;
     Blood blood;
-   
+
     //The player
-    protected PC pc;
-   
+    private PC pc;
+
     /* -> Weapon that will deal the damage.
      * Recreate and make it in a way that detects the player's current weapon. !!
      */
     private GameObject weapon;
+    Reaction customReaction;
 
     private float regularAnimSpeed;
 
@@ -75,21 +78,29 @@ public class NPC : MonoBehaviour
 
    GameManager manager;
 
+    //AI
+   
+   MProjectileThrower projThrow;
+
+    protected PC Pc { get => pc ??= FindAnyObjectByType<PC>(); set => pc = value; }
+
     private void Awake()
     {
         animal = GetComponent<MAnimal>();
-        pc = FindAnyObjectByType<PC>();
+        
         damageable = GetComponent<MDamageable>();
         anim = GetComponent<Animator>();
-      manager = FindAnyObjectByType<GameManager>();
+        manager = FindAnyObjectByType<GameManager>();
         blood = GetComponentInChildren<Blood>();
+       projThrow = GetComponentInChildren<MProjectileThrower>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
        
         //Setup the regular animation speed
-       regularAnimSpeed = anim.speed;
+        regularAnimSpeed = anim.speed;
 
         //Initialization for custom children classes
         Initialize();
@@ -250,7 +261,10 @@ public class NPC : MonoBehaviour
     }
     public void OnDeath()
     {
-       
+        if (animal.State_Get(0).IsActiveState)
+        {
+            animal.State_Force(10);
+        }
         
 
     }
@@ -279,7 +293,7 @@ public class NPC : MonoBehaviour
             return;
         }
         print("Conversation started with " + gameObject.name);
-        pc.FreezePlayer();
+        GameManager.Pc.FreezePlayer();
         Freeze();
         CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
         MyVirtualCam.Priority = 100;
@@ -297,7 +311,7 @@ public class NPC : MonoBehaviour
         print("Conversation ended with " + gameObject.name);
         CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
         MyVirtualCam.Priority = -50;
-        pc.UnfreezePlayer();
+        GameManager.Pc.UnfreezePlayer();
         if(stayFrozenAfterDialogue == false)
         {
             Unfreeze();
@@ -310,17 +324,32 @@ public class NPC : MonoBehaviour
     #region NPC Control
     public void Freeze()
     {
+        print(gameObject.name + " is frozen");
         animal.State_Force(0);
-        animal.Sleep = true;
+        //LockInput LockMovement
+        animal.LockInput = true;
+        animal.LockMovement = true;
+        print("Current Gravity Power: " + animal.GravityPower);
+       
     }
     public void Unfreeze()
     {
-        animal.Sleep = false;
+        animal.LockInput = false;
+        animal.LockMovement = false;
+       
     }
 
     public void StartConversation(string title)
     {
-        DialogueManager.instance.StartConversation(title, pc.transform, transform);
+        DialogueManager.instance.StartConversation(title, Pc.transform, transform);
+    }
+    #endregion
+
+    #region Special Attacks
+    public void ShootPoison()
+    {
+        //print("SHOOTS POISON");
+        projThrow.Fire();
     }
     #endregion
 

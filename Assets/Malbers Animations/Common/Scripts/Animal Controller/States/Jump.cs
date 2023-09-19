@@ -8,6 +8,7 @@ namespace MalbersAnimations.Controller
     public class Jump : State
     {
         public override string StateName => "Jump/Root Motion Jump";
+        public override string StateIDName => "Jump";
 
         /// <summary>If the Jump input is pressed, the Animal will keep going Up while the Jump Animation is Playing</summary>
         [Header("Jump Parameters")]
@@ -444,9 +445,9 @@ namespace MalbersAnimations.Controller
             //Do nothing... the Jump is an automatic State, the Fall Speed is created internally
         }
 
-        internal void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Jump");
+            base.Reset();
             Input = "Jump";
 
             SleepFromState = new List<StateID>() { MTools.GetInstance<StateID>("Fall"), MTools.GetInstance<StateID>("Fly") };

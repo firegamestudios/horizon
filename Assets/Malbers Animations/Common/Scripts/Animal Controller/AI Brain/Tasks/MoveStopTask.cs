@@ -13,7 +13,7 @@ namespace MalbersAnimations.Controller.AI
     {
         public override string DisplayName => "Movement/Movement-Stop";
 
-        private static readonly int circleAround = "circleAround".GetHashCode();
+       // private static readonly int circleAround = "circleAround".GetHashCode();
 
 
         public enum MoveType
@@ -49,6 +49,9 @@ namespace MalbersAnimations.Controller.AI
         public int arcsCount = 12;
 
         public bool LookAtTarget = false;
+
+        [Tooltip("It will flee from the Target forever. If this value is false it will flee once it has reached a safe distance and the Task will end.")]
+        public bool FleeForever = true;
         
 
         public Color debugColor = new Color(0.5f, 0.5f, 0.5f, 0.25f);
@@ -352,6 +355,8 @@ namespace MalbersAnimations.Controller.AI
                 {
                     brain.AIControl.Stop();
                     brain.AIControl.LookAtTargetOnArrival = LookAtTarget;
+
+                    if (!FleeForever) brain.TaskDone(index); //If flee forever is false then flee is finished
                 }
             }
         }
@@ -414,14 +419,15 @@ namespace MalbersAnimations.Controller.AI
     {
         SerializedProperty
             Description, distance, debugColor, distanceThreshold, active, WaitForPreviousTask,
-            stoppingDistance, task, Direction, UpdateInterval, slowingDistance,
+            stoppingDistance, task, Direction, UpdateInterval, slowingDistance, FleeForever,
             MessageID, arcsCount, LookAtTarget;
-            MonoScript script;
+             
         private void OnEnable()
         {
-            script = MonoScript.FromScriptableObject((ScriptableObject)target);
+          //  script = MonoScript.FromScriptableObject((ScriptableObject)target);
 
             active = serializedObject.FindProperty("active");
+            FleeForever = serializedObject.FindProperty("FleeForever");
             Description = serializedObject.FindProperty("Description");
             WaitForPreviousTask = serializedObject.FindProperty("WaitForPreviousTask");
             task = serializedObject.FindProperty("task");
@@ -443,64 +449,65 @@ namespace MalbersAnimations.Controller.AI
         {
             serializedObject.Update();
 
-            //MalbersEditor.DrawDescription("Movement Task for the AI Brain");
-
             EditorGUI.BeginChangeCheck();
-          // MalbersEditor.DrawScript(script);
-
-            EditorGUILayout.PropertyField(active);
-            EditorGUILayout.PropertyField(Description);
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(MessageID);
-            EditorGUILayout.PropertyField(debugColor, GUIContent.none, GUILayout.MaxWidth(40));
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.PropertyField(WaitForPreviousTask);
-            EditorGUILayout.PropertyField(UpdateInterval);
-
-            MoveStopTask.MoveType taskk = (MoveStopTask.MoveType)task.intValue;
-
-            string Help = GetTaskType(taskk);
-            EditorGUILayout.PropertyField(task, new GUIContent("Task", Help));
-
-            switch (taskk)
             {
-                case MoveStopTask.MoveType.LockAnimalMovement: LookAt_T(); break;
-                case MoveStopTask.MoveType.Stop: LookAt_T(); break;
-                case MoveStopTask.MoveType.RotateInPlace: break;
-                case MoveStopTask.MoveType.MoveToCurrentTarget:
-                    LookAt_T();   Interact_();   break;
-                case MoveStopTask.MoveType.MoveToNextTarget:
-                    LookAt_T();   Interact_();   break;
 
-                case MoveStopTask.MoveType.Flee:
-                    EditorGUILayout.PropertyField(distance, new GUIContent("Distance", "Flee Safe Distance away from the Target"));
-                    EditorGUILayout.PropertyField(stoppingDistance, new GUIContent("Stop Distance", "Stopping Distance of the Flee point"));
-                    EditorGUILayout.PropertyField(slowingDistance);
-                    LookAt_T();
-                    break;
-                case MoveStopTask.MoveType.CircleAround:
-                    EditorGUILayout.PropertyField(distance, new GUIContent("Distance", "Flee Safe Distance away from the Target"));
-                    EditorGUILayout.PropertyField(stoppingDistance, new GUIContent("Stop Distance", "Stopping Distance of the Circle Around Points"));
-                    EditorGUILayout.PropertyField(slowingDistance);
-                    EditorGUILayout.PropertyField(Direction, new GUIContent("Direction", "Direction to Circle around the Target... left or right"));
-                    EditorGUILayout.PropertyField(arcsCount, new GUIContent("Arc Count", "Amount of Point to Form a Circle around the Target"));
-                    
-                    break;
-                case MoveStopTask.MoveType.KeepDistance:
-                    EditorGUILayout.PropertyField(distance);
-                    EditorGUILayout.PropertyField(distanceThreshold);
-                    EditorGUILayout.PropertyField(stoppingDistance);
-                    EditorGUILayout.PropertyField(slowingDistance);
-                    LookAt_T();
-                    break;
-                default:
-                    break;
+                EditorGUILayout.PropertyField(active);
+                EditorGUILayout.PropertyField(Description);
+                using (new GUILayout.HorizontalScope())
+                {
+                    EditorGUILayout.PropertyField(MessageID);
+                    EditorGUILayout.PropertyField(debugColor, GUIContent.none, GUILayout.MaxWidth(40));
+                }
+                EditorGUILayout.PropertyField(WaitForPreviousTask);
+                EditorGUILayout.PropertyField(UpdateInterval);
+
+                MoveStopTask.MoveType taskk = (MoveStopTask.MoveType)task.intValue;
+
+                string Help = GetTaskType(taskk);
+                EditorGUILayout.PropertyField(task, new GUIContent("Task", Help));
+
+                switch (taskk)
+                {
+                    case MoveStopTask.MoveType.LockAnimalMovement: LookAt_T(); break;
+                    case MoveStopTask.MoveType.Stop: LookAt_T(); break;
+                    case MoveStopTask.MoveType.RotateInPlace: break;
+                    case MoveStopTask.MoveType.MoveToCurrentTarget:
+                        LookAt_T(); Interact_(); break;
+                    case MoveStopTask.MoveType.MoveToNextTarget:
+                        LookAt_T(); Interact_(); break;
+
+                    case MoveStopTask.MoveType.Flee:
+                        EditorGUILayout.PropertyField(FleeForever);
+                        EditorGUILayout.PropertyField(distance, new GUIContent("Distance", "Flee Safe Distance away from the Target"));
+                        EditorGUILayout.PropertyField(stoppingDistance, new GUIContent("Stop Distance", "Stopping Distance of the Flee point"));
+                        EditorGUILayout.PropertyField(slowingDistance);
+                        LookAt_T();
+                        break;
+                    case MoveStopTask.MoveType.CircleAround:
+                        EditorGUILayout.PropertyField(distance, new GUIContent("Distance", "Flee Safe Distance away from the Target"));
+                        EditorGUILayout.PropertyField(stoppingDistance, new GUIContent("Stop Distance", "Stopping Distance of the Circle Around Points"));
+                        EditorGUILayout.PropertyField(slowingDistance);
+                        EditorGUILayout.PropertyField(Direction, new GUIContent("Direction", "Direction to Circle around the Target... left or right"));
+                        EditorGUILayout.PropertyField(arcsCount, new GUIContent("Arc Count", "Amount of Point to Form a Circle around the Target"));
+
+                        break;
+                    case MoveStopTask.MoveType.KeepDistance:
+                        EditorGUILayout.PropertyField(distance);
+                        EditorGUILayout.PropertyField(distanceThreshold);
+                        EditorGUILayout.PropertyField(stoppingDistance);
+                        EditorGUILayout.PropertyField(slowingDistance);
+                        LookAt_T();
+                        break;
+                    default:
+                        break;
+                }
+
+
+                EditorGUILayout.Space();
+                MalbersEditor.DrawDescription(taskk.ToString() + ":\n" + Help);
+
             }
-
-
-            EditorGUILayout.Space();
-            MalbersEditor.DrawDescription(taskk.ToString() + ":\n" + Help);
-
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Movement Task Inspector");

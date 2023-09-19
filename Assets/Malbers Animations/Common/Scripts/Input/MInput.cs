@@ -164,7 +164,7 @@ namespace MalbersAnimations
             }
         }
 
-        void Update() { SetInput(); }
+        private void Update() => SetInput();
 
         /// <summary>Send all the Inputs to the Animal</summary>
         protected virtual void SetInput()
@@ -175,10 +175,6 @@ namespace MalbersAnimations
 
             foreach (var item in ActiveMap.inputs)
                 _ = item.GetValue;  //This will set the Current Input value to the inputs and Invoke the Values
-
-
-            //foreach (var item in inputs)
-            //    _ = item.GetValue;  //This will set the Current Input value to the inputs and Invoke the Values
         }
 
 
@@ -195,7 +191,6 @@ namespace MalbersAnimations
                 {
                     if (AllInputs[i].name == inp) AllInputs[i].Active = value;
                 }
-
                 //if (DInputs.TryGetValue(inp, out InputRow input)) input.Active = value;
             }
         }
@@ -207,32 +202,10 @@ namespace MalbersAnimations
                 if (AllInputs[i].name == name)
                 {
                     AllInputs[i].InputValue = value;
-                   // AllInputs[i].ToggleValue = value;
                 }
             }
-
-            //if (DInputs.TryGetValue(name, out InputRow input))
-            //{
-            //    input.InputValue = value;
-            //    input.ToggleValue = value;
-            //}
         }
-
-        //public virtual void ResetToggle(string name)
-        //{
-        //    for (int i = 0; i < AllInputs.Count; i++)
-        //    {
-        //        if (AllInputs[i].name == name)
-        //        {
-        //            AllInputs[i].ToggleValue = false;
-        //        }
-        //    }
-
-        //    //if (DInputs.TryGetValue(name, out InputRow input))
-        //    //{
-        //    //    input.ToggleValue = false;
-        //    //}
-        //}
+ 
 
         /// <summary>  Resets the value and toggle of an Input to False </summary>
         public virtual void ResetInput(string name)
@@ -403,6 +376,19 @@ namespace MalbersAnimations
             MTools.SetDirty(this);
         }
 
+        [ContextMenu("Create/Activate Zone")]
+        private void CreateZone()
+        {
+            var sprint = new InputRow(true, "Zone", "Zone", KeyCode.E, InputButton.Down, InputType.Key);
+
+            TrueInput.Add(sprint);
+
+            var method = this.GetUnityAction("MAnimal", "Zone_Activate");
+            if (method != null) UnityEditor.Events.UnityEventTools.AddPersistentListener(sprint.OnInputDown, method);
+            MTools.SetDirty(this);
+        }
+
+
         [ContextMenu("Create/Main Attack")]
         private void CreateMainAttackInput()
         { 
@@ -507,7 +493,8 @@ namespace MalbersAnimations
     public class InputRow : IInputAction
     {
         public string name = "InputName";
-        public BoolReference active = new BoolReference(true);
+        public BoolReference active = new(true);
+        public BoolReference ignoreOnPause = new();
         public InputType type = InputType.Input;
         public string input = "Value";
         [SearcheableEnum]
@@ -537,26 +524,17 @@ namespace MalbersAnimations
         public bool ResetOnDisable = true;
 
 
-        public UnityEvent OnInputDown = new UnityEvent();
-        public UnityEvent OnInputUp = new UnityEvent();
-        public UnityEvent OnLongPress = new UnityEvent();
-        public UnityEvent OnLongPressReleased = new UnityEvent();
-        public UnityEvent OnDoubleTap = new UnityEvent();
-        public BoolEvent OnInputChanged = new BoolEvent();
+        public UnityEvent OnInputDown = new();
+        public UnityEvent OnInputUp = new();
+        public UnityEvent OnLongPress = new();
+        public UnityEvent OnLongPressReleased = new();
+        public UnityEvent OnDoubleTap = new();
+        public BoolEvent OnInputChanged = new();
         public BoolEvent OnInputToggle => OnInputChanged;
-        public UnityEvent OnInputEnable = new UnityEvent();
-        public UnityEvent OnInputDisable = new UnityEvent();
+        public UnityEvent OnInputEnable = new();
+        public UnityEvent OnInputDisable = new();
 
         protected IInputSystem inputSystem = new DefaultInput();
-
-        
-        //public IncludeExclude depend = IncludeExclude.Exclude;
-
-        //[Tooltip("If an Input on this list is active then Enable or Disable this Input")]
-        //public List<string> dependency = new List<string>();
-
-
-        // public bool ShowEvents = false;
 
         #region LONG PRESS and Double Tap
         public float DoubleTapTime = 0.3f;                          //Double Tap Time
@@ -579,6 +557,7 @@ namespace MalbersAnimations
             get
             {
                 if (!active) return false;
+                if (ignoreOnPause) return false;
                 if (inputSystem == null) return false;
 
                 var oldValue = InputValue;
@@ -802,7 +781,7 @@ namespace MalbersAnimations
                 if (value)
                     OnInputEnable.Invoke();
                 else
-                    OnInputEnable.Invoke();
+                    OnInputDisable.Invoke();
             }
         }
         public InputButton Button => GetPressed;
@@ -895,7 +874,7 @@ namespace MalbersAnimations
         public bool raw = true;
         public string input = "Value";
         IInputSystem inputSystem = new DefaultInput();
-        public FloatEvent OnAxisValueChanged = new FloatEvent();
+        public FloatEvent OnAxisValueChanged = new();
         float currentAxisValue = 0;
 
         /// <summary>Returns the Axis Value</summary>

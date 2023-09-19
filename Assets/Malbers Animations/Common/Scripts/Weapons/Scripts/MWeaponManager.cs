@@ -239,8 +239,8 @@ namespace MalbersAnimations
             debug, LeftHandEquipPoint, RightHandEquipPoint,/* UseDefaultIK,*/
             Anim,
             OnEquipWeapon, OnUnequipWeapon, OnCombatMode, OnCanAim, OnWeaponAction,
-            m_CombatLayerPath, m_CombatLayerName,
-           // OnMainAttackStart,
+            m_CombatLayerPath, m_CombatLayerName, DestroyOnDrop,
+            // OnMainAttackStart,
 
             DisableModes, ExitOnModes, ExitOnState, ExitFast,// IKLerp,
 
@@ -276,7 +276,8 @@ namespace MalbersAnimations
         }
         private void FindProperties()
         {
-            animal = serializedObject.FindProperty("animal"); 
+            animal = serializedObject.FindProperty("animal");
+            DestroyOnDrop = serializedObject.FindProperty("DestroyOnDrop");
 
             m_AimInput = serializedObject.FindProperty("m_AimInput");
             DropPoint = serializedObject.FindProperty("DropPoint");
@@ -285,7 +286,7 @@ namespace MalbersAnimations
             m_SecondAttack = serializedObject.FindProperty("m_SecondAttack");
             //m_SpecialAttack = serializedObject.FindProperty("m_SpecialAttack");
 
-             
+
 
             DisableModes = serializedObject.FindProperty("DisableModes");
             ExitOnState = serializedObject.FindProperty("ExitOnState");
@@ -307,7 +308,7 @@ namespace MalbersAnimations
             StoreAfter = serializedObject.FindProperty("StoreAfter");
             m_IgnoreDraw = serializedObject.FindProperty("m_IgnoreDraw");
             m_IgnoreStore = serializedObject.FindProperty("m_IgnoreStore");
-           // DisableAim = serializedObject.FindProperty("DisableAim");
+            // DisableAim = serializedObject.FindProperty("DisableAim");
 
 
             #region Animator Parameters
@@ -556,8 +557,8 @@ namespace MalbersAnimations
 
                     EditorGUI.indentLevel++;
                     EditorGUILayout.PropertyField(ExitOnState);
-                    EditorGUI.indentLevel--; 
-                    
+                    EditorGUI.indentLevel--;
+
                     EditorGUI.indentLevel++;
                     EditorGUILayout.PropertyField(ExitOnModes);
                     EditorGUI.indentLevel--;
@@ -708,6 +709,7 @@ namespace MalbersAnimations
                 EditorGUILayout.PropertyField(HolsterTime, new GUIContent("Holster Time", "Time to smooth parent the weapon to the Hand and Holster"));
 
                 EditorGUILayout.PropertyField(DropPoint);
+                EditorGUILayout.PropertyField(DestroyOnDrop);
 
                 holsterReordable.DoLayoutList();
 
@@ -799,14 +801,14 @@ namespace MalbersAnimations
         {
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
-              if (M.animal == null)
+                if (M.animal == null)
                     AddLayers();
 
 
                 EditorGUILayout.LabelField(new GUIContent("Combat Animator", "Location and Name of the Combat while Riding Layer, on the Resource folder"), EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(m_CombatLayerName, new GUIContent("Layer Name", "Name of the Riding Combat Layer"));
                 EditorGUILayout.PropertyField(m_CombatLayerPath, new GUIContent("Animator Path", "Path of the Combat Layer on the Resource Folder"));
-            
+
             }
         }
 
@@ -821,7 +823,7 @@ namespace MalbersAnimations
                 EditorGUILayout.PropertyField(OnCanAim);
                 EditorGUILayout.PropertyField(OnEquipWeapon);
                 EditorGUILayout.PropertyField(OnUnequipWeapon);
-              //  EditorGUILayout.PropertyField(OnMainAttackStart);
+                //  EditorGUILayout.PropertyField(OnMainAttackStart);
                 EditorGUILayout.PropertyField(OnWeaponAction);
             }
 
@@ -843,7 +845,7 @@ namespace MalbersAnimations
         {
             var m_CombatLayerPath = serializedObject.FindProperty("m_CombatLayerPath");
 
-            UnityEditor.Animations.AnimatorController MountAnimator = 
+            UnityEditor.Animations.AnimatorController MountAnimator =
                 Resources.Load<UnityEditor.Animations.AnimatorController>(m_CombatLayerPath.stringValue);
 
             MTools.AddParametersOnAnimator(CurrentAnimator, MountAnimator);
@@ -869,7 +871,7 @@ namespace MalbersAnimations
 
                     var ST = new GUIStyle(EditorStyles.miniButtonMid) { fontStyle = FontStyle.Bold };
 
-                  
+
 
                     if (layers.Find(layer => layer.name == m_CombatLayerName.stringValue) == null)
                     {

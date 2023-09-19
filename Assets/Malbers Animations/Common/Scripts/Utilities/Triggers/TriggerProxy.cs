@@ -176,16 +176,15 @@ namespace MalbersAnimations.Utilities
 
             if (m_colliders.Count == 0)
             {
-                EnteringGameObjects = new List<GameObject>();
+                EnteringGameObjects = new();
             }
         }
         /// <summary>Add a Trigger Target to every new Collider found</summary>
         private void AddTarget(Collider other)
         {
-            if (TriggerTarget.set == null) TriggerTarget.set = new List<TriggerTarget>();
+            TriggerTarget.set ??= new();
 
             var TT = TriggerTarget.set.Find(x => x.m_collider == other);
-
             if (TT == null)
                 TT = other.gameObject.AddComponent<TriggerTarget>();
 

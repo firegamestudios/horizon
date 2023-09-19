@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace MalbersAnimations.Scriptables
 {
     [AddComponentMenu("Malbers/Variables/Transform Comparer")]
-    public class TransformComparer : MonoBehaviour
+    public class TransformComparer : VarListener
     {
         public enum TransformCondition { Null, Equal, ChildOf, ParentOf, Name }
 
@@ -13,8 +13,8 @@ namespace MalbersAnimations.Scriptables
         public TransformReference compareTo;
         public StringReference T_Name;
 
-        [Tooltip("Invokes the current value on Enable")]
-        public bool InvokeOnEnable = true;
+        //[Tooltip("Invokes the current value on Enable")]
+        //public bool InvokeOnEnable = true;
 
         public UnityEvent Then = new();
         public UnityEvent Else = new();
@@ -86,8 +86,17 @@ namespace MalbersAnimations.Scriptables
             Invoke();
         }
 
-        public void ClearTarget() => value.Value = null;
-        public void ClearComparteTo() => compareTo.Value = null;
+        public void ClearTarget()
+        {
+            value.Value = null;
+            Invoke();
+        }
+
+        public void ClearComparteTo()
+        {
+            compareTo.Value = null;
+            Invoke();
+        }
 
         private void Response(bool value)
         {
@@ -100,12 +109,12 @@ namespace MalbersAnimations.Scriptables
     [UnityEditor.CustomEditor(typeof(TransformComparer)), UnityEditor.CanEditMultipleObjects]
     public class TransformComparerEditor : UnityEditor.Editor
     {
-        private UnityEditor.SerializedProperty value, Then, Else, Condition, compareTo, T_Name, InvokeOnEnable;
-        TransformComparer M;
+        private UnityEditor.SerializedProperty value, Then, Else, Condition, compareTo, T_Name, Description, ShowDescription, InvokeOnEnable;
+        protected GUIStyle style, styleDesc;
 
         void OnEnable()
         {
-            M = target as TransformComparer;
+            
             value = serializedObject.FindProperty("value");
             Then = serializedObject.FindProperty("Then");
             Else = serializedObject.FindProperty("Else");
@@ -113,11 +122,39 @@ namespace MalbersAnimations.Scriptables
             InvokeOnEnable = serializedObject.FindProperty("InvokeOnEnable");
             compareTo = serializedObject.FindProperty("compareTo");
             T_Name = serializedObject.FindProperty("T_Name");
+
+            Description = serializedObject.FindProperty("Description");
+            ShowDescription = serializedObject.FindProperty("ShowDescription");
+
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
+
+
+            if (ShowDescription.boolValue)
+            {
+                if (ShowDescription.boolValue)
+                {
+                    if (style == null)
+                    {
+                        style = new GUIStyle(MTools.StyleBlue)
+                        {
+                            fontSize = 12,
+                            fontStyle = FontStyle.Bold,
+                            alignment = TextAnchor.MiddleLeft,
+                            stretchWidth = true
+                        };
+
+                        style.normal.textColor = UnityEditor.EditorStyles.boldLabel.normal.textColor;
+                    }
+
+                    Description.stringValue = UnityEditor.EditorGUILayout.TextArea(Description.stringValue, style);
+                }
+            }
+
+
             UnityEditor.EditorGUILayout.PropertyField(value);
 
             UnityEditor.EditorGUILayout.PropertyField(Condition);

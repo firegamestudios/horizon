@@ -53,7 +53,7 @@ namespace MalbersAnimations.Utilities
             UnityEditor.EditorGUILayout.PropertyField(Prefix, GUILayout.MinWidth(40));
             UnityEditor.EditorGUILayout.PropertyField(Suffix);
           
-            if (GUILayout.Button(new GUIContent( decimals.intValue.ToString(),"Float Decimal Values"), UnityEditor.EditorStyles.miniButton, GUILayout.Width(24)))
+            if (GUILayout.Button(new GUIContent( decimals.intValue.ToString(),"Float Decimal Values"), UnityEditor.EditorStyles.miniButtonMid, GUILayout.Width(24)))
             {
                 decimals.intValue = (decimals.intValue + 1) % 11;
             }

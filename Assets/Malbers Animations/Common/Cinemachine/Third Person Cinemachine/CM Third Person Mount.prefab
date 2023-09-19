@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Priority: -1
   m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 3335729509700159136}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 38
     OrthographicSize: 10
@@ -248,6 +248,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  CameraDistance:
+    UseConstant: 1
+    ConstantValue: 6
+    Variable: {fileID: 0}
   XMultiplier:
     UseConstant: 1
     ConstantValue: 1
@@ -278,11 +282,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Events:
   - Event: {fileID: 11400000, guid: 8da5be7645ead1b41a606373cc68cd60, type: 2}
-    useInt: 1
+    useInt: 0
     useFloat: 0
     useVoid: 0
     useString: 0
-    useBool: 0
+    useBool: 1
     useGO: 0
     useTransform: 0
     useVector3: 0

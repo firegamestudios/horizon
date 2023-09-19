@@ -74,11 +74,7 @@ namespace MalbersAnimations
             }
         }
 
-
-        private void OnDisable() => StopAllCoroutines();
-
-
-
+        private void OnDisable() => StopAllCoroutines(); 
 
 
         /// <summary>Updates all Stats</summary>
@@ -416,8 +412,6 @@ namespace MalbersAnimations
     [Serializable]
     public class Stat
     {
-
-
         #region Variables 
        
        [Tooltip("Enable/Disable the Stat. Disable Stats cannot be modified")]
@@ -625,6 +619,7 @@ namespace MalbersAnimations
             else if (value.Value <= Below) isBelow = true;      //This means that The Stat Value is under the Below value
 
             regenerate_LastValue = Regenerate;
+            degenerate_LastValue = Degenerate;
 
             if (MaxValue < Value) MaxValue = Value;
 
@@ -637,13 +632,15 @@ namespace MalbersAnimations
 
             if (Active)
             {
-                Regenerate = regenerate; //Initialize the Regen
-                Degenerate = degenerate; //Initialize the Degen
+               Regenerate = regenerate.Value; //Initialize the Regen
+               Degenerate = degenerate.Value; //Initialize the Degen
 
                 holder.Delay_Action(2, () => ValueEvents());
 
                 OnMaxValueChange.Invoke(maxValue);
             }
+
+            Debbuging($"Initialized");
         }
 
         internal void SetMultiplier(float value) => multiplier.Value = value;
@@ -672,11 +669,7 @@ namespace MalbersAnimations
             {
                 this.value.Value = maxValue.Value;
                 OnStatFull.Invoke();    //if the Value is 0 invoke Empty Stat
-            }
-
-
-
-
+            } 
 
             if (Is_Above(value) && !isAbove)
             {
@@ -710,14 +703,14 @@ namespace MalbersAnimations
 
         internal void SetValue(float value)
         {
-            var RealValue = Mathf.Clamp(value * Multiplier, MinValue, maxValue);
+            var RealValue = Mathf.Clamp(value, MinValue, MaxValue);
 
             if ((!Active) ||                                    //If the  Stat is not Active do nothing 
                 (this.value.Value == RealValue)) return;        //If the values are equal do nothing. Avoid Stack Overflow
-            
+
             this.value.Value = RealValue;
 
-            Debbuging($"Value: {RealValue}");
+            Debbuging($"Value: {RealValue:F2}");
 
             ValueEvents();
         }
@@ -737,7 +730,7 @@ namespace MalbersAnimations
         {
             if (!IsInmune && Active)
             {
-                Value += newValue;
+                Value += newValue * Multiplier; //Apply the Multiplier!
                 StartRegeneration();
                 if (!Regenerate) 
                     StartDegeneration();

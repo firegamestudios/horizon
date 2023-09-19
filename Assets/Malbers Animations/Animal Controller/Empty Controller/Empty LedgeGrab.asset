@@ -13,13 +13,23 @@ MonoBehaviour:
   m_Name: Empty LedgeGrab
   m_EditorClassIdentifier: 
   Active: 1
+  animal: {fileID: 0}
   Input: 
   ExitInput:
     UseConstant: 1
     ConstantValue: 
     Variable: {fileID: 0}
+  m_StateProfile:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  AlwaysForward:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Priority: 6
-  ResetInputOnFailed: 1
+  resetInputOnFailed: 0
+  ResetLastState: 0
   General:
     modify: -1
     RootMotion: 1
@@ -40,6 +50,7 @@ MonoBehaviour:
   UseSendMessage: 0
   IncludeChildren: 1
   AllowExitFromAnim: 0
+  CanTransitionToItself: 0
   IncludeSleepState: 1
   SleepFromState:
   - {fileID: 11400000, guid: 7370df9c769c2764381ad7c76eb3d949, type: 2}
@@ -65,7 +76,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 
     Variable: {fileID: 0}
-  ExitFrame: 1
   ExitOnMain: 1
   EnterCooldown:
     UseConstant: 1
@@ -79,8 +89,9 @@ MonoBehaviour:
   StrafeAnimations: 1
   MovementStrafe: 1
   IdleStrafe: 1
-  debug: 1
-  Editor_Tabs1: 3
+  m_debug: 1
+  Editor_Tabs1: 4
+  SpeedSets: []
   ID: {fileID: 11400000, guid: 3fbb696c31f7ed846b7ec9b2f76fd0e5, type: 2}
   LedgeLayer:
     UseConstant: 1
@@ -100,7 +111,6 @@ MonoBehaviour:
   MinTerrainAngle: 45
   ForwardLength: 1
   WallChecker: 0.1
-  AlignSmoothness: 10
   profiles:
   - name: Ledge Grab
     EnterStatus: 0
@@ -109,11 +119,12 @@ MonoBehaviour:
     Height: 1.7
     LedgeExitDistance: 0.3
     ExitTime: 0.9
-    AlingOffset: {x: 0, y: 0}
+    AlingOffset: {x: 0, y: -1.85}
     Orient: 1
+    OrientSmoothness: 10
     AdditivePosition: 1
-    HeightSpeed: 1
-    ForwardSpeed: 2
+    HeightSpeed: 5
+    ForwardSpeed: 4
     HeightCurve:
       serializedVersion: 2
       m_Curve:
@@ -127,19 +138,10 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.10465112
-        value: -1
-        inSlope: 4.8832793
-        outSlope: 4.8832793
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 0.25
-        value: 3
-        inSlope: 11.923582
-        outSlope: 11.923582
+        value: 1
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.13175291
@@ -204,6 +206,15 @@ MonoBehaviour:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 0.87995195
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
         value: 1

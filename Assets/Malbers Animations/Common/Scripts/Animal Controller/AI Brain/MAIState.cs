@@ -17,7 +17,7 @@ namespace MalbersAnimations.Controller.AI
     public class MAIState : ScriptableObject
     {
         [Tooltip("ID of the AI State. This is used on the AI Brain On AIStateChanged Event")]
-        public IntReference ID = new IntReference();
+        public IntReference ID = new();
 
         public MTask this[int index]
         {

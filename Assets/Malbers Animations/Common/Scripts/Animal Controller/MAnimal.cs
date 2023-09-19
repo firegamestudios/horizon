@@ -18,13 +18,15 @@ namespace MalbersAnimations.Controller
     public partial class MAnimal : MonoBehaviour,
         IAnimatorListener, ICharacterMove, IGravity, IObjectCore,
         IRandomizer, IMAnimator, ISleepController, IMDamagerSet,
-        IAnimatorStateCycle, ICharacterAction
+        IAnimatorStateCycle, ICharacterAction, IDeltaRootMotion
     {
         //Animal Variables: All variables
         //Animal Movement:  All Locomotion Logic
         //Animal CallBacks: All public methods and behaviors that it can be called outside the script
 
         #region Editor Show 
+
+        [HideInInspector, SerializeField] private bool ShowOnPlay;
         [HideInInspector, SerializeField] private int PivotPosDir;
         [HideInInspector, SerializeField] private int SelectedMode;
         [HideInInspector, SerializeField] private int SelectedState;
@@ -49,7 +51,6 @@ namespace MalbersAnimations.Controller
           #endregion
 
 #if UNITY_EDITOR
-
         private void OnValidate()
         {
             if (Anim == null) Anim = GetComponentInParent<Animator>();   //Cache the Animator
@@ -317,7 +318,7 @@ namespace MalbersAnimations.Controller
 
             if (!debugGizmos) return;
 
-            if (states.Count > 1)
+            if (states.Count > 1 && states.Count > SelectedState)
                 states[SelectedState]?.StateGizmos(this);
 
             if (Application.isPlaying)

@@ -1,18 +1,13 @@
-﻿using MalbersAnimations.Utilities;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MalbersAnimations.Scriptables;
+﻿using UnityEngine;
 
 namespace MalbersAnimations.Controller
 {
     /// <summary>Idle Should be the Last State on the Queue, when nothing is moving Happening </summary>
     public class Idle : State
     {
-       // [TextArea]
-       // public string IdleDesc = "Idle does not need any Parameter. It's the Base state, and it does nothing";
-
         public override string StateName => "Idle";
+        public override string StateIDName => "Idle";
+
         public bool HasLocomotion { get; private set; }
 
         public override void InitializeState()
@@ -42,13 +37,13 @@ namespace MalbersAnimations.Controller
             {
                 return (General.Grounded == animal.Grounded); //This enables that you can be on idle if you are not grounded too
             }
-        } 
+        }
 
 
 #if UNITY_EDITOR
-        void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Idle");
+            base.Reset();
 
             ResetLastState = true; //Important por Idle
 
@@ -69,7 +64,7 @@ namespace MalbersAnimations.Controller
 
         public override void SetSpeedSets(MAnimal animal)
         {
-          //Do nothing... the Animal Controller already does it on Start
+            //Do nothing... the Animal Controller already does it on Start
         }
 #endif
     }

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ad0515a2868cd4282589144c7820fd, type: 3}
+  m_Name: Junk Navale
+  m_EditorClassIdentifier: 
+  fullName: workspaces/droidzone/scenes/junk_navale
+  shortName: Junk Navale
+  description: 'Junk Navale is a sprawling, junkyard planet located on the outer
+    rim of the galaxy. Once a thriving hub of commerce and industry, it has now become
+    a dumping ground for discarded droids, machines, and other industrial waste.
+    The planet''s surface is littered with mountains of scrap metal and discarded
+    technology, with narrow passageways winding through the piles of junk.
+
+
+    The
+    atmosphere of Junk Navale is thick with the smell of rust and decay, and the
+    air is hazy with smoke and other pollutants. The planet''s surface is constantly
+    shifting and evolving, as new piles of junk are added to the landscape and old
+    ones crumble and decay.
+
+
+    Despite its inhospitable environment, Junk Navale
+    is home to a variety of different factions and groups who have carved out their
+    own territories within the scrap piles. These include scavengers who scour the
+    junkyard for valuable scraps, traders who specialize in salvaging and trading
+    advanced technology, and even a few renegade droids who have turned to a life
+    of crime.
+
+
+    Navigating Junk Navale is a treacherous and challenging task,
+    with dangers lurking around every corner. The junk piles are home to all manner
+    of hazardous materials, and there is always the risk of running into hostile
+    droids or other dangers. Despite the risks, Junk Navale remains a key location
+    for those looking to scavenge for valuable scraps or uncover lost treasures from
+    the galaxy''s past.'
+  characters:
+  - workspaces/droidzone/characters/scrappy
+  - workspaces/droidzone/characters/pogo
+  triggers: []
+  index: 0

@@ -17,7 +17,7 @@ public class NPC_Scrappy : NPC
         brain = GetComponentInChildren<MAnimalBrain>();
         control = GetComponentInChildren<MAnimalAIControl>();
         print("ScrappySaved: " + DialogueLua.GetVariable("ScrappySaved").asString);
-        DialogueManager.instance.StartConversation("Scrappy", transform, pc.transform);
+        DialogueManager.instance.StartConversation("Scrappy", transform, Pc.transform);
     }
 
     #region Ally Commands

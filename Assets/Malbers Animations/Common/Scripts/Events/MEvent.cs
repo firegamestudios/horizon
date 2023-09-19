@@ -179,8 +179,9 @@ namespace MalbersAnimations.Events
         public virtual void InvokeAsGameObject(Transform value) => Invoke(value.gameObject);
         public virtual void InvokeAsGameObject(Component value) => Invoke(value.gameObject);
         public virtual void InvokeAsTransform(GameObject value) => Invoke(value.transform);
+
         public virtual void InvokeAsTransform(Component value) => Invoke(value.transform);
-        public virtual void InvokeAsString(Object value) => Invoke(value.name);
+        public virtual void InvokeAsString(Object value) => Invoke(value.name.Replace("(Clone)",""));
         public virtual void InvokeAsBool(Object value) => Invoke(value != null);
         public virtual void InvokeAsBool(int value) => Invoke(value > 0);
 
@@ -210,7 +211,7 @@ namespace MalbersAnimations.Events
         ////This is for Debugin porpuses
         #region Debuging Methods
         public virtual void Pause() => Debug.Break();
-        public virtual void LogDeb(string value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
+        public virtual void LogDeb(string value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>",this);
         public virtual void LogDeb(bool value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
         public virtual void LogDeb(Vector3 value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
         public virtual void LogDeb(int value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");

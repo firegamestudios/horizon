@@ -6,15 +6,17 @@ namespace MalbersAnimations.Controller
     public class Slide : State
     {
         public override string StateName => "Slide";
+        public override string StateIDName => "Slide";
 
 
         [Tooltip("Lerp value for the Aligment to the surface")]
         public FloatReference OrientLerp = new(10f);
 
 
-        //[Tooltip("Keep the Animal aligned with the terrain slope")]
-        //public bool IgnoreRotation = true;
+      
+        [Tooltip("When Sliding the Animal will be able to orient towards the direction of this given angle")]
         public FloatReference RotationAngle = new(30f);
+        [Tooltip("When Sliding the Animal will be able to Move horizontally with this value")]
         public FloatReference SideMovement = new(5f);
 
         [Tooltip("Exit Speed when there's no Slope")]
@@ -27,23 +29,7 @@ namespace MalbersAnimations.Controller
         [Tooltip("The Exit Status will be set to 2 if the Exit Condition was that there's no longer a Ground Changer")]
         public IntReference NoChangerStatus = new(2);
 
-
-      
-
-        //Enter From Fall if the Slope is greater than Maximum
-        //Check the Ground if Fall touched it with maximum slope
-        //Align to the Ground
-
-        //Exit on Normal Slope??
-        //Do not exit if the Current Plataform is a Slider <Component>
-
-        //Aceleration depending the slope and the Input (Speed Modifiers)
-        //Orient to the Slide Direction
-
-        public override bool TryActivate()
-        {
-            return TrySlideGround();
-        }
+        public override bool TryActivate() => TrySlideGround();
 
 
         public override void OnPlataformChanged(Transform newPlatform)
@@ -198,9 +184,9 @@ namespace MalbersAnimations.Controller
         }
 
 
-        private void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Slide");
+            base.Reset();
 
             General = new AnimalModifier()
             {

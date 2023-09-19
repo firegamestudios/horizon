@@ -12,9 +12,9 @@ using UnityEditor;
 #endif
 
 namespace MalbersAnimations.Controller
-{ 
+{
     /// <summary> Core Class to cause damage to the stats</summary>
-   // [AddComponentMenu("Malbers/Damage/Damager")]
+    // [AddComponentMenu("Malbers/Damage/Damager")]
 
     public abstract class MDamager : MonoBehaviour, IMDamager, IInteractor
     {
@@ -24,71 +24,78 @@ namespace MalbersAnimations.Controller
 
         /// <summary>Enable/Disable the Damager</summary>
         [SerializeField, Tooltip("Enable/Disable the Damager")]
-        protected BoolReference m_Active = new BoolReference(true);
+        protected BoolReference m_Active = new(true);
 
-   
+
         [SerializeField, Tooltip("Hit Layer to interact with Objects"), ContextMenuItem("Get Layer from Root", "GetLayerFromRoot")]
-        protected LayerReference m_hitLayer = new LayerReference(-1);
+        protected LayerReference m_hitLayer = new(-1);
 
-     
+
         [SerializeField, Tooltip("What to do with Triggers")]
         protected QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Ignore;
 
-       
+
         [SerializeField, Tooltip("Owner. usually the Character Owns the Damager")]
         [ContextMenuItem("Find Owner", "Find_Owner")]
         protected GameObject owner;
 
-        [SerializeField, Tooltip("This Gameobject will be enabled on Impact, if its a Prefab it will be instantiated")]
+        [SerializeField, Tooltip("Default Hit Effect. This Gameobject will be enabled on Impact, if its a Prefab it will be instantiated")]
         internal GameObjectReference m_HitEffect;
+
+
+        [Tooltip("Custom Hit Effects if the Damageable has a Surface ID")]
+        public List<EffectType> hitEffects = new();
+
+        [Tooltip("Default Audio Clip to play when the Damager hit something")]
+        public AudioClipReference hitSound;
 
         public GameObject HitEffect { get => m_HitEffect.Value; set => m_HitEffect.Value = value; }
 
-        [Tooltip("The HitEffect will be destroyed after this time has elapsed, if it is a prefab. if = to zero, will be ignored")]
+        [Tooltip("The Effect will be destroyed If is a Prefab. after this time has elapsed. If this value is zero, the effect will not be destroyed")]
         [Min(0)] public float DestroyHitEffect;
 
         [Tooltip("Dont Hit any objects on the Owner's hierarchy")]
-        public BoolReference dontHitOwner = new BoolReference( true);
+        public BoolReference dontHitOwner = new(true);
 
         [Tooltip("Don't use the Default Reaction of the Damageable Component")]
-        [SerializeReference,SubclassSelector] 
+        [SerializeReference, SubclassSelector]
         public Reaction CustomReaction;
 
         [Tooltip("Type of element damage the Damager can do")]
         public StatElement element;
 
         [Tooltip("Interactor ID to enable with who interactable the Interactor can react")]
-        public IntReference interactorID = new IntReference(0);
+        public IntReference interactorID = new(0);
 
         /// <summary> Extra Transform to Ignore Damage. E.g. The Mount Animal</summary>
         public virtual Transform IgnoreTransform { get; set; }
 
         [Tooltip("Damager can activate interactables")]
-        public BoolReference interact = new BoolReference(true);
+        public BoolReference interact = new(true);
 
         [Tooltip("Damager allows the Damagee to apply an animal reaction")]
-        public BoolReference react = new BoolReference(true);
+        public BoolReference react = new(true);
 
         [Tooltip("If true the Damage Receiver will not apply its Default Multiplier")]
-        public BoolReference pureDamage = new BoolReference(false);
+        public BoolReference pureDamage = new(false);
 
         [Tooltip("Stat to modify on the Damagee")]
         [ContextMenuItem("Set Default Damage", "Set_DefaultDamage")]
-        public StatModifier statModifier = new StatModifier();
+        public StatModifier statModifier = new();
 
         /// <summary>Critical Change (0 - 1)</summary>
         [SerializeField, Tooltip("Critical Change (0 - 1)\n1 means it will be always critical")]
-        protected FloatReference m_cChance = new FloatReference(0);
+        protected FloatReference m_cChance = new(0);
 
         /// <summary>If the Damage is critical, the Stat modifier value will be multiplied by the Critical Multiplier</summary>
         [SerializeField, Tooltip("If the Damage is critical, the Stat modifier value will be multiplied by the Critical Multiplier")]
-        protected FloatReference cMultiplier = new FloatReference(2);
+        protected FloatReference cMultiplier = new(2);
 
         [SerializeField, Tooltip("MAX Force to Apply to RigidBodies when the Damager hit them")]
-        protected FloatReference m_Force = new FloatReference(50f);
+        protected FloatReference m_Force = new(50f);
 
         [SerializeField, Tooltip("MIN Force to Apply to RigidBodies when the Damager hit them")]
-        protected FloatReference minForce = new FloatReference(20f);        //Weapon min Force to push rigid bodies;
+        protected FloatReference minForce = new(20f);        //Weapon min Force to push rigid bodies;
 
         [Tooltip("Force mode to apply to the Object that the Damager Hits")]
         public ForceMode forceMode = ForceMode.VelocityChange;
@@ -97,10 +104,10 @@ namespace MalbersAnimations.Controller
         [Tooltip("Stores the Direction of the Attack. Used to apply the Force and to know the Direction of the Hit from the Damager")]
         protected Vector3 Direction = Vector3.forward;
 
-        public TransformEvent OnHit = new TransformEvent();
-        public Vector3Event OnHitPosition = new Vector3Event();
-        public IntEvent OnHitInteractable = new IntEvent();
-        public IntEvent OnProfileChanged = new IntEvent();
+        public TransformEvent OnHit = new();
+        public Vector3Event OnHitPosition = new();
+        public IntEvent OnHitInteractable = new();
+        public IntEvent OnProfileChanged = new ();
 
 
         //[Tooltip("When the Attack Trigger Touches a valid collider, it will stop the animator to give an extra effect")]
@@ -110,9 +117,9 @@ namespace MalbersAnimations.Controller
         [ContextMenuItem("Clear Animator", "Clear_Animator")]
         public Animator animator;
         [Tooltip("Value of the Animator Speed when its stopped")]
-        public FloatReference AnimatorSpeed = new FloatReference(0.05f);
+        public FloatReference AnimatorSpeed = new(0.05f);
         [Tooltip("Time the Animator will be stopped. If its zero, stopping the animator is ignored")]
-        public FloatReference AnimatorStopTime = new FloatReference(0.1f);
+        public FloatReference AnimatorStopTime = new(0.1f);
 
         [Tooltip("Profiles to change the values of a Damager")]
         public List<DamagerProfile> Profiles;
@@ -126,6 +133,10 @@ namespace MalbersAnimations.Controller
         protected int CurrentProfileIndex = 0;
 
         public DamagerProfile DefaultProfile;
+
+
+        /// <summary>Damageee that can be Damaged</summary>
+        protected IMDamage damagee;
 
         #endregion
 
@@ -143,13 +154,39 @@ namespace MalbersAnimations.Controller
         public virtual float MaxForce { get => m_Force.Value; set => m_Force.Value = value; }
 
         public LayerMask Layer { get => m_hitLayer.Value; set => m_hitLayer.Value = value; }
-        public QueryTriggerInteraction TriggerInteraction  { get => triggerInteraction; set => triggerInteraction = value; }
+        public QueryTriggerInteraction TriggerInteraction { get => triggerInteraction; set => triggerInteraction = value; }
 
 
         /// <summary>Does the hit was Critical</summary>
         public bool IsCritical { get; set; }
         public bool debug;
 
+        public AudioSource m_audio;
+        protected bool playingSound;
+        protected void PlaySound(AudioClip newSound)
+        {
+            if (m_audio && !playingSound && gameObject.activeInHierarchy)
+            {
+                playingSound = true;
+
+                //HACK FOR THE SOUND
+                this.Delay_Action(2, () =>
+                {
+                    m_audio.clip = newSound;
+                    m_audio.Play();
+                    playingSound = false;
+                }
+                );
+            }
+        }
+
+
+        protected void CheckAudioSource()
+        {
+            if (!m_audio) m_audio = gameObject.FindComponent<AudioSource>(); //Gets the Weapon Source
+            if (!m_audio) m_audio = gameObject.AddComponent<AudioSource>(); //Create an AudioSourse if theres no Audio Source on the weapon
+            m_audio.spatialBlend = 1;
+        }
 
         /// <summary>If the Damage is critical, the Stat modifier value will be multiplied by the Critical Multiplier</summary>
         public float CriticalMultiplier { get => cMultiplier.Value; set => cMultiplier.Value = value; }
@@ -162,10 +199,10 @@ namespace MalbersAnimations.Controller
         public virtual int ID => interactorID.Value;
 
         /// <summary>  Set/Get the Damager Active  </summary>
-        public virtual bool Enabled 
-        { 
+        public virtual bool Enabled
+        {
             get => m_Active.Value;
-            set => m_Active.Value = enabled = value; 
+            set => m_Active.Value = enabled = value;
         }
 
 
@@ -182,12 +219,12 @@ namespace MalbersAnimations.Controller
             if (damagee.isTrigger && TriggerInteraction == QueryTriggerInteraction.Ignore) return true;    //just collapse when is a collider what we are hitting
             if (!MTools.Layer_in_LayerMask(damagee.gameObject.layer, Layer)) { return true; }        //Just hit what is on the HitMask Layer
             if (dontHitOwner && Owner != null && damagee.transform.IsChildOf(Owner.transform)) { return true; }   //Dont hit yourself!
-           // if (damagee.gameObject.isStatic) return true;
+                                                                                                                  // if (damagee.gameObject.isStatic) return true;
             return false;
         }
 
 
-      
+
         /// <summary>  Applies the Damage to the Game object  </summary>
         /// <returns>is False if the other gameobject didn't had a IMDamage component attached</returns>
         protected virtual bool TryDamage(IMDamage damagee, StatModifier stat)
@@ -195,14 +232,14 @@ namespace MalbersAnimations.Controller
             if (damagee != null && !stat.IsNull)
             {
                 var criticalStat = CheckCriticalCheckMultiplier(stat);
-                damagee.ReceiveDamage(Direction, Owner, criticalStat, IsCritical, react.Value, CustomReaction, pureDamage.Value,element);
+                damagee.ReceiveDamage(Direction, Owner, criticalStat, IsCritical, react.Value, CustomReaction, pureDamage.Value, element);
                 Debugging($"Do Damage to [{damagee.Damagee.name}]", damagee.Damagee);
                 return true;
             }
             return false;
         }
 
-        protected void TryHit(Collider col, Vector3 DamageCenter)
+        protected void TryHitEffect(Collider col, Vector3 DamageCenter, IMDamage damagee)
         {
             if (col is MeshCollider && !(col as MeshCollider).convex) return; //Do not hit NonConvex Collider
             if (col is TerrainCollider) return; //Do not hit  a Terrain Collider
@@ -211,7 +248,23 @@ namespace MalbersAnimations.Controller
             HitRotation = Quaternion.FromToRotation(Vector3.up, col.bounds.center - DamageCenter);
             OnHitPosition.Invoke(HitPosition);
 
-            MDebug.DrawWireSphere(HitPosition, Color.red, 0.2f, 1);
+          if (debug)   MDebug.DrawWireSphere(HitPosition, Color.red, 0.175f, 1);
+
+            var HitEffect = this.HitEffect;
+            var hitSound = this.hitSound;
+
+            //Find Hit Effects and Sounds
+            if (damagee != null && hitEffects != null && hitEffects.Count > 0)
+            {
+                var eff = hitEffects.Find(x => x.surface == damagee.Surface);
+
+                if (eff != null)
+                {
+                    if (eff.effect.Value != null) HitEffect = eff.effect.Value;//Use the Effect from the List
+                    if (eff.sound != null) hitSound = eff.sound; //use the sound form the list
+                }
+            }
+
 
             if (HitEffect != null)
             {
@@ -222,6 +275,7 @@ namespace MalbersAnimations.Controller
                     //Reset the gameobject visibility 
 
                     CheckHitEffect(instance);
+
                     if (DestroyHitEffect > 0) Destroy(instance, DestroyHitEffect);
                 }
                 else
@@ -232,9 +286,13 @@ namespace MalbersAnimations.Controller
                 }
             }
 
+            if (m_audio != null)
+                PlaySound(hitSound.Value);
+
             OnHit.Invoke(col.transform);
         }
 
+        //Check if the Hit Effect has a MDamager so pass the Layer and Owner (E.g. Explosions)
         protected void CheckHitEffect(GameObject hit)
         {
             //Check if the Hit Effect has a MDamager so pass the Layer and Owner (E.g. Explosions)
@@ -367,17 +425,19 @@ namespace MalbersAnimations.Controller
         {
             if (rb && force > 0)
             {
-                MDebug.Draw_Arrow(Origin, Direction, Color.red, 1);
+                if (debug) MDebug.Draw_Arrow(Origin, Direction, Color.red, 1);
 
 
                 if (col) //When using collider
                 {
                     var HitPoint = col.ClosestPoint(Origin);
-                    rb.AddForceAtPosition(Direction * force, HitPoint, forceMode); 
+                    rb.AddForceAtPosition(Direction * force, HitPoint, forceMode);
 
-                    MDebug.DrawWireSphere(HitPoint, Color.red, 0.1f, 2f);
-                    MDebug.Draw_Arrow(HitPoint, Direction * force, Color.red, 2f);
-
+                    if (debug)
+                    {
+                        MDebug.DrawWireSphere(HitPoint, Color.red, 0.1f, 2f);
+                        MDebug.Draw_Arrow(HitPoint, Direction * force, Color.red, 2f);
+                    }
                 }
                 else
                     rb.AddForce(Direction * force, forceMode);
@@ -658,8 +718,10 @@ namespace MalbersAnimations.Controller
     public class MDamagerEd : Editor
     {
         protected MDamager MD;
-        protected SerializedProperty Force, minForce, forceMode, index, statModifier, onhit, OnHitPosition, OnHitInteractable, OnProfileChanged, dontHitOwner, owner, m_Active, debug,
-            hitLayer, triggerInteraction, m_cChance, cMultiplier, element,  pureDamage, react, CustomReaction, interact , m_HitEffect,  interactorID, DestroyHitEffect, Profiles,
+        protected SerializedProperty Force, minForce, forceMode, index, statModifier, onhit, OnHitPosition, OnHitInteractable, OnProfileChanged, dontHitOwner, owner, m_Active, debug, m_audio,
+            hitLayer, triggerInteraction, m_cChance, cMultiplier, element,  pureDamage, react, CustomReaction, interact ,
+            m_HitEffect, HitEffects, hitSound,
+            interactorID, DestroyHitEffect, Profiles,
             StopAnimator, AnimatorSpeed, AnimatorStopTime, animator;
 
 
@@ -671,7 +733,9 @@ namespace MalbersAnimations.Controller
         {
             MD = (MDamager)target;
             index = serializedObject.FindProperty("index");
+            hitSound = serializedObject.FindProperty("hitSound");
             m_HitEffect = serializedObject.FindProperty("m_HitEffect");
+            HitEffects = serializedObject.FindProperty("hitEffects");
             OnHitPosition = serializedObject.FindProperty("OnHitPosition");
             m_Active = serializedObject.FindProperty("m_Active");
             hitLayer = serializedObject.FindProperty("m_hitLayer");
@@ -709,6 +773,7 @@ namespace MalbersAnimations.Controller
             animator = serializedObject.FindProperty("animator");
             AnimatorSpeed = serializedObject.FindProperty("AnimatorSpeed");
             AnimatorStopTime = serializedObject.FindProperty("AnimatorStopTime");
+            m_audio = serializedObject.FindProperty("m_audio");
 
 
             Reo_Profiles = new ReorderableList(serializedObject, Profiles, true, true, true, true)
@@ -875,7 +940,7 @@ namespace MalbersAnimations.Controller
         }
 
         protected virtual void DrawCustomEvents()  { }
-       
+
 
         protected virtual void DrawMisc(bool drawbox = true)
         {
@@ -884,8 +949,9 @@ namespace MalbersAnimations.Controller
             react.isExpanded = MalbersEditor.Foldout(react.isExpanded, "Interactions");
 
             if (react.isExpanded)
-            {   EditorGUILayout.PropertyField(react);
-               
+            {
+                EditorGUILayout.PropertyField(react);
+
                 if (MD.react.Value)
                     EditorGUILayout.PropertyField(CustomReaction);
 
@@ -900,6 +966,13 @@ namespace MalbersAnimations.Controller
                     || !MD.HitEffect.IsPrefab()) p = "";
 
                 EditorGUILayout.PropertyField(m_HitEffect, new GUIContent(m_HitEffect.displayName + p));
+                EditorGUILayout.PropertyField(hitSound);
+
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(HitEffects);
+                EditorGUI.indentLevel--;
+
+                EditorGUILayout.PropertyField(DestroyHitEffect);
 
                 if (MD.HitEffect != null)
                 {
@@ -928,6 +1001,7 @@ namespace MalbersAnimations.Controller
                 }
             }
 
+            EditorGUILayout.PropertyField(m_audio);
 
             if (drawbox) EditorGUILayout.EndVertical();
         }

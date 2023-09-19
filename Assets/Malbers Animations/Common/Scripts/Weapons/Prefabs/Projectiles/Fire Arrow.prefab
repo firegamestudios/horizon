@@ -151,6 +151,11 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
     UseConstant: 1
@@ -288,6 +293,7 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   impactBehaviour: 1
   rotation: 1
   TrajectoryRoll: 0
@@ -745,6 +751,11 @@ PrefabInstance:
     - target: {fileID: 4827664309722362, guid: 01b2a846938f15d41a98138786d1bf4b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54129463802585006, guid: 01b2a846938f15d41a98138786d1bf4b,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114423086384018814, guid: 01b2a846938f15d41a98138786d1bf4b, type: 3}

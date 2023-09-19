@@ -195,6 +195,7 @@ namespace MalbersAnimations
                 DrawMode = animal.Mode_Get(DrawWeaponModeID);
                 StoreMode = animal.Mode_Get(StoreWeaponModeID);
                 UnArmedMode = animal.Mode_Get(UnarmedModeID);
+                animal.IsPreparingMode = false;
             }
             else comboManager = null; //Safe remove the Combo Manager too if there's no animal
         }
@@ -477,7 +478,7 @@ namespace MalbersAnimations
                     // lastWeaponAction = weaponAction; //Store the last weapon action
                     //if (JustChangedAction) return; //THIS WILL BREAK ASSASIN CREED STYLE (EQUIP AND ATTACK AT THE SAME TIME)
                     weaponAction = value;
-                    Debugging($"[Weapon Action] -> [{value}] - [{(int)value}]", "green");
+                    Debugging($"[Weapon Action] -> [{value}] - [{(int)value}]", "yellow");
 
 
                     JustChangedAction = true;
@@ -947,6 +948,8 @@ namespace MalbersAnimations
                     Debug.LogWarning("The Animal Controller does not have a mode for the Equipped Weapon!!");
                     Weapon.Enabled = false; //Disable the weapon... it cannot be used!!!
                 }
+
+                if (Weapon.StrafeOnEquip) animal.Strafe = true;
             }
         }
 
@@ -973,6 +976,9 @@ namespace MalbersAnimations
 
                 WeaponMode?.SetActive(false); //Disable Weapon Mode
                 WeaponMode = null;
+
+
+                if (Weapon.StrafeOnEquip && !WasStrafing) animal.Strafe = false;
             }
         }
 

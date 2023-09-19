@@ -169,7 +169,7 @@ namespace MalbersAnimations.Utilities
         [Hide(nameof(showExitInTransition))]
         public bool ExitInTransition = true;
 
-        [Tooltip("Ignore the effect if  execute is called in Transition and the next transition is that one. Set the name of the Animation State")]
+        [Tooltip("Ignore the effect if execute is called in Transition and the next transition is this list. Use the name of the Animation State")]
         public List<string> IgnoreInTransition = new List<string>();
         public List<int> IgnoreInTransitionHash { get; set; }
 

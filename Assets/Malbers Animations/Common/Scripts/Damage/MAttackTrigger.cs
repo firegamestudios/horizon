@@ -18,25 +18,16 @@ namespace MalbersAnimations.Controller
 
         protected TriggerProxy Proxy { get; private set; }
 
-        /// <summary>When the Attack Trigger is Enabled, Affect your stat</summary>
-        [Tooltip("When the Attack Trigger is Enabled, Affect your stat")]
-        public StatModifier SelfStatEnter;
-
-        /// <summary>When the Attack Trigger is Disabled, Affect your stat</summary>
-        [Tooltip("When the Attack Trigger is Disabled, Affect your stat")]
-        public StatModifier SelfStatExit;
-
         /// <summary>When the Attack Trigger Exits an enemy, Affect his stats</summary>
-        [Tooltip("When the Attack Trigger Exits an enemy, Affect his stats")]
+        [Tooltip("When the Attack Trigger Exits a collider, Affect a Target Stats")]
         public StatModifier EnemyStatExit;
 
-        public UnityEvent OnAttackBegin = new UnityEvent();
-        public UnityEvent OnAttackEnd = new UnityEvent();
+        public UnityEvent OnAttackBegin = new();
+        public UnityEvent OnAttackEnd = new();
 
-        public Color DebugColor = new Color(1, 0.25f, 0, 0.15f);
+        public Color DebugColor = new(1, 0.25f, 0, 0.15f);
 
-        /// <summary>Damageee that can be Damaged</summary>
-        private IMDamage damagee;
+      
 
         ///// <summary>All the Gameobjects using the Trigger</summary>
         //internal List<GameObject> EnteringGameObjects = new List<GameObject>();
@@ -78,10 +69,11 @@ namespace MalbersAnimations.Controller
 
         void OnEnable()
         {
-            if (Trigger)
-            {
-                Trigger.enabled = Trigger.isTrigger = Proxy.Active = true;
-            }
+            if (Trigger) Trigger.enabled = Trigger.isTrigger = Proxy.Active = true;
+          
+
+
+            CheckAudioSource();
 
             Proxy.EnterTriggerInteraction += AttackTriggerEnter;
             Proxy.ExitTriggerInteraction += AttackTriggerExit;
@@ -114,15 +106,20 @@ namespace MalbersAnimations.Controller
         {
             if (dontHitOwner && Owner != null && other.transform.IsChildOf(Owner.transform)) return;
 
-            damagee = other.GetComponentInParent<IMDamage>();                      //Get the Animal on the Other collider
             var center = Trigger.bounds.center;
             Direction = (other.bounds.center - center).normalized;                      //Calculate the direction of the attack
 
             TryInteract(other.gameObject);                                              //Get the interactable on the Other collider
             TryPhysics(other.attachedRigidbody, other, center, Direction, Force);       //If the other has a riggid body and it can be pushed
             TryStopAnimator();
-            TryHit(other, Trigger.bounds.center);
+            
+            damagee = other.GetComponentInParent<IMDamage>();                      //Get the Animal on the Other collider
+            
+            TryHitEffect(other, Trigger.bounds.center, damagee);
             TryDamage(damagee, statModifier); //if the other does'nt have the Damagable Interface dont send the Damagable stuff  
+
+            //Store the Last Collider that the animal hit
+            if (damagee != null) { damagee.HitCollider = other; }
         }
 
         private void AttackTriggerExit(GameObject newGo, Collider other)
@@ -155,10 +152,10 @@ namespace MalbersAnimations.Controller
         }
 
 
-        void OnDrawGizmos()
-        {
-            DrawTriggers(transform, Trigger, DebugColor, false);
-        }
+        //void OnDrawGizmos()
+        //{
+        //    DrawTriggers(transform, Trigger, DebugColor, false);
+        //}
 
         void OnDrawGizmosSelected()
         {
@@ -229,13 +226,21 @@ namespace MalbersAnimations.Controller
         {
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                EditorGUILayout.LabelField("Modify Stat", EditorStyles.boldLabel);
-                EditorGUILayout.PropertyField(statModifier, new GUIContent("Enemy Stat Enter"), true);
+                EditorGUILayout.LabelField("Target Stat On Enter", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(statModifier, true);
+            }
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+
+                EditorGUILayout.LabelField("Target Stat On Exit", EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(EnemyStatExit, true);
+            }
+
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
                 EditorGUILayout.PropertyField(pureDamage);
                 DrawElement();
             }
-
         }
 
 

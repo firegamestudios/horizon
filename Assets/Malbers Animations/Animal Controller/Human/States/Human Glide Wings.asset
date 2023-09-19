@@ -60,7 +60,7 @@ MonoBehaviour:
   ResetFrom: []
   SleepFromStance: []
   stances: []
-  TryLoop:
+  tryLoop:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
@@ -161,10 +161,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 6
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1

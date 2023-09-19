@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3096370254240972162}
   - component: {fileID: 8530049851382805181}
-  - component: {fileID: -7299354023452109484}
-  - component: {fileID: 4724980128248281693}
+  - component: {fileID: 2503822548651198191}
+  - component: {fileID: 7565721022929903319}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7299354023452109484
+--- !u!114 &2503822548651198191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 1
---- !u!114 &4724980128248281693
+--- !u!114 &7565721022929903319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,15 +195,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
-    Iso: 200
-    ShutterSpeed: 0.005
-    Aperture: 16
-    BladeCount: 5
-    Curvature: {x: 2, y: 11}
-    BarrelClipping: 0.25
-    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 1
     m_InheritPosition: 1
@@ -274,9 +266,9 @@ MonoBehaviour:
     m_Radius: 2.5
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
-  - {fileID: -4609618543703481199}
-  - {fileID: -3783905450535797395}
-  - {fileID: -1914917388294633094}
+  - {fileID: 4686795913108594533}
+  - {fileID: 6330310233336874297}
+  - {fileID: 7821044597065183587}
 --- !u!114 &1277430578201373586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7390369490123852874}
-  - component: {fileID: -1914917388294633094}
+  - component: {fileID: 7821044597065183587}
   m_Layer: 0
   m_Name: BottomRig
   m_TagString: Untagged
@@ -505,7 +497,7 @@ Transform:
   m_Father: {fileID: 1170233996602250266}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1914917388294633094
+--- !u!114 &7821044597065183587
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,15 +532,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
-    Iso: 200
-    ShutterSpeed: 0.005
-    Aperture: 16
-    BladeCount: 5
-    Curvature: {x: 2, y: 11}
-    BarrelClipping: 0.25
-    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -567,8 +551,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8402400393368176482}
   - component: {fileID: 3895065860581718624}
-  - component: {fileID: 889173356390496095}
-  - component: {fileID: 6847108425439285881}
+  - component: {fileID: 5339353940223940392}
+  - component: {fileID: 6883525371862592048}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -603,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &889173356390496095
+--- !u!114 &5339353940223940392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -657,7 +641,7 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 1
---- !u!114 &6847108425439285881
+--- !u!114 &6883525371862592048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -694,8 +678,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4981167307758093718}
   - component: {fileID: 6112274898987756556}
-  - component: {fileID: -2259109225389416298}
-  - component: {fileID: -7648571614742355852}
+  - component: {fileID: 3105586698449824549}
+  - component: {fileID: 2383549027882961620}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -730,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2259109225389416298
+--- !u!114 &3105586698449824549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -784,7 +768,7 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 1
---- !u!114 &-7648571614742355852
+--- !u!114 &2383549027882961620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -820,7 +804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7302551508490768920}
-  - component: {fileID: -4609618543703481199}
+  - component: {fileID: 4686795913108594533}
   m_Layer: 0
   m_Name: TopRig
   m_TagString: Untagged
@@ -844,7 +828,7 @@ Transform:
   m_Father: {fileID: 1170233996602250266}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4609618543703481199
+--- !u!114 &4686795913108594533
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -879,15 +863,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
-    Iso: 200
-    ShutterSpeed: 0.005
-    Aperture: 16
-    BladeCount: 5
-    Curvature: {x: 2, y: 11}
-    BarrelClipping: 0.25
-    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -905,7 +881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 480770813270602702}
-  - component: {fileID: -3783905450535797395}
+  - component: {fileID: 6330310233336874297}
   m_Layer: 0
   m_Name: MiddleRig
   m_TagString: Untagged
@@ -929,7 +905,7 @@ Transform:
   m_Father: {fileID: 1170233996602250266}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3783905450535797395
+--- !u!114 &6330310233336874297
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -964,15 +940,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
-    Iso: 200
-    ShutterSpeed: 0.005
-    Aperture: 16
-    BladeCount: 5
-    Curvature: {x: 2, y: 11}
-    BarrelClipping: 0.25
-    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

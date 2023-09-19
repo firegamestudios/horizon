@@ -20,9 +20,9 @@ namespace MalbersAnimations.Controller.AI
 
         [Tooltip("Use a Runtime GameObjects Set to find the Next waypoint")]
         public RuntimeGameObjects RuntimeSet;
-        public GetRuntimeGameObjects.RuntimeSetTypeGameObject rtype = GetRuntimeGameObjects.RuntimeSetTypeGameObject.Random;
-        public IntReference RTIndex = new IntReference();
-        public StringReference RTName = new StringReference();
+        public RuntimeSetTypeGameObject rtype = RuntimeSetTypeGameObject.Random;
+        public IntReference RTIndex = new();
+        public StringReference RTName = new();
 
 
         public override void StartTask(MAnimalBrain brain, int index)
@@ -41,34 +41,9 @@ namespace MalbersAnimations.Controller.AI
                 case PatrolType.UseRuntimeSet:
                     if (RuntimeSet != null)                                             //If we had a last Waypoint then move to it
                     {
-                        brain.TargetAnimal = null;                                                          //Clean the Animal Target in case it was one
-                        GameObject go;
-
-                        switch (rtype)
-                        {
-                            case GetRuntimeGameObjects.RuntimeSetTypeGameObject.First:
-                                go = RuntimeSet.Item_GetFirst();
-                                if (go)  brain.AIControl.SetTarget(go.transform, true);
-                                break;
-                            case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Random:
-                                go = RuntimeSet.Item_GetRandom();
-                                if (go) brain.AIControl.SetTarget(go.transform, true);
-                                break;
-                            case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Index:
-                                go = RuntimeSet.Item_Get(RTIndex);
-                                if (go) brain.AIControl.SetTarget(go.transform, true);
-                                break;
-                            case GetRuntimeGameObjects.RuntimeSetTypeGameObject.ByName:
-                                go = RuntimeSet.Item_Get(RTName);
-                                if (go) brain.AIControl.SetTarget(go.transform, true);
-                                break;
-                            case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Closest:
-                                go = RuntimeSet.Item_GetClosest(brain.Animal.gameObject);
-                                if (go) brain.AIControl.SetTarget(go.transform, true);
-                                break;
-                            default:
-                                break;
-                        }
+                        brain.TargetAnimal = null;                                      //Clean the Animal Target in case it was one
+                        GameObject go = RuntimeSet.GetItem(rtype, RTIndex, RTName, brain.Animal.gameObject);
+                        if (go) brain.AIControl.SetTarget(go.transform, true);
                         break;
                     }
                     break;
@@ -145,13 +120,13 @@ namespace MalbersAnimations.Controller.AI
 
                     UnityEditor.EditorGUILayout.PropertyField(RuntimeSet);
                     UnityEditor.EditorGUILayout.PropertyField(rtype, new GUIContent("Get"));
-                    var Sel = (GetRuntimeGameObjects.RuntimeSetTypeGameObject)rtype.intValue;
+                    var Sel = (RuntimeSetTypeGameObject)rtype.intValue;
                     switch (Sel)
                     {
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Index:
+                        case RuntimeSetTypeGameObject.Index:
                             UnityEditor.EditorGUILayout.PropertyField(RTIndex, new GUIContent("Element Index"));
                             break;
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.ByName:
+                        case RuntimeSetTypeGameObject.ByName:
                             UnityEditor.EditorGUILayout.PropertyField(RTName, new GUIContent("Element Name"));
                             break;
                         default:

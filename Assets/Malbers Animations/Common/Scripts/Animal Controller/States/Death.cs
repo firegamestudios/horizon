@@ -7,6 +7,7 @@ namespace MalbersAnimations.Controller
     public class Death : State
     {
         public override string StateName => "Death";
+        public override string StateIDName => "Death";
 
         [Header("Death Parameters")]
 
@@ -86,9 +87,10 @@ namespace MalbersAnimations.Controller
             //Do nothing... Death does not need a Speed Set
         }
 
-        void Reset()
+        internal override void Reset()
         {
-           
+            base.Reset();
+
             ID = MTools.GetInstance<StateID>("Death");
 
             General = new AnimalModifier()

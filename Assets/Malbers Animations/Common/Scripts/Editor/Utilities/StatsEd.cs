@@ -1,6 +1,4 @@
-﻿
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
@@ -44,14 +42,15 @@ namespace MalbersAnimations
 
                 if (Application.isPlaying)
                 {
-                    EditorGUI.BeginDisabledGroup(true);
+
+                    using (new EditorGUI.DisabledGroupScope(true))
                     {
                         if (M.PinnedStat != null)
                             EditorGUILayout.ObjectField("Pin Stat: ", (StatID)M.PinnedStat.ID, typeof(StatID), false);
                         else
                             EditorGUILayout.LabelField("Pin Stat: NULL ");
                     }
-                    EditorGUI.EndDisabledGroup();
+                  
                 }
 
                 list.DoLayoutList();
@@ -239,6 +238,8 @@ namespace MalbersAnimations
             EditorGUI.LabelField(R_3, "ID", EditorStyles.miniLabel);
         }
 
+        private static readonly Color selected = new(2, 1f, 0);
+
         void DrawElementCallback(Rect rect, int index, bool isActive, bool isFocused)
         {
             rect.x += 5;
@@ -252,10 +253,13 @@ namespace MalbersAnimations
 
             rect.y += 2;
 
-            Rect R_0 = new Rect(rect.x, rect.y, 15, EditorGUIUtility.singleLineHeight);
-            Rect R_1 = new Rect(rect.x + 40, rect.y, (rect.width) / 2 - 22, EditorGUIUtility.singleLineHeight);
-            Rect R_2 = new Rect(rect.x + 40 + ((rect.width) / 2), rect.y, rect.width - ((rect.width) / 2) - 40, EditorGUIUtility.singleLineHeight);
-            Rect R_3 = new Rect(rect.width + 45, rect.y, rect.width + 25, EditorGUIUtility.singleLineHeight);
+            Rect R_0 = new(rect.x, rect.y, 15, EditorGUIUtility.singleLineHeight);
+            Rect R_1 = new(rect.x + 40, rect.y, (rect.width) / 2 - 22, EditorGUIUtility.singleLineHeight);
+            Rect R_2 = new(rect.x + 40 + ((rect.width) / 2), rect.y, rect.width - ((rect.width) / 2) - 40, EditorGUIUtility.singleLineHeight);
+            Rect R_3 = new(rect.width + 45, rect.y, rect.width + 25, EditorGUIUtility.singleLineHeight);
+
+            var dC = GUI.contentColor;
+            if (isFocused) GUI.contentColor = selected;
 
             EditorGUI.PropertyField(R_0, active, new GUIContent("", "Is the Stat Enabled? when Disable no modification can be done"));
 
@@ -264,16 +268,11 @@ namespace MalbersAnimations
             EditorGUI.BeginChangeCheck();
             EditorGUI.PropertyField(R_2, Value, GUIContent.none);
 
-
-
             if (ID.objectReferenceValue != null)
             {
                 var od = ID.objectReferenceValue as StatID;
                 EditorGUI.LabelField(R_3, od.ID.ToString(), EditorStyles.boldLabel);
             }
-
-
-
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -286,16 +285,13 @@ namespace MalbersAnimations
                 }
             }
 
-            // serializedObject.ApplyModifiedProperties();
+            GUI.contentColor = dC;
         }
 
 
         void OnAddCallBack(ReorderableList list)
         {
-            if (M.stats == null)
-            {
-                M.stats = new List<Stat>();
-            }
+            M.stats ??= new List<Stat>();
             M.stats.Add(new Stat());
         }
 

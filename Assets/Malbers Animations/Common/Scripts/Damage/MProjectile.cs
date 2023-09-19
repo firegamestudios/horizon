@@ -235,29 +235,6 @@ namespace MalbersAnimations.Weapons
 
         private void OnDisable() { StopAllCoroutines(); }
 
-
-        ///// <summary> When the Gravity is not Physic.Gravity whe apply our own </summary>
-        //IEnumerator Artificial_Gravity()
-        //{
-        //    if (Gravity == Physics.gravity)
-        //    {
-        //        rb.useGravity = true;
-        //    }
-        //    else if (Gravity != Vector3.zero)
-        //    {
-        //        var waitForFixedUpdate = new WaitForFixedUpdate();
-        //        rb.useGravity = false;
-        //        while (!HasImpacted)
-        //        {
-        //            rb.AddForce(Gravity, ForceMode.Acceleration);
-        //            yield return waitForFixedUpdate;
-        //        }
-
-              
-        //    }
-        //    yield return true;
-        //}
-
         /// <summary> Logic Applied when the projectile is flying</summary>
         IEnumerator FlyingProjectile()
         {
@@ -270,21 +247,33 @@ namespace MalbersAnimations.Weapons
 
             int i = 1;
 
+            Vector3 RotationAround = Vector3.zero;
+            if (rotation == ProjectileRotation.Random)
+                RotationAround = new Vector3(Random.value, Random.value, Random.value).normalized;
+            else if (rotation == ProjectileRotation.Axis)
+                RotationAround = torqueAxis.normalized;
+
+
             while (!HasImpacted && enabled)
             {
                 var time = deltatime * i;
 
                 Vector3 next_pos = (start + Velocity * time) + (time * time * Gravity / 2);
 
-                //if (!rb)
-                //{
-                     transform.position = Prev_pos; //If there's no Rigid body move the Projectile!!
-                //}
-                //else
-                //{
-                //    rb.velocity = Direction;
-                //    rb.MovePosition(next_pos);
-                //}
+                if (!rb)
+                {
+                    transform.position = Prev_pos; //If there's no Rigid body move the Projectile!!
+
+                    if (rotation == ProjectileRotation.Random || rotation == ProjectileRotation.Axis)
+                    {
+                        transform.Rotate(RotationAround, torque * deltatime, Space.World);
+                    }
+                }
+                else
+                {
+                    rb.velocity = Direction;
+                    rb.MovePosition(Prev_pos);
+                }
 
                 Direction = (next_pos - Prev_pos).normalized;
 
@@ -349,12 +338,16 @@ namespace MalbersAnimations.Weapons
 
             TryInteract(collider.gameObject);
 
-            TryDamage(collider.gameObject, statModifier);
-
+            damagee = collider.GetComponentInParent<IMDamage>();                      //Get the Animal on the Other collider
+            //Store the Last Collider that the animal hit
+            if (damagee != null) { damagee.HitCollider = collider; }
+            
+            TryDamage(damagee, statModifier);
+        //    TryDamage(collider.gameObject, statModifier);
 
             // TryPhysics(targetRB, collider, Direction, Force);
             //Add a force to the Target RigidBody
-            targetRB?.AddForceAtPosition(Direction.normalized * Velocity.magnitude * PushMultiplier, HitPosition, forceMode);
+            targetRB?.AddForceAtPosition(PushMultiplier * Velocity.magnitude * Direction.normalized, HitPosition, forceMode);
 
             OnHit.Invoke(collider.transform);
             OnHitPosition.Invoke(HitPosition);
@@ -367,10 +360,14 @@ namespace MalbersAnimations.Weapons
             {
                 var colTranform = ClosestTransform.GetComponent<Collider>();
 
-                if (colTranform != null && !colTranform.isTrigger && !(colTranform is MeshCollider)) 
+                if (colTranform != null && !colTranform.isTrigger && colTranform is not MeshCollider) 
                 {
                     HitPosition = colTranform.ClosestPoint(HitPosition);
                     ClosestTransform = colTranform.transform;
+                }
+                else
+                {
+                    ClosestTransform = collider.transform;
                 }
             }
 
@@ -442,7 +439,7 @@ namespace MalbersAnimations.Weapons
         }
         private void Stick_On_Surface(Transform collider, Vector3 HitPosition)
         {
-            Debugging("Stick on Surface", this);
+            Debugging($"Stick on Surface [{collider.name}]", this);
             MDebug.DrawWireSphere(HitPosition, Color.red, 0.05f);
             transform.position += transform.forward * Penetration; //Put the Projectile a bit deeper in the collider
             transform.SetParentScaleFixer(collider, HitPosition);

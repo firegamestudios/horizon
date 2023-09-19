@@ -237,21 +237,18 @@ namespace MalbersAnimations.Controller
         {
             if (!enabled) return false;
 
-            //Check tags
-            if (tags != null && tags.Count > 0)
+            if (Tags != null && Tags.Count > 0)
             {
-                if (!other.transform.HasMalbersTagInParent(Tags.ToArray())) return false;
+                if (!other.gameObject.HasMalbersTagInParent(Tags.ToArray())) return false;
             }
 
-
+            if (ZoneCollider == null) return false; // you are 
             if (other == null) return false; // you are CALLING A ELIMINATED ONE
-            if (other.isTrigger) return false; // Check Trigger Interactions 
-
+                                         
             if (BoneOnly && !other.name.ToLower().Contains(BoneName.ToLower())) return false;  //If is Head Only and no head was found Skip
-
-            if (!MTools.Layer_in_LayerMask(other.gameObject.layer, Layer)) return false;   //Just accept  layer only
+            if (!MTools.Layer_in_LayerMask(other.gameObject.layer, Layer)) return false;
             if (transform.IsChildOf(other.transform)) return false;                 // Do not Interact with yourself
-
+                                                                               
 
             return true;
         }
@@ -259,11 +256,15 @@ namespace MalbersAnimations.Controller
         {
             if (TrueConditions(other))
             {
+                //if (debug) Debug.Log($"ENTER: {name}");
+
                 MAnimal animal = other.FindComponent<MAnimal>();             //Get the animal on the entering collider
 
                 if (!animal || animal.Sleep || !animal.enabled) return;       //If there's no animal, or is Sleep or disabled do nothing
 
-                if (animal == JustExitAnimal) return; //Do not activate the animal that just exit
+                if (animal.RB.isKinematic) return; //Do not Activate while the animal is kinematic
+
+               if (automatic && animal == JustExitAnimal ) return; //Do not activate the animal that just exit
 
                 if (!m_Colliders.Contains(other))
                 {

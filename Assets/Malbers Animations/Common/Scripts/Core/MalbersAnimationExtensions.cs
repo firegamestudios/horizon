@@ -155,8 +155,8 @@ namespace MalbersAnimations
             Vector3 aP = point - a;
             float sqrLenAB = aB.sqrMagnitude;
 
-            if (sqrLenAB < Epsilon)  return a;
-        
+            if (sqrLenAB < Epsilon) return a;
+
             float t = Mathf.Clamp01(Vector3.Dot(aP, aB) / sqrLenAB);
             return a + (aB * t);
         }
@@ -195,14 +195,14 @@ namespace MalbersAnimations
         }
 
         /// <summary>returns the delta position from a rotation.</summary>
-        public static Vector3 DeltaPositionFromRotate(this Transform transform, Transform platform, Quaternion deltaRotation)
+        public static Vector3 DeltaPositionFromRotate(this Transform transform, Vector3 platform, Quaternion deltaRotation)
         {
             var pos = transform.position;
 
-            var direction = pos - platform.position;
+            var direction = pos - platform;
             var directionAfterRotation = deltaRotation * direction;
 
-            var NewPoint = platform.position + directionAfterRotation;
+            var NewPoint = platform + directionAfterRotation;
 
 
             pos = NewPoint - transform.position;
@@ -241,7 +241,7 @@ namespace MalbersAnimations
 
         /// <summary>  Returns the Real Transform Core   </summary> 
         public static Transform FindObjectCore(this Transform transf)
-        { 
+        {
             var core = transf;
             var IsObjectCore = core.FindInterface<IObjectCore>();
             if (IsObjectCore != null) return IsObjectCore.transform;
@@ -473,7 +473,6 @@ namespace MalbersAnimations
         }
 
 
-
         private static IEnumerator DelayedAction(Func<bool> Condition, Action action)
         {
             yield return new WaitWhile(Condition);
@@ -524,6 +523,7 @@ namespace MalbersAnimations
             return default;
         }
 
+     
 
         public static Component FindComponent(this GameObject c, Type t)
         {
@@ -648,7 +648,7 @@ namespace MalbersAnimations
         }
 
         /// <summary> Gets a real copy of a component / </summary>
-        public static T GetCopyOf<T>(this Component comp, T other) where T : Component
+        private static T GetCopyOf<T>(this Component comp, T other) where T : Component
         {
             Type type = comp.GetType();
             if (type != other.GetType()) return null; // type mis-match
@@ -680,6 +680,17 @@ namespace MalbersAnimations
             return go.AddComponent<T>().GetCopyOf(toAdd) as T;
         }
 
+
+        /// <summary>  Reset the delta RootMotion of the Animator  </summary>
+        public static IDeltaRootMotion TryDeltaRootMotion(this Component c)
+        {
+            if (c.TryGetComponent(out IDeltaRootMotion target))
+            {
+                target.ResetDeltaRootMotion();
+                return target;
+            }
+            return null;
+        }
 
         #endregion
 

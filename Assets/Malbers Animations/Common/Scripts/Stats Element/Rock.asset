@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   DisplayName: Rock
-  ID: 7
+  ID: 6
   color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Malbers/Animal Controller/Animal Teleport")]
+    [AddTypeMenu("Malbers/Animal/Teleport")]
     public class TeleportReaction : MReaction
     {
         public TransformReference Destination;

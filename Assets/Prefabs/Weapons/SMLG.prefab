@@ -263,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4537070842646239082, guid: 2d4c8c4f2e5c4f24bb7c1c0e5e8eafc9, type: 3}
       propertyPath: Editor_Tabs2
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4537070842646239082, guid: 2d4c8c4f2e5c4f24bb7c1c0e5e8eafc9, type: 3}
       propertyPath: Sounds.Array.data[2]
@@ -640,11 +640,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  SceneRoot:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  m_Value:
+  m_Amount:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
@@ -729,6 +725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipped: 0
+  minPoisonDamage: 0
+  maxPoisonDamage: 0
 --- !u!4 &4249162463598201140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4570553829634517058, guid: 2d4c8c4f2e5c4f24bb7c1c0e5e8eafc9, type: 3}

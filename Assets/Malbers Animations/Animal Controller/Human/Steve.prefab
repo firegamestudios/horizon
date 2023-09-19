@@ -2334,6 +2334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 58531337882001654, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
+      propertyPath: actionMaps.Array.data[0].inputs.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 58531337882001654, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
       propertyPath: ActiveMap.inputs.Array.data[9].active.ConstantValue
       value: 0
       objectReference: {fileID: 0}
@@ -2437,6 +2442,11 @@ PrefabInstance:
       propertyPath: Editor_Tabs1
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1947151920273531496, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2612772571067396113, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: LeftHandEquipPoint
@@ -2447,6 +2457,11 @@ PrefabInstance:
       propertyPath: RightHandEquipPoint
       value: 
       objectReference: {fileID: 546567812969990189}
+    - target: {fileID: 2661622654920734993, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2891538939469248553, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: text
@@ -2455,11 +2470,26 @@ PrefabInstance:
         Each Atk Trigger will be aligned the
         correct bone'
       objectReference: {fileID: 0}
+    - target: {fileID: 2935328599511232563, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3499509235240085047, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: Holder
       value: 
       objectReference: {fileID: 546567812969990189}
+    - target: {fileID: 3831473824450340380, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165762096131601940, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4242407397799628432, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: m_IsActive
@@ -2470,6 +2500,11 @@ PrefabInstance:
       propertyPath: Reference
       value: 
       objectReference: {fileID: 2514246141064118136}
+    - target: {fileID: 4874199087313736309, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4874199087313736309, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -2515,6 +2550,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6135166871021757827, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202468289156060601, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7629475385175981180, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: AlignTime.ConstantValue
@@ -2525,6 +2570,16 @@ PrefabInstance:
       propertyPath: onEnable.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 370390862567856380}
+    - target: {fileID: 7914524227964943498, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042385986089311532, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8444378436100590625, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: Editor_Tabs1
@@ -2658,9 +2713,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  OnLookAtActive:
-    m_PersistentCalls:
-      m_Calls: []
   Bones:
   - bone: {fileID: 4216243162633288518}
     offset: {x: 0, y: -90, z: -90}
@@ -2670,6 +2722,9 @@ MonoBehaviour:
     offset: {x: 0, y: -90, z: -90}
     weight: 1
     external: 0
+  OnLookAtActive:
+    m_PersistentCalls:
+      m_Calls: []
   debug: 1
 --- !u!1 &5567655857731011125 stripped
 GameObject:

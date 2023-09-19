@@ -31,10 +31,10 @@ MonoBehaviour:
   resetInputOnFailed: 0
   ResetLastState: 0
   General:
-    modify: 7231
+    modify: 7295
     RootMotion: 1
     Sprint: 1
-    Gravity: 1
+    Gravity: 0
     Grounded: 1
     OrientToGround: 1
     CustomRotation: 0

@@ -25,6 +25,7 @@ namespace MalbersAnimations.Controller
         }
 
         public override string StateName => "Locomotion";
+        public override string StateIDName => "Locomotion";
         [Header("Locomotion Parameters")]
 
         [Tooltip("Backward Offset Position of the BackFall Ray")]
@@ -229,7 +230,7 @@ namespace MalbersAnimations.Controller
                 SprintMultiplier += animal.Sprint ? 1f : 0f; //Check if the animal is sprinting
 
 
-                var RayMultiplier = animal.Pivot_Multiplier * FallMultiplier; //Get the Multiplier
+                var RayMultiplier = animal.Pivot_Multiplier * FallMultiplier *ScaleFactor; //Get the Multiplier
 
                 var MainPivotPoint = animal.Pivot_Chest.World(animal.transform);
 
@@ -242,15 +243,15 @@ namespace MalbersAnimations.Controller
 
                 if (ForwardMov > 0)              //Means we are going forward
                 {
-                    Center = MainPivotPoint + (animal.Forward * frontDistance * SprintMultiplier * ScaleFactor); //Calculate ahead the falling ray
-                    Left = Center + (animal.Right * frontSpace * ScaleFactor);
-                    Right = Center + (-animal.Right * frontSpace * ScaleFactor);
+                    Center = MainPivotPoint + (frontDistance * ScaleFactor * SprintMultiplier * animal.Forward); //Calculate ahead the falling ray
+                    Left = Center + (frontSpace * ScaleFactor * animal.Right);
+                    Right = Center + (frontSpace * ScaleFactor * -animal.Right);
                 }
                 else if (ForwardMov < 0)  //Means we are going backwards
                 {
-                    Center = MainPivotPoint - (animal.Forward * BackDistance * SprintMultiplier * ScaleFactor); //Calculate ahead the falling ray
-                    Left = Center + (animal.Right * BackSpace * ScaleFactor);
-                    Right = Center + (-animal.Right * BackSpace * ScaleFactor);
+                    Center = MainPivotPoint - (BackDistance * ScaleFactor * SprintMultiplier * animal.Forward); //Calculate ahead the falling ray
+                    Left = Center + (BackSpace * ScaleFactor * animal.Right);
+                    Right = Center + (BackSpace * ScaleFactor * -animal.Right);
                 }
                 else
                 { return; }
@@ -352,9 +353,9 @@ namespace MalbersAnimations.Controller
         }
 
 
-        void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Locomotion");
+            base.Reset();
 
             General = new AnimalModifier()
             {

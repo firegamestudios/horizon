@@ -39,8 +39,8 @@ namespace MalbersAnimations
 
         public WayPointType TargetType => pointType;
 
-        public virtual Vector3 GetPosition() => transform.position;
-        public Vector3 GetCenter() => transform.position + transform.up * Height;
+        public virtual Vector3 GetCenterPosition() => transform.position;
+        public Vector3 GetCenterY() => transform.position + transform.up * Height;
         public virtual float StopDistance() => stoppingDistance * transform.localScale.y; //IMPORTANT For Scaled objects like the ball
         public virtual float SlowDistance() => slowingDistance * transform.localScale.y; //IMPORTANT For Scaled objects like the ball
 

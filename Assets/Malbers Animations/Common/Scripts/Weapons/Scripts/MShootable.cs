@@ -26,29 +26,32 @@ namespace MalbersAnimations.Weapons
         public Cancel_Aim CancelAim = Cancel_Aim.ResetWeapon;
 
         [Tooltip("Projectile prefab the weapon fires")]
-        public GameObjectReference m_Projectile = new GameObjectReference();                                //Arrow to Release Prefab
+        public GameObjectReference m_Projectile = new ();                                //Arrow to Release Prefab
         [Tooltip("Parent of the Projectile")]
         public Transform m_ProjectileParent;
-        public Vector3Reference gravity = new Vector3Reference(Physics.gravity);
+        public Vector3Reference gravity = new (Physics.gravity);
 
-        public BoolReference UseAimAngle = new BoolReference(false);
-        public BoolReference HasReloadAnim = new BoolReference(false);
+        public BoolReference UseAimAngle = new (false);
+        public BoolReference HasReloadAnim = new (false);
         [Tooltip("Does the weapon has Fire Animation? if not then does not require to exit Aim Animation")]
-        public BoolReference HasFireAnim = new BoolReference(true);
+        public BoolReference HasFireAnim = new (true);
 
-        public FloatReference m_AimAngle = new FloatReference(0);
+        public FloatReference m_AimAngle = new (0);
 
         /// <summary>This Curve is for Limiting the Bow Animations while the Character is on weird/hard Positions</summary>
         [MinMaxRange(-180, 180)]
         [Tooltip("Value to limit firing projectiles when the Character is on weird or dificult Positions. E.g. Firing Arrows on impossible angles")]
-        public RangedFloat AimLimit = new RangedFloat(-180, 180);
+        public RangedFloat AimLimit = new (-180, 180);
 
 
 
-        [SerializeField] private IntReference m_Ammo = new IntReference(30);                             //Total of Ammo for this weapon
-        [SerializeField] private IntReference m_AmmoInChamber = new IntReference(1);                     //Total of Ammo in the Chamber
-        [SerializeField] private IntReference m_ChamberSize = new IntReference(1);                       //Max Capacity of the Ammo in once hit
-        [SerializeField] private BoolReference m_AutoReload = new BoolReference(false);                  //Press Fire one or continues 
+        [SerializeField] private IntReference m_Ammo = new (30);                             //Total of Ammo for this weapon
+        [SerializeField] private IntReference m_AmmoInChamber = new (1);                     //Total of Ammo in the Chamber
+        [SerializeField] private IntReference m_ChamberSize = new (1);                       //Max Capacity of the Ammo in once hit
+        [SerializeField] private BoolReference m_AutoReload = new (false);                  //Press Fire one or continues 
+
+        [Tooltip("Delay time to autoreload after the weapon has no ammo in chamber ")]
+        [SerializeField] private FloatReference m_AutoReloadTime = new (0.25f);                  //Press Fire one or continues 
 
         #endregion
 
@@ -60,6 +63,7 @@ namespace MalbersAnimations.Weapons
 
         #region Properties
         public GameObject Projectile { get => m_Projectile.Value; set => m_Projectile.Value = value; }
+        public float AutoReloadTime { get => m_AutoReloadTime.Value; set => m_AutoReloadTime.Value = value; }
 
         /// <summary> Projectile Instance to launch from the weapon</summary>
         public GameObject ProjectileInstance { get; set; }
@@ -250,7 +254,7 @@ namespace MalbersAnimations.Weapons
 
             if (AmmoInChamber <= 0 && AutoReload)
             {
-                TryReload();
+                this.Delay_Action(AutoReloadTime, () => TryReload());
             }
         }
 
@@ -386,10 +390,8 @@ namespace MalbersAnimations.Weapons
                 EquipProjectile();
             }
 
-            // ReduceAmmo(1);
-
-
-            this.Delay_Action(2, () => ReduceAmmo(1)); //Reduce the Ammo the next frame
+            //Reduce the Ammo the next frame
+            this.Delay_Action(2, () => ReduceAmmo(1));
 
             if (ProjectileInstance == null) return;
 
@@ -399,18 +401,17 @@ namespace MalbersAnimations.Weapons
 
             if (I_Projectile != null)
             {
-                ProjectileInstance.transform.position = AimOrigin.position;                  //Put the Correct position to Throw the Arrow IMPORTANT!!!!!
+                ProjectileInstance.transform.position = AimOrigin.position;                 //Put the Correct position to Throw the Arrow IMPORTANT!!!!!
 
                 CalculateVelocity();
 
-                ProjectileInstance.transform.forward = Velocity.normalized; //Align the Projectile to the velocity
+                ProjectileInstance.transform.forward = Velocity.normalized;                 //Align the Projectile to the velocity
 
-
-                ProjectileInstance.transform.Translate(I_Projectile.PosOffset, Space.Self);  //Translate in the offset of the arrow to put it on the hand
+                ProjectileInstance.transform.Translate(I_Projectile.PosOffset, Space.Self); //Translate in the offset of the arrow to put it on the hand
 
                 I_Projectile.Prepare(Owner, Gravity, Velocity, Layer, TriggerInteraction);
 
-                if (HitEffect != null) I_Projectile.HitEffect = HitEffect; //Send the Hit Effect too
+                if (HitEffect != null) I_Projectile.HitEffect = HitEffect;                  //Send the Hit Effect too
 
                 var newDamage = new StatModifier(statModifier)
                 { Value = Mathf.Lerp(MinDamage, MaxDamage, ChargedNormalized) };
@@ -588,7 +589,7 @@ namespace MalbersAnimations.Weapons
                 AmmoInChamber = 0;
                 return false;
             }
-            Debugging($"[Reloading:{ReloadAmount}]", this);
+            Debugging($"[Reloading: <B>[{ReloadAmount}]</B>", this);
 
 
             OnReload.Invoke();
@@ -612,7 +613,8 @@ namespace MalbersAnimations.Weapons
     public class MShootableEditor : MWeaponEditor
     {
         SerializedProperty m_AmmoInChamber, m_Ammo, m_ChamberSize, releaseProjectile, m_Projectile, AimLimit,
-            m_AutoReload, InstantiateProjectileOfFire, ProjectileParent, CancelAim, HasFireAnim,
+            m_AutoReload, m_AutoReloadTime,
+            InstantiateProjectileOfFire, ProjectileParent, CancelAim, HasFireAnim,
             //  AimID, FireID, ReloadID,
             OnReload, OnLoadProjectile, OnFireProjectile, gravity, UseAimAngle, m_AimAngle, HasReloadAnim;
 
@@ -635,12 +637,9 @@ namespace MalbersAnimations.Weapons
             CancelAim = serializedObject.FindProperty("CancelAim");
             HasFireAnim = serializedObject.FindProperty("HasFireAnim");
 
-            //AimID = serializedObject.FindProperty("AimID");
-            //FireID = serializedObject.FindProperty("FireID");
-            //ReloadID = serializedObject.FindProperty("ReloadID");
-
 
             m_AutoReload = serializedObject.FindProperty("m_AutoReload");
+            m_AutoReloadTime = serializedObject.FindProperty("m_AutoReloadTime");
             HasReloadAnim = serializedObject.FindProperty("HasReloadAnim");
             InstantiateProjectileOfFire = serializedObject.FindProperty("InstantiateProjectileOfFire");
 
@@ -750,6 +749,7 @@ namespace MalbersAnimations.Weapons
                 {
                     //EditorGUILayout.PropertyField(m_Automatic, new GUIContent("Automatic", "one shot at the time or Automatic"));
                     EditorGUILayout.PropertyField(m_AutoReload, new GUIContent("Auto Reload", "The weapon will reload automatically when the Ammo in chamber is zero"));
+                    EditorGUILayout.PropertyField(m_AutoReloadTime);
                     EditorGUILayout.PropertyField(HasReloadAnim, new GUIContent("Has Reload Anim", "If the Weapon have reload animation then Play it"));
                     EditorGUILayout.PropertyField(m_ChamberSize, new GUIContent("Chamber Size", "Total of Ammo that can be shoot before reloading"));
 

@@ -3,6 +3,7 @@ using MalbersAnimations.Scriptables;
 using MalbersAnimations.Utilities;
 using UnityEngine;
 using UnityEngine.Serialization;
+using MalbersAnimations.Reactions;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -16,11 +17,11 @@ namespace MalbersAnimations.Controller
         [RequiredField, Tooltip("Trigger used to find Items that can be picked Up")]
         public Collider PickUpArea;
         [SerializeField, Tooltip("When an Item is Picked and Hold, the Pick Trigger area will be disabled")]
-        private BoolReference m_HidePickArea = new BoolReference(true);
+        private BoolReference m_HidePickArea = new (true);
         //public bool AutoPick { get => m_AutoPick.Value; set => m_AutoPick.Value = value; }
 
-        [Tooltip("Bone to Parent the Picked Item")]
-        [RequiredField] public Transform Holder;
+        [Tooltip("Transform to Parent the Picked Item")]
+        public Transform Holder;
         public Vector3 PosOffset;
         public Vector3 RotOffset;
         [Tooltip("Check for tags on the Pickable items")]
@@ -28,20 +29,24 @@ namespace MalbersAnimations.Controller
 
 
         [Tooltip("Layer for the Interact with colliders")]
-        [SerializeField] private LayerReference Layer = new LayerReference(-1);
+        [SerializeField] private LayerReference Layer = new(-1);
         [SerializeField] private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Ignore;
 
         /// <summary> Real Root of the Picker Object  </summary>
         public Transform Root { get; set; }
 
+
+        [SerializeReference, SubclassSelector]
+        [Tooltip("Invokes a reaction if the Pickable is a collectable")]
+        public Reaction CollectableReaction;
+
         // [Header("Events")]
-        public BoolEvent CanPickUp = new BoolEvent();
-        [FormerlySerializedAs("OnItem")]
-        public GameObjectEvent OnItemPicked = new GameObjectEvent();
-        public GameObjectEvent OnItemDrop = new GameObjectEvent();
-        public GameObjectEvent OnFocusedItem = new GameObjectEvent();
-        public IntEvent OnPicking = new IntEvent();
-        public IntEvent OnDropping = new IntEvent();
+        public BoolEvent CanPickUp = new();
+        public GameObjectEvent OnItemPicked = new();
+        public GameObjectEvent OnItemDrop = new();
+        public GameObjectEvent OnFocusedItem = new();
+        public IntEvent OnPicking = new();
+        public IntEvent OnDropping = new();
 
         public bool debug;
         public float DebugRadius = 0.02f;
@@ -288,6 +293,10 @@ namespace MalbersAnimations.Controller
         }
 
 
+
+
+
+
         private void Debugging(string msg)
         {
 #if UNITY_EDITOR
@@ -297,7 +306,30 @@ namespace MalbersAnimations.Controller
 
         public virtual bool OnAnimatorBehaviourMessage(string message, object value) => this.InvokeWithParams(message, value);
 
-        [SerializeField] private int Editor_Tabs1;
+
+
+#if UNITY_EDITOR
+
+        [ContextMenu("Connect to Weapon Manager (Holster_SetWeapon)")]
+        private void ConnectToWeaponManagerHolster()
+        {
+            var method = this.GetUnityAction<GameObject>("MWeaponManager", "Holster_SetWeapon");
+            if (method != null) UnityEditor.Events.UnityEventTools.AddPersistentListener(OnItemPicked, method);
+            MTools.SetDirty(this);
+        }
+
+
+
+        [ContextMenu("Connect to Weapon Manager (Equip_External)")]
+        private void ConnectToWeaponManagerExternal()
+        {
+            var method = this.GetUnityAction<GameObject>("MWeaponManager", "Equip_External");
+            if (method != null) UnityEditor.Events.UnityEventTools.AddPersistentListener(OnItemPicked, method);
+            MTools.SetDirty(this);
+        }
+
+
+
         private void OnDrawGizmos()
         {
             if (Holder)
@@ -307,6 +339,8 @@ namespace MalbersAnimations.Controller
                 Gizmos.DrawSphere(Holder.TransformPoint(PosOffset), 0.02f);
             }
         }
+#endif
+        [SerializeField] private int Editor_Tabs1;
     }
 
     #region INSPECTOR
@@ -316,7 +350,8 @@ namespace MalbersAnimations.Controller
     {
 
         private SerializedProperty
-            PickUpArea, FocusedItem, Editor_Tabs1, Holder, RotOffset, item, m_HidePickArea, OnFocusedItem, Layer, triggerInteraction, OnItemDrop,
+            PickUpArea, FocusedItem, Editor_Tabs1, Holder, RotOffset, item, m_HidePickArea, OnFocusedItem, CollectableReaction,
+            Layer, triggerInteraction, OnItemDrop,
             PosOffset, CanPickUp, OnDropping, OnPicking, DebugRadius, OnItem, DebugColor, debug, Tags;
 
         protected string[] Tabs1 = new string[] { "General", "Events" };
@@ -333,6 +368,7 @@ namespace MalbersAnimations.Controller
             PosOffset = serializedObject.FindProperty("PosOffset");
             RotOffset = serializedObject.FindProperty("RotOffset");
             Tags = serializedObject.FindProperty("Tags");
+            CollectableReaction = serializedObject.FindProperty("CollectableReaction");
 
             FocusedItem = serializedObject.FindProperty("focusedItem");
             item = serializedObject.FindProperty("item");
@@ -384,22 +420,25 @@ namespace MalbersAnimations.Controller
         private void DrawGeneral()
         {
             //MalbersEditor.DrawScript(script);
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(PickUpArea, new GUIContent("Pick Up Trigger"));
-            MalbersEditor.DrawDebugIcon(debug);
-            EditorGUILayout.EndHorizontal();
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                using (new GUILayout.HorizontalScope())
+                {
+                    EditorGUILayout.PropertyField(PickUpArea, new GUIContent("Pick Up Trigger"));
+                    MalbersEditor.DrawDebugIcon(debug);
+                }
+              
 
-            EditorGUILayout.PropertyField(Layer);
-            EditorGUILayout.PropertyField(triggerInteraction);
-            EditorGUI.indentLevel++;
-            EditorGUILayout.PropertyField(Tags);
-            EditorGUI.indentLevel--;
-            EditorGUILayout.PropertyField(m_HidePickArea, new GUIContent("Hide Trigger"));
-            EditorGUILayout.EndVertical();
+                EditorGUILayout.PropertyField(Layer);
+                EditorGUILayout.PropertyField(triggerInteraction);
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(Tags);
+                EditorGUI.indentLevel--;
+                EditorGUILayout.PropertyField(m_HidePickArea, new GUIContent("Hide Trigger"));
+            }
 
 
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
                 EditorGUILayout.PropertyField(Holder);
                 if (Holder.objectReferenceValue)
@@ -409,22 +448,27 @@ namespace MalbersAnimations.Controller
                     EditorGUILayout.PropertyField(RotOffset, new GUIContent("Rotation", "Rotation Local Offset to parent the item to the holder"));
                 }
             }
-            EditorGUILayout.EndVertical();
+         
 
 
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
                 EditorGUILayout.PropertyField(item);
-                EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.PropertyField(FocusedItem);
-                EditorGUI.EndDisabledGroup();
+                using (new EditorGUI.DisabledGroupScope(true))
+                    EditorGUILayout.PropertyField(FocusedItem);
+                
             }
-            EditorGUILayout.EndVertical();
+
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                EditorGUILayout.PropertyField(CollectableReaction);
+            }
+
         }
 
         private void DrawEvents()
         {
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
                 EditorGUILayout.PropertyField(CanPickUp, new GUIContent("On Can Pick Item"));
                 EditorGUILayout.PropertyField(OnFocusedItem, new GUIContent("On Item Focused"));
@@ -435,7 +479,7 @@ namespace MalbersAnimations.Controller
                 EditorGUILayout.PropertyField(OnPicking);
                 EditorGUILayout.PropertyField(OnDropping);
             }
-            EditorGUILayout.EndVertical();
+             
         }
     }
 #endif

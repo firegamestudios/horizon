@@ -11,12 +11,12 @@ namespace MalbersAnimations
     [HelpURL("https://malbersanimations.gitbook.io/animal-controller/secondary-components/variable-listeners-and-comparers")]
     public class BoolVarListener : VarListener
     {
-        public BoolReference value = new BoolReference();
+        public BoolReference value = new();
         [Tooltip("When the events are invoked the value will be inverted")]
         public bool invert;
-        public BoolEvent OnValueChanged = new BoolEvent();
-        public UnityEvent OnTrue = new UnityEvent();
-        public UnityEvent OnFalse = new UnityEvent();
+        public BoolEvent OnValueChanged = new();
+        public UnityEvent OnTrue = new();
+        public UnityEvent OnFalse = new();
 
         public bool Value
         {

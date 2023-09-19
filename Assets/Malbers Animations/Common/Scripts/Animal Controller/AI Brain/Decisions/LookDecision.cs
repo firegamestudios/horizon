@@ -87,7 +87,7 @@ namespace MalbersAnimations.Controller.AI
 
         public override void FinishDecision(MAnimalBrain brain, int index)
         {
-            Look_For(brain, true, index); //This will assign the Target in case its true
+            Look_For(brain, AssignTarget, index); //This will assign the Target in case its true
         }
 
         public override void PrepareDecision(MAnimalBrain brain, int index)
@@ -186,7 +186,7 @@ namespace MalbersAnimations.Controller.AI
 
             var Center =
                 transform.Value == brain.Target && brain.AIControl.IsAITarget != null ?
-                brain.AIControl.IsAITarget.GetCenter() :
+                brain.AIControl.IsAITarget.GetCenterY() :
                 transform.Value.position;
 
             return IsInFieldOfView(brain, Center, out _);
@@ -200,7 +200,7 @@ namespace MalbersAnimations.Controller.AI
 
             var Center =
                 gameObject.Value.transform == brain.Target && brain.AIControl.IsAITarget != null ?
-                brain.AIControl.IsAITarget.GetCenter() :
+                brain.AIControl.IsAITarget.GetCenterY() :
                 gameObject.Value.transform.position;
 
             return IsInFieldOfView(brain, Center, out _);
@@ -265,8 +265,10 @@ namespace MalbersAnimations.Controller.AI
         {
             if (assign)
             {
-                if (AssignTarget) brain.AIControl.SetTarget(target, MoveToTarget);
-                else if (RemoveTarget) brain.AIControl.ClearTarget();
+                if (AssignTarget)
+                    brain.AIControl.SetTarget(target, MoveToTarget);
+                else if (RemoveTarget) 
+                    brain.AIControl.ClearTarget();
             }
         }
 
@@ -324,7 +326,7 @@ namespace MalbersAnimations.Controller.AI
 
                     if(go != null)
                     {
-                        if (IsInFieldOfView(brain, go.position, out float Distance))
+                        if (IsInFieldOfView(brain, go.position, out _))
                         {
                             AssignMoveTarget(brain, go, assign);
                             return true;
@@ -493,7 +495,7 @@ namespace MalbersAnimations.Controller.AI
 
             foreach (var way in allWaypoints)
             {
-                var center = way.GetCenter();
+                var center = way.GetCenterY();
                 if (IsInFieldOfView(brain, center, out float Distance))
                 {
                     if (Distance < minDistance)

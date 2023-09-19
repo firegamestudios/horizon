@@ -7,8 +7,11 @@ namespace MalbersAnimations.Controller
     [HelpURL("https://malbersanimations.gitbook.io/animal-controller/main-components/manimal-controller/states/wallrun")]
 
     public class WallRun : State
-    {
-        [Header("Glide Parameters")]
+    {   
+        public override string StateName => "Wall Run";
+        public override string StateIDName => "WallRun";
+
+        [Header("Wall Run Parameters")]
         [Tooltip("Find Walls to run automatically, without the need of an Input")]
         public BoolReference Automatic = new BoolReference();
         [Tooltip("Keep Pressing the input to maintain Wall Run")]
@@ -68,7 +71,7 @@ namespace MalbersAnimations.Controller
         public Vector3 UpImpulse { get; private set; }
         public bool Has_UP_Impulse { get; private set; }
 
-        public override string StateName => "Wall Run";
+    
 
         public override float GravityMultiplier => GravityPush;
 
@@ -329,9 +332,9 @@ namespace MalbersAnimations.Controller
             }
         }
 
-        void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("WallRun");
+            base.Reset();
 
             Duration = new FloatReference(3f);
 

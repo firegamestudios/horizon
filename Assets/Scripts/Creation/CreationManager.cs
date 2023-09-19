@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 /// <summary>
 /// Races: 0 male human, 1 female human, 2 droid, 3 alien
 /// Classes: 0 fighter, 1 biologist, 2 hunter, 3 engineer, 4 hacker
 /// </summary>
+/// 
+
 
 public class CreationManager : MonoBehaviour
 {
@@ -36,7 +39,12 @@ public class CreationManager : MonoBehaviour
     float piloting = 1;
     float tracking = 1;
     float taming = 1;
-    float unlock = 1;
+    float hackLock = 1;
+
+    //feats
+    
+    public List<string> feats = new List<string>();
+    public List<Image> featsIcons;
 
     public TMP_Text raceText;
     public TMP_Text classeText;
@@ -46,16 +54,20 @@ public class CreationManager : MonoBehaviour
     public List<TMP_Text> statsTexts;
     public TMP_Text skillsText;
     public List<TMP_Text> skillsTexts;
+    public TMP_InputField playerNameInput;
+
+  
 
     GameObject startButton;
 
     PlayerData playerData;
     SaveLoadManager saveLoadManager;
+    public SkillsPanel skillsPanel;
 
     private void Awake()
     {
         startButton = GameObject.Find("Canvas").transform.Find("Start Button").gameObject;
-        
+       
         saveLoadManager = GetComponentInChildren<SaveLoadManager>();
 
         playerData = saveLoadManager.playerData;
@@ -78,6 +90,7 @@ public class CreationManager : MonoBehaviour
         RaceRandomizer();
         ClasseRandomizer();
         RandomizeAttributes();
+        
     }
 
     #region Randomizers
@@ -136,6 +149,10 @@ public class CreationManager : MonoBehaviour
         }
 
         UpdateAttributes();
+
+        SendToPlayerData();
+        saveLoadManager.SavePlayerData();
+       
     }
     #endregion
 
@@ -168,7 +185,8 @@ public class CreationManager : MonoBehaviour
         statsTexts[2].text = resistance.ToString();
         meleeDamage = 1 + meleeBonus;
         rangedDamage = 1 + rangedBonus;
-        
+
+        skillsPanel.UpdateSkillPanels(classe);
     }
 
     void UpdateSkills()
@@ -249,7 +267,7 @@ public class CreationManager : MonoBehaviour
                 classeBased = "Based on class: \n Never fails hacking \n Unlock +1 \n\n";
                 hacking++;
                 skillsTexts[4].color = new Color(255, 0, 0);
-                unlock++;
+                hackLock++;
                 skillsTexts[9].color = new Color(255, 0, 0);
                 break;
             default:
@@ -277,7 +295,7 @@ public class CreationManager : MonoBehaviour
         skillsTexts[6].text = "Piloting: " + piloting.ToString();
         skillsTexts[7].text = "Tracking: " + tracking.ToString();
         skillsTexts[8].text = "Taming: " + taming.ToString();
-        skillsTexts[9].text = "Unlock: " + unlock.ToString();
+        skillsTexts[9].text = "Hack Lock: " + hackLock.ToString();
     }
 
     void ClearRP()
@@ -302,7 +320,7 @@ public class CreationManager : MonoBehaviour
         piloting = 1;
         tracking = 1;
         taming = 1;
-        unlock = 1;
+        hackLock = 1;
 
     }
 
@@ -312,7 +330,7 @@ public class CreationManager : MonoBehaviour
 
     public void SetupName()
     {
-
+        playerName = playerNameInput.text;
     }
     public void SetupRace(string _race)
     {
@@ -328,6 +346,8 @@ public class CreationManager : MonoBehaviour
         classe = _classe;
 
         classeText.text = "level 1 " + classe;
+
+        ClearFeats();
 
         UpdateAttributes();
     }
@@ -352,10 +372,59 @@ public class CreationManager : MonoBehaviour
 
         UpdateAttributes();
     }
+
+    public void AddFeat(string _feat)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            if (feats[i] == "None")
+            {
+                feats[i] = _feat;
+                UpdateFeatIcons();
+                break;
+            }
+        }
+               
+    }
+
+    void UpdateFeatIcons()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            featsIcons[i].sprite = Resources.Load<Sprite>("Feats/" + feats[i]);
+
+        }
+    }
+
+    public void RemoveFeat(int index)
+    {
+        if(index == 0)
+        {
+            feats[0] = "None";
+        }
+        if (index == 1)
+        {
+            feats[1] = "None";
+
+        }
+
+        UpdateFeatIcons();
+    }
+
+    void ClearFeats()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            feats[0] = "None";
+            feats[1] = "None";
+        }
+        UpdateFeatIcons();
+    }
     #endregion
 
     #region OnStart Game
-    public void OnStartButton()
+
+    public void SendToPlayerData()
     {
         playerData.playerName = playerName;
         playerData.race = race;
@@ -386,10 +455,27 @@ public class CreationManager : MonoBehaviour
         playerData.Piloting = piloting;
         playerData.Tracking = tracking;
         playerData.Taming = taming;
-        playerData.Unlock = unlock;
+        playerData.HackLock = hackLock;
+
+        playerData.feats = new string[2];
+        for (int i = 0; i < 2; i++)
+        {
+            playerData.feats[i] = feats[i];
+        }
+    }
+    public void OnStartButton()
+    {
+        SendToPlayerData();
 
         if(saveLoadManager.SavePlayerData())
         SceneManager.LoadScene("Junk Processing Plant");
+    }
+    #endregion
+
+    #region Get Methods
+    public string GetClasse()
+    {
+        return classe;
     }
     #endregion
 }

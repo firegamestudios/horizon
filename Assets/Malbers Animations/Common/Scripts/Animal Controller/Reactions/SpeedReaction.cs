@@ -4,7 +4,7 @@
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Malbers/Animal Controller/Animal Speeds")]
+    [AddTypeMenu("Malbers/Animal/Speeds")]
     public class SpeedReaction : MReaction
     {
         public enum Speed_Reaction

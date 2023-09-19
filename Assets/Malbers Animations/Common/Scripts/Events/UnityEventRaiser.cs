@@ -1,11 +1,13 @@
-﻿using MalbersAnimations.Scriptables;
+﻿using MalbersAnimations.Reactions;
+using MalbersAnimations.Scriptables;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace MalbersAnimations.Events
 {
     /// <summary>Simple Event Raiser On Enable</summary>
-    [AddComponentMenu("Malbers/Events/Unity Event Raiser")]
+    [AddComponentMenu("Malbers/Events/Unity Event Raiser [On Enable]")]
     public class UnityEventRaiser : UnityUtils
     {
         [Tooltip("Delayed time for invoking the Events, or the Repeated time  when Repeat is enable")]
@@ -74,6 +76,7 @@ namespace MalbersAnimations.Events
         UnityEditor.SerializedProperty Delayed, Repeat, RepeatTime, OnEnableEvent, ShowDescription, Description;
         public static GUIStyle StyleBlue => Style(new Color(0, 0.5f, 1f, 0.3f));
         private GUIStyle style;
+        private GUIContent _ReactIcon;
 
        
 
@@ -105,25 +108,34 @@ namespace MalbersAnimations.Events
 
                 style.normal.textColor = UnityEditor.EditorStyles.boldLabel.normal.textColor;
 
-                //UnityEditor.EditorGUILayout.BeginVertical(MTools.StyleBlue);
                 Description.stringValue = UnityEditor.EditorGUILayout.TextArea(Description.stringValue, style);
-               // UnityEditor.EditorGUILayout.EndVertical();
             }
 
 
-            UnityEditor.EditorGUILayout.BeginHorizontal();
-
-            UnityEditor.EditorGUILayout.PropertyField(Delayed, GUILayout.MinWidth(100));
-            if (Repeat.boolValue)
+            using (new GUILayout.HorizontalScope(/*UnityEditor.EditorStyles.helpBox*/))
             {
 
-                UnityEditor.EditorGUIUtility.labelWidth = 35;
-                UnityEditor.EditorGUILayout.PropertyField(RepeatTime, new GUIContent(" RT", "Repeat Time"), GUILayout.MinWidth(40));
-                UnityEditor.EditorGUIUtility.labelWidth = 0;
-            }
+                if (_ReactIcon == null)
+                {
+                    _ReactIcon = EditorGUIUtility.IconContent("d_PlayButton@2x");
+                    _ReactIcon.tooltip = "Invoke at Runtime";
+                } 
 
-            Repeat.boolValue = GUILayout.Toggle(Repeat.boolValue, new GUIContent("R","Repeat"), UnityEditor.EditorStyles.miniButton, GUILayout.Width(25));
-            UnityEditor.EditorGUILayout.EndHorizontal();
+                if (Application.isPlaying && GUILayout.Button(_ReactIcon, EditorStyles.miniButtonMid, GUILayout.Width(18), GUILayout.Height(20)))
+                {
+                    (target as UnityEventRaiser).onEnable.Invoke();
+                }
+
+                UnityEditor.EditorGUILayout.PropertyField(Delayed, GUILayout.MinWidth(100));
+                if (Repeat.boolValue)
+                {
+                    EditorGUIUtility.labelWidth = 35;
+                    EditorGUILayout.PropertyField(RepeatTime, new GUIContent(" RT", "Repeat Time"), GUILayout.MinWidth(40));
+                    EditorGUIUtility.labelWidth = 0;
+                }
+
+                Repeat.boolValue = GUILayout.Toggle(Repeat.boolValue, new GUIContent("R", "Repeat"), UnityEditor.EditorStyles.miniButton, GUILayout.Width(25));
+            }
             UnityEditor.EditorGUILayout.PropertyField(OnEnableEvent);
             serializedObject.ApplyModifiedProperties();
         }

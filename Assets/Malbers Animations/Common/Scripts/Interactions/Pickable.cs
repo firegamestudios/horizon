@@ -21,37 +21,38 @@ namespace MalbersAnimations.Controller
         [Min(0)] public float AlignDistance = 1f;
 
         [Tooltip("Delay time after calling the Pick() method. the item will be parented to the PickUp component after this time has passed")]
-        public FloatReference PickDelay = new FloatReference(0);
+        public FloatReference PickDelay = new (0);
         [Tooltip("Delay time after calling the Drop() method. the item will be unparented from the PickUp component after this time has passed")]
-        public FloatReference DropDelay = new FloatReference(0);
+        public FloatReference DropDelay = new(0);
         [Tooltip("Cooldown needed to pick or drop again the collectable")]
-        public FloatReference coolDown = new FloatReference(0f);
+        public FloatReference coolDown = new(0f);
         [Tooltip("When an Object is Collectable it means that the Picker can still pick objects, the item was collected by another component (E.g. Weapons or Inventory)")]
 
-        public BoolReference m_Collectable = new BoolReference(false);
+        public BoolReference m_Collectable = new(false);
         [Tooltip("The Pick Up Drop Logic will be called via animator events/messages. Use These methods on the Animator: TryPick(), TryDrop(), TryPickUpDrop()")]
-        public BoolReference m_ByAnimation = new BoolReference(false);
+        public BoolReference m_ByAnimation = new(false);
         [Tooltip("The Pick Up Drop Logic will be called via animator events/messages")]
-        public BoolReference m_DestroyOnPick = new BoolReference(false);
-        [Tooltip("Unparent the Pickable, so it does not have any Transform parents.")]
-        public BoolReference SceneRoot = new BoolReference(true);
+        public BoolReference m_DestroyOnPick = new(false);
+        //[Tooltip("Unparent the Pickable, so it does not have any Transform parents.")]
+        //public BoolReference SceneRoot = new BoolReference(true);
 
-        public FloatReference m_Value = new FloatReference(1f); //Not done yet
+        [Tooltip(" Amount Pickable Item can store.. that it can be use for anything")]
+        public IntReference m_Amount = new(1); //Not done yet
         [Tooltip("The Pick Up Drop Logic will be called via animator events/messages")]
 
-        public BoolReference m_AutoPick = new BoolReference(false); //Not done yet
-        public IntReference m_ID = new IntReference();         //Not done yet
+        public BoolReference m_AutoPick = new(false); //Not done yet
+        public IntReference m_ID = new ();         //Not done yet
 
         /// <summary>Who Did the Picking </summary>
         public MPickUp Picker { get; set; }
 
 
-        public BoolEvent OnFocused = new BoolEvent();
-        public GameObjectEvent OnFocusedBy = new GameObjectEvent();
-        public GameObjectEvent OnPicked = new GameObjectEvent();
-        public GameObjectEvent OnPrePicked = new GameObjectEvent();
-        public GameObjectEvent OnDropped = new GameObjectEvent();
-        public GameObjectEvent OnPreDropped = new GameObjectEvent();
+        public BoolEvent OnFocused = new();
+        public GameObjectEvent OnFocusedBy = new();
+        public GameObjectEvent OnPicked = new();
+        public GameObjectEvent OnPrePicked = new();
+        public GameObjectEvent OnDropped = new();
+        public GameObjectEvent OnPreDropped = new();
 
         [SerializeField] private Rigidbody rb;
         [RequiredField] public Collider[] m_colliders;
@@ -62,7 +63,7 @@ namespace MalbersAnimations.Controller
         public bool IsPicked { get; set; }
 
         /// <summary>Current value of the Item</summary>
-        public float Value { get => m_Value.Value; set => m_Value.Value = value; }
+        public int Amount { get => m_Amount.Value; set => m_Amount.Value = value; }
 
         /// <summary>The Item will be autopicked if the Picker is focusing it</summary>
         public bool AutoPick { get => m_AutoPick.Value; set => m_AutoPick.Value = value; }
@@ -108,11 +109,6 @@ namespace MalbersAnimations.Controller
         /// <summary>Game Time the Pickable was Picked</summary>
         public float CurrentPickTime { get => currentPickTime; set => currentPickTime = value; }
 
-        private void OnEnable()
-        {
-            if (SceneRoot.Value) transform.parent = null;
-        }
-
         private void OnDisable()
         {
             Focused = false;
@@ -132,14 +128,13 @@ namespace MalbersAnimations.Controller
         public virtual void Pick()
         {
             DisablePhysics();                       //Disable all physics when the item is picked
-            IsPicked = Collectable ? false : true;  //Check if the Item is collectable 
+            IsPicked = !Collectable;                //Check if the Item is collectable 
             Focused = false;                        //Unfocus the Item
             OnFocusedBy.Invoke(null);
 
             //Weapons can be picked witout having a picker
             OnPicked.Invoke(Picker ? Picker.Root.gameObject : null);     //Call the Event
             CurrentPickTime = Time.time;            //Store the time it was picked
-
             if (Collectable) enabled = false;
         }
 
@@ -223,9 +218,9 @@ namespace MalbersAnimations.Controller
     {
         private SerializedProperty //   PickAnimations, PickUpMode, PickUpAbility, DropMode, DropAbility,DropAnimations, 
             Align, AlignTime, AlignDistance, AlignPos, EditorTabs,
-            m_AutoPick, DropDelay, PickDelay, rb, CoolDown, SceneRoot,
+            m_AutoPick, DropDelay, PickDelay, rb, CoolDown,// SceneRoot,
             OnFocused, OnFocusedBy,
-            OnPrePicked, OnPicked, OnDropped, OnPreDropped, /*ShowEvents, */FloatID, IntID, m_collider, m_Collectable, m_ByAnimation, m_DestroyOnPick;
+            OnPrePicked, OnPicked, OnDropped, OnPreDropped, /*ShowEvents, */Amount, IntID, m_collider, m_Collectable, m_ByAnimation, m_DestroyOnPick;
 
         private Pickable m;
 
@@ -236,7 +231,7 @@ namespace MalbersAnimations.Controller
             m = (Pickable)target;
 
             EditorTabs = serializedObject.FindProperty("EditorTabs");
-            SceneRoot = serializedObject.FindProperty("SceneRoot");
+            //SceneRoot = serializedObject.FindProperty("SceneRoot");
             rb = serializedObject.FindProperty("rb");
             PickDelay = serializedObject.FindProperty("PickDelay");
             DropDelay = serializedObject.FindProperty("DropDelay");
@@ -255,7 +250,7 @@ namespace MalbersAnimations.Controller
             OnDropped = serializedObject.FindProperty("OnDropped");
             OnPreDropped = serializedObject.FindProperty("OnPreDropped");
             //ShowEvents = serializedObject.FindProperty("ShowEvents");
-            FloatID = serializedObject.FindProperty("m_Value");
+            Amount = serializedObject.FindProperty("m_Amount");
             IntID = serializedObject.FindProperty("m_ID");
             m_collider = serializedObject.FindProperty("m_colliders");
             AlignPos = serializedObject.FindProperty("AlignPos");
@@ -306,14 +301,14 @@ namespace MalbersAnimations.Controller
             if (m_AutoPick.isExpanded)
             {
                 EditorGUILayout.PropertyField(IntID, new GUIContent("ID", "Int value the Pickable Item can store. This ID is used by the Picker component to Identify each Pickable Object"));
-                EditorGUILayout.PropertyField(FloatID, new GUIContent("Float Value", "Float value the Pickable Item can store.. that it can be use for anything"));
+                EditorGUILayout.PropertyField(Amount);
 
                 EditorGUILayout.PropertyField(m_AutoPick, new GUIContent("Auto", "The Item will be Picked Automatically"));
                 EditorGUILayout.PropertyField(m_ByAnimation,
                     new GUIContent("Use Animation", "The Item will Pre-Picked/Dropped by the Picker Animator." +
                     " Pick-Drop Logic is called by Animation Event or Animator Message Behaviour.\nUse the Methods: TryPickUpDrop(); TryPickUp(); TryDrop();"));
 
-                EditorGUILayout.PropertyField(SceneRoot);
+             //   EditorGUILayout.PropertyField(SceneRoot);
 
 
                 EditorGUILayout.PropertyField(m_Collectable, new GUIContent("Collectable", "The Item will Picked by the Pickable and it will be stored"));

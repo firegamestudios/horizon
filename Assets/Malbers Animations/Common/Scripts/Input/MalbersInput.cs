@@ -14,9 +14,9 @@ namespace MalbersAnimations
         #region Variables
         private ICharacterMove mCharacterMove;
 
-        public InputAxis Horizontal = new InputAxis("Horizontal", true, true);
-        public InputAxis Vertical = new InputAxis("Vertical", true, true);
-        public InputAxis UpDown = new InputAxis("UpDown", false, true);
+        public InputAxis Horizontal = new("Horizontal", true, true);
+        public InputAxis Vertical = new("Vertical", true, true);
+        public InputAxis UpDown = new("UpDown", false, true);
         //   protected IAIControl AI;  //Referece for AI Input Sources
 
 

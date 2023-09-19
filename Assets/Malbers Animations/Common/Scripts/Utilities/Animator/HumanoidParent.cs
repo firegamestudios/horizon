@@ -4,6 +4,7 @@ using UnityEngine;
 namespace MalbersAnimations.Utilities
 {
     [AddComponentMenu("Malbers/Utilities/Transform/Humanoid Parent")]
+    [DefaultExecutionOrder(1501)]
     public class HumanoidParent : MonoBehaviour
     {
         public Animator animator;

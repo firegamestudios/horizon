@@ -6,7 +6,7 @@ namespace MalbersAnimations.Controller
     [AddComponentMenu("Malbers/Attack Triggers")]
     public class AttackTriggers_Behaviour : StateMachineBehaviour
     {
-        public List<AttacksBehavior> triggers;
+        public List<AttacksBehavior> triggers = new();
         
 
        private IMDamagerSet[] damagers;
@@ -73,9 +73,9 @@ namespace MalbersAnimations.Controller
 
         private void OnValidate()
         {
-            foreach (var item in triggers)
+            foreach (var i in triggers)
             {
-                item.name = $"Trigger [{item.AttackTrigger}] → ({item.AttackActivation.minValue}) - ({item.AttackActivation.maxValue})";
+                i.name = $"Trigger [{i.AttackTrigger}] Profile[{i.Profile}] → ({i.AttackActivation.minValue}) - ({i.AttackActivation.maxValue})";
             }
         }
     }
@@ -88,16 +88,15 @@ namespace MalbersAnimations.Controller
     {
         [HideInInspector] public string name;
         [Tooltip("0: Disable All Attack Triggers\n-1: Enable All Attack Triggers\nx: Enable the Attack Trigger by its index")]
-        public int AttackTrigger = 1;                           //ID of the Attack Trigger to Enable/Disable during the Attack Animation
+        public int AttackTrigger = 1;                        
 
         [Tooltip("Profile to activate on the Damager")]
         [Min(0)] public int Profile = 0;
 
         [Tooltip("Range on the Animation that the Attack Trigger will be Active")]
         [MinMaxRange(0, 1)]
-        public RangedFloat AttackActivation = new RangedFloat(0.3f, 0.6f);
-
-
+        public RangedFloat AttackActivation = new(0.3f, 0.6f);
+        
         public bool isOn { get; set; }
         public bool isOff { get; set; }
     }

@@ -1,5 +1,4 @@
-﻿using MalbersAnimations.Scriptables;
-using MalbersAnimations.Utilities;
+﻿using MalbersAnimations.Scriptables; 
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ namespace MalbersAnimations.Controller
     public class JumpBasic : State
     {
         public override string StateName => "Jump/Basic Jump";
+        public override string StateIDName => "Jump";
 
         private int JumpEndHash = Animator.StringToHash("JumpEnd");
         private int JumpStartHash = Animator.StringToHash("JumpStart");
@@ -217,7 +217,7 @@ namespace MalbersAnimations.Controller
         }
 
 
-       
+
 
         public override void EnterCoreAnimation()
         {
@@ -228,8 +228,7 @@ namespace MalbersAnimations.Controller
 
             var Speed = animal.HorizontalSpeed / ScaleFactor;
 
-          //  Debug.Log($"Speed JUMP: {Speed}");
-
+            //  Debug.Log($"Speed JUMP: {Speed}");
             if (animal.HasExternalForce)
             {
                 var HorizontalForce = Vector3.ProjectOnPlane(animal.ExternalForce, animal.UpVector);    //Remove Horizontal Force
@@ -241,10 +240,9 @@ namespace MalbersAnimations.Controller
             }
 
 
-            if (!animal.ExternalForceAirControl)
-            {
-                Speed = 0; //Remove all Speed if the External Force does not allows it
-            }
+            //Remove all Speed if the External Force does not allows it
+            if (!animal.ExternalForceAirControl) Speed = 0; 
+             
 
             JumpSpeed = new MSpeed(animal.CurrentSpeedModifier) //Inherit the Vertical and the Lerps
             {
@@ -257,36 +255,31 @@ namespace MalbersAnimations.Controller
                 animator = 1,
             };
 
-             animal.SetCustomSpeed(JumpSpeed, false);                     //Set the Current Speed to the Jump Speed Modifier
-
-
-            //animal.SetCustomSpeed(JumpSpeed, true);                     //Set the Current Speed to the Jump Speed Modifier
-            //animal.ResetDeltaRootMotion();
-
+            animal.SetCustomSpeed(JumpSpeed, false);                     //Set the Current Speed to the Jump Speed Modifier
 
             animal.GravityExtraPower = activeJump.GravityPower.Value;    //Send the Gravity ExtraPower value.
 
+
+            //Mean is doing a double jump!
             if (IsDoubleJump)
             {
-                ActivateJump();           //Mean is doing a double jump!
-                return;
+                ActivateJump();
             }
-            if (!activeJump.WaitForAnimation) ActivateJump();      //if it does not require to Wait for the Animator to call
-             
+            //if it does not require to Wait for the Animator to call
+            else if (!activeJump.WaitForAnimation)
+            {
+                ActivateJump();
+            }
         }
 
         public override Vector3 Speed_Direction()
         {
-            // var AirControl = activeJump.AirControl.Value;
-
-            MDebug.Draw_Arrow(transform.position, StartingSpeedDirection * 2, Color.red);
-
+           if (GizmoDebug)
+                MDebug.Draw_Arrow(transform.position, StartingSpeedDirection * 2, Color.red);
             return activeJump.AirControl.Value ? base.Speed_Direction() : StartingSpeedDirection;
         }
 
-        private Vector3 StartingSpeedDirection;
-
-
+        private Vector3 StartingSpeedDirection;  
         public override void EnterTagAnimation()
         {
             if (CurrentAnimTag == JumpStartHash && !animal.RootMotion)
@@ -315,9 +308,6 @@ namespace MalbersAnimations.Controller
                 Debugging("[EnterTag-JumpStart]");
 
                 animal.SetCustomSpeed(JumpStartSpeed, false);       //Set the Current Speed to the Jump Speed Modifier
-             //   animal.ResetDeltaRootMotion();
-
-
                 if (animal.TerrainSlope > 0) animal.UseCustomRotation = true; //Means we are jumping uphill
 
             }
@@ -326,9 +316,7 @@ namespace MalbersAnimations.Controller
                 Debugging("[EnterTag-JumpEnd]");
                 AllowExit();
             }
-        }
-
-
+        } 
         public override bool KeepForwardMovement => !activeJump.AirControl.Value;
 
         public override void OnStateMove(float deltaTime)
@@ -344,12 +332,8 @@ namespace MalbersAnimations.Controller
                         JumpPressHeight_Value = Mathf.Lerp(JumpPressHeight_Value, (InputValue && justJumpPressed) ? 1 : 0, deltaTime * JumpPressedLerp);
                     }
 
-
-
                     if (activeJump.ForwardPush > 0)
-                        animal.AdditivePosition += Forward * activeJump.ForwardPush * deltaTime * ScaleFactor;     //Forward Movement
-
-
+                        animal.AdditivePosition += activeJump.ForwardPush * deltaTime * ScaleFactor * Forward;     //Forward Movement
 
                     if (AirMovement > CurrentSpeedPos && activeJump.AirControl)
                     {
@@ -358,34 +342,29 @@ namespace MalbersAnimations.Controller
                     }
 
                     StartedJumpLogicTime += deltaTime;
-
-
                     Vector3 ExtraJumpHeight = (UpVector * activeJump.Height.Value);
-                    animal.AdditivePosition += ExtraJumpHeight * JumpPressHeight_Value * ScaleFactor * deltaTime;     //Up Movement
+                    animal.AdditivePosition += deltaTime * JumpPressHeight_Value * ScaleFactor * ExtraJumpHeight;     //Up Movement
+
+                    //If we still can apply movement
+                    if (StartedJumpLogicTime < activeJump.JumpTime)
+                        IsPersistent = false; //Let other High Priority States to play
 
 
-                    //Apply Fake Gravity (HAD TO TO IT)
+                    //Apply Fake Gravity
+                    if (!animal.IgnoreModeGravity)
+                    {
 
-                    var GTime = deltaTime * animal.GravityTime;
+                        animal.AdditivePosition += activeJump.GravityPower.Value * deltaTime * animal.StoredGravityVelocity();
+                        animal.GravityOffset = (JumpPressHeight_Value * ScaleFactor * ExtraJumpHeight);     //Send the Values of the Height to stored 
+                        animal.GravityTime++;
+                    }
 
-                    var GravityStoredVelocity = Gravity * animal.GravityPower * (GTime * GTime / 2) * animal.TimeMultiplier * ScaleFactor;
-
-                    //Add Gravity if is in use
-                    animal.AdditivePosition += GravityStoredVelocity * deltaTime * activeJump.GravityPower.Value;
-
-                    animal.GravityOffset = (ExtraJumpHeight * JumpPressHeight_Value * ScaleFactor);     //Send the Values of the Height to stored 
-                                                                                                        //  animal.GravityExtraPower = activeJump.GravityPower.Value;  //Send the Values of the Gravty Power to be stored 
-
-                    animal.GravityTime++;
-
-                    //  IsPersistent = animal.m_IsAnimatorTransitioning;
-                    if (StartedJumpLogicTime >= activeJump.JumpTime) IsPersistent = false;
+                  
                 }
                 else //Keep RootMotion
                 {
                     if (!General.RootMotion)
                     {
-                        //animal.AdditivePosition += Anim.deltaPosition;
                         animal.AdditivePosition += Vector3.Project(Anim.deltaPosition, Up);
                     }
                 }
@@ -396,8 +375,7 @@ namespace MalbersAnimations.Controller
         {
             if (!ActivateJumpLogic) return; //The Jump logic has not being activated yet
 
-
-            Debug.DrawRay(animal.Main_Pivot_Point, Gravity * Height * JumpInterruptRay, Color.white);
+            Debug.DrawRay(animal.Main_Pivot_Point, Height * JumpInterruptRay * Gravity, Color.white);
 
             if (Physics.Raycast(animal.Main_Pivot_Point, Gravity, out var Hit, Height * JumpInterruptRay, GroundLayer, IgnoreTrigger))
             {
@@ -406,14 +384,15 @@ namespace MalbersAnimations.Controller
 
                 Debugging("[Allow Exit] - Interrupt Ray Touched Ground");
                 animal.Teleport_Internal(animal.transform.position + GroundedPos);
-                animal.ResetUPVector(); //IMPORTANT!
+                animal.ResetUPVector();
                 animal.Grounded = true; //IMPORTANT!
                 AllowExit();
             }
             else if (StartedJumpLogicTime >= activeJump.JumpTime)
             {
-                AllowExit();
+                AllowExit(3,0); //Force Fall State
                 Debugging("[Allow Exit]");
+              
             }
         }
 
@@ -442,9 +421,9 @@ namespace MalbersAnimations.Controller
             //Do nothing... the Fall is an automatic State, the Fall Speed is created internally
         }
 
-        internal void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Jump");
+            base.Reset();
             Input = "Jump";
 
             SleepFromState = new List<StateID>() { /*MTools.GetInstance<StateID>("Fall"),*/ MTools.GetInstance<StateID>("Fly") };

@@ -170,9 +170,7 @@ namespace MalbersAnimations.Utilities
 
 
                         if (e.Instance)
-                        {
-                         
-
+                        { 
                             //Apply Offsets
                             if (e.root)
                             {
@@ -195,6 +193,7 @@ namespace MalbersAnimations.Utilities
                                     e.Instance.transform.rotation = e.root.rotation* Quaternion.Euler(e.Offset.Rotation);     //Orient to the root rotation
                                 }
                             }
+
                             e.Instance.gameObject.SetActive(true);
 
 
@@ -209,7 +208,20 @@ namespace MalbersAnimations.Utilities
 
                             if (e.Modifier) e.Modifier.StartEffect(e);              //Apply  Modifier when the effect play
 
-                            StartCoroutine(Life(e));
+                            if (e.life > 0)
+                            {
+                                if (e.effect.IsPrefab())
+                                {
+                                    Destroy(e.Instance.gameObject, e.life);
+                                }
+                                else if (e.disableOnStop)
+                                {
+                                    this.Delay_Action(e.life, () => e.Instance.gameObject.SetActive(false));
+                                }
+                            }
+
+
+                           // StartCoroutine(Life(e));
                         }
                     }
 

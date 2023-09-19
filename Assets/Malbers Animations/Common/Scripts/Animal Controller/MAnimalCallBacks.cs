@@ -73,7 +73,7 @@ namespace MalbersAnimations.Controller
             if (newPos)
             {
                 Teleport(newPos.position);
-                t.rotation = newPos.rotation;
+                Rotation = newPos.rotation;
             }
         }
 
@@ -87,8 +87,8 @@ namespace MalbersAnimations.Controller
         /// <summary>Used by the States to Teleport withouth sending the Event </summary>
         internal void Teleport_Internal(Vector3 newPos)
         {
-            t.position = newPos;
-            LastPos = t.position;
+            Position = newPos;
+            LastPosition = Position;
             SetPlatform(null);
             //if (debugStates) Debugging($"{name}: Teleported to {newPos}");
         }
@@ -135,8 +135,8 @@ namespace MalbersAnimations.Controller
         /// <summary>Aling the character instantly to the Gravity Direction</summary>
         public void AlignToGravity()
         {
-            Quaternion AlignRot = Quaternion.FromToRotation(t.up, UpVector) * t.rotation;  //Calculate the orientation to Terrain 
-            base.transform.rotation = AlignRot;
+            Quaternion AlignRot = Quaternion.FromToRotation(t.up, UpVector) * Rotation;  //Calculate the orientation to Terrain 
+            Rotation = AlignRot;
         }
         #endregion
 
@@ -209,6 +209,11 @@ namespace MalbersAnimations.Controller
             TryAnimParameter(hash_LastState, -1);   //Sent to the Animator the previews Active State
         }
 
+
+        //internal void RotateAnimal(Quaternion Delta)
+        //{
+        //    Rotation *= Delta;
+        //}
         /// <summary> Set the Current State to be the Default Stance </summary>
         public void Stance_Reset() => Stance = defaultStance;
 
@@ -238,7 +243,17 @@ namespace MalbersAnimations.Controller
         public virtual void SetAnimParameter(int hash, bool value) => Anim.SetBool(hash, value);
 
         /// <summary>Set a Trigger to the Animator</summary>
-        public virtual void SetAnimParameter(int hash) => Anim.SetTrigger(hash);
+        public virtual void SetAnimParameter(int hash)
+        {
+            Anim.SetTrigger(hash);
+           // Debug.Log("SetTrigger");
+        }
+
+        public virtual void ResetAnimTrigger(int hash)
+        {
+            Anim.ResetTrigger(hash);
+          //  Debug.Log("ResetTrigger");
+        }
 
         public virtual void TryAnimParameter(int Hash, float value)
         {
@@ -247,6 +262,7 @@ namespace MalbersAnimations.Controller
 
         public virtual void TryAnimParameter(int Hash, int value)
         {
+           // Debug.Log($"Int hash:{Hash}, value{value}");
             if (Hash != 0) SetIntParameter(Hash, value);
         }
 
@@ -1017,12 +1033,19 @@ namespace MalbersAnimations.Controller
         }
 
         /// <summary>Stop the animal from moving,Cleans all movement values</summary>
-        public virtual void StopMoving_Zero()
+        public virtual void Reset_Movement()
         {
-            StopMoving();
-            MovementAxisSmoothed = Vector3.zero;
-            InertiaPositionSpeed = Vector3.zero;
-            TargetSpeed = Vector3.zero;
+            DeltaAngle =
+            HorizontalSpeed = 0;
+
+            RawInputAxis =
+            MovementAxisSmoothed =
+            InertiaPositionSpeed =
+            TargetSpeed =
+            DeltaPos =
+            HorizontalVelocity =
+            DeltaRootMotion = Vector3.zero;
+            LastPosition = Position;
         }
 
         /// <summary>Add Inertia to the Movement</summary>d
@@ -1050,7 +1073,7 @@ namespace MalbersAnimations.Controller
             {
                 foreach (var st in states)
                 {
-                    speed = st.SpeedSets.Find(x => x.name == name);
+                    speed = st.SpeedSets.Find(x => x.name == name); 
                     if (speed != null) break;
                 }
             }
@@ -1156,6 +1179,9 @@ namespace MalbersAnimations.Controller
                 Speed_Update_Current();
             }
         }
+
+        /// <summary>If the Animal is inside a zone then activate that zone</summary>
+        public virtual void Zone_Activate() => InZone?.ActivateZone();
 
         /// <summary> Change the Speed of a Speed Set</summary>
         public virtual void SpeedSet_Set_Active(string SpeedSetName, string activeSpeed)
@@ -1300,18 +1326,21 @@ namespace MalbersAnimations.Controller
 
             foreach (var item in colls)
             {
-                if (!item.isTrigger/* && item.gameObject.layer == gameObject.layer*/) colliders.Add(item);        //Add the Animal Colliders Only
+                if (!item.isTrigger) 
+                    colliders.Add(item);        //Add the Animal Colliders Only
             }
         }
 
         /// <summary>Enable/Disable All Colliders on the animal. Avoid the Triggers </summary>
         public virtual void EnableColliders(bool active)
         {
-            //Debug.Log("EnableColliders = " + active);
-
             foreach (var item in colliders)
             {
-                if (item) item.enabled = active;
+                if (item)
+                { 
+                    if (item.transform == transform) continue; //Do nothing with the Collider in the Main GameObject
+                    item.enabled = active; 
+                }
             }
         }
 
@@ -1325,6 +1354,8 @@ namespace MalbersAnimations.Controller
 
         public void SetTimeline(bool isonTimeline)
         {
+            if (debugStates) Debug.Log($"[{name}] Set Timeline {isonTimeline}",this);
+
             Sleep = isonTimeline;
 
             RB.isKinematic = isonTimeline; //Make Sure the Animal is set to Kinematic\
@@ -1345,7 +1376,6 @@ namespace MalbersAnimations.Controller
                     m.InputValue = false;
             }
         }
-
 
         /// <summary>InertiaPositionSpeed = TargetSpeed</summary>
         public void ResetInertiaSpeed() => InertiaPositionSpeed = TargetSpeed;

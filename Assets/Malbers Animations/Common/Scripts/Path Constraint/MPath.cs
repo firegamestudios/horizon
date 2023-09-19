@@ -50,18 +50,18 @@ namespace MalbersAnimations.PathCreation
         [Min(0)] public float pathCooldown = 1f;
 
         [Tooltip("The Animal Can Exit at the start of the path")]
-        public BoolReference CanExitOnStart = new BoolReference(true);
+        public BoolReference CanExitOnStart = new(true);
         [Tooltip("The Animal Can Exit at the end of the path")]
-        public BoolReference CanExitOnEnd = new BoolReference(true);
+        public BoolReference CanExitOnEnd = new(true);
 
         [Tooltip("The Animal Can Exit at the in the middle of the path (Using Input)")]
-        public BoolReference CanExitOnMiddle = new BoolReference(true);
+        public BoolReference CanExitOnMiddle = new(true);
 
         [Tooltip("Rotate the Character using the Rotation Value Path Points")]
-        public bool usePathRotation = false;
+        public BoolReference usePathRotation = new(false);
 
         [Tooltip("Don't allow the Character to Rotate on the Spline... Move Backwards")]
-        public bool LockRotation = false;
+        public BoolReference LockRotation = new(false);
 
         [Tooltip("Point the Animal always from Start to End of the Path")]
         public PathFollowDir FollowDirection = PathFollowDir.None;
@@ -148,19 +148,19 @@ namespace MalbersAnimations.PathCreation
         public Reaction ExitFromMiddle;
 
         [Tooltip("Stores the Current Path Position of the Character in a Transform")]
-        public TransformReference PathPosition = new TransformReference();
+        public TransformReference PathPosition = new();
 
 
-        public PathConstraintEvent OnEnterBounds = new PathConstraintEvent();
-        public PathConstraintEvent OnExitBounds = new PathConstraintEvent();
+        public PathConstraintEvent OnEnterBounds = new();
+        public PathConstraintEvent OnExitBounds = new();
 
-        public BoolEvent CanEnterPath = new BoolEvent();
+        public BoolEvent CanEnterPath = new();
 
-        public PathConstraintEvent OnEnterPath = new PathConstraintEvent();
-        public PathConstraintEvent OnExitPath = new PathConstraintEvent();
+        public PathConstraintEvent OnEnterPath = new();
+        public PathConstraintEvent OnExitPath = new();
 
-        public BoolEvent IsOnEndOfPath = new BoolEvent();
-        public BoolEvent IsOnStartOfPath = new BoolEvent();
+        public BoolEvent IsOnEndOfPath = new();
+        public BoolEvent IsOnStartOfPath = new();
          
 
         public bool ReachEnd { get; internal set; }
@@ -207,9 +207,12 @@ namespace MalbersAnimations.PathCreation
 
             BoundsProxy?.OnGameObjectEnter.AddListener(_OnBoundsTriggerEnter);
             BoundsProxy?.OnGameObjectExit.AddListener(_OnBoundsTriggerExit);
+            Path = GetComponent<IPath>();
 
             if (Path == null)
             {
+                Debugging("Path Not found. Disable All");
+
                 enabled = false;
                 PathBounds.enabled = false;
             }
@@ -285,27 +288,17 @@ namespace MalbersAnimations.PathCreation
 
         private void Reset()
         {
-            //var p = GetComponent<PathCreator>();
+            Path ??= GetComponent<IPath>();
 
-            //if (p == null)
-            //    m_Path = gameObject.AddComponent<PathCreator>();
-            //else
-            //{
-            //    m_Path = p;
-            //}
-
-            if (Path == null) Path = GetComponent<IPath>();
-
-            PathBounds = GetComponent<BoxCollider>();
-
-            if (PathBounds == null)
+            
+            if (!TryGetComponent<BoxCollider>(out PathBounds))
                 PathBounds = gameObject.AddComponent<BoxCollider>();
 
 
             if (BoundsProxy == null)
             {
-                BoundsProxy = PathBounds.GetComponent<TriggerProxy>();
-                if (BoundsProxy == null) BoundsProxy = PathBounds.gameObject.AddComponent<TriggerProxy>();
+                if (!PathBounds.TryGetComponent<TriggerProxy>(out BoundsProxy)) 
+                    BoundsProxy = PathBounds.gameObject.AddComponent<TriggerProxy>();
             }
 
             PathBounds.isTrigger = true;
@@ -327,10 +320,11 @@ namespace MalbersAnimations.PathCreation
             }
         }
 
-
-
         internal void CalculateBounds()
         {
+            OnValidate();
+            if (Path == null) return;
+            
             Bounds bounds = Path.bounds;
 
             bounds.Expand(2f);
@@ -445,7 +439,13 @@ namespace MalbersAnimations.PathCreation
                 }
             }
 
-            if (PathBounds)
+           
+        }
+
+
+        private void OnDrawGizmosSelected()
+        {
+            if (debug && PathBounds)
             {
                 Gizmos.color = Color.yellow;
                 Gizmos.matrix = transform.localToWorldMatrix;
@@ -621,7 +621,7 @@ namespace MalbersAnimations.PathCreation
 
                     EditorGUILayout.PropertyField(LockRotation);
 
-                    if (LockRotation.boolValue)
+                    if (M.LockRotation.Value)
                         EditorGUILayout.PropertyField(FollowDirection);
 
                     EditorGUILayout.PropertyField(usePathRotation);
@@ -731,7 +731,5 @@ namespace MalbersAnimations.PathCreation
             }
         }
     }
-
-
 #endif
 }

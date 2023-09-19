@@ -154,24 +154,42 @@ namespace MalbersAnimations.Controller
         public virtual void Play(int branch) => TryPlay(Branch);
         public virtual bool TryPlay(int branch)
         {
-            if ((DisableOnSleep && animal.Sleep) ||  //if animal is sleep or
+            if (!gameObject.activeInHierarchy ||
+                (DisableOnSleep && animal.Sleep) ||  //if animal is sleep or
                 !enabled ||     //  the component disabled
                 animal.LockInput ||
                 ActiveComboIndex < 0)
+            {
+                MDebug($"[Failed] Animal Disabled|Lock");
+
                 return false; //Active combo is minus 1 ... ignore playing combos
+            }
+
+            if ((DisableOnSleep && animal.Sleep) ||  //if animal is sleep or
+               !enabled ||     //  the component disabled
+               animal.LockInput ||
+               ActiveComboIndex < 0)
+            {
+                MDebug($"[Failed] Animal Disabled|Lock");
+
+                return false; //Active combo is minus 1 ... ignore playing combos
+            }
 
 
+            //Means is not Playing any mode so Restart
+            if (!animal.IsPlayingMode) 
+                Restart();
 
-            if (!animal.IsPlayingMode/* && !animal.IsPreparingMode*/) Restart();   //Means is not Playing any mode so Restart
 
+            if (animal.IsPreparingMode) return true; //Bug when the buttons are played at the same time
 
             Branch = branch;
             if (ActiveCombo != null)
             {
-                MDebug($"{ActiveCombo.Name} [Try Play]");
+              //  MDebug($"{ActiveCombo.Name} [Try Play]");
                 if (ActiveCombo.InCoolDown)
                 {
-                    MDebug($"{ActiveCombo.Name} In CoolDown");
+                    MDebug($"{ActiveCombo.Name} - [In CoolDown]");
                     return false; //Do not Play a Combo if its in cooldown
                 }
                 // Debug.Log("ActiveCombo = " + ActiveCombo);
@@ -254,8 +272,10 @@ namespace MalbersAnimations.Controller
             var animal = M.animal;
             if (animal.IsPreparingMode) return false;
 
-            try
-            {
+            ActiveSequenceIndex = Mathf.Clamp(ActiveSequenceIndex, 0, Sequence.Count - 1); //Clamp the Active sequence problem
+
+           // try
+          //  {
                 //If the Animal is not Playing a Mode
                 if (!animal.IsPlayingMode
                     || (animal.ActiveMode != CachedMode)) //OR the Mode currently playing is different.... try to activate the Combo in the normal way
@@ -270,7 +290,7 @@ namespace MalbersAnimations.Controller
 
                             if (CachedMode.TryActivate(Starter.Ability))
                             {
-                                // Debug.Log("TryActivate true!!  COMBO");
+                               // M.MDebug($"Success! ({CachedMode.Name}) Playing");
 
                                 M.PlayingCombo = true;
                                 PlaySequence(M, Starter);
@@ -318,12 +338,22 @@ namespace MalbersAnimations.Controller
 
 
                 return false;
-            }
-            catch
-            {
-                Debug.Log("Super weird Bug");
-                return false;
-            }
+            //}
+            //catch
+            //{
+            //    ActiveSequenceIndex = Mathf.Clamp(ActiveSequenceIndex, 0, Sequence.Count - 1);
+
+            //    if (ActiveSequenceIndex < 0)
+            //    {
+            //        ActiveSequenceIndex = 0;
+            //    }
+            //    if (ActiveSequenceIndex > Sequence.Count - 1)
+            //    {
+            //        ActiveSequenceIndex = Sequence.Count - 1;
+            //    }
+
+            //    return false;
+            //}
         }
 
         private void PlaySequence(ComboManager M, ComboSequence sequence)
@@ -784,6 +814,16 @@ namespace MalbersAnimations.Controller
 
                                     EditorGUILayout.PropertyField(OnComboFinished);
                                     EditorGUILayout.PropertyField(OnComboInterrupted);
+                                }
+                            }
+
+                            if (debug.boolValue && Application.isPlaying)
+                            {
+                                using (new EditorGUI.DisabledGroupScope(true))
+                                {
+                                    EditorGUILayout.Toggle("Playing Combo", M.PlayingCombo);
+                                    EditorGUILayout.IntField("ActiveCombo", M.ActiveComboIndex.Value);
+                                    EditorGUILayout.IntField("ActiveComboSequence", M.ActiveComboSequenceIndex);
                                 }
                             }
                         }

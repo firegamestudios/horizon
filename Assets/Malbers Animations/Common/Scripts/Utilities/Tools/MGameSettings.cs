@@ -9,9 +9,13 @@ namespace MalbersAnimations
     {
         public bool HideCursor = false;
         public bool ForceFPS = false;
-
         [Hide("ForceFPS")]
         public int GameFPS = 60;
+
+        public int vSyncCount = 0;
+        public bool DebugBuild = false;
+
+
 
 #if UNITY_EDITOR
         [Space,Tooltip("The Scene must be added to the Build Settings!!!")]
@@ -23,6 +27,8 @@ namespace MalbersAnimations
 
         void Awake()
         {
+            Debug.developerConsoleVisible = DebugBuild;
+
             transform.parent = null;
             DontDestroyOnLoad(this);
 
@@ -31,7 +37,7 @@ namespace MalbersAnimations
                 Cursor.lockState = CursorLockMode.Locked;
             }
 
-            QualitySettings.vSyncCount = 0;
+            QualitySettings.vSyncCount = vSyncCount;
             Application.targetFrameRate = ForceFPS ? GameFPS : -1;
 
             if (sceneNames != null && !InEditor)
@@ -54,6 +60,8 @@ namespace MalbersAnimations
                   if (s != null)
                         sceneNames.Add(s.name);
             }
+
+            vSyncCount = Mathf.Clamp(vSyncCount, 0, 4);
         }
 #endif
 

@@ -4,7 +4,7 @@ using MalbersAnimations.Controller;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Malbers/Animal Controller/Animal Stances")]
+    [AddTypeMenu("Malbers/Animal/Stance")]
     public class StanceReaction : MReaction
     {
         public Stance_Reaction action = Stance_Reaction.Set;

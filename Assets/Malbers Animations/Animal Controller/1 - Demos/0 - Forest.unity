@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.7122642, g: 0.965993, b: 1, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.011
@@ -559,15 +559,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.671588
+      value: 3.741219
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4399745
+      value: 3.8956854
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.6545784
+      value: -21.12689
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6575,7 +6575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1687954435391512, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
       propertyPath: m_RootOrder
@@ -6678,17 +6678,17 @@ PrefabInstance:
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.671588
+      value: 3.741219
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4399745
+      value: 3.8956854
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.6545784
+      value: -21.12689
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
@@ -12916,7 +12916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animal: {fileID: 1791744362}
   modes: []
-  Animals: 1
+  ignoreStates: []
   Layer:
     UseConstant: 1
     ConstantValue:
@@ -13031,6 +13031,11 @@ MonoBehaviour:
   m_HitEffect:
     UseConstant: 1
     ConstantValue: {fileID: 1420812311}
+    Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
@@ -13181,37 +13186,8 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 1
+  m_audio: {fileID: 0}
   Trigger: {fileID: 1281827830}
-  SelfStatEnter:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-  SelfStatExit:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
     modify: 0
@@ -13292,10 +13268,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 267025963}
     m_Modifications:
-    - target: {fileID: 1393744931466200, guid: a578de702f2191b4fa9cdcec1ad493c5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1438017827249262, guid: a578de702f2191b4fa9cdcec1ad493c5, type: 3}
       propertyPath: m_Name
       value: Wolf Lite
@@ -13344,38 +13316,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114222225517902476, guid: a578de702f2191b4fa9cdcec1ad493c5,
-        type: 3}
-      propertyPath: Editor_Tabs1
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114222225517902476, guid: a578de702f2191b4fa9cdcec1ad493c5,
-        type: 3}
-      propertyPath: Editor_Tabs2
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1735110541734373478, guid: a578de702f2191b4fa9cdcec1ad493c5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5193703386021988088, guid: a578de702f2191b4fa9cdcec1ad493c5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762624870925479390, guid: a578de702f2191b4fa9cdcec1ad493c5,
-        type: 3}
-      propertyPath: EditorTab1
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7776402098345217213, guid: a578de702f2191b4fa9cdcec1ad493c5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6943845348117905013, guid: a578de702f2191b4fa9cdcec1ad493c5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a578de702f2191b4fa9cdcec1ad493c5, type: 3}
 --- !u!1 &1330270238
 GameObject:
@@ -24125,8 +24066,11 @@ MonoBehaviour:
   character: {fileID: 0}
   reaction:
     rid: 1087322886961627137
+  criticalReaction:
+    rid: -2
   damagerReaction:
     rid: -2
+  surface: {fileID: 0}
   ignoreDamagerReaction:
     UseConstant: 1
     ConstantValue: 0
@@ -24426,8 +24370,8 @@ MonoBehaviour:
   SelectedState: 3
   SelectedStance: 0
   ShowStateInInspector: 0
-  Editor_Tabs1: 4
-  Editor_Tabs2: 0
+  Editor_Tabs1: 1
+  Editor_Tabs2: 4
   Mode_Tabs1: 0
   Ability_Tabs: 0
   Editor_EventTabs: 1
@@ -24440,6 +24384,25 @@ MonoBehaviour:
   Runtime_Tabs2: 0
   t: {fileID: 1791744366}
   InGroundChanger: 0
+  states_C:
+  - active: 1
+    state: {fileID: 11400000, guid: 059fcb0b5c50a2947ad6e5356e369291, type: 2}
+    priority: 9
+  - active: 0
+    state: {fileID: 11400000, guid: 7e1343fa5ebbe8f41ac0155f4bc7e8da, type: 2}
+    priority: 7
+  - active: 0
+    state: {fileID: 11400000, guid: 26f1295640c15b14f988cee8a3814aaa, type: 2}
+    priority: 5
+  - active: 0
+    state: {fileID: 11400000, guid: 47af1b04b47957f4ca466d23cbb16cf6, type: 2}
+    priority: 4
+  - active: 1
+    state: {fileID: 11400000, guid: bdb4bb76e2b782f42b909978af887428, type: 2}
+    priority: 2
+  - active: 1
+    state: {fileID: 11400000, guid: c31051ac4cd486e4f9ac40015fdef3a6, type: 2}
+    priority: 1
   states:
   - {fileID: 11400000, guid: 059fcb0b5c50a2947ad6e5356e369291, type: 2}
   - {fileID: 11400000, guid: 7e1343fa5ebbe8f41ac0155f4bc7e8da, type: 2}
@@ -24717,6 +24680,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 26331678}
     ActivationTime: 0
   - active: 1
@@ -24920,6 +24887,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 1405079681}
     ActivationTime: 0
   - active: 1
@@ -25125,6 +25096,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   - active: 1
@@ -25316,6 +25291,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   - active: 1
@@ -25914,6 +25893,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   CloneStates: 1
@@ -25973,7 +25956,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  AdditiveRotation: {x: 0, y: 0, z: 0, w: 0}
   SmoothVertical:
     UseConstant: 1
     ConstantValue: 1
@@ -26170,10 +26152,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -26215,10 +26193,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -26260,10 +26234,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -26305,10 +26275,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -26399,10 +26365,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -26444,10 +26406,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -26490,10 +26448,6 @@ MonoBehaviour:
     rotation:
       UseConstant: 1
       ConstantValue: 0
-      Variable: {fileID: 0}
-    lerpRotation:
-      UseConstant: 1
-      ConstantValue: 4
       Variable: {fileID: 0}
     lerpRotAnim:
       UseConstant: 1
@@ -26695,6 +26649,11 @@ MonoBehaviour:
   m_Random: Random
   m_DeltaAngle: DeltaAngle
   m_Strafe: Strafe
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!136 &1791744363
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27572,6 +27531,8 @@ MonoBehaviour:
       m_Bits: 4294967295
     Variable: {fileID: 0}
   triggerInteraction: 1
+  CollectableReaction:
+    rid: -2
   CanPickUp:
     m_PersistentCalls:
       m_Calls: []
@@ -27649,6 +27610,11 @@ MonoBehaviour:
   item: {fileID: 0}
   focusedItem: {fileID: 0}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &1993734633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28093,6 +28059,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {x: 0, y: -2, z: 0}
     Variable: {fileID: 0}
+  FireTest: 0
 --- !u!1001 &2012966952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28388,7 +28355,7 @@ MonoBehaviour:
   OnClearTarget:
     m_PersistentCalls:
       m_Calls: []
-  debug: 1
+  debug: 0
   m_Animator: {fileID: 0}
   m_AimHorizontal: AimHorizontal
   m_AimVertical: AimVertical
@@ -28396,7 +28363,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  EditorTab1: 1
+  EditorTab1: 0
 --- !u!114 &2065152769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28413,7 +28380,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  aimer: {fileID: 0}
+  aimer: {fileID: 2065152768}
   LimitAngle:
     UseConstant: 1
     ConstantValue: 60
@@ -28426,14 +28393,14 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  OnLookAtActive:
-    m_PersistentCalls:
-      m_Calls: []
   Bones:
   - bone: {fileID: 164496}
     offset: {x: 0, y: -90, z: -90}
     weight: 1
     external: 0
+  OnLookAtActive:
+    m_PersistentCalls:
+      m_Calls: []
   debug: 1
 --- !u!1 &2068392792
 GameObject:
@@ -34059,8 +34026,8 @@ MonoBehaviour:
   SelectedState: 3
   SelectedStance: 0
   ShowStateInInspector: 0
-  Editor_Tabs1: 4
-  Editor_Tabs2: 0
+  Editor_Tabs1: 1
+  Editor_Tabs2: 4
   Mode_Tabs1: 0
   Ability_Tabs: 0
   Editor_EventTabs: 1
@@ -34073,6 +34040,25 @@ MonoBehaviour:
   Runtime_Tabs2: 0
   t: {fileID: 4417229172267626}
   InGroundChanger: 0
+  states_C:
+  - active: 1
+    state: {fileID: 11400000, guid: 059fcb0b5c50a2947ad6e5356e369291, type: 2}
+    priority: 9
+  - active: 0
+    state: {fileID: 11400000, guid: 7e1343fa5ebbe8f41ac0155f4bc7e8da, type: 2}
+    priority: 7
+  - active: 0
+    state: {fileID: 11400000, guid: 26f1295640c15b14f988cee8a3814aaa, type: 2}
+    priority: 5
+  - active: 0
+    state: {fileID: 11400000, guid: 47af1b04b47957f4ca466d23cbb16cf6, type: 2}
+    priority: 4
+  - active: 1
+    state: {fileID: 11400000, guid: bdb4bb76e2b782f42b909978af887428, type: 2}
+    priority: 2
+  - active: 1
+    state: {fileID: 11400000, guid: c31051ac4cd486e4f9ac40015fdef3a6, type: 2}
+    priority: 1
   states:
   - {fileID: 11400000, guid: 059fcb0b5c50a2947ad6e5356e369291, type: 2}
   - {fileID: 11400000, guid: 7e1343fa5ebbe8f41ac0155f4bc7e8da, type: 2}
@@ -34350,6 +34336,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 1093672828806292234}
     ActivationTime: 0
   - active: 1
@@ -34553,6 +34543,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 1594495559571189703}
     ActivationTime: 0
   - active: 1
@@ -34758,6 +34752,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   - active: 1
@@ -34949,6 +34947,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   - active: 1
@@ -35547,6 +35549,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   CloneStates: 1
@@ -35606,7 +35612,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  AdditiveRotation: {x: 0, y: 0, z: 0, w: 0}
   SmoothVertical:
     UseConstant: 1
     ConstantValue: 1
@@ -35803,10 +35808,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -35848,10 +35849,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -35893,10 +35890,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -35938,10 +35931,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -36032,10 +36021,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -36077,10 +36062,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -36123,10 +36104,6 @@ MonoBehaviour:
     rotation:
       UseConstant: 1
       ConstantValue: 0
-      Variable: {fileID: 0}
-    lerpRotation:
-      UseConstant: 1
-      ConstantValue: 4
       Variable: {fileID: 0}
     lerpRotAnim:
       UseConstant: 1
@@ -36328,6 +36305,11 @@ MonoBehaviour:
   m_Random: Random
   m_DeltaAngle: DeltaAngle
   m_Strafe: Strafe
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &114308227331817372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36391,6 +36373,11 @@ MonoBehaviour:
   m_HitEffect:
     UseConstant: 1
     ConstantValue: {fileID: 4653085297210783807}
+    Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
@@ -36541,37 +36528,8 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 1
+  m_audio: {fileID: 0}
   Trigger: {fileID: 65525003106220520}
-  SelfStatEnter:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-  SelfStatExit:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
     modify: 0
@@ -37074,7 +37032,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  aimer: {fileID: 0}
+  aimer: {fileID: 5631879338653536273}
   LimitAngle:
     UseConstant: 1
     ConstantValue: 60
@@ -37087,14 +37045,14 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  OnLookAtActive:
-    m_PersistentCalls:
-      m_Calls: []
   Bones:
   - bone: {fileID: 3129345869153848463}
     offset: {x: 0, y: -90, z: -90}
     weight: 1
     external: 0
+  OnLookAtActive:
+    m_PersistentCalls:
+      m_Calls: []
   debug: 1
 --- !u!1 &831426989628038107
 GameObject:
@@ -38640,8 +38598,11 @@ MonoBehaviour:
   character: {fileID: 0}
   reaction:
     rid: 1087322886961627136
+  criticalReaction:
+    rid: -2
   damagerReaction:
     rid: -2
+  surface: {fileID: 0}
   ignoreDamagerReaction:
     UseConstant: 1
     ConstantValue: 0
@@ -63716,7 +63677,7 @@ MonoBehaviour:
   OnClearTarget:
     m_PersistentCalls:
       m_Calls: []
-  debug: 1
+  debug: 0
   m_Animator: {fileID: 0}
   m_AimHorizontal: AimHorizontal
   m_AimVertical: AimVertical
@@ -63724,7 +63685,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  EditorTab1: 1
+  EditorTab1: 0
 --- !u!4 &5636255761366441213
 Transform:
   m_ObjectHideFlags: 0
@@ -64129,6 +64090,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {x: 0, y: -2, z: 0}
     Variable: {fileID: 0}
+  FireTest: 0
 --- !u!82 &6836389831844870037
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64799,6 +64761,8 @@ MonoBehaviour:
       m_Bits: 4294967295
     Variable: {fileID: 0}
   triggerInteraction: 1
+  CollectableReaction:
+    rid: -2
   CanPickUp:
     m_PersistentCalls:
       m_Calls: []
@@ -64876,6 +64840,11 @@ MonoBehaviour:
   item: {fileID: 0}
   focusedItem: {fileID: 0}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!4 &7936660483121643831
 Transform:
   m_ObjectHideFlags: 0
@@ -65255,7 +65224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animal: {fileID: 114222226100109450}
   modes: []
-  Animals: 1
+  ignoreStates: []
   Layer:
     UseConstant: 1
     ConstantValue:

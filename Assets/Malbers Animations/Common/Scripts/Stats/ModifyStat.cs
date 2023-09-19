@@ -121,7 +121,7 @@ namespace MalbersAnimations
         /// <summary>Modify the Stats on an animal </summary>
         public bool ModifyStat(Stats stats)
         {
-            if (stats && !IsNull)
+            if (stats && stats.enabled && !IsNull)
             {
                 return ModifyStat(stats.Stat_Get(ID));
             }

@@ -82,6 +82,15 @@ namespace MalbersAnimations.Scriptables
             if (Value) Value.rotation = rot;
         }
 
+        public virtual void SetPositionAndRotation(Vector3 pos, Quaternion rot)
+        {
+            if (Value)
+            {
+                Value.rotation = rot;
+                Value.position = pos;
+            }
+        }
+
 
         public static implicit operator Transform(TransformReference reference) => reference.Value;
         public static implicit operator TransformReference(Transform reference) => new TransformReference(reference);

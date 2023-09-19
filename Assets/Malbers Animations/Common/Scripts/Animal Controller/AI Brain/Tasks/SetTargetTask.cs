@@ -17,10 +17,10 @@ namespace MalbersAnimations.Controller.AI
         [RequiredField] public TransformVar TargetT;
         [RequiredField] public GameObjectVar TargetG;
         [RequiredField] public RuntimeGameObjects TargetRG;
-        public GetRuntimeGameObjects.RuntimeSetTypeGameObject rtype = GetRuntimeGameObjects.RuntimeSetTypeGameObject.Random;
+        public RuntimeSetTypeGameObject rtype = RuntimeSetTypeGameObject.Random;
 
-        public IntReference RTIndex = new IntReference();
-        public StringReference RTName = new StringReference();
+        public IntReference RTIndex = new();
+        public StringReference RTName = new();
 
         [Tooltip("When a new target is assinged it also sets that the Animal should move to that target")]
         public bool MoveToTarget = true;
@@ -38,25 +38,10 @@ namespace MalbersAnimations.Controller.AI
                     brain.AIControl.SetTarget(TargetG.Value.transform, MoveToTarget);
                     break;
                 case TargetToFollow.RuntimeGameObjects:
-                    switch (rtype)
+                    if (TargetRG != null && !TargetRG.IsEmpty)
                     {
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.First:
-                            brain.AIControl.SetTarget(TargetRG.Item_GetFirst().transform, true);
-                            break;
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Random:
-                            brain.AIControl.SetTarget(TargetRG.Item_GetRandom().transform, true);
-                            break;
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Index:
-                            brain.AIControl.SetTarget(TargetRG.Item_Get(RTIndex).transform, true);
-                            break;
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.ByName:
-                            brain.AIControl.SetTarget(TargetRG.Item_Get(RTName).transform, true);
-                            break;
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Closest:
-                            brain.AIControl.SetTarget(TargetRG.Item_GetClosest(brain.Animal.gameObject).transform, true);
-                            break;
-                        default:
-                            break;
+                        var target = TargetRG.GetItem(rtype, RTIndex, RTName, brain.Animal.gameObject);
+                        if (target) brain.AIControl.SetTarget(target.transform, true);
                     }
                     break;
                 case TargetToFollow.ClearTarget:
@@ -127,13 +112,13 @@ namespace MalbersAnimations.Controller.AI
                     UnityEditor.EditorGUILayout.PropertyField(TargetRG, new GUIContent("Runtime Set"));
                     UnityEditor.EditorGUILayout.PropertyField(rtype, new GUIContent("Selection"));
 
-                    var Sel = (GetRuntimeGameObjects.RuntimeSetTypeGameObject)rtype.intValue;
+                    var Sel = (RuntimeSetTypeGameObject)rtype.intValue;
                     switch (Sel)
                     {
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.Index:
+                        case RuntimeSetTypeGameObject.Index:
                             UnityEditor.EditorGUILayout.PropertyField(RTIndex, new GUIContent("Element Index"));
                             break;
-                        case GetRuntimeGameObjects.RuntimeSetTypeGameObject.ByName:
+                        case RuntimeSetTypeGameObject.ByName:
                             UnityEditor.EditorGUILayout.PropertyField(RTName, new GUIContent("Element Name"));
                             break;
                         default:

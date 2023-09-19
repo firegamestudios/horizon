@@ -48,6 +48,8 @@ namespace MalbersAnimations.Scriptables
         public AudioClip ConstantValue;
         [RequiredField] public AudioClipListVar Variable;
 
+        public AudioClip Value => UseConstant ? ConstantValue : (Variable != null ? Variable.Item_GetRandom() : null);
+
         /// <summary>Check if the Audio Clip list var is not empty or Null </summary>
         public bool NullOrEmpty() => UseConstant ? (ConstantValue == null) : (Variable == null);
 

@@ -1,6 +1,4 @@
-﻿
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +12,6 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
     [CustomPropertyDrawer(typeof(SubclassSelectorAttribute))]
     public class SubclassSelectorDrawer : PropertyDrawer
     {
-
         struct TypePopupCache
         {
             public AdvancedTypePopup TypePopup { get; }
@@ -42,7 +39,8 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
             {
                 if (property.propertyType == SerializedPropertyType.ManagedReference)
                 {
-
+                    if (label.text.Contains("Element"))
+                    { label.text = label.text.Replace("Element", "Reaction"); } //????
 
                     // Draw the subclass selector popup.
                     Rect popupPosition = new(position);
@@ -50,15 +48,11 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
                     popupPosition.x += EditorGUIUtility.labelWidth;
                     popupPosition.height = EditorGUIUtility.singleLineHeight;
 
-                    if (EditorGUI.DropdownButton(popupPosition, GetTypeName(property), FocusType.Keyboard))
-                    {
-                        TypePopupCache popup = GetTypePopup(property);
-                        m_TargetProperty = property;
-                        popup.TypePopup.Show(popupPosition);
-                    }
+                    var indent = EditorGUI.indentLevel;
+                    EditorGUI.indentLevel = 0;
 
                     var hasActive = property.FindPropertyRelative("Active");
-
+                    var delay = property.FindPropertyRelative("delay");
 
                     if (hasActive != null)
                     {
@@ -70,14 +64,49 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
                             x = pos.x - 20f,
                         };
 
-
-                      //  hasActive.boolValue = GUI.Toggle(buttonRect, hasActive.boolValue,new GUIContent(""));
+                        //  hasActive.boolValue = GUI.Toggle(buttonRect, hasActive.boolValue,new GUIContent(""));
                         hasActive.boolValue = GUI.Toggle(buttonRect, hasActive.boolValue, GUIContent.none);
+                    }
+
+
+                    if (delay != null)
+                    {
+                        var pos = EditorGUI.PrefixLabel(position, label);
+                        popupPosition.width -= 30;
+                        Rect buttonRect = new(pos)
+                        {
+                            width = 30f-4,
+                            height = EditorGUIUtility.singleLineHeight,
+                           // x = popupPosition.x + popupPosition.width + 2,
+                            x = position.width-5,
+                              
+                        };
+
+                        //  hasActive.boolValue = GUI.Toggle(buttonRect, hasActive.boolValue,new GUIContent(""));
+                        delay.floatValue = EditorGUI.FloatField(buttonRect, GUIContent.none, delay.floatValue);
 
                     }
 
+
+
+                    if (EditorGUI.DropdownButton(popupPosition, GetTypeName(property), FocusType.Keyboard))
+                    {
+                        TypePopupCache popup = GetTypePopup(property);
+                        m_TargetProperty = property;
+                        popup.TypePopup.Show(popupPosition);
+                    }
+
+                  
+
+
+                   
+
+
                     // Draw the managed reference property.
                     EditorGUI.PropertyField(position, property, label, true);
+
+                     
+                    EditorGUI.indentLevel = indent;
                 }
                 else
                 {

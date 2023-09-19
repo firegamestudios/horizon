@@ -204,6 +204,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: Jump
     key: 32
@@ -248,6 +252,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: Fire3
     key: 304
@@ -304,6 +312,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 49
@@ -360,6 +372,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 50
@@ -416,6 +432,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 99
@@ -460,6 +480,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 113
@@ -503,6 +527,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: Action
@@ -560,6 +588,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: Glide
     key: 102
@@ -603,6 +635,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: LockTarget
@@ -660,6 +696,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 9
@@ -716,6 +756,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: Fly
     key: 118
@@ -771,6 +815,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -835,6 +883,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Jump
       key: 32
@@ -879,6 +931,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fire3
       key: 304
@@ -935,6 +991,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 49
@@ -991,6 +1051,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 50
@@ -1047,6 +1111,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 99
@@ -1090,6 +1158,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1135,6 +1207,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Action
       key: 101
@@ -1147,6 +1223,18 @@ MonoBehaviour:
           - m_Target: {fileID: 3499509235240085047}
             m_TargetAssemblyTypeName: MalbersAnimations.Controller.MPickUp, Assembly-CSharp
             m_MethodName: TryPickUpDrop
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 95444453729787667}
+            m_TargetAssemblyTypeName: MalbersAnimations.Controller.MAnimal, MalbersAnimations
+            m_MethodName: Zone_Activate
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -1191,6 +1279,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Glide
       key: 102
@@ -1234,6 +1326,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: LockTarget
@@ -1291,6 +1387,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Aim
       key: 324
@@ -1334,6 +1434,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Attack1
@@ -1379,6 +1483,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Attack2
       key: 324
@@ -1422,6 +1530,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Reload
@@ -1467,6 +1579,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 52
@@ -1510,6 +1626,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1555,6 +1675,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 54
@@ -1599,6 +1723,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fly
       key: 118
@@ -1642,6 +1770,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1699,6 +1831,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 122
@@ -1755,6 +1891,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Mount
       key: 102
@@ -1808,6 +1948,10 @@ MonoBehaviour:
           m_Calls: []
     - name: Dismount
       active:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
+      ignoreOnPause:
         UseConstant: 1
         ConstantValue: 0
         Variable: {fileID: 0}
@@ -1915,6 +2059,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Call Mount
       key: 102
@@ -1976,6 +2124,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Jump
       key: 32
@@ -2020,6 +2172,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fire3
       key: 304
@@ -2076,6 +2232,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 49
@@ -2132,6 +2292,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 50
@@ -2188,6 +2352,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 99
@@ -2232,6 +2400,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 113
@@ -2275,6 +2447,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Action
@@ -2332,6 +2508,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Glide
       key: 102
@@ -2375,6 +2555,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: LockTarget
@@ -2432,6 +2616,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Aim
       key: 324
@@ -2475,6 +2663,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Attack1
@@ -2520,6 +2712,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Attack2
       key: 324
@@ -2564,6 +2760,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Reload
       key: 114
@@ -2607,6 +2807,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2664,6 +2868,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 53
@@ -2719,6 +2927,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2776,6 +2988,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fly
       key: 118
@@ -2819,6 +3035,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2881,6 +3101,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Jump
       key: 32
@@ -2925,6 +3149,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fire3
       key: 304
@@ -2981,6 +3209,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 49
@@ -3037,6 +3269,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 50
@@ -3093,6 +3329,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 99
@@ -3137,6 +3377,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 113
@@ -3180,6 +3424,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Action
@@ -3237,6 +3485,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Glide
       key: 102
@@ -3280,6 +3532,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: LockTarget
@@ -3337,6 +3593,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Aim
       key: 324
@@ -3380,6 +3640,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Attack1
@@ -3425,6 +3689,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Attack2
       key: 324
@@ -3469,6 +3737,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Reload
       key: 114
@@ -3512,6 +3784,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Grenade
@@ -3582,6 +3858,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fly
       key: 118
@@ -3625,6 +3905,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -3689,6 +3973,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Jump
       key: 32
@@ -3733,6 +4021,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fire3
       key: 304
@@ -3789,6 +4081,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 49
@@ -3845,6 +4141,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 50
@@ -3901,6 +4201,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 99
@@ -3945,6 +4249,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 113
@@ -3988,6 +4296,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Action
@@ -4045,6 +4357,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Glide
       key: 102
@@ -4088,6 +4404,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: LockTarget
@@ -4144,6 +4464,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -4207,6 +4531,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Jump
       key: 32
@@ -4251,6 +4579,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fire3
       key: 304
@@ -4307,6 +4639,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 49
@@ -4363,6 +4699,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 50
@@ -4419,6 +4759,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 11400000, guid: 1135ac854b3e61e498718248dd6a7b81, type: 2}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 99
@@ -4463,6 +4807,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 113
@@ -4506,6 +4854,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Action
@@ -4563,6 +4915,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Glide
       key: 102
@@ -4606,6 +4962,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: LockTarget
@@ -4663,6 +5023,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Aim
       key: 324
@@ -4706,6 +5070,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Attack1
@@ -4751,6 +5119,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Attack2
       key: 324
@@ -4794,6 +5166,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Reload
@@ -4839,6 +5215,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 52
@@ -4883,6 +5263,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 53
@@ -4926,6 +5310,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -5022,14 +5410,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee1fbf4dd84c7d4faf7900812b348a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowOnPlay: 0
   PivotPosDir: 0
-  SelectedMode: 2
-  SelectedState: 3
+  SelectedMode: 13
+  SelectedState: 12
   SelectedStance: 7
   ShowStateInInspector: 0
-  Editor_Tabs1: 4
-  Editor_Tabs2: 2
-  Mode_Tabs1: 2
+  Editor_Tabs1: 2
+  Editor_Tabs2: 4
+  Mode_Tabs1: 1
   Ability_Tabs: 0
   Editor_EventTabs: 0
   showPivots: 1
@@ -5041,13 +5430,53 @@ MonoBehaviour:
   Runtime_Tabs2: 0
   t: {fileID: 92051908111329896}
   InGroundChanger: 0
+  states_C:
+  - active: 1
+    state: {fileID: 11400000, guid: 94bb3c1bfa0653544bbad344b1f5dfed, type: 2}
+    priority: 13
+  - active: 1
+    state: {fileID: 11400000, guid: 1e0a5a206cb55c347be9a6ae6b5a464d, type: 2}
+    priority: 12
+  - active: 1
+    state: {fileID: 11400000, guid: ec91106ad0e8f954a8bb6f9df13b3cd8, type: 2}
+    priority: 11
+  - active: 1
+    state: {fileID: 11400000, guid: 56536b33237bdbc43a5b582c46f7a917, type: 2}
+    priority: 10
+  - active: 1
+    state: {fileID: 11400000, guid: 7f91101f0d5c5304fa7a84976e6186d6, type: 2}
+    priority: 9
+  - active: 1
+    state: {fileID: 11400000, guid: a0549cfb3eac3974aa117c7a829971f2, type: 2}
+    priority: 8
+  - active: 1
+    state: {fileID: 11400000, guid: 791ca7168f4e90c48ba89e90ee127cbb, type: 2}
+    priority: 7
+  - active: 1
+    state: {fileID: 11400000, guid: 69f2a595a121db64495a8abec43bfed7, type: 2}
+    priority: 5
+  - active: 1
+    state: {fileID: 11400000, guid: 698771e0c05a62842a2326e1432fa202, type: 2}
+    priority: 5
+  - active: 1
+    state: {fileID: 11400000, guid: 7b72c0b611d93124d9de1c556424ddc9, type: 2}
+    priority: 4
+  - active: 1
+    state: {fileID: 11400000, guid: bea993cc3a8d8d1478062ff3c565a109, type: 2}
+    priority: 3
+  - active: 1
+    state: {fileID: 11400000, guid: c324fedf8501a3a42aca718e999e59dd, type: 2}
+    priority: 2
+  - active: 1
+    state: {fileID: 11400000, guid: 0dd70bb1db46a3649ba8d123c6e0ecf0, type: 2}
+    priority: 1
   states:
   - {fileID: 11400000, guid: 94bb3c1bfa0653544bbad344b1f5dfed, type: 2}
-  - {fileID: 11400000, guid: 1e0a5a206cb55c347be9a6ae6b5a464d, type: 2}
-  - {fileID: 11400000, guid: ec91106ad0e8f954a8bb6f9df13b3cd8, type: 2}
   - {fileID: 11400000, guid: 56536b33237bdbc43a5b582c46f7a917, type: 2}
-  - {fileID: 11400000, guid: 7f91101f0d5c5304fa7a84976e6186d6, type: 2}
+  - {fileID: 11400000, guid: ec91106ad0e8f954a8bb6f9df13b3cd8, type: 2}
+  - {fileID: 11400000, guid: 1e0a5a206cb55c347be9a6ae6b5a464d, type: 2}
   - {fileID: 11400000, guid: a0549cfb3eac3974aa117c7a829971f2, type: 2}
+  - {fileID: 11400000, guid: 7f91101f0d5c5304fa7a84976e6186d6, type: 2}
   - {fileID: 11400000, guid: 791ca7168f4e90c48ba89e90ee127cbb, type: 2}
   - {fileID: 11400000, guid: 69f2a595a121db64495a8abec43bfed7, type: 2}
   - {fileID: 11400000, guid: 698771e0c05a62842a2326e1432fa202, type: 2}
@@ -5435,6 +5864,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5514,6 +5944,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5593,6 +6024,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5672,6 +6104,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5777,6 +6210,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5856,6 +6290,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5935,6 +6370,87 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
+      Persistent: 0
+      OnEnter:
+        m_PersistentCalls:
+          m_Calls: []
+      OnExit:
+        m_PersistentCalls:
+          m_Calls: []
+      OnCharged:
+        m_PersistentCalls:
+          m_Calls: []
+    - active:
+        UseConstant: 1
+        ConstantValue: 1
+        Variable: {fileID: 0}
+      Name: Sit
+      Index:
+        UseConstant: 1
+        ConstantValue: 8
+        Variable: {fileID: 0}
+      Input:
+        UseConstant: 1
+        ConstantValue: 
+        Variable: {fileID: 0}
+      audioClip:
+        UseConstant: 1
+        ConstantValue: {fileID: 0}
+        Variable: {fileID: 0}
+      ClipDelay:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
+      audioSource: {fileID: 0}
+      m_stopAudio: 1
+      modifier: {fileID: 0}
+      Limits:
+        affect: 1
+        affectStates:
+        - {fileID: 11400000, guid: 7370df9c769c2764381ad7c76eb3d949, type: 2}
+        - {fileID: 11400000, guid: 3787b6d94d5454740bf36d57436185b0, type: 2}
+        affect_Stance: 0
+        Stances: []
+        TransitionFrom: 
+      Status: 0
+      abilityTime:
+        UseConstant: 1
+        ConstantValue: 3
+        Variable: {fileID: 0}
+      ChargeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      ChargeValue:
+        UseConstant: 1
+        ConstantValue: 1
+        Variable: {fileID: 0}
+      Release: 0
+      AdditivePosition: 1
+      IgnoreGrounded: 0
+      IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6049,6 +6565,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6126,6 +6643,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6243,6 +6761,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6323,6 +6842,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6403,6 +6923,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6483,6 +7004,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6636,6 +7158,7 @@ MonoBehaviour:
       AdditivePosition: 0
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6715,6 +7238,7 @@ MonoBehaviour:
       AdditivePosition: 0
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6794,6 +7318,7 @@ MonoBehaviour:
       AdditivePosition: 0
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6873,6 +7398,7 @@ MonoBehaviour:
       AdditivePosition: 0
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -6989,6 +7515,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7103,6 +7630,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7219,6 +7747,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7298,6 +7827,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7377,6 +7907,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7456,6 +7987,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7535,6 +8067,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7614,6 +8147,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7693,6 +8227,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7772,6 +8307,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7851,6 +8387,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -7930,6 +8467,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8009,6 +8547,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8123,6 +8662,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8200,6 +8740,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8314,6 +8855,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8391,6 +8933,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8468,6 +9011,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8582,6 +9126,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8659,6 +9204,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8736,6 +9282,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8850,6 +9397,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -8927,6 +9475,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9004,6 +9553,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9118,6 +9668,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9195,6 +9746,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9272,6 +9824,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9349,6 +9902,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9426,6 +9980,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9503,6 +10058,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9617,6 +10173,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9694,6 +10251,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9771,6 +10329,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9848,6 +10407,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -9925,6 +10485,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10041,6 +10602,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10120,6 +10682,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10142,7 +10705,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     ResetToDefault: 0
-    allowRotation: 1
+    allowRotation: 0
     allowMovement: 0
     OnEnterMode:
       m_PersistentCalls:
@@ -10236,6 +10799,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10315,6 +10879,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10394,6 +10959,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10473,6 +11039,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10552,6 +11119,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10666,6 +11234,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10743,6 +11312,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10820,6 +11390,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10897,6 +11468,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -10974,6 +11546,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11067,7 +11640,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  AdditiveRotation: {x: 0, y: 0, z: 0, w: 0}
   SmoothVertical:
     UseConstant: 1
     ConstantValue: 1
@@ -11267,10 +11839,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 5
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 1.5
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 2
@@ -11311,10 +11879,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 5
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 1.5
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -11406,10 +11970,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 5
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 1
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 2
@@ -11450,10 +12010,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 5
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 1
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -11545,10 +12101,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 0
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -11589,10 +12141,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 0
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -11686,10 +12234,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 10
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -11730,10 +12274,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 10
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -11826,10 +12366,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 10
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -11871,10 +12407,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 10
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -11915,10 +12447,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 10
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -12007,10 +12535,6 @@ MonoBehaviour:
         ConstantValue: 2
         Variable: {fileID: 0}
       rotation:
-        UseConstant: 1
-        ConstantValue: 2
-        Variable: {fileID: 0}
-      lerpRotation:
         UseConstant: 1
         ConstantValue: 2
         Variable: {fileID: 0}
@@ -12103,10 +12627,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 2
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -12201,10 +12721,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 10
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12246,10 +12762,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 10
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12290,10 +12802,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 10
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -12385,10 +12893,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 2
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 1
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 2
@@ -12430,10 +12934,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 2
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 1
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 2
@@ -12472,10 +12972,6 @@ MonoBehaviour:
         ConstantValue: 10
         Variable: {fileID: 0}
       rotation:
-        UseConstant: 1
-        ConstantValue: 2
-        Variable: {fileID: 0}
-      lerpRotation:
         UseConstant: 1
         ConstantValue: 2
         Variable: {fileID: 0}
@@ -12571,10 +13067,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 10
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12615,10 +13107,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 10
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -12713,10 +13201,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 10
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12757,10 +13241,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 10
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -12804,10 +13284,6 @@ MonoBehaviour:
     rotation:
       UseConstant: 1
       ConstantValue: 0
-      Variable: {fileID: 0}
-    lerpRotation:
-      UseConstant: 1
-      ConstantValue: 4
       Variable: {fileID: 0}
     lerpRotAnim:
       UseConstant: 1
@@ -13650,6 +14126,7 @@ MonoBehaviour:
     rid: -2
   damagerReaction:
     rid: -2
+  surface: {fileID: 11400000, guid: cf2f9bc1a5989eb4cbe0bb67bb7b6fa9, type: 2}
   ignoreDamagerReaction:
     UseConstant: 1
     ConstantValue: 0
@@ -14907,6 +15384,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: SpecialAttack
     Variable: {fileID: 0}
+  DestroyOnDrop: 0
   startWeapon:
     UseConstant: 1
     ConstantValue: {fileID: 0}
@@ -14975,8 +15453,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164372908983906724}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08129668, y: 0.99542964, z: -0.0036337562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15018,16 +15496,17 @@ MonoBehaviour:
   animal: {fileID: 95444453729787667}
   modes:
   - {fileID: 11400000, guid: 1286867ad3c4cdd4baacac3373aff92c, type: 2}
-  Animals: 1
+  ignoreStates:
+  - {fileID: 11400000, guid: adfa24f62d6db4d40a1d837f4ec1a6e9, type: 2}
   Layer:
     UseConstant: 1
     ConstantValue:
       serializedVersion: 2
       m_Bits: 9437184
     Variable: {fileID: 0}
-  SearchRadius: 1.75
+  SearchRadius: 2.72
   Distance: 1
-  TargetMultiplier: 0.7
+  TargetMultiplier: 1
   AlignTime: 0.2
   LookAtTime: 0.15
   debugColor: {r: 1, g: 0.49523813, b: 0, a: 0}
@@ -15048,7 +15527,8 @@ MonoBehaviour:
   modes:
   - {fileID: 11400000, guid: 29bdac49b8510e74db1c074ba91fbe3f, type: 2}
   - {fileID: 11400000, guid: 87cd5a9f71d66f84493bd68df8277f21, type: 2}
-  Animals: 1
+  ignoreStates:
+  - {fileID: 11400000, guid: adfa24f62d6db4d40a1d837f4ec1a6e9, type: 2}
   Layer:
     UseConstant: 1
     ConstantValue:
@@ -15077,7 +15557,8 @@ MonoBehaviour:
   animal: {fileID: 95444453729787667}
   modes:
   - {fileID: 11400000, guid: dc411047be38d924fbfc67128f6957f2, type: 2}
-  Animals: 1
+  ignoreStates:
+  - {fileID: 11400000, guid: adfa24f62d6db4d40a1d837f4ec1a6e9, type: 2}
   Layer:
     UseConstant: 1
     ConstantValue:
@@ -15792,6 +16273,8 @@ MonoBehaviour:
       m_Bits: 1073741824
     Variable: {fileID: 0}
   triggerInteraction: 2
+  CollectableReaction:
+    rid: -2
   CanPickUp:
     m_PersistentCalls:
       m_Calls:
@@ -15853,6 +16336,11 @@ MonoBehaviour:
   item: {fileID: 0}
   focusedItem: {fileID: 0}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &4617209160507419128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21992,6 +22480,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animal: {fileID: 95444453729787667}
   m_Path: {fileID: 0}
+  AutoMove:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Radius: 0.5
   Offset: {x: 0, y: 0.5, z: 0}
   ForwardOffset: 0.3
@@ -22586,7 +23078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7053993459426790513}
   m_LocalRotation: {x: 0.49983555, y: 0.51258343, z: 0.49842843, w: 0.48886785}
-  m_LocalPosition: {x: 0.19957836, y: -0.5003984, z: 0.01251591}
+  m_LocalPosition: {x: 0.11828168, y: 0.49503124, z: 0.008882046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22617,10 +23109,15 @@ MonoBehaviour:
       m_Bits: 4294967295
     Variable: {fileID: 11400000, guid: f489db1856e43dc47b175dd125135bdc, type: 2}
   triggerInteraction: 1
-  owner: {fileID: 0}
+  owner: {fileID: 95444453729787666}
   m_HitEffect:
     UseConstant: 1
     ConstantValue: {fileID: 8582105717484895342}
+    Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
@@ -22771,37 +23268,8 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   Trigger: {fileID: 8674361171071043236}
-  SelfStatEnter:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-  SelfStatExit:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
     modify: 0
@@ -23745,7 +24213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8070456567236795711}
   m_LocalRotation: {x: -0.31800506, y: -0.5877405, z: 0.6861517, w: 0.28745404}
-  m_LocalPosition: {x: 0.42685825, y: 0.2473582, z: -0.015790634}
+  m_LocalPosition: {x: 0.34556156, y: 1.2427878, z: -0.019424438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23776,10 +24244,15 @@ MonoBehaviour:
       m_Bits: 4294967295
     Variable: {fileID: 11400000, guid: f489db1856e43dc47b175dd125135bdc, type: 2}
   triggerInteraction: 1
-  owner: {fileID: 0}
+  owner: {fileID: 95444453729787666}
   m_HitEffect:
     UseConstant: 1
     ConstantValue: {fileID: 8582105717484895342}
+    Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
@@ -23930,37 +24403,8 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   Trigger: {fileID: 2541509318782673225}
-  SelfStatEnter:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-  SelfStatExit:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
     modify: 0
@@ -29028,7 +29472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8878352959574675901}
   m_LocalRotation: {x: -0.68615144, y: -0.28745583, z: 0.31800488, w: 0.58773994}
-  m_LocalPosition: {x: -0.26426548, y: 0.24735677, z: -0.015791647}
+  m_LocalPosition: {x: -0.34556216, y: 1.2427864, z: -0.019425392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29059,10 +29503,15 @@ MonoBehaviour:
       m_Bits: 4294967295
     Variable: {fileID: 11400000, guid: f489db1856e43dc47b175dd125135bdc, type: 2}
   triggerInteraction: 1
-  owner: {fileID: 0}
+  owner: {fileID: 95444453729787666}
   m_HitEffect:
     UseConstant: 1
     ConstantValue: {fileID: 8582105717484895342}
+    Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
@@ -29213,37 +29662,8 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   Trigger: {fileID: 2099782215943705035}
-  SelfStatEnter:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-  SelfStatExit:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
     modify: 0
@@ -30482,6 +30902,11 @@ PrefabInstance:
     - target: {fileID: 4000010731693402, guid: ec11141241d00fb41b2ffe365291a9f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010118446818, guid: ec11141241d00fb41b2ffe365291a9f9,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 199000011340400198, guid: ec11141241d00fb41b2ffe365291a9f9,
         type: 3}

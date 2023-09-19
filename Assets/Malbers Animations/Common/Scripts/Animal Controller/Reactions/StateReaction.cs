@@ -5,7 +5,7 @@ using MalbersAnimations.Controller;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Malbers/Animal Controller/Animal States")]
+    [AddTypeMenu("Malbers/Animal/State")]
     public class StateReaction : MReaction
     {
         public State_Reaction type = State_Reaction.Activate;

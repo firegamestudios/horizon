@@ -13,12 +13,23 @@ MonoBehaviour:
   m_Name: Empty Swim
   m_EditorClassIdentifier: 
   Active: 1
+  animal: {fileID: 0}
   Input: 
   ExitInput:
     UseConstant: 1
     ConstantValue: 
     Variable: {fileID: 0}
+  m_StateProfile:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  AlwaysForward:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Priority: 4
+  resetInputOnFailed: 0
+  ResetLastState: 0
   General:
     modify: 7295
     RootMotion: 1
@@ -56,17 +67,19 @@ MonoBehaviour:
   UseSendMessage: 0
   IncludeChildren: 1
   AllowExitFromAnim: 0
+  CanTransitionToItself: 0
   IncludeSleepState: 1
   SleepFromState: []
   SleepFromMode: []
   QueueFrom: []
+  ResetFrom: []
   SleepFromStance: []
   stances: []
   TryLoop:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 5
     Variable: {fileID: 0}
-  AllowExitTime:
+  Duration:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -78,7 +91,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 
     Variable: {fileID: 0}
-  ExitFrame: 1
   ExitOnMain: 1
   EnterCooldown:
     UseConstant: 1
@@ -89,18 +101,34 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   CanStrafe: 1
+  StrafeAnimations: 1
   MovementStrafe: 1
   IdleStrafe: 1
-  debug: 1
+  m_debug: 1
   Editor_Tabs1: 0
+  SpeedSets: []
   ID: {fileID: 11400000, guid: 7e364e53b77644c47aa3abdaa2e2c08c, type: 2}
   WaterLayer:
     serializedVersion: 2
     m_Bits: 16
+  UpSearch: 3
   AlignSmooth: 7.5
-  Bounce: 5
-  TryExitTime: 1
-  WaterIsStatic: 1
+  bounce: 2
+  bounceLerp: 10
   KeepInertia: 1
   m_Radius: 0.1
   FrontRayLength: 1
+  HeightMult: 0.9
+  OnTouchedWaterEnter:
+    rid: -2
+  OnTouchedWaterExit:
+    rid: -2
+  IsInWater: 0
+  PivotAboveWater: 0
+  BounceUp: {x: 0, y: 0, z: 0}
+  BounceDown: {x: 0, y: 0, z: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

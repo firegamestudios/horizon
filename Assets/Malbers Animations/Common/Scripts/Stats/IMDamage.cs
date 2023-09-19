@@ -1,4 +1,5 @@
 ﻿using MalbersAnimations.Reactions;
+using MalbersAnimations.Scriptables;
 using UnityEngine;
 
 namespace MalbersAnimations
@@ -6,17 +7,23 @@ namespace MalbersAnimations
     /// <summary>Damagee interface for components that can be damaged</summary>
     public interface IMDamage
     { 
-        /// <summary>Which direction the Damage came from</summary>
+        /// <summary>Last Direction the Damage came from</summary>
         Vector3 HitDirection { get; set; }
 
-        ///// <summary>Which direction the Damage came from</summary>
+        ///// <summary>Last Position of the actual hit</summary>
         //Vector3 HitPosition { get; set; }
+
+        /// <summary>Surface of the Damageable</summary>
+        SurfaceID Surface { get; }
 
         /// <summary>Who is doing the Damage?</summary>
         GameObject Damager { get; set; }
 
         /// <summary>Who is Receiving the Damage?</summary>
         GameObject Damagee { get; }
+
+        /// <summary>What Collider got the interaction? </summary>
+        Collider HitCollider { get; set; }
 
         /// <summary>  Method to receive damage from an Atacker  </summary>
         /// <param name="Direction">Direction where the damage comes from</param>
@@ -74,5 +81,14 @@ namespace MalbersAnimations
         void DamagerAnimationStart(int hash);
 
         void DamagerAnimationEnd(int hash);
+    }
+
+
+    [System.Serializable]
+    public class EffectType
+    {
+        public SurfaceID surface;
+        public AudioClipReference sound;
+        public GameObjectReference effect;
     }
 }

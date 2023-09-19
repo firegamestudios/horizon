@@ -2256,7 +2256,7 @@ PrefabInstance:
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.96
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2,
         type: 3}
@@ -2266,7 +2266,7 @@ PrefabInstance:
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.58
+      value: -7.44
       objectReference: {fileID: 0}
     - target: {fileID: 7432359228648269916, guid: d520239042c144f438232f9375004dc2,
         type: 3}
@@ -3880,6 +3880,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: Sprint
@@ -6138,7 +6142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.96
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6146,7 +6150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.349
+      value: -22.209
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7016,8 +7020,11 @@ MonoBehaviour:
   character: {fileID: 0}
   reaction:
     rid: 5723820122946666497
+  criticalReaction:
+    rid: -2
   damagerReaction:
     rid: -2
+  surface: {fileID: 0}
   ignoreDamagerReaction:
     UseConstant: 1
     ConstantValue: 0
@@ -10591,6 +10598,11 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
     UseConstant: 1
@@ -10728,37 +10740,8 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   Trigger: {fileID: 3618144954370257292}
-  SelfStatEnter:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-  SelfStatExit:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
     modify: 0
@@ -11103,6 +11086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee1fbf4dd84c7d4faf7900812b348a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowOnPlay: 0
   PivotPosDir: 0
   SelectedMode: 1
   SelectedState: 0
@@ -11122,6 +11106,7 @@ MonoBehaviour:
   Runtime_Tabs2: 0
   t: {fileID: 3661778875071156750}
   InGroundChanger: 0
+  states_C: []
   states:
   - {fileID: 11400000, guid: 059fcb0b5c50a2947ad6e5356e369291, type: 2}
   - {fileID: 11400000, guid: bdb4bb76e2b782f42b909978af887428, type: 2}
@@ -11208,6 +11193,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11287,6 +11273,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11317,6 +11304,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   - active: 1
@@ -11397,6 +11388,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11474,6 +11466,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11504,6 +11497,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   - active: 1
@@ -11584,6 +11581,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11661,6 +11659,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11691,6 +11690,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   - active: 1
@@ -11773,6 +11776,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11852,6 +11856,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -11931,6 +11936,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -12010,6 +12016,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -12089,6 +12096,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -12168,6 +12176,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -12210,6 +12219,10 @@ MonoBehaviour:
     OnExitMode:
       m_PersistentCalls:
         m_Calls: []
+    OnEnterReaction:
+      rid: -2
+    OnExitReaction:
+      rid: -2
     m_Source: {fileID: 0}
     ActivationTime: 0
   CloneStates: 1
@@ -12269,7 +12282,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  AdditiveRotation: {x: 0, y: 0, z: 0, w: 0}
   SmoothVertical:
     UseConstant: 1
     ConstantValue: 0
@@ -12466,10 +12478,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12511,10 +12519,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12556,10 +12560,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12650,10 +12650,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12695,10 +12691,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -12741,10 +12733,6 @@ MonoBehaviour:
     rotation:
       UseConstant: 1
       ConstantValue: 0
-      Variable: {fileID: 0}
-    lerpRotation:
-      UseConstant: 1
-      ConstantValue: 4
       Variable: {fileID: 0}
     lerpRotAnim:
       UseConstant: 1
@@ -12946,6 +12934,11 @@ MonoBehaviour:
   m_Random: Random
   m_DeltaAngle: DeltaAngle
   m_Strafe: Strafe
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!95 &3714051147019879380
 Animator:
   serializedVersion: 5
@@ -13265,7 +13258,7 @@ PrefabInstance:
     - target: {fileID: 7938413579077664807, guid: cc9bf390dab9cb34ab26ab2b660184d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.96
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7938413579077664807, guid: cc9bf390dab9cb34ab26ab2b660184d0,
         type: 3}
@@ -13275,7 +13268,7 @@ PrefabInstance:
     - target: {fileID: 7938413579077664807, guid: cc9bf390dab9cb34ab26ab2b660184d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.349
+      value: -22.209
       objectReference: {fileID: 0}
     - target: {fileID: 7938413579077664807, guid: cc9bf390dab9cb34ab26ab2b660184d0,
         type: 3}

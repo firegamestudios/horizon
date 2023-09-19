@@ -9,6 +9,7 @@ public class BaseRoll : MonoBehaviour
     protected SaveLoadManager saveLoadManager;
     protected UIManager uiManager;
     protected GameObject myOnFocused;
+    protected Transform resulsWP;
 
     private void Awake()
     {
@@ -23,6 +24,8 @@ public class BaseRoll : MonoBehaviour
 
         //OnFocused
         myOnFocused = transform.Find("OnFocused").gameObject;
+
+        resulsWP = transform.Find("Results WP");
     }
 
 }

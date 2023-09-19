@@ -196,9 +196,9 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 0
-  m_StandbyUpdate: 1
+  m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1863971561199121455}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 38
     OrthographicSize: 10
@@ -247,6 +247,10 @@ MonoBehaviour:
   invertY:
     UseConstant: 1
     ConstantValue: 0
+    Variable: {fileID: 0}
+  CameraDistance:
+    UseConstant: 1
+    ConstantValue: 2
     Variable: {fileID: 0}
   XMultiplier:
     UseConstant: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Unity Reactions/Behaviour")]
+    [AddTypeMenu("Unity/Behaviour")]
     public class BehaviourReaction : Reaction
     {
         public enum Behaviour_Reaction { SetEnable, Destroy }

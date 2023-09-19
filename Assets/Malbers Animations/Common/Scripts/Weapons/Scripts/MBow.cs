@@ -185,7 +185,7 @@ namespace MalbersAnimations.Weapons
         {
             base.ResetCharge();
             BendBow(0);
-            if (Sounds.Length > 5 && WeaponSound.isPlaying && WeaponSound.clip == Sounds[5]) WeaponSound.Stop();
+            if (Sounds.Length > 5 && m_audio.isPlaying && m_audio.clip == Sounds[5]) m_audio.Stop();
         }
          
 
@@ -202,21 +202,21 @@ namespace MalbersAnimations.Weapons
             {
                 var newSound = Sounds[ID];
 
-                if (WeaponSound && !playingSound && gameObject.activeInHierarchy)
+                if (m_audio && !playingSound && gameObject.activeInHierarchy)
                 {
                     if (ID == 5 && CanCharge)                                    //THIS IS THE SOUND FOR BEND THE BOW
                     {
-                        WeaponSound.pitch = 1.03f / ChargeTime;
+                        m_audio.pitch = 1.03f / ChargeTime;
                         StartCoroutine(BowChargeTimePlay(newSound));
                     }
                     else
                     {
-                        WeaponSound.Stop();
-                        WeaponSound.pitch = 1;
+                        m_audio.Stop();
+                        m_audio.pitch = 1;
                         //HACK FOR THE SOUND
                         this.Delay_Action(2, () =>
                         {
-                            WeaponSound.PlayOneShot(newSound);
+                            m_audio.PlayOneShot(newSound);
                             playingSound = false;
                         }
                         );
@@ -229,7 +229,7 @@ namespace MalbersAnimations.Weapons
         {
             while (ChargedNormalized == 0) yield return null;
 
-            WeaponSound.PlayOneShot(sound);
+            m_audio.PlayOneShot(sound);
         }
 
         public override void ResetWeapon()

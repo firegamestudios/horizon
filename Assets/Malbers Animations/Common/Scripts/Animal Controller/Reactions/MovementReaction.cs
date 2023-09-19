@@ -4,7 +4,7 @@ using UnityEngine;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Malbers/Animal Controller/Animal Movement")]
+    [AddTypeMenu("Malbers/Animal/Movement")]
     public class MovementReaction : MReaction
     {
         public Move_Reaction type = Move_Reaction.Sleep;

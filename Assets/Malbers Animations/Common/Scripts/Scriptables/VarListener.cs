@@ -287,6 +287,7 @@ namespace MalbersAnimations
         }
 
 
+        private bool showFoldout;
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -296,6 +297,7 @@ namespace MalbersAnimations
                 if (ShowDescription.boolValue)
                 {
                     if (style == null)
+                    {
                         style = new GUIStyle(MTools.StyleBlue)
                         {
                             fontSize = 12,
@@ -304,23 +306,43 @@ namespace MalbersAnimations
                             stretchWidth = true
                         };
 
-                    style.normal.textColor = EditorStyles.boldLabel.normal.textColor;
+                        style.normal.textColor = EditorStyles.boldLabel.normal.textColor;
+
+                    }
 
                     Description.stringValue = EditorGUILayout.TextArea(Description.stringValue, style);
                 }
             }
 
 
-            EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
-            EditorGUIUtility.labelWidth = 55;
-            EditorGUILayout.PropertyField(value, GUILayout.MinWidth(25));
-            EditorGUIUtility.labelWidth = 40;
-            EditorGUILayout.PropertyField(Index, new GUIContent("    ID"),  GUILayout.MinWidth(15));
-            EditorGUIUtility.labelWidth = 0;
-            ShowEvents.boolValue = 
-                GUILayout.Toggle(ShowEvents.boolValue, 
-                new GUIContent((ShowEvents.boolValue ?"▲" : "▼"), "Show Events"), EditorStyles.miniButton, GUILayout.Width(25));
-            EditorGUILayout.EndHorizontal();
+            //using (new GUILayout.HorizontalScope( ))
+            //{
+            //    EditorGUI.indentLevel--; 
+            //    EditorGUIUtility.labelWidth = 10;
+            //    ShowEvents.boolValue = GUILayout.Toggle( ShowEvents.boolValue, GUIContent.none, EditorStyles.foldout, GUILayout.Width(15));
+            //    EditorGUI.indentLevel++;
+
+            //    EditorGUIUtility.labelWidth = 55;
+            //    EditorGUILayout.PropertyField(value, GUILayout.MinWidth(25));
+            //    EditorGUIUtility.labelWidth = 40;
+            //    EditorGUILayout.PropertyField(Index, new GUIContent("    ID"), GUILayout.MinWidth(15));
+            //    EditorGUIUtility.labelWidth = 0;
+            //}
+
+
+
+            using (new GUILayout.HorizontalScope(EditorStyles.helpBox))
+
+            {
+                EditorGUIUtility.labelWidth = 55;
+                EditorGUILayout.PropertyField(value, GUILayout.MinWidth(25));
+                EditorGUIUtility.labelWidth = 40;
+                EditorGUILayout.PropertyField(Index, new GUIContent("    ID"), GUILayout.MinWidth(15));
+                EditorGUIUtility.labelWidth = 0;
+                ShowEvents.boolValue =
+                    GUILayout.Toggle(ShowEvents.boolValue,
+                    new GUIContent((ShowEvents.boolValue ? "▲" : "▼"), "Show Events"), EditorStyles.miniButton, GUILayout.Width(25));
+            }
 
             if (ShowEvents.boolValue)
             {

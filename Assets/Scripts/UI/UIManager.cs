@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using MoreMountains.InventoryEngine;
 using MalbersAnimations;
 using Cinemachine;
+using Inworld;
 
 public class UIManager : MonoBehaviour
 {
@@ -22,8 +23,21 @@ public class UIManager : MonoBehaviour
     public TMP_Text systemMessageText;
     public Animator sysMessageAnim;
 
+    public TMP_Text transformMessageText;
+    public Animator transMessageAnim;
+
+    public TMP_Text playerNameText;
+
+    //Ai Inworld
+    public GameObject globalChatCanvas;
+    public AudioCapture audioCapture;
+    public GameObject aiCanvas;
+    float aiCanvasTimer = 5f;
+    float aiCanvasTimerReset = 5f;
+
     [HideInInspector]
     public InventoryDisplay inventoryDisplay;
+    public InventoryInputManager inventoryInputManager;
 
     public PC pc;
     MalbersInput malbersInput;
@@ -39,14 +53,62 @@ public class UIManager : MonoBehaviour
        //Inventory priority
         if (inventoryDisplay.IsOpen)
         {
-            malbersInput.enabled = false;
-            brain.enabled = false;
+            InputAndCamera(false, false);
         }
         else
         {
-            malbersInput.enabled = true;
-            brain.enabled = true;
+            //if Inventory Closed, Check Dialogue Box
+            if(globalChatCanvas.activeInHierarchy == true)
+            {
+                InputAndCamera(false, false);
+                inventoryInputManager.enabled = false;
+
+                if(aiCanvas.activeInHierarchy == false)
+                {
+                    aiCanvas.SetActive(true);
+                }
+                
+            }
+            else
+            {
+                InputAndCamera(true, true);
+                inventoryInputManager.enabled = true;
+                aiCanvasTimer -= Time.deltaTime;
+                if(aiCanvasTimer < 0)
+                {
+                    aiCanvasTimer = aiCanvasTimerReset;
+                    aiCanvas.SetActive(false);
+                }
+            }
+
         }
+
+        //AudioCapture push to Talk
+        if(Input.GetKey(KeyCode.Y))
+        {
+            audioCapture.enabled = true;
+        }
+        else
+        {
+            if(audioCapture.enabled == true)
+            {
+                audioCapture.enabled = false;
+            }
+           
+        }
+    }
+
+    #region SetupPlayer
+    public void SetupPlayerName(string myName, string myClass, string myRace)
+    {
+        playerNameText.text = myName + ", " + myRace + " " + myClass;
+    }
+    #endregion
+
+    public void InputAndCamera(bool _input, bool _camera)
+    {
+        malbersInput.enabled = _input;
+        brain.enabled = _camera;
     }
 
     public void AutoMessage(string message)
@@ -63,6 +125,26 @@ public class UIManager : MonoBehaviour
         sysMessageAnim.SetBool("on", false);
     }
 
+    public void TransformMessage(string message, Transform trans)
+    {
+        transformMessageText.text = message;
+        transMessageAnim.SetBool("on", true);
+        transMessageAnim.transform.GetComponent<TransformMessage>().transformInWorld = trans;
+        float timer = (float)message.Length / 3;
+        StartCoroutine(ClearTransMessage(timer));
+    }
+
+    public void ClearTransformMessage()
+    {
+        transMessageAnim.SetBool("on", false);
+        transMessageAnim.transform.GetComponent<TransformMessage>().transformInWorld = null;
+    }
+    IEnumerator ClearTransMessage(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        transMessageAnim.SetBool("on", false);
+        transMessageAnim.transform.GetComponent<TransformMessage>().transformInWorld = null;
+    }
     #region Inventory
     public void UpdateInventoryDisplay()
     {

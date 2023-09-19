@@ -238,6 +238,10 @@ namespace MalbersAnimations
         public StringReference m_SpecialAttack = new StringReference("SpecialAttack");
         #endregion
 
+
+        [Tooltip("An previous weapon will be destroyed if a new weapon is going to use the same holster. Enable this when using Malbers Inventory")]
+        public bool DestroyOnDrop;
+
         #region Properties
 
         /// <summary>Is the weapon Manager Enabled If is false everything will be ignored </summary>

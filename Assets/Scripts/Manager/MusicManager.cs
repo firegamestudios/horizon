@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MalbersAnimations;
@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour
     float fadeDuration = 3f;
     public float currentFadeTime;
     public bool isFadingOut;
-    float startVolume = 1;
+    public float defaultVolume = 0.3f;
 
 
     private void Awake()
@@ -62,6 +62,7 @@ public class MusicManager : MonoBehaviour
     {
         if (mAudioSource.clip == mAudioClip)
         {
+            mAudioSource.loop = false;
             FadeOutMusic(); // Start fading out the current music
             StartCoroutine(ChangeMusicClip()); // Wait for the fade-out, then change the clip and fade in
         }
@@ -116,7 +117,7 @@ public class MusicManager : MonoBehaviour
             float fadeFactor = currentFadeTime / fadeDuration;
 
             // Apply the fading effect
-            mAudioSource.volume = Mathf.Lerp(startVolume, 0.0f, fadeFactor);
+            mAudioSource.volume = Mathf.Lerp(defaultVolume, 0.0f, fadeFactor);
 
             // Increment the fade time
             currentFadeTime += Time.fixedDeltaTime;
@@ -127,7 +128,7 @@ public class MusicManager : MonoBehaviour
             float fadeFactor = currentFadeTime / fadeDuration;
 
             // Apply the fading effect
-            mAudioSource.volume = Mathf.Lerp(0.0f, startVolume, fadeFactor);
+            mAudioSource.volume = Mathf.Lerp(0.0f, defaultVolume, fadeFactor);
 
             // Increment the fade time
             currentFadeTime += Time.fixedDeltaTime;

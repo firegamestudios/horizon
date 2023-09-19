@@ -42,7 +42,7 @@ namespace MalbersAnimations
         public virtual void Invoke() => Invoke(Value);
 
         public virtual void SetValue(int value) => Value = value;
-        public virtual void SetValue(float value) => Value = (int)value;
+        public virtual void SetValue(float value) => Value = value;
         public virtual void SetValue(IDs value) => Value = value.ID;
         public virtual void SetValue(IntVar value) => Value = value.Value;
         public virtual void SetValue(FloatVar value) => Value = value.Value;

@@ -5,36 +5,47 @@ using UnityEngine.Events;
 namespace MalbersAnimations.Scriptables
 {
     [AddComponentMenu("Malbers/Variables/Transform Listener")]
-    public class TransformListener : MonoBehaviour
+    public class TransformListener : VarListener
     {
-        [RequiredField] public TransformVar value;
-        [Tooltip("Invokes the current value on Enable")]
-        public bool InvokeOnEnable = true;
+        public TransformReference value;
+        
+        public TransformEvent OnValueChanged = new();
+        public UnityEvent OnValueNull = new();
 
-        [Tooltip("Show Invoke Null Event if the ")]
-        public bool InvokeNull = true;
+        public virtual Transform Value
+        {
+            get => value.Value;
+            set
+            {
+                if (Auto) this.value.Value = value;
+                Invoke(value);
+            }
+        }
 
-        public TransformEvent OnValueChanged = new TransformEvent();
-        public UnityEvent OnValueNull = new UnityEvent();
 
 
         void OnEnable()
         {
-            value.OnValueChanged += Invoke;
+            if (value.Variable != null) value.Variable.OnValueChanged += Invoke;
             if (InvokeOnEnable) Invoke(value.Value);
         }
 
         void OnDisable()
         {
-            value.OnValueChanged -= Invoke;
+            if (value.Variable != null) value.Variable.OnValueChanged -= Invoke;
             Invoke(value.Value);
+        }
+
+        public virtual void SetValue(TransformReference value)
+        {
+            Value = value.Value;
         }
 
         /// <summary> Used to use turn Objects to True or false </summary>
         public virtual void Invoke(Transform value)
         {
             OnValueChanged.Invoke(value);
-            if (InvokeNull && !value) OnValueNull.Invoke();
+            if (!value) OnValueNull.Invoke(); //Invoke Null
         }
     }
 
@@ -43,41 +54,51 @@ namespace MalbersAnimations.Scriptables
     [UnityEditor.CustomEditor(typeof(TransformListener)), UnityEditor.CanEditMultipleObjects]
     public class TransformListenerEditor : UnityEditor.Editor
     {
-        private UnityEditor.SerializedProperty value, InvokeOnEnable, OnValueChanged, InvokeNull, OnValueNull;
-        TransformListener M;
-
+        private UnityEditor.SerializedProperty value, InvokeOnEnable, OnValueNull, Description, ShowDescription, OnValueChanged;
+        protected GUIStyle style, styleDesc;
         void OnEnable()
         {
-            M = target as TransformListener;
             value = serializedObject.FindProperty("value");
             InvokeOnEnable = serializedObject.FindProperty("InvokeOnEnable");
             OnValueChanged = serializedObject.FindProperty("OnValueChanged");
-            InvokeNull = serializedObject.FindProperty("InvokeNull");
             OnValueNull = serializedObject.FindProperty("OnValueNull");
+            Description = serializedObject.FindProperty("Description");
+            ShowDescription = serializedObject.FindProperty("ShowDescription");
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            UnityEditor.EditorGUILayout.PropertyField(value);
-            if (value.objectReferenceValue && Application.isPlaying)
+
+            if (ShowDescription.boolValue)
             {
-                UnityEditor.EditorGUI.BeginDisabledGroup(true);
-                UnityEditor.EditorGUILayout.ObjectField("Value [Runtime] ", M.value.Value, typeof(Transform), false);
-                Repaint();
-                UnityEditor.EditorGUI.EndDisabledGroup();
+                if (ShowDescription.boolValue)
+                {
+                    if (style == null)
+                    {
+                        style = new GUIStyle(MTools.StyleBlue)
+                        {
+                            fontSize = 12,
+                            fontStyle = FontStyle.Bold,
+                            alignment = TextAnchor.MiddleLeft,
+                            stretchWidth = true
+                        };
+
+                        style.normal.textColor = UnityEditor.EditorStyles.boldLabel.normal.textColor;
+                    }
+
+                    Description.stringValue = UnityEditor.EditorGUILayout.TextArea(Description.stringValue, style);
+                }
             }
-            UnityEditor.EditorGUILayout.BeginHorizontal();
-            UnityEditor.EditorGUILayout.PropertyField(InvokeOnEnable);
-            UnityEditor.EditorGUIUtility.labelWidth = 70;
-            UnityEditor.EditorGUILayout.PropertyField(InvokeNull);
-            UnityEditor.EditorGUIUtility.labelWidth = 0;
-            UnityEditor.EditorGUILayout.EndHorizontal();
+
+            using (new GUILayout.HorizontalScope(UnityEditor.EditorStyles.helpBox))
+            {
+                UnityEditor.EditorGUILayout.PropertyField(InvokeOnEnable, GUIContent.none, GUILayout.Width(18));
+                UnityEditor.EditorGUILayout.PropertyField(value);
+            }
+
             UnityEditor.EditorGUILayout.PropertyField(OnValueChanged);
-
-            if (InvokeNull.boolValue)
-                UnityEditor.EditorGUILayout.PropertyField(OnValueNull);
-
+            UnityEditor.EditorGUILayout.PropertyField(OnValueNull);
             serializedObject.ApplyModifiedProperties();
         }
     }

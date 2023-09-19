@@ -14,9 +14,13 @@ namespace MalbersAnimations.Utilities
         [RequiredField]
         public SkinnedMeshRenderer mesh;
         public SkinnedMeshRenderer[] LODs;
-
-        [Range(0, 100)]
+         
         public float[] blendShapes;                    //Value of the Blend Shape
+
+        [Tooltip("Min Value to use on the blendshapes")]
+        public float Min = -100;
+        [Tooltip("Max Value to use on the blendshapes")]
+        public float Max = 100;
 
         public bool random;
         public int PinnedShape;

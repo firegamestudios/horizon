@@ -17,10 +17,11 @@ namespace MalbersAnimations.Reactions
 
         public void React(GameObject go) => TryReact(go.transform);
 
-        [Tooltip("Temporally Enable or Disable the Reaction")]
+        [Tooltip("Enable or Disable the Reaction")]
         [HideInInspector] public bool Active = true;
 
-        [Min(0)]public float delay = 0;
+        [Tooltip("Delay the Reaction this ammount of seconds")]
+        [Min(0),HideInInspector] public float delay = 0;
 
         [Tooltip("The component assigned is verified. Which means is the Correct type")]
         protected Component Verified;

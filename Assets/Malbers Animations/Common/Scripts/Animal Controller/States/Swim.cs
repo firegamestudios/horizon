@@ -1,6 +1,9 @@
-﻿using MalbersAnimations.Scriptables;
+﻿using MalbersAnimations.Reactions;
+using MalbersAnimations.Scriptables;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace MalbersAnimations.Controller
 {
@@ -8,48 +11,95 @@ namespace MalbersAnimations.Controller
     public class Swim : State
     {
         public override string StateName => "Swim";
+        public override string StateIDName => "Swim";
 
         [Header("Swim Paramenters")]
         public LayerMask WaterLayer = 16;
 
+
+        [Tooltip("Ray to Shoot Down To find the water leve;")]
+        public float UpSearch = 3;
+
         [Tooltip("Lerp value for the animal to stay align to the water level ")]
-        public float AlignSmooth = 10;
+        [Min(0)] public float AlignSmooth = 10;
+
+
         [Tooltip("When entering the water the Animal will sink for a while... Higher values, will return to the surface faster")]
-        public float Bounce = 5;
-        [Tooltip("If the Animal Enters it will wait this time to try exiting the water")]
-        public float TryExitTime = 0.5f;
-        protected float EnterWaterTime;
-        [Tooltip("Means the Water does not change the shape. Less RayCasting")]
-        public bool WaterIsStatic = true;
+        [Min(0)] public float bounce = 2f;
+        //[Tooltip("If the character is inside a water Volume and we cannot find the Water level then the character will be pushed upwards")]
+        //[Min(0)] public float upForce = 1f;
+        [Tooltip("Lerp value to do the Bounce Feature")]
+        [Min(0)] public float bounceLerp = 10;
+
+
         [Tooltip("Gives an extra impulse when entering the state using the accumulated  inertia")]
         public bool KeepInertia = true;
         [Tooltip("Spherecast radius to find water using the Water Pivot")]
-        public float m_Radius = 0.1f;
+        [Min(0.01f)] public float m_Radius = 0.1f;
 
-        [Tooltip("Ray to the Front to check if the Animal has touched a Front Ground")]
-        public float FrontRayLength = 1;
+        [Tooltip("Ray to the Front to check if the Animal has touched a Front Ground and it cannot push it")]
+        [Min(0)] public float FrontRayLength = 1;
 
-        public bool PivotAboveWater { get; private set; }
+
+        //[Tooltip("Check the ground while swimming to see if we can exit earlier")]
+        //public bool checkGround = true;
+
+        [Tooltip("When checking he ground, this will be the multiplier for the height value")]
+        [Range(0f, 0.9f)]
+        public float HeightMult = 0.9f;
+
+
+        [Header("Reactions")]
+        [SerializeReference, SubclassSelector]
+        public Reaction OnTouchedWaterEnter;
+
+        [SerializeReference, SubclassSelector]
+        public Reaction OnTouchedWaterExit;
 
         /// <summary>Has the animal found Water</summary>
-        public bool IsInWater { get; private set; }
+        [Disable]
+        public bool IsInWater;//{ get; protected set; }
 
-        protected MPivots WaterPivot;
+        /// <summary>Is the animal pivot above water level</summary>
+        [Disable]
+        public bool PivotAboveWater;// { get; protected set; }
+
+
+        /// <summary>The Character has touched Water</summary>
+        public bool TouchedWater { get; protected set; }
+
+
+        protected float EnterWaterTime;
+
+        public MPivots WaterPivot { get; protected set; }
+
+
         protected Vector3 WaterNormal = Vector3.up;
         protected Vector3 HorizontalInertia;
 
-        /// <summary>Water Collider used on the Sphere Cast</summary>
-        protected Collider[] WaterCollider;
-        /// <summary>Point Above the Animal to Look Down and Find the Water level and Water Normal</summary>
 
-        private Vector3 WaterPivot_Dist_from_Water;
-        private Vector3 WaterUPPivot => WaterPivotPoint + animal.DeltaVelocity + (animal.UpVector * UpMult);
+        /// <summary>Difference to align the character to the water</summary>
+        public Vector3 WaterLine_Difference { get; internal set; }
 
-        private Vector3 UpImpulse;
-        const float UpMult = 30;
+        /// <summary>WaterLine postion</summary>
 
+        public Vector3 WaterLevel { get; internal set; }
+
+
+        readonly Vector3 NoWaterLevel = new(0, float.MinValue, 0);
+
+        /// <summary>Value to push forward the Animal while is not finding the water Level</summary>
+        [Disable] public Vector3 BounceUp;
+        /// <summary>Value to push Down the Animal when entering the water</summary>
+        [Disable] public Vector3 BounceDown;
+
+
+        protected Vector3 BounceUpTarget;
+        protected int TryLoopOriginal;
         public Vector3 WaterPivotPoint => WaterPivot.World(animal.transform) + animal.DeltaVelocity;
 
+        /// <summary>Water Collider used on the Sphere Cast</summary>
+        protected Collider[] WaterCollider;
 
         public override void InitializeState()
         {
@@ -58,168 +108,255 @@ namespace MalbersAnimations.Controller
 
             WaterCollider = new Collider[1];
             IsInWater = false;
+            TouchedWater = false;
+            TryLoopOriginal = TryLoop;
         }
 
+        //Checks if the Animal is inside a water volume
         public override bool TryActivate()
         {
-            //if (HasFallState && animal.ActiveStateID == StateEnum.UnderWater && animal.Sprint && animal.UpDownSmooth > 0)
-            //    return false; //If we are underwater and we are sprinting Upwards ... dont enter this state.. go to fall directly
+            return FindWaterLevel2() && !PivotAboveWater;
+        }
 
-            CheckWater();
+        public override void Activate()
+        {
+            base.Activate();
 
-            // Debug.Log($"{animal.name} > IsInWater = " + {animal.name} > IsInWater);
+            HorizontalInertia = Vector3.ProjectOnPlane(animal.DeltaPos, animal.UpVector);
 
-            if (IsInWater)
+            //Clean the Vector from Forward and Horizontal Influence    
+            if (bounce > 0)
+                BounceDown = Vector3.Project(animal.DeltaPos, animal.Up);
+
+            BounceUp = Vector3.one * 0.0001f;
+
+            IgnoreLowerStates = true;                                               //Ignore Falling, Idle and Locomotion while swimming 
+            animal.UseGravity = false; //IMPORTANT
+                                       //  animal.InertiaPositionSpeed = Vector3.zero;                             //THIS MOTHER F!#$ER was messing with the water entering
+            animal.Force_Reset();
+            WaterNormal = Vector3.up;
+
+            BounceUpTarget = -Gravity * bounce;
+
+            animal.SetPlatform(null);//IMPORTANT
+        }
+
+
+        /// <summary>  Check if the animal is inside a Water Trigger  </summary>
+        public bool CheckWater()
+        {
+            int WaterFound = Physics.OverlapSphereNonAlloc(WaterPivotPoint, m_Radius * animal.ScaleFactor,
+                WaterCollider, WaterLayer, QueryTriggerInteraction.Collide);
+
+            if (GizmoDebug) MDebug.DrawWireSphere(WaterPivotPoint, transform.rotation, Color.cyan, m_Radius * animal.ScaleFactor);
+
+            return WaterFound > 0;
+        }
+
+        /// <summary>Check if the Animal in a water surface </summary>
+        public bool FindWaterLevel2()
+        {
+            var UpPoint = WaterPivotPoint + Vector3.up * (UpSearch);
+            var RayLenght = UpSearch + WaterPivot.position.y;
+
+            if (GizmoDebug)
             {
-                var waterCol = WaterCollider[0];
+                MDebug.DrawWireSphere(UpPoint, Color.cyan, m_Radius);
+                MDebug.DrawWireSphere(WaterPivotPoint, Color.cyan, m_Radius);
+                MDebug.DrawWireSphere(UpPoint + (Gravity * RayLenght), Color.cyan, m_Radius);
+            }
 
-                Ray WaterRay = new Ray(WaterUPPivot, Gravity);
+            if (Physics.Raycast(UpPoint, Gravity, out RaycastHit WaterHit, RayLenght, WaterLayer, QueryTriggerInteraction.Collide))
+            {
+                WaterLevel = WaterHit.point;  //Find the water Level
+                WaterNormal = WaterHit.normal;
 
-                if (waterCol.Raycast(WaterRay, out RaycastHit WaterHit, 100f))
+                if (!TouchedWater)
                 {
-                    WaterNormal = WaterHit.normal;
+                    TouchedWater = true;
+                    OnTouchedWaterEnter?.React(animal);
+                    TryLoop = 1; //Force using TryLoop1
                 }
 
-                EnterWaterTime = Time.time;
+                Vector3 PointBelow = WaterPivotPoint - WaterLevel;
+                PivotAboveWater = Vector3.Dot(PointBelow, Gravity) < 0; //Check if the point is below the water
+                IsInWater = !PivotAboveWater;
 
-                return true;
+                if (!IsInWater && MTools.DoSpheresIntersect(WaterLevel, m_Radius, WaterPivotPoint, m_Radius))
+                {
+                    IsInWater = true;
+                }
+
+                if (GizmoDebug)
+                {
+                    Debug.DrawLine(UpPoint, WaterLevel, Color.cyan);
+                    MDebug.DrawWireSphere(WaterLevel, Color.white, m_Radius);
+                    Debug.DrawRay(WaterLevel, WaterPivot.position.y * HeightMult * Gravity, Color.white);
+                }
+                return IsInWater;
+            }
+            else
+            {
+                if (TouchedWater)
+                {
+                    TouchedWater = false;
+                    OnTouchedWaterExit?.React(animal);
+                    TryLoop = TryLoopOriginal; //Reset TryLoop
+                }
+                if (GizmoDebug) Debug.DrawRay(UpPoint, Gravity * UpSearch, Color.cyan);
+
+                IsInWater = false;
+                return IsInWater;
+            }
+        }
+
+
+        /// <summary>
+        /// The animal cast a ray to the ground and if the ground is hitted then is not longer in the water
+        /// </summary>
+        public bool CheckNearGround()
+        {
+            var length = HeightMult * WaterPivot.position.y * ScaleFactor;
+
+            if (GizmoDebug)
+            {
+                Debug.DrawRay(WaterPivotPoint, length * Gravity, Color.cyan);
+                MDebug.DrawWireSphere(WaterPivotPoint + (length * Gravity), Color.cyan, 0.1f);
+            }
+
+            if (Physics.Raycast(WaterPivotPoint, Gravity, out RaycastHit NearGround, length, animal.GroundLayer, IgnoreTrigger))
+            {
+                float GroundSlope = Vector3.Angle(NearGround.normal, animal.UpVector);
+                BounceDown = Vector3.zero; //If we touched Ground Remove all Down Bounce
+                return (GroundSlope < animal.SlopeLimit);
             }
 
             return false;
         }
-        public override void Activate()
-        {
-            CheckWater();
-            if (IsInWater)
-            {
-                base.Activate();
-
-                HorizontalInertia = Vector3.ProjectOnPlane(animal.DeltaPos, animal.UpVector);
-                UpImpulse = Vector3.Project(animal.DeltaPos, animal.UpVector);          //Clean the Vector from Forward and Horizontal Influence    
-                IgnoreLowerStates = true;                                               //Ignore Falling, Idle and Locomotion while swimming 
-                animal.UseGravity = false; //IMPORTANT
-                animal.InertiaPositionSpeed = Vector3.zero;                             //THIS MOTHER F!#$ER was messing with the water entering
-                animal.Force_Reset();
-            }
-        }
-
-
-        public void CheckWater()
-        {
-            int WaterFound = Physics.OverlapSphereNonAlloc(WaterPivotPoint, m_Radius * animal.ScaleFactor, WaterCollider, WaterLayer);
-            IsInWater = WaterFound > 0;                 //Means the Water SphereOverlap found Water
-        }
 
         public override void TryExitState(float DeltaTime)
         {
-            if (MTools.ElapsedTime(EnterWaterTime, TryExitTime)) //do not try to exit if the animal just enter the water
+            //  Debug.Log($"IsInWater {IsInWater},  CheckNearGround() : {CheckNearGround()}  PivotBelowWater {!PivotAboveWater}");
+
+            bool NearGround = CheckNearGround();
+            if (BounceUp != Vector3.zero) return;
+
+            if (!IsInWater || NearGround)
             {
-                CheckWater();
-                if (!IsInWater)
-                {
-                    Debugging("[Allow Exit] No Longer in water");
-                    animal.CheckIfGrounded();
-                    AllowExit();
-                }
+                Debugging("[Allow Exit] No Longer in water");
+                animal.CheckIfGrounded();
+                AllowExit();
             }
         }
 
 
-        public override void AllowStateExit()
-        {
-            IsInWater = false;
-        }
-
-
-        //public override void OnStatePreMove(float deltatime)
-        //{
-        //    if (animal.MovementAxis.y > 0)
-        //    {
-        //        animal.MovementAxis.y = 0;
-        //        animal.Move_Direction.y = 0;
-        //    }
-        //}
 
         public override void OnStateMove(float deltatime)
         {
-            if (IsInWater)
+            if (KeepInertia) AddInertia(ref HorizontalInertia, 3, deltatime);
+
+            WaterNormal = animal.UpVector; //have a normal water vector first
+
+            FindWaterLevel2();
+
+            //Aling-rotate the Animal to the Water 
+            animal.AlignRotation(WaterNormal, deltatime, AlignSmooth > 0 ? AlignSmooth : 5);
+
+            WaterLine_Difference = Vector3.Project((WaterLevel - WaterPivotPoint), UpVector);
+
+            BounceEnteringWater(deltatime);
+
+             
+            var rayColor = (Color.blue + Color.cyan) / 2;
+
+            //HACK so it does not come out of the water on incline deep slopes
+            if (FrontRayLength > 0 &&
+                Physics.Raycast(WaterPivotPoint, Forward, out RaycastHit FrontRayWater, FrontRayLength, GroundLayer, QueryTriggerInteraction.Ignore))
             {
-                if (KeepInertia) animal.AddInertia(ref HorizontalInertia, 3);
-                if (Bounce > 0) animal.AddInertia(ref UpImpulse, Bounce);
+                var FrontPivot = Vector3.Angle(FrontRayWater.normal, animal.UpVector);
 
-                var waterCol = WaterCollider[0];                                                //Get the Water Collider
-                                                                                                // var WaterUPSurface = waterCol.ClosestPoint(WaterUPAnimalPos);
+                rayColor = Color.cyan;
 
-                if (!WaterIsStatic)                     //Means that the Water Changes shape
+                if (FrontPivot > animal.SlopeLimit) //BAD Angle Slope
                 {
-                    Ray WaterRay = new Ray(WaterUPPivot, Gravity * UpMult);
-
-                    if (waterCol.Raycast(WaterRay, out RaycastHit WaterHit, 100f)) WaterNormal = WaterHit.normal;        //RayCast to find the Water Normal
-                }
-
-                animal.AlignRotation(WaterNormal, deltatime, AlignSmooth > 0 ? AlignSmooth : 5);                                     //Aling the Animal to the Water 
-
-                //Find the Water Level
-                FindWaterLevel();
-
-                //var Smoothness = 1f; //SNAP there's no Main Pivos Touching the a ground mean is on the water
-                var rayColor = (Color.blue + Color.cyan) / 2;
-
-                //HACK so it does not come out of the water
-                if (FrontRayLength > 0 &&
-                    Physics.Raycast(WaterPivotPoint, Forward, out RaycastHit FrontRayWater, FrontRayLength, GroundLayer, QueryTriggerInteraction.Ignore))
-                {
-                    var FrontPivot = Vector3.Angle(FrontRayWater.normal, animal.UpVector);
-
-                    rayColor = Color.cyan;
-
-                    if (FrontPivot > animal.SlopeLimit) //BAD Angle Slope
+                    rayColor = Color.black;
                     {
-                        rayColor = Color.black;
-                        animal.transform.position += WaterPivot_Dist_from_Water;
+                        Position +=  WaterLine_Difference;
                         animal.ResetUPVector();
                     }
                 }
-                else
-                {
-                    if (AlignSmooth > 0)
-                        animal.AdditivePosition += WaterPivot_Dist_from_Water * (deltatime * AlignSmooth);
-                    else
-                    {
-                        animal.transform.position += WaterPivot_Dist_from_Water;
-                        animal.ResetUPVector();
-                    }
-                }
-                if (m_debug) Debug.DrawRay(WaterPivotPoint, animal.Forward * FrontRayLength, rayColor);
-            }
-        }
-
-        public void FindWaterLevel()
-        {
-            if (IsInWater)
-            {
-                var waterCol = WaterCollider[0];
-                var PivotPointDistance = waterCol.ClosestPoint(WaterUPPivot); //IMPORTANT IS NOT CLOSEST POINT ON BOUNDS THAT CAUSES ERRORS
-
-                // Debug.Log("FindWaterLevel");
-
-                WaterPivot_Dist_from_Water = Vector3.Project((PivotPointDistance - WaterPivotPoint), animal.UpVector);
-
-                //Debug.Break();
-
-                PivotAboveWater = Vector3.Dot(WaterPivot_Dist_from_Water, animal.UpVector) < 0;
             }
             else
             {
-                PivotAboveWater = true;
+
+                if (AlignSmooth > 0)
+                {
+                    Position += Vector3.Lerp(Vector3.zero, WaterLine_Difference, (deltatime * AlignSmooth));
+                }
+                else
+                {
+                    Position += WaterLine_Difference;
+                    animal.ResetUPVector();
+                }
+
+            }
+            if (GizmoDebug) Debug.DrawRay(WaterPivotPoint, animal.Forward * FrontRayLength, rayColor);
+        }
+
+        private void BounceEnteringWater(float delta)
+        {
+            if (BounceUp != Vector3.zero)
+            {
+                //Push the animal upwards if there we are inside the water volume
+                BounceDown =
+                  Vector3.Lerp(BounceDown, Vector3.zero, bounceLerp * delta);
+
+                animal.AdditivePosition += (BounceDown); //Buoyance  Down!!
+
+                //Push the animal upwards if there we are inside the water volume
+                BounceUp =
+                  Vector3.Lerp(BounceUp, BounceUpTarget, bounceLerp * delta);
+
+                var NextPos = WaterPivotPoint + (BounceUp) * (delta * bounceLerp);
+
+                 if (GizmoDebug)  MDebug.DrawWireSphere(NextPos, Color.green, m_Radius);
+
+                Vector3 PointAvobe = NextPos - WaterLevel;
+                PivotAboveWater = Vector3.Dot(PointAvobe, Gravity) < 0; //Check if the next position will be above water
+
+                if (PivotAboveWater)
+                {
+                    BounceDown = Vector3.zero;
+                    BounceUp = Vector3.zero;
+                }
+                else
+                {
+                    animal.AdditivePosition += (BounceUp) * (delta * bounceLerp);
+                    WaterLine_Difference = Vector3.zero; //Clear the water line difference
+                }
+
             }
         }
+
+        void AddInertia(ref Vector3 value, float speed, float DeltaTime)
+        {
+            transform.position += value;
+            value = Vector3.Lerp(value, Vector3.zero, DeltaTime * speed);
+        }
+
 
         public override void ResetStateValues()
         {
             WaterCollider = new Collider[1];
             IsInWater = false;
-            EnterWaterTime = 0;
+            TouchedWater = false;
+            PivotAboveWater = false;
+            BounceDown = Vector3.zero;
+            BounceUp = Vector3.zero;
+            WaterLine_Difference = Vector3.zero;
+            HorizontalInertia = Vector3.zero;
+            WaterNormal = Vector3.up;
+            WaterLevel = NoWaterLevel;
         }
 
 #if UNITY_EDITOR
@@ -243,10 +380,9 @@ namespace MalbersAnimations.Controller
             }
         }
 
-
-        void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Swim");
+            base.Reset();
 
             WaterCollider = new Collider[1];            //Set the Array to 1
 
@@ -270,28 +406,27 @@ namespace MalbersAnimations.Controller
             // SpeedIndex = 0;
         }
 
-
         public override void StateGizmos(MAnimal animal)
         {
-            if (Application.isPlaying)
+            if (Application.isPlaying) { return; } //Show only when is not playing
+
+            var scale = animal.ScaleFactor;
+            var cyan = Color.cyan;
+            cyan.a = 0.5f;
+
+            var Pivot = Application.isPlaying ? WaterPivot : animal.pivots.Find(x => x.name == "Water");
+
+            if (Pivot != null)
             {
-                if (IsInWater)
-                {
-                    var scale = animal.ScaleFactor;
-                    Collider WaterCol = WaterCollider[0];
+                var UPsearch = animal.transform.position + Vector3.up * (UpSearch);
 
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawSphere(WaterPivotPoint, m_Radius * scale);
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawSphere(animal.transform.position, m_Radius * scale);
-
-                    if (WaterCol)
-                    {
-                        Gizmos.color = Color.cyan;
-                        Gizmos.DrawSphere(WaterCol.ClosestPoint(WaterUPPivot), m_Radius * scale);
-                        Gizmos.DrawSphere(WaterUPPivot, m_Radius * scale);
-                    }
-                }
+                Gizmos.color = cyan;
+                Gizmos.DrawSphere(Pivot.World(animal.transform), m_Radius * scale);
+                Gizmos.DrawSphere(UPsearch, m_Radius * scale);
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireSphere(Pivot.World(animal.transform), m_Radius * scale);
+                Gizmos.DrawWireSphere(UPsearch, m_Radius * scale);
+                Gizmos.DrawRay(UPsearch, animal.Gravity * UpSearch);
             }
         }
 #endif

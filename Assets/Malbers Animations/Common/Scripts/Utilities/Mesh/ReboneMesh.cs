@@ -15,20 +15,7 @@ namespace MalbersAnimations.Utilities
 
         [ContextMenuItem("Transfer Bones From Root", "TransferRootBone")]
         public Transform RootBone;
-
-        //public Mesh newMesh;
-
-
-
-        //[ContextMenu("Transfer Bones From Skin")]
-        //void DuplicateBones()
-        //{
-        //    if (_sourceSkinMesh != null)
-        //    {
-        //        CopyFromSkinToSkin();
-        //        Debug.Log("Trasfer Ready");
-        //    }
-        //}
+ 
 
         [ContextMenu("Transfer Bones From Root")]
         public void TransferRootBone()
@@ -39,23 +26,6 @@ namespace MalbersAnimations.Utilities
             }
         }
 
-
-
-        //[ContextMenu("Update Mesh")]
-        //public void UpdateMesh()
-        //{
-        //    SkinnedMeshRenderer thisRenderer = GetComponent<SkinnedMeshRenderer>();
-        //    if (thisRenderer == null) return;
-        //    if (newMesh == null) return;
-        //    if (RootBone == null) return;
-
-        //    var OldRootBone = thisRenderer.rootBone;
-
-
-        //}
-
-
-
         private void CopyBonesSameBones()
         {
             SkinnedMeshRenderer thisRenderer = GetComponent<SkinnedMeshRenderer>();
@@ -65,7 +35,7 @@ namespace MalbersAnimations.Utilities
 
             Transform[] rootBone = RootBone.GetComponentsInChildren<Transform>();
 
-            Dictionary<string, Transform> boneMap = new Dictionary<string, Transform>();
+            Dictionary<string, Transform> boneMap = new();
 
             foreach (Transform bone in rootBone)
             {
@@ -86,41 +56,14 @@ namespace MalbersAnimations.Utilities
             }
             thisRenderer.bones = boneArray;
 
-            if (boneMap.TryGetValue(OldRootBone.name, out Transform ro))
+            if (boneMap.TryGetValue(OldRootBone.name, out Transform newRoot))
             {
-                thisRenderer.rootBone = ro; //Remap the rootbone
+                thisRenderer.rootBone = newRoot; //Remap the rootbone
             }
 
             Debug.Log($"Bone Trasfer Completed: {name}");
 
         }
-
-
-
-        //private void CopyFromSkinToSkin()
-        //{
-        //    SkinnedMeshRenderer targetRenderer = _sourceSkinMesh.GetComponent<SkinnedMeshRenderer>();
-
-        //    Dictionary<string, Transform> boneMap = new Dictionary<string, Transform>();
-        //    foreach (Transform bone in targetRenderer.bones)
-        //    {
-        //        boneMap[bone.name] = bone;
-        //    }
-
-        //    SkinnedMeshRenderer thisRenderer = GetComponent<SkinnedMeshRenderer>();
-        //    Transform[] boneArray = thisRenderer.bones;
-        //    for (int idx = 0; idx < boneArray.Length; ++idx)
-        //    {
-        //        string boneName = boneArray[idx].name;
-        //        if (false == boneMap.TryGetValue(boneName, out boneArray[idx]))
-        //        {
-        //            Debug.LogError("failed to get bone: " + boneName);
-        //            Debug.Break();
-        //        }
-        //    }
-        //    thisRenderer.bones = boneArray;
-        //    thisRenderer.rootBone = targetRenderer.rootBone;
-        //}
     }
 
 #if UNITY_EDITOR

@@ -15,9 +15,7 @@ namespace MalbersAnimations.Weapons
 
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            manager ??= animator.GetComponent<IWeaponManager>();
-
-            if (manager != null)
+            if (animator.TryGetComponent<IWeaponManager>(out manager))
             {
                 foreach (var item in weaponActions)
                 {
@@ -172,22 +170,5 @@ namespace MalbersAnimations.Weapons
         UseFreeHand,
         [InspectorName("Weapon/Release Free Hand")]
         ReleaseFreeHand,
-        //[InspectorName("IK/Free Hand IK")]
-        //FreeHandIK,
-        //[InspectorName("IK/Aim IK")]
-        //AimIK,
-        //[InspectorName("Riding/Release Reins/ Left Hand")]
-        //ReleaseReinLeftHand,
-        //[InspectorName("Riding/Release Reins/ Right Hand")]
-        //ReleaseReinRightHand,
-        //[InspectorName("Riding/Release Reins/ Both Hands")]
-        //ReleaseReinFromHands,
-
-        //[InspectorName("Riding/ Grab Reins/ Left Hand")]
-        //GrabReinLeftHand,
-        //[InspectorName("Riding/ Grab Reins/ Right Hand")]
-        //GrabReinRightHand,
-        //[InspectorName("Riding/ Grab Reins/ Both Hands")]
-        //GrabReinBothHands,
     }
 }

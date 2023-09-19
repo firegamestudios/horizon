@@ -8,6 +8,7 @@ namespace MalbersAnimations.Controller
     public class Glide : State
     {
         public override string StateName => "Glide";
+        public override string StateIDName => "Glide";
 
         [Header("Glide Parameters")]
         public FloatReference GravityDrag = new FloatReference(3);
@@ -59,13 +60,13 @@ namespace MalbersAnimations.Controller
         protected Vector3 verticalInertia;
         protected Vector3 DownPush;
 
+
         private bool CheckStartHeight()
         {
             if (StartHeight <= 0) return true; //if there's no height skip checking Start Height
 
             //if we touch any ground send False. Meaning the Glide cannot play.
             return !Physics.Raycast(animal.Main_Pivot_Point, animal.Gravity, out _, animal.Height + StartHeight * ScaleFactor, animal.GroundLayer);
-
         }
 
         public override bool TryActivate()
@@ -74,6 +75,12 @@ namespace MalbersAnimations.Controller
         }
 
         public override bool KeepForwardMovement => KeepForward.Value;
+
+        public override void AwakeState()
+        {
+            base.AwakeState();
+            LastUseCameraInput = animal.UseCameraInput;     //Cache the Last Use Camera Input
+        }
 
         public override void Activate()
         {
@@ -215,9 +222,9 @@ namespace MalbersAnimations.Controller
         }
 
 
-        void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Glide");
+            base.Reset();
             Input = "Glide";
 
             General = new AnimalModifier()

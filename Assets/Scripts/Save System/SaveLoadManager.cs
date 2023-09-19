@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.IO;
+using Droidzone.Core;
+
 
 [System.Serializable]
 public class PlayerData
@@ -27,7 +29,7 @@ public class PlayerData
     public float Piloting = 1;
     public float Tracking = 1;
     public float Taming = 1;
-    public float Unlock = 1;
+    public float HackLock = 1;
 
     public string CurrentLocation;
     public string PreviousLocation;
@@ -38,6 +40,8 @@ public class PlayerData
     public string[] itemNames;
     public int[] itemsAmount;
 
+    public string[] feats;
+
     
 }
 
@@ -47,10 +51,31 @@ public class SaveLoadManager : MonoBehaviour
 
     private string saveFilePath;
 
+    GameManager gameManager;
+
+    public bool isCreation;
+
     private void Awake()
     {
+        gameManager = GetComponent<GameManager>();
         // Set the save file path based on the application's persistent data path
         saveFilePath = Path.Combine(Application.persistentDataPath, "C:/droidzone/playerdata.json");
+    }
+
+    private void Start()
+    {
+      
+        
+
+        if(isCreation == false)
+        {
+            LoadPlayerData();
+            print("Loaded race: " + playerData.race);
+            GameManager.playerData = playerData;
+            gameManager.Initialize();
+        }
+       
+
     }
 
     public bool SavePlayerData()

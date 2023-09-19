@@ -5,7 +5,7 @@ using UnityEngine;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Unity Reactions/Rigidbody")]
+    [AddTypeMenu("Unity/Rigidbody")]
     public class RigidBodyReaction : Reaction
     {
         public enum RB_Reaction { IsKinematic, UseGravity, Drag,AngularDrag, Constraints, Collisions}

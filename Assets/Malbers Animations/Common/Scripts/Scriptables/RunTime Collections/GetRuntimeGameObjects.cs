@@ -9,61 +9,63 @@ namespace MalbersAnimations.Scriptables
     {
         [RequiredField] public RuntimeGameObjects Collection;
 
-        public FloatReference delay = new FloatReference();
-        public enum RuntimeSetTypeGameObject {First, Random, Index, ByName , Closest }
-        public RuntimeSetTypeGameObject type = RuntimeSetTypeGameObject.Random; 
-        [Hide("showIndex",false)]
+        public FloatReference delay = new ();
+
+        public RuntimeSetTypeGameObject type = RuntimeSetTypeGameObject.Random;
+        [Hide("showIndex", false)]
         public int Index = 0;
-       
+
         [Hide("showName", false)]
-        public string m_name;
-        public GameObjectEvent Raise = new GameObjectEvent();
+        public string m_name; 
+
+
+        public GameObjectEvent Raise = new();
+        public GameObjectEvent OnItemAdded = new();
+        public GameObjectEvent OnItemRemoved = new();
 
         public void SetCollection(RuntimeGameObjects col) => Collection = col;
 
         private void OnEnable()
         {
+
             if (delay > 0)
                 Invoke(nameof(GetSet), delay);
             else
                 this.Delay_Action(() => GetSet());
+
+            if (Collection != null)
+            {
+                Collection.OnItemAdded.AddListener(ItemAdded);
+                Collection.OnItemRemoved.AddListener(ItemRemoved);
+            }
         }
 
+        private void OnDisable()
+        {
+            if (Collection != null)
+            {
+                Collection.OnItemAdded.RemoveListener(ItemAdded);
+                Collection.OnItemRemoved.RemoveListener(ItemRemoved);
+            }
+        }
 
+        void ItemAdded(GameObject item) => OnItemAdded.Invoke(item);
+        void ItemRemoved(GameObject item) => OnItemRemoved.Invoke(item);
 
         private void GetSet()
         {
             if (Collection != null)
             {
-                switch (type)
-                {
-                    case RuntimeSetTypeGameObject.First:
-                        Raise.Invoke(Collection.Item_GetFirst());
-                        break;
-                    case RuntimeSetTypeGameObject.Random:
-                        Raise.Invoke(Collection.Item_GetRandom());
-                        break;
-                    case RuntimeSetTypeGameObject.Index:
-                        Raise.Invoke(Collection.Item_Get(Index));
-                        break;
-                    case RuntimeSetTypeGameObject.ByName:
-                        Raise.Invoke(Collection.Item_Get(m_name));
-                        break;
-                    case RuntimeSetTypeGameObject.Closest:
-                        Raise.Invoke(Collection.Item_GetClosest(gameObject));
-                        break;
-                    default:
-                        break;
-                }
+                Raise.Invoke(Collection.GetItem(type, Index, name, gameObject));
             }
         }
 
-        [HideInInspector]  public bool showIndex;
-      [HideInInspector]  public bool showName;
+        [HideInInspector] public bool showIndex;
+        [HideInInspector] public bool showName;
         private void OnValidate()
         {
             showIndex = type == RuntimeSetTypeGameObject.Index;
-            showName = type == RuntimeSetTypeGameObject.ByName;   
+            showName = type == RuntimeSetTypeGameObject.ByName;
         }
     }
 }

@@ -2,6 +2,7 @@
 using MalbersAnimations.Utilities;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace MalbersAnimations.Weapons
 {
@@ -75,6 +76,9 @@ namespace MalbersAnimations.Weapons
 
         public Transform AimOrigin => m_AimOrigin;
 
+        [MButton(nameof(Fire),true)]
+        public bool FireTest;
+
         public bool CalculateTrajectory
         {
             get => m_CalculateTrajectory;
@@ -94,7 +98,6 @@ namespace MalbersAnimations.Weapons
 
             if (FireOnStart) Fire();
         }
-
 
         public virtual void SetProjectile(GameObject newProjectile)
         {
@@ -135,14 +138,16 @@ namespace MalbersAnimations.Weapons
 
             if (projectile != null) //Means its a Malbers Projectile ^^
             {
-                projectile.Prepare(Owner, Gravity, Velocity,  Layer, TriggerInteraction);
+                projectile.Prepare(Owner, Gravity, Velocity, Layer, TriggerInteraction);
                 projectile.SetDamageMultiplier(DamageMultiplier); //Apply Multiplier
                 projectile.Fire();
             }
             else //Fire without the Projectile Component
             {
-                var rb = p.GetComponent<Rigidbody>();
-                rb?.AddForce(Velocity, ForceMode.VelocityChange);
+                if (p.TryGetComponent(out Rigidbody rb))
+                {
+                    rb.AddForce(Velocity, ForceMode.VelocityChange);
+                }
             }
         }
 

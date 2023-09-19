@@ -1282,6 +1282,8 @@ MonoBehaviour:
   HideCursor: 0
   ForceFPS: 1
   GameFPS: 60
+  vSyncCount: 0
+  DebugBuild: 0
   AdditiveScenes: []
   InEditor: 1
   sceneNames: []
@@ -1850,38 +1852,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!1 &1977113798
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1977113799}
-  m_Layer: 0
-  m_Name: "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 Items \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 "
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1977113799
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977113798}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.856117, y: -3.1485896, z: -36.80082}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8942318350600416923}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048034855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,7 +1884,7 @@ Transform:
   - {fileID: 8262651127662967797}
   - {fileID: 177125853}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2132869191
 GameObject:
@@ -2793,6 +2763,8 @@ MonoBehaviour:
       m_Bits: 4294967295
     Variable: {fileID: 0}
   triggerInteraction: 1
+  CollectableReaction:
+    rid: -2
   CanPickUp:
     m_PersistentCalls:
       m_Calls:
@@ -2892,6 +2864,11 @@ MonoBehaviour:
   item: {fileID: 0}
   focusedItem: {fileID: 0}
   Editor_Tabs1: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!120 &8266565128476971170
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3098,6 +3075,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 323
@@ -3153,6 +3134,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: Action
@@ -3232,6 +3217,7 @@ MonoBehaviour:
       ConstantValue: New Map
       Variable: {fileID: 0}
     inputs: []
+  ResetAllInputsOnDisable: 1
   showInputEvents: 0
   ResetOnFocusLost: 0
   OnInputEnabled:
@@ -3344,6 +3330,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Shift
@@ -3657,11 +3647,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  SceneRoot:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  m_Value:
+  m_Amount:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
@@ -3712,7 +3698,20 @@ MonoBehaviour:
         m_CallState: 2
   OnDropped:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8942318350600416927}
+        m_TargetAssemblyTypeName: MalbersAnimations.Scriptables.TransformComparer,
+          MalbersAnimations
+        m_MethodName: ClearTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPreDropped:
     m_PersistentCalls:
       m_Calls:
@@ -3763,12 +3762,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8942318350600416917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.156116, y: 3.2985897, z: 24.21082}
+  m_LocalPosition: {x: -5.299999, y: 0.1500001, z: -12.59}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1977113799}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8942318350600416924
 MonoBehaviour:
@@ -3877,6 +3876,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f74a3408f572894eaeb236ed7386467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowEvents: 0
+  ID:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Auto: 1
+  InvokeOnEnable: 0
+  Description: 
+  ShowDescription: 0
+  debug: 0
   value:
     UseConstant: 1
     ConstantValue: {fileID: 0}
@@ -3890,7 +3899,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 
     Variable: {fileID: 0}
-  InvokeOnEnable: 0
   Then:
     m_PersistentCalls:
       m_Calls:

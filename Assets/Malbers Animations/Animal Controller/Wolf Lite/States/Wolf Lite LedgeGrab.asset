@@ -88,7 +88,7 @@ MonoBehaviour:
   MovementStrafe: 1
   IdleStrafe: 1
   m_debug: 1
-  Editor_Tabs1: 0
+  Editor_Tabs1: 4
   SpeedSets: []
   ID: {fileID: 11400000, guid: 3fbb696c31f7ed846b7ec9b2f76fd0e5, type: 2}
   LedgeLayer:
@@ -109,7 +109,6 @@ MonoBehaviour:
   MinTerrainAngle: 45
   ForwardLength: 1.5
   WallChecker: 0.15
-  AlignSmoothness: 10
   profiles:
   - name: Ledge Grab
     EnterStatus: 0
@@ -120,6 +119,7 @@ MonoBehaviour:
     ExitTime: 0.9
     AlingOffset: {x: 0, y: -1.15}
     Orient: 1
+    OrientSmoothness: 10
     AdditivePosition: 0
     HeightSpeed: 1
     ForwardSpeed: 2

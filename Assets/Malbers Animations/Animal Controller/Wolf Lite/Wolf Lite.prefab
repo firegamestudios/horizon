@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4667437529048362}
   - component: {fileID: 135117570784751544}
   - component: {fileID: 114546342431709790}
-  - component: {fileID: 1385855892161334823}
+  - component: {fileID: 3886150530607170185}
   m_Layer: 20
   m_Name: Track LFoot
   m_TagString: Untagged
@@ -124,10 +124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
   WaitNextStep: 0.2
-  StepAudio: {fileID: 6836389832434945427}
+  StepAudio: {fileID: 5719295148794597913}
   m_Trigger: {fileID: 135117570784751544}
   DebugColor: {r: 0, g: 1, b: 1, a: 0.34901962}
---- !u!114 &1385855892161334823
+--- !u!114 &3886150530607170185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,35 +136,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1369733098890578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c40057955ac3324f9b900fad19f1651, type: 3}
+  m_Script: {fileID: 11500000, guid: 63b67372eb9e1364097a120497a2e8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delayed:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  RepeatTime:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Repeat: 0
-  onEnable:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4667437529048362}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetParent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 991925649434105324}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Description: 
-  ShowDescription: 0
+  newParent: {fileID: 991925649434105324}
 --- !u!1 &1393744931466200
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +151,6 @@ GameObject:
   - component: {fileID: 4894973548784198}
   - component: {fileID: 65525002523984878}
   - component: {fileID: 114523052757254038}
-  - component: {fileID: 7524590618557686706}
   - component: {fileID: 7412438458470164544}
   - component: {fileID: 9067840649074644080}
   - component: {fileID: 5861542233668488909}
@@ -200,7 +174,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7341256332303435102}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &65525002523984878
 BoxCollider:
@@ -243,6 +217,11 @@ MonoBehaviour:
   m_HitEffect:
     UseConstant: 1
     ConstantValue: {fileID: 4653085296718725689}
+    Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
@@ -393,37 +372,8 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   Trigger: {fileID: 65525002523984878}
-  SelfStatEnter:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-  SelfStatExit:
-    ID: {fileID: 0}
-    modify: 0
-    MinValue:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    MaxValue:
-      UseConstant: 1
-      ConstantValue: 10
-      Variable: {fileID: 0}
-    enable:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
     modify: 0
@@ -452,26 +402,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
---- !u!114 &7524590618557686706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393744931466200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d725d49011914244fb64bfaaaa3366e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  internalComponents:
-  - name: Root
-    tooltip: 
-    active: 1
-    gameObjects:
-    - {fileID: 1438017827249262}
-    monoBehaviours: []
-  edit: 0
 --- !u!114 &7412438458470164544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +470,8 @@ MonoBehaviour:
   animal: {fileID: 114222225517902476}
   modes:
   - {fileID: 11400000, guid: 1286867ad3c4cdd4baacac3373aff92c, type: 2}
-  Animals: 1
+  ignoreStates:
+  - {fileID: 11400000, guid: adfa24f62d6db4d40a1d837f4ec1a6e9, type: 2}
   Layer:
     UseConstant: 1
     ConstantValue:
@@ -549,11 +480,35 @@ MonoBehaviour:
     Variable: {fileID: 0}
   SearchRadius: 3
   Distance: 2
-  TargetMultiplier: 0
   AlignTime: 0.3
   LookAtTime: 0.3
-  debugColor: {r: 1, g: 0.1682254, b: 0, a: 0}
-  debug: 0
+  FrontOffet: 1.15
+  AlignCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  debugColor: {r: 1, g: 0.8202956, b: 0, a: 0.0627451}
+  debug: 1
 --- !u!114 &5861542233668488909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +524,7 @@ MonoBehaviour:
   animal: {fileID: 114222225517902476}
   modes:
   - {fileID: 11400000, guid: dc411047be38d924fbfc67128f6957f2, type: 2}
-  Animals: 1
+  ignoreStates: []
   Layer:
     UseConstant: 1
     ConstantValue:
@@ -578,9 +533,33 @@ MonoBehaviour:
     Variable: {fileID: 0}
   SearchRadius: 3
   Distance: 2
-  TargetMultiplier: 1.5
   AlignTime: 0.3
   LookAtTime: 0.3
+  FrontOffet: 1.15
+  AlignCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   debugColor: {r: 1, g: 0.1682254, b: 0, a: 0}
   debug: 0
 --- !u!1 &1438017827249262
@@ -774,6 +753,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 32
@@ -817,6 +800,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -874,6 +861,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 49
@@ -929,6 +920,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -986,6 +981,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 101
@@ -1042,6 +1041,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 323
@@ -1085,6 +1088,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -1130,6 +1137,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: Fire2
     key: 324
@@ -1173,6 +1184,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -1231,6 +1246,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: LockTarget
     key: 325
@@ -1287,6 +1306,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 113
@@ -1340,6 +1363,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 32
@@ -1383,6 +1410,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1440,6 +1471,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 49
@@ -1495,6 +1530,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1552,6 +1591,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 101
@@ -1608,6 +1651,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 323
@@ -1651,6 +1698,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1696,6 +1747,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fire2
       key: 324
@@ -1739,6 +1794,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1797,6 +1856,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: LockTarget
       key: 325
@@ -1852,6 +1915,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -1903,6 +1970,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 32
@@ -1946,6 +2017,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2003,6 +2078,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 49
@@ -2058,6 +2137,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2115,6 +2198,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 101
@@ -2171,6 +2258,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: InputValue
       key: 323
@@ -2214,6 +2305,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2259,6 +2354,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Fire2
       key: 324
@@ -2302,6 +2401,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2360,6 +2463,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: LockTarget
       key: 325
@@ -2415,6 +2522,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: InputValue
@@ -2511,15 +2622,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee1fbf4dd84c7d4faf7900812b348a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowOnPlay: 0
   PivotPosDir: 0
-  SelectedMode: 4
+  SelectedMode: 1
   SelectedState: 5
   SelectedStance: 0
   ShowStateInInspector: 0
-  Editor_Tabs1: 3
+  Editor_Tabs1: 2
   Editor_Tabs2: 4
   Mode_Tabs1: 1
-  Ability_Tabs: 2
+  Ability_Tabs: 3
   Editor_EventTabs: 1
   showPivots: 1
   debugStates: 0
@@ -2530,6 +2642,34 @@ MonoBehaviour:
   Runtime_Tabs2: 4
   t: {fileID: 4417229628137580}
   InGroundChanger: 0
+  states_C:
+  - active: 1
+    state: {fileID: 11400000, guid: 059fcb0b5c50a2947ad6e5356e369291, type: 2}
+    priority: 9
+  - active: 1
+    state: {fileID: 11400000, guid: b6d2ef2213aab244aa8bbcb979ea7635, type: 2}
+    priority: 8
+  - active: 1
+    state: {fileID: 11400000, guid: 7e1343fa5ebbe8f41ac0155f4bc7e8da, type: 2}
+    priority: 7
+  - active: 1
+    state: {fileID: 11400000, guid: bf6a413d378fd8e4993093bf5b0c8aad, type: 2}
+    priority: 6
+  - active: 1
+    state: {fileID: 11400000, guid: 26f1295640c15b14f988cee8a3814aaa, type: 2}
+    priority: 5
+  - active: 1
+    state: {fileID: 11400000, guid: 47af1b04b47957f4ca466d23cbb16cf6, type: 2}
+    priority: 4
+  - active: 1
+    state: {fileID: 11400000, guid: 56c79209d28dc4e4a86002d4b86931c2, type: 2}
+    priority: 3
+  - active: 1
+    state: {fileID: 11400000, guid: bdb4bb76e2b782f42b909978af887428, type: 2}
+    priority: 2
+  - active: 1
+    state: {fileID: 11400000, guid: c31051ac4cd486e4f9ac40015fdef3a6, type: 2}
+    priority: 1
   states:
   - {fileID: 11400000, guid: 059fcb0b5c50a2947ad6e5356e369291, type: 2}
   - {fileID: 11400000, guid: b6d2ef2213aab244aa8bbcb979ea7635, type: 2}
@@ -2702,6 +2842,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -2886,7 +3027,7 @@ MonoBehaviour:
         Variable: {fileID: 0}
       audioClip:
         UseConstant: 1
-        ConstantValue: {fileID: 0}
+        ConstantValue: {fileID: 8300000, guid: 68c1c6ee9ddcd0341a672e9f7ecbbef0, type: 3}
         Variable: {fileID: 0}
       ClipDelay:
         UseConstant: 1
@@ -2940,6 +3081,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -2977,7 +3119,7 @@ MonoBehaviour:
         Variable: {fileID: 0}
       audioClip:
         UseConstant: 1
-        ConstantValue: {fileID: 0}
+        ConstantValue: {fileID: 8300000, guid: 68c1c6ee9ddcd0341a672e9f7ecbbef0, type: 3}
         Variable: {fileID: 0}
       ClipDelay:
         UseConstant: 1
@@ -3031,6 +3173,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3056,7 +3199,7 @@ MonoBehaviour:
         Variable: {fileID: 0}
       audioClip:
         UseConstant: 1
-        ConstantValue: {fileID: 0}
+        ConstantValue: {fileID: 8300000, guid: 68c1c6ee9ddcd0341a672e9f7ecbbef0, type: 3}
         Variable: {fileID: 0}
       ClipDelay:
         UseConstant: 1
@@ -3110,6 +3253,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3135,7 +3279,7 @@ MonoBehaviour:
         Variable: {fileID: 0}
       audioClip:
         UseConstant: 1
-        ConstantValue: {fileID: 0}
+        ConstantValue: {fileID: 8300000, guid: 68c1c6ee9ddcd0341a672e9f7ecbbef0, type: 3}
         Variable: {fileID: 0}
       ClipDelay:
         UseConstant: 1
@@ -3189,6 +3333,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3227,7 +3372,7 @@ MonoBehaviour:
     ActivationTime: 0
   - active: 1
     ignoreLowerModes: 1
-    hasCoolDown: 0
+    hasCoolDown: 1
     Input: Damage
     ID: {fileID: 11400000, guid: b04409080ae7e3c4fa645d8c67b40424, type: 2}
     modifier: {fileID: 11400000, guid: 08ecc69d4e538344e8c5d4dd76860d9d, type: 2}
@@ -3305,6 +3450,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3384,6 +3530,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3406,7 +3553,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     ResetToDefault: 0
-    allowRotation: 1
+    allowRotation: 0
     allowMovement: 1
     OnEnterMode:
       m_PersistentCalls:
@@ -3500,6 +3647,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3579,6 +3727,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3695,6 +3844,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3774,6 +3924,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3853,6 +4004,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -3932,6 +4084,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4011,6 +4164,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4090,6 +4244,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4169,6 +4324,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4248,6 +4404,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4327,6 +4484,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4406,6 +4564,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4485,6 +4644,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4564,6 +4724,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4643,6 +4804,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4774,6 +4936,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -4928,6 +5091,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5008,6 +5172,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5088,6 +5253,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5168,6 +5334,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5286,6 +5453,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5367,6 +5535,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5485,6 +5654,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5566,6 +5736,7 @@ MonoBehaviour:
       AdditivePosition: 1
       IgnoreGrounded: 0
       IgnoreGravity: 0
+      NoYMovement: 0
       Persistent: 0
       OnEnter:
         m_PersistentCalls:
@@ -5659,7 +5830,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  AdditiveRotation: {x: 0, y: 0, z: 0, w: 0}
   SmoothVertical:
     UseConstant: 0
     ConstantValue: 1
@@ -5757,7 +5927,7 @@ MonoBehaviour:
     EditorDisplay: 0
     PivotColor: {r: 0, g: 0, b: 1, a: 1}
   - name: Water
-    position: {x: 0, y: 0.68, z: 0.2}
+    position: {x: 0, y: 0.6800003, z: 0.43614006}
     dir: {x: 0, y: -1, z: 0}
     multiplier: 0
     interval: 1
@@ -5857,10 +6027,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 5
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 10
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -5901,10 +6067,6 @@ MonoBehaviour:
       rotation:
         UseConstant: 1
         ConstantValue: 5
-        Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 10
         Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
@@ -5997,10 +6159,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -6042,10 +6200,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -6087,10 +6241,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -6132,10 +6282,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 8
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 8
@@ -6226,10 +6372,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -6271,10 +6413,6 @@ MonoBehaviour:
         UseConstant: 0
         ConstantValue: 0
         Variable: {fileID: 11400000, guid: 5c4fe0b08ccfb364689cd2dfa25c82aa, type: 2}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -6365,10 +6503,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 0
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -6411,10 +6545,6 @@ MonoBehaviour:
     rotation:
       UseConstant: 1
       ConstantValue: 0
-      Variable: {fileID: 0}
-    lerpRotation:
-      UseConstant: 1
-      ConstantValue: 4
       Variable: {fileID: 0}
     lerpRotAnim:
       UseConstant: 1
@@ -6931,7 +7061,7 @@ MonoBehaviour:
     OnActive:
       m_PersistentCalls:
         m_Calls: []
-    EditorTabs: 1
+    EditorTabs: 0
   PinnedStat:
     active: 1
     ID: {fileID: 0}
@@ -7037,8 +7167,11 @@ MonoBehaviour:
   character: {fileID: 0}
   reaction:
     rid: 1087322751697158146
+  criticalReaction:
+    rid: -2
   damagerReaction:
     rid: -2
+  surface: {fileID: 0}
   ignoreDamagerReaction:
     UseConstant: 1
     ConstantValue: 0
@@ -7080,6 +7213,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  AlignOffset:
+    UseConstant: 1
+    ConstantValue: 0.6
+    Variable: {fileID: 0}
   Root: {fileID: 0}
   events:
     OnReceivingDamage:
@@ -8064,6 +8201,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: SpecialAttack
     Variable: {fileID: 0}
+  DestroyOnDrop: 0
   startWeapon:
     UseConstant: 1
     ConstantValue: {fileID: 0}
@@ -8087,9 +8225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
-  stoppingDistance: 1.6
-  slowingDistance: 3
-  center: {x: 0, y: 0, z: 0.7}
+  stoppingDistance: 0.74
+  slowingDistance: 0
+  center: {x: 0, y: 0, z: 0.25}
   m_height: 0.75
   m_arriveLookAt: 1
   OnTargetArrived:
@@ -8106,7 +8244,7 @@ GameObject:
   - component: {fileID: 4528346000462846}
   - component: {fileID: 135683490331112980}
   - component: {fileID: 114698207302306618}
-  - component: {fileID: 8433652020672837860}
+  - component: {fileID: 798253832548413760}
   m_Layer: 20
   m_Name: Track LHand
   m_TagString: Untagged
@@ -8157,10 +8295,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
   WaitNextStep: 0.2
-  StepAudio: {fileID: 4983039511049748778}
+  StepAudio: {fileID: 1379845917111296713}
   m_Trigger: {fileID: 135683490331112980}
   DebugColor: {r: 0, g: 1, b: 1, a: 0.34901962}
---- !u!114 &8433652020672837860
+--- !u!114 &798253832548413760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8169,35 +8307,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1573013517723816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c40057955ac3324f9b900fad19f1651, type: 3}
+  m_Script: {fileID: 11500000, guid: 63b67372eb9e1364097a120497a2e8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delayed:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  RepeatTime:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Repeat: 0
-  onEnable:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4528346000462846}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetParent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2761268000872034697}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Description: 
-  ShowDescription: 0
+  newParent: {fileID: 2761268000872034697}
 --- !u!1 &1706322334423328
 GameObject:
   m_ObjectHideFlags: 0
@@ -8209,7 +8322,6 @@ GameObject:
   - component: {fileID: 4258906106407218}
   - component: {fileID: 1708266122}
   - component: {fileID: 7701001020217346450}
-  - component: {fileID: 6592127850589194301}
   m_Layer: 2
   m_Name: Camera Target
   m_TagString: Untagged
@@ -8296,26 +8408,6 @@ MonoBehaviour:
         m_CallState: 2
   Description: Makes the Animal target of the Camera
   ShowDescription: 1
---- !u!114 &6592127850589194301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706322334423328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d725d49011914244fb64bfaaaa3366e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  internalComponents:
-  - name: Root
-    tooltip: 
-    active: 1
-    gameObjects:
-    - {fileID: 1438017827249262}
-    monoBehaviours: []
-  edit: 0
 --- !u!1 &1757715461058970
 GameObject:
   m_ObjectHideFlags: 0
@@ -8327,8 +8419,7 @@ GameObject:
   - component: {fileID: 4026821777152612}
   - component: {fileID: 135186047329997636}
   - component: {fileID: 114308226716026266}
-  - component: {fileID: 6836389832434945427}
-  - component: {fileID: 9110033232482153780}
+  - component: {fileID: 4763020942604624815}
   m_Layer: 20
   m_Name: Track RFoot
   m_TagString: Untagged
@@ -8379,106 +8470,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
   WaitNextStep: 0.2
-  StepAudio: {fileID: 6836389832434945427}
+  StepAudio: {fileID: 5719295148794597913}
   m_Trigger: {fileID: 135186047329997636}
   DebugColor: {r: 0, g: 1, b: 1, a: 0.34901962}
---- !u!82 &6836389832434945427
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757715461058970}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.2
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 3
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &9110033232482153780
+--- !u!114 &4763020942604624815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8487,35 +8482,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757715461058970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c40057955ac3324f9b900fad19f1651, type: 3}
+  m_Script: {fileID: 11500000, guid: 63b67372eb9e1364097a120497a2e8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delayed:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  RepeatTime:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Repeat: 0
-  onEnable:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4026821777152612}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetParent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 6338783958888104003}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Description: 
-  ShowDescription: 0
+  newParent: {fileID: 6338783958888104003}
 --- !u!1 &1873716155758138
 GameObject:
   m_ObjectHideFlags: 0
@@ -8527,8 +8497,7 @@ GameObject:
   - component: {fileID: 4266860632283498}
   - component: {fileID: 135832157602418992}
   - component: {fileID: 114606877929445550}
-  - component: {fileID: 4983039511049748778}
-  - component: {fileID: 5132861681858488519}
+  - component: {fileID: 3314808640794173969}
   m_Layer: 20
   m_Name: Track RHand
   m_TagString: Untagged
@@ -8578,106 +8547,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
   WaitNextStep: 0.2
-  StepAudio: {fileID: 4983039511049748778}
+  StepAudio: {fileID: 1379845917111296713}
   m_Trigger: {fileID: 135832157602418992}
   DebugColor: {r: 0, g: 1, b: 1, a: 0.34901962}
---- !u!82 &4983039511049748778
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873716155758138}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.2
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 3
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &5132861681858488519
+--- !u!114 &3314808640794173969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8686,35 +8559,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1873716155758138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c40057955ac3324f9b900fad19f1651, type: 3}
+  m_Script: {fileID: 11500000, guid: 63b67372eb9e1364097a120497a2e8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delayed:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  RepeatTime:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Repeat: 0
-  onEnable:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4266860632283498}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetParent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2944268190814087512}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Description: 
-  ShowDescription: 0
+  newParent: {fileID: 2944268190814087512}
 --- !u!1 &275236924237803417
 GameObject:
   m_ObjectHideFlags: 0
@@ -8915,7 +8763,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1087265524608481677}
-  - component: {fileID: 2807158246029867091}
   - component: {fileID: 3390758603254792585}
   - component: {fileID: 5032622300912490308}
   m_Layer: 2
@@ -8948,26 +8795,6 @@ Transform:
   m_Father: {fileID: 7341256332303435102}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2807158246029867091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831426989002301917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d725d49011914244fb64bfaaaa3366e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  internalComponents:
-  - name: Root
-    tooltip: 
-    active: 1
-    gameObjects:
-    - {fileID: 1438017827249262}
-    monoBehaviours: []
-  edit: 0
 --- !u!114 &3390758603254792585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9184,7 +9011,7 @@ Transform:
   m_Children:
   - {fileID: 6006834825335490881}
   m_Father: {fileID: 7341256332303435102}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1650708382344075366
 MonoBehaviour:
@@ -9572,7 +9399,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9168077419150649489}
-  - component: {fileID: 6907837909037832216}
   - component: {fileID: 736331482148044950}
   m_Layer: 2
   m_Name: Look At
@@ -9596,26 +9422,6 @@ Transform:
   m_Father: {fileID: 7341256332303435102}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6907837909037832216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485951915348890352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d725d49011914244fb64bfaaaa3366e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  internalComponents:
-  - name: Root
-    tooltip: 
-    active: 1
-    gameObjects:
-    - {fileID: 1438017827249262}
-    monoBehaviours: []
-  edit: 0
 --- !u!114 &736331482148044950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9645,14 +9451,14 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  OnLookAtActive:
-    m_PersistentCalls:
-      m_Calls: []
   Bones:
   - bone: {fileID: 3129345868563773065}
     offset: {x: 0, y: -90, z: -90}
     weight: 1
     external: 0
+  OnLookAtActive:
+    m_PersistentCalls:
+      m_Calls: []
   debug: 1
 --- !u!1 &1498478186823975236
 GameObject:
@@ -9802,6 +9608,8 @@ MonoBehaviour:
       m_Bits: 1073741824
     Variable: {fileID: 0}
   triggerInteraction: 1
+  CollectableReaction:
+    rid: -2
   CanPickUp:
     m_PersistentCalls:
       m_Calls: []
@@ -9863,6 +9671,11 @@ MonoBehaviour:
   item: {fileID: 0}
   focusedItem: {fileID: 0}
   Editor_Tabs1: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1735110541734373479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10138,7 +9951,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7341256332303435102}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3394598124208254685
 MonoBehaviour:
@@ -10172,7 +9985,7 @@ MonoBehaviour:
     OnMaterialChanged:
       m_PersistentCalls:
         m_Calls: []
-  showMeshesList: 1
+  showMeshesList: 0
   changeHidden: 0
   random: 0
 --- !u!1 &2485189556470233573
@@ -10317,7 +10130,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7341256332303435102}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8034436837155804440
 MonoBehaviour:
@@ -10638,6 +10451,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {x: 0, y: -2, z: 0}
     Variable: {fileID: 0}
+  FireTest: 0
 --- !u!114 &2721545168686041008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11524,8 +11338,10 @@ Transform:
   m_Children:
   - {fileID: 7328455545677524459}
   - {fileID: 8525387531802863456}
+  - {fileID: 3085854086139578226}
+  - {fileID: 6299711971661753784}
   m_Father: {fileID: 7341256332303435102}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4709312326296637801
 MonoBehaviour:
@@ -11685,6 +11501,69 @@ CapsuleCollider:
   m_Height: 0.46
   m_Direction: 0
   m_Center: {x: -0.12, y: 0, z: 0}
+--- !u!1 &6851522266596550185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7050466164016940164}
+  - component: {fileID: 8303529082778674196}
+  m_Layer: 2
+  m_Name: Path Constraint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7050466164016940164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851522266596550185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7341256332303435102}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8303529082778674196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851522266596550185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ae1e9ca584b524c8fb17c7fc25a0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 114222225517902476}
+  m_Path: {fileID: 0}
+  AutoMove:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Radius: 0.5
+  Offset: {x: 0, y: 0.5, z: 0}
+  ForwardOffset: 0.3
+  OrientSmoothness: 5
+  AlignSmoothness: 5
+  debug: 0
+  OnEnterPath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExitPath:
+    m_PersistentCalls:
+      m_Calls: []
+  Editor_Tabs1: 0
 --- !u!1 &6893809371122083347
 GameObject:
   m_ObjectHideFlags: 0
@@ -12221,6 +12100,134 @@ Transform:
   m_Father: {fileID: 2068494784339471010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8502790929789456432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3085854086139578226}
+  - component: {fileID: 1379845917111296713}
+  m_Layer: 2
+  m_Name: FootSteps Front
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3085854086139578226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8502790929789456432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.611}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2336980046267841647}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1379845917111296713
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8502790929789456432}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.549
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8507465553381465047
 GameObject:
   m_ObjectHideFlags: 0
@@ -12268,6 +12275,134 @@ CapsuleCollider:
   m_Height: 0.46
   m_Direction: 0
   m_Center: {x: -0.12, y: 0, z: 0}
+--- !u!1 &8611254114679539238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6299711971661753784}
+  - component: {fileID: 5719295148794597913}
+  m_Layer: 2
+  m_Name: FootSteps Back
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6299711971661753784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611254114679539238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2336980046267841647}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &5719295148794597913
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611254114679539238}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.549
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9010918501367802583
 GameObject:
   m_ObjectHideFlags: 0
@@ -12458,20 +12593,21 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1314641864489545289}
+  - {fileID: 2336980046267841647}
   - {fileID: 4894973548784198}
   - {fileID: 5587984050728943045}
-  - {fileID: 2336980046267841647}
   - {fileID: 9168077419150649489}
   - {fileID: 4258906106407218}
   - {fileID: 1087265524608481677}
   - {fileID: 1735110541734373472}
   - {fileID: 8925397244998842155}
   - {fileID: 5653743513341396727}
-  - {fileID: 1514704916385020198}
   - {fileID: 1680402408192586474}
   - {fileID: 5806680251440680261}
   - {fileID: 651182574759626242}
   - {fileID: 3794586296272959663}
+  - {fileID: 7050466164016940164}
+  - {fileID: 1514704916385020198}
   m_Father: {fileID: 4417229628137580}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12591,7 +12727,7 @@ PrefabInstance:
     - target: {fileID: 1680402408210628051, guid: 61070b97654586c4184715a31e74e479,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1680402408210628051, guid: 61070b97654586c4184715a31e74e479,
         type: 3}
@@ -12763,7 +12899,7 @@ PrefabInstance:
     - target: {fileID: 3702501652830921620, guid: 394e764977f5f994199ec7c1ee5e4f95,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3702501652830921620, guid: 394e764977f5f994199ec7c1ee5e4f95,
         type: 3}
@@ -12863,7 +12999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4050282840101158, guid: f09ceca33ea0e554f92eb2f15e8dce44, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4050282840101158, guid: f09ceca33ea0e554f92eb2f15e8dce44, type: 3}
       propertyPath: m_LocalPosition.x

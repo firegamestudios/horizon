@@ -23,7 +23,7 @@ public class Loot : MonoBehaviour
     private void Awake()
     {
         inv = GetComponent<Inventory>();
-        pc = FindAnyObjectByType<PC>();
+       
         source = transform.parent.GetComponent<AudioSource>();
         uiManager = FindAnyObjectByType<UIManager>();
     }
@@ -43,8 +43,15 @@ public class Loot : MonoBehaviour
             
         }
 
-        pcInv = pc.inv;
+        Invoke("SetupPC", 5f);
     }
+
+    void SetupPC()
+    {
+        pc = FindAnyObjectByType<PC>();
+    }
+
+    
 
     void GiveCreditsAmount(int amount, int index)
     {
@@ -56,6 +63,9 @@ public class Loot : MonoBehaviour
 
     public void TakeMyLoot()
     {
+       
+        pcInv = pc.inv;
+
         for (int i = 0; i < inv.Content.Length; i++)
         {
             if (inv.Content[i] != null)

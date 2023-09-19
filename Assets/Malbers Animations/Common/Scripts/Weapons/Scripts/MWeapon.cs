@@ -102,16 +102,16 @@ namespace MalbersAnimations.Weapons
 
         [Min(0),Tooltip("A holster can have multiple Transform to be parent to. This is the Index of the Transform Slots Array")]
         [SerializeField] protected int m_holsterIndex = 0;                                  // From which Holder you will draw the Weapon
-        public BoolReference rightHand = new BoolReference(true);                           // With which hand you will draw the Weapon;
+        public BoolReference rightHand = new(true);                           // With which hand you will draw the Weapon;
       
-        [SerializeField] protected FloatReference m_rate = new FloatReference(0);           //Weapon Rate
-        [SerializeField] protected BoolReference m_Automatic = new BoolReference(false);    //Press Fire to Contiue Attacking
+        [SerializeField] protected FloatReference m_rate = new(0);           //Weapon Rate
+        [SerializeField] protected BoolReference m_Automatic = new(false);    //Press Fire to Contiue Attacking
 
         [Tooltip("Ignore Draw Animations for the weapon")]
-        [SerializeField] protected BoolReference m_IgnoreDraw = new BoolReference(false);
+        [SerializeField] protected BoolReference m_IgnoreDraw = new(false);
 
         [Tooltip("Ignore Store Animations for the weapon")]
-        [SerializeField] protected BoolReference m_IgnoreStore = new BoolReference(false);
+        [SerializeField] protected BoolReference m_IgnoreStore = new(false);
         #endregion
 
         #region ANIMAL CONTROLLER WEAPON GROUNDED
@@ -119,9 +119,9 @@ namespace MalbersAnimations.Weapons
         [Tooltip("Stance Used by the Animal Controller for the Weapon")]
         public StanceID stance;
         [SerializeField,Tooltip("Enable Strafing while Aiming")]
-        private BoolReference strafeOnAim =  new BoolReference();
+        private BoolReference strafeOnAim =  new();
         [Tooltip("When using the weapon on foot it will Try activate the Strafe on the Animal")]
-        public BoolReference UseStrafe = new BoolReference(false);
+        public BoolReference strafeOnEquip = new(false);
         #endregion
 
         #region IK
@@ -150,7 +150,6 @@ namespace MalbersAnimations.Weapons
         #region Audio
         /// <summary> Weapon Sounds</summary>
         public AudioClip[] Sounds;                          //Sounds for the weapon
-        public AudioSource WeaponSound;                     //Reference for the audio Source;
         #endregion
 
         #region Properties
@@ -273,8 +272,6 @@ namespace MalbersAnimations.Weapons
             }
         }
 
-
-
         /// <summary>Side of the Camera to use when using the Weapon</summary>
         public AimSide AimSide { get => m_AimSide; set => m_AimSide = value; }
 
@@ -347,6 +344,7 @@ namespace MalbersAnimations.Weapons
 
         /// <summary>  Enable Strafing on Aiming  </summary>
         public bool StrafeOnAim { get => strafeOnAim.Value; set => strafeOnAim.Value = value; }
+        public bool StrafeOnEquip { get => strafeOnEquip.Value; set => strafeOnEquip.Value = value; }
 
         /// <summary> The Free Hand is Free[True] or used[false]</summary>
         public bool FreeHand { get; set; }
@@ -537,10 +535,8 @@ namespace MalbersAnimations.Weapons
             isEquiped = false;
             if (Owner == null) Owner = transform.root.gameObject;
 
-            if (!WeaponSound) WeaponSound = gameObject.FindComponent<AudioSource>(); //Gets the Weapon Source
-            if (!WeaponSound) WeaponSound = gameObject.AddComponent<AudioSource>(); //Create an AudioSourse if theres no Audio Source on the weapon
+            CheckAudioSource();
 
-            WeaponSound.spatialBlend = 1;
             IsCollectable = GetComponent<ICollectable>(); //Cache if the weapon is a collectable
 
             if (holsterAnim == null) holsterAnim = holster;
@@ -548,6 +544,8 @@ namespace MalbersAnimations.Weapons
 
             SetDefaultProfile();
         }
+
+       
 
         /// <summary> Apply the Correct offset to the weapon</summary>
         public virtual void ApplyOffset()
@@ -570,23 +568,13 @@ namespace MalbersAnimations.Weapons
             if (ID < Sounds.Length && Sounds[ID] != null)
             {
                 var newSound = Sounds[ID];
-                if (WeaponSound && !playingSound && gameObject.activeInHierarchy)
-                {
-                    playingSound = true;
-
-                    //HACK FOR THE SOUND
-                    this.Delay_Action(2, () =>
-                    {
-                        WeaponSound.clip = newSound;
-                        WeaponSound.Play();
-                        playingSound = false;
-                    }
-                    );
-                }
+                PlaySound(newSound);
             }
         }
 
-        protected bool playingSound;
+      
+
+       
 
         [ContextMenu("Set Hand Offset Values")]
         private void CopyTransformToOffsets()
@@ -608,11 +596,11 @@ namespace MalbersAnimations.Weapons
 
             index = UnityEngine.Random.Range(100000, 999999);
 
-            WeaponSound = GetComponent<AudioSource>(); //Gets the Weapon Source
+            m_audio = GetComponent<AudioSource>(); //Gets the Weapon Source
 
-            if (!WeaponSound) WeaponSound = gameObject.AddComponent<AudioSource>(); //Create an AudioSourse if theres no Audio Source on the weapon
+            if (!m_audio) m_audio = gameObject.AddComponent<AudioSource>(); //Create an AudioSourse if theres no Audio Source on the weapon
 
-            WeaponSound.spatialBlend = 1;
+            m_audio.spatialBlend = 1;
 
             holster = MTools.GetInstance<HolsterID>("Back Holster 1");
         }
@@ -633,14 +621,15 @@ namespace MalbersAnimations.Weapons
         protected GUIStyle DescSTyle;
 
         protected SerializedProperty
-            Sounds, WeaponSound, weaponType, rightHand, 
+            Sounds, audioSource, weaponType, rightHand, 
             ChargeTime, m_MaxCharge,
             chargeCharMultiplier, MaxChargeDamage, m_AimOrigin, m_UI,
             m_AimSide, OnCharged, OnUnequiped, OnEquiped,  /*OnPlaced, minDamage, maxDamage,*/ holster, holsterAnim, IKProfile,
 
             AimIKRight, AimIKLeft, Rate, TwoHandIK, IKHandPoint, //HandIKLerp,
 
-            mode, stance, strafeOnAim, RidingArmPose, GroundArmPose,// RidingCombo, GroundCombo,
+            mode, stance, strafeOnAim, strafeOnEquip,
+            RidingArmPose, GroundArmPose,// RidingCombo, GroundCombo,
            // rotationOffsetIKHand, positionOffsetIKHand,
             OnAiming, m_Automatic, ChargeCurve, HolsterOffset, OnUseFreeHand, OnReleaseFreeHand, m_holsterIndex,
             description, Editor_Tabs2, Editor_Tabs1,
@@ -665,12 +654,13 @@ namespace MalbersAnimations.Weapons
 
             Sounds = serializedObject.FindProperty("Sounds");
             m_UI = serializedObject.FindProperty("m_UI");
-            WeaponSound = serializedObject.FindProperty("WeaponSound");
+            audioSource = serializedObject.FindProperty("m_audio");
             weaponType = serializedObject.FindProperty("weaponType");
             HolsterOffset = serializedObject.FindProperty("HolsterOffset");
 
 
             description = serializedObject.FindProperty("description");
+            strafeOnEquip = serializedObject.FindProperty("strafeOnEquip");
             m_Automatic = serializedObject.FindProperty("m_Automatic");
             m_AimOrigin = serializedObject.FindProperty("m_AimOrigin");
             chargeCharMultiplier = serializedObject.FindProperty("chargeCharMultiplier");
@@ -902,6 +892,7 @@ namespace MalbersAnimations.Weapons
                 {
                     EditorGUILayout.PropertyField(stance);
                     EditorGUILayout.PropertyField(strafeOnAim);
+                    EditorGUILayout.PropertyField(strafeOnEquip);
 
                     //EditorGUILayout.PropertyField(GroundCombo);
                     //EditorGUILayout.PropertyField(RidingCombo);
@@ -969,7 +960,7 @@ namespace MalbersAnimations.Weapons
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
                 // EditorGUILayout.LabelField("Sound", EditorStyles.boldLabel);
-                EditorGUILayout.PropertyField(WeaponSound, new GUIContent("Weapon Source", "Audio Source for the wapons"));
+                EditorGUILayout.PropertyField(audioSource, new GUIContent("Audio Source", "Audio Source for the weapons"));
                 EditorGUI.indentLevel++;
                 UpdateSoundHelp();
                 EditorGUILayout.PropertyField(Sounds, new GUIContent("Sounds", "Sounds Played by the weapon"), true);

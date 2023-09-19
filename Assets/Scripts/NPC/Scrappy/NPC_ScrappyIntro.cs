@@ -12,6 +12,7 @@ public class NPC_ScrappyIntro : NPC
     public Transform wpIncinerator;
     public Animator incineratorDoorAnimator;
     public AudioSource doorAudio;
+    public GameObject invisiblePlatform;
 
     public override void Initialize()
     {
@@ -35,6 +36,7 @@ public class NPC_ScrappyIntro : NPC
         print("ScrappyFell: " + DialogueLua.GetVariable("ScrappyFell").asString);
         screamSound.Play();
         Unfreeze();
+        invisiblePlatform.SetActive(false);
     }
 
     #region Update

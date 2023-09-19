@@ -4364,7 +4364,7 @@ MonoBehaviour:
   OnEnd:
     m_PersistentCalls:
       m_Calls: []
-  previewPosition: 1
+  previewPosition: 0
   start:
     UseConstant: 1
     ConstantValue: {x: 0, y: 0, z: 0}

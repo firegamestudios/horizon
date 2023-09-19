@@ -4,43 +4,105 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
-public class GameManager : MonoBehaviour
+namespace Droidzone.Core
 {
-  
-    MusicManager musicManager;
-
-    public float detectionRadius;
-    public LayerMask enemyLayer;
-
-    //Important objects
-    PC pc;
-
-    private void Awake()
+    public class GameManager : MonoBehaviour
     {
-        pc = FindAnyObjectByType<PC>();
-        musicManager = FindAnyObjectByType<MusicManager>();
-    }
 
-   
+        MusicManager musicManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        public List<PC> pcs;
+
+        //Important objects
+
+        SaveLoadManager saveLoadManager;
+
+        public static PlayerData playerData;
+
+        private static PC pc;
+
+        public static PC Pc { get => pc ??= FindAnyObjectByType<PC>(); set => pc = value; }
+
+        public static GameManager Instance;
+
+        MRespawner respawner;
+
+        #region Initialization
+        private void Awake()
         {
-            Application.Quit();
-        }
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            SceneManager.LoadScene(3);
+            saveLoadManager = FindAnyObjectByType<SaveLoadManager>();
+            musicManager = FindAnyObjectByType<MusicManager>();
+            respawner = FindAnyObjectByType<MRespawner>();
+
+            //Singleton
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
-      
+        //Initialized by SaveLoadManager
+        /// <summary>
+        /// Here we will handle the PC activation, based on their race. They need to be different objects (list above) because they have different riggings.
+        /// </summary>
+        public void Initialize()
+        {
+
+            string race = playerData.race;
+
+           
+            ActivatePC(race);
+        }
+
+        void ActivatePC(string _race)
+        {
+            switch (_race)
+            {
+                case "Droid":
+                    pcs[0].gameObject.SetActive(true);
+                    respawner.SetPlayer(pcs[0].gameObject); break;
+                case "Alien":
+                    pcs[1].gameObject.SetActive(true);
+                    respawner.SetPlayer(pcs[1].gameObject); break;
+                case "Male Human":
+                     pcs[2].gameObject.SetActive(true); 
+                     respawner.SetPlayer(pcs[2].gameObject);break;
+                case "Female Human":
+                /// pcs[3].gameObject.SetActive(true); 
+                ///  respawner.SetPlayer(pcs[3].gameObject);break;
+                default:
+                    break;
+            }
+        }
+        #endregion
+
+        #region Update
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                SceneManager.LoadScene(3);
+            }
+
+
+        }
+        #endregion
+        // Call this method to switch to the exploration state
+
+
+
     }
-    // Call this method to switch to the exploration state
-  
-   
 
 }
+
+

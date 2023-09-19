@@ -88,7 +88,7 @@ MonoBehaviour:
   MovementStrafe: 1
   IdleStrafe: 1
   m_debug: 1
-  Editor_Tabs1: 0
+  Editor_Tabs1: 4
   SpeedSets:
   - name: Slide
     StartVerticalIndex:
@@ -159,10 +159,6 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 5
         Variable: {fileID: 0}
-      lerpRotation:
-        UseConstant: 1
-        ConstantValue: 4
-        Variable: {fileID: 0}
       lerpRotAnim:
         UseConstant: 1
         ConstantValue: 4
@@ -198,7 +194,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   ExitSpeed:
     UseConstant: 1
-    ConstantValue: 0.5
+    ConstantValue: 3
     Variable: {fileID: 0}
   ExitSpeedStatus:
     UseConstant: 1

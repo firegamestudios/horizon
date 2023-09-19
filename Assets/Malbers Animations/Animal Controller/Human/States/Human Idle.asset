@@ -33,7 +33,7 @@ MonoBehaviour:
   General:
     modify: -1
     RootMotion: 1
-    Sprint: 1
+    Sprint: 0
     Gravity: 0
     Grounded: 1
     OrientToGround: 1

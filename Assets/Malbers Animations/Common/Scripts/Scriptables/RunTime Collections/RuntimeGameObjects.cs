@@ -3,9 +3,13 @@ using MalbersAnimations.Events;
 
 namespace MalbersAnimations.Scriptables
 {
+    public enum RuntimeSetTypeGameObject { First, Random, Index, ByName, Closest }
+
+
     [CreateAssetMenu(menuName = "Malbers Animations/Collections/Runtime GameObject Set", order = 1000, fileName = "New Runtime Gameobject Collection")]
     public class RuntimeGameObjects : RuntimeCollection<GameObject>
     {
+
         public GameObjectEvent OnItemAdded = new GameObjectEvent();
         public GameObjectEvent OnItemRemoved = new GameObjectEvent();
 
@@ -36,6 +40,23 @@ namespace MalbersAnimations.Scriptables
         
         public  void Item_Add(Component newItem) => Item_Add(newItem.gameObject);
         public  void Item_Remove(Component newItem) => Item_Remove(newItem.gameObject);
+
+
+        public GameObject GetItem(RuntimeSetTypeGameObject type, int Index = 0, string m_name = "", GameObject origin = null)
+        {
+            if (IsEmpty) return null;
+
+            return type switch
+            {
+                RuntimeSetTypeGameObject.First => Item_GetFirst(),
+                RuntimeSetTypeGameObject.Random => Item_GetRandom(),
+                RuntimeSetTypeGameObject.Index => Item_Get(Index),
+                RuntimeSetTypeGameObject.ByName => Item_Get(m_name),
+                RuntimeSetTypeGameObject.Closest => Item_GetClosest(origin),
+                _ => null,
+            };
+        }
+
     }
 
 

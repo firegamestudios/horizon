@@ -474,6 +474,7 @@ namespace MalbersAnimations
             };
 
             styleDesc.normal.textColor = EditorStyles.label.normal.textColor;
+
             UnityEditor.EditorGUILayout.LabelField(v, styleDesc);
         }
 
@@ -493,7 +494,7 @@ namespace MalbersAnimations
         {
             var currentGUIColor = GUI.color;
             GUI.color = property.boolValue ? Color.red : currentGUIColor;
-            property.boolValue = GUILayout.Toggle(property.boolValue, DebugCont, EditorStyles.miniButton, GUILayout.Width(29));
+            property.boolValue = GUILayout.Toggle(property.boolValue, DebugCont, EditorStyles.miniButtonMid, GUILayout.Width(28), GUILayout.Height(20));
             GUI.color = currentGUIColor;
         }
 

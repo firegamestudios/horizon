@@ -34,8 +34,10 @@ namespace MalbersAnimations
 		/// <summary>  Returns the display name without the path.  </summary>
 		public string GetTypeNameWithoutPath()
 		{
-			string[] splittedDisplayName = GetSplittedMenuName();
-			return (splittedDisplayName.Length != 0) ? splittedDisplayName[splittedDisplayName.Length - 1] : null;
+			return MenuName;
+
+            //string[] splittedDisplayName = GetSplittedMenuName();
+			//return (splittedDisplayName.Length != 0) ? splittedDisplayName[splittedDisplayName.Length - 1] : null;
 		}
 	}
 }

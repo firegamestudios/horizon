@@ -14,8 +14,8 @@ namespace MalbersAnimations.Weapons
         [RequiredField] public Collider meleeTrigger;
         [Tooltip("Do not interact with Static Objects")]
         public bool ignoreStaticObjects = true;
-        public BoolEvent OnCauseDamage = new BoolEvent();
-        public Color DebugColor = new Color(1, 0.25f, 0, 0.5f);
+        public BoolEvent OnCauseDamage = new();
+        public Color DebugColor = new(1, 0.25f, 0, 0.5f);
 
         public bool UseCameraSide;
         public bool InvertCameraSide;
@@ -141,12 +141,15 @@ namespace MalbersAnimations.Weapons
             TryInteract(other.gameObject);                                              //Get the interactable on the Other collider
             TryPhysics(other.attachedRigidbody, other, center, Direction, Force);       //If the other has a riggid body and it can be pushed
             TryStopAnimator();
-            TryHit(other, meleeTrigger.bounds.center);
+            TryHitEffect(other, meleeTrigger.bounds.center, damagee);
 
             var Damage = new StatModifier(statModifier)
             { Value = Mathf.Lerp(MinDamage, MaxDamage, ChargedNormalized) };            //Do the Damage depending the charge
 
             TryDamage(damagee, Damage); //if the other does'nt have the Damagable Interface dont send the Damagable stuff 
+
+            //Store the Last Collider that the animal hit
+            if (damagee != null) { damagee.HitCollider = other; }
         }
 
 

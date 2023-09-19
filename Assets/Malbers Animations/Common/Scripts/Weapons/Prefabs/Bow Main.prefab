@@ -420,6 +420,11 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
     UseConstant: 1
@@ -557,6 +562,7 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   m_UI: {fileID: 0}
   description:
     UseConstant: 1
@@ -630,7 +636,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  UseStrafe:
+  strafeOnEquip:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -663,7 +669,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8300000, guid: ffd92ab4f3e30af49a072507a09bd4a3, type: 3}
   - {fileID: 8300000, guid: 7045f6b1693c78e418bd8b81cc51cb8d, type: 3}
-  WeaponSound: {fileID: 0}
   OnEquiped:
     m_PersistentCalls:
       m_Calls:
@@ -771,8 +776,8 @@ MonoBehaviour:
   OnReleaseFreeHand:
     m_PersistentCalls:
       m_Calls: []
-  Editor_Tabs1: 0
-  Editor_Tabs2: 4
+  Editor_Tabs1: 4
+  Editor_Tabs2: 1
   releaseProjectile: 2
   CancelAim: 1
   m_Projectile:
@@ -819,6 +824,10 @@ MonoBehaviour:
   m_AutoReload:
     UseConstant: 1
     ConstantValue: 1
+    Variable: {fileID: 0}
+  m_AutoReloadTime:
+    UseConstant: 1
+    ConstantValue: 0.1
     Variable: {fileID: 0}
   OnLoadProjectile:
     m_PersistentCalls:

@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Priority: 0
   m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 2340576200175971939}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 38
     OrthographicSize: 10
@@ -135,6 +135,10 @@ MonoBehaviour:
   invertY:
     UseConstant: 1
     ConstantValue: 0
+    Variable: {fileID: 0}
+  CameraDistance:
+    UseConstant: 1
+    ConstantValue: 2
     Variable: {fileID: 0}
   XMultiplier:
     UseConstant: 1
@@ -281,6 +285,7 @@ GameObject:
   - component: {fileID: 5606653004784538166}
   - component: {fileID: 1322141856182372106}
   - component: {fileID: 366541965042644905}
+  - component: {fileID: -4208662401145002495}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -339,3 +344,20 @@ MonoBehaviour:
   CameraRadius: 0.2
   DampingIntoCollision: 0
   DampingFromCollision: 2
+--- !u!114 &-4208662401145002495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7959176869278114464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0.5
+  m_FrequencyGain: 0.3
+  mNoiseOffsets: {x: 0, y: 0, z: 0}

@@ -1,11 +1,14 @@
-1 gem
-some credits
+
 one liner reader on use x4
+Attention: if the piles start to reach maximum limit, bring the trash to the incinerator.
+The White Palace does routine inspections every month. Keep the place clean.
+The D1 Initiative is on site and scavengers will be shot on sight.
+The dung eater infestation is out of control. Do NOT enter the facility without your weapons.
 one liner usable object
 
 Scrappy (Shadowheart)
 
-D1 (Laezel) dialogue:
+Pogo AI (Laezel) dialogue:
 1- Woa... I'm not your enemy
 
 1.1 You are not in XXX anymore. Look around.
@@ -15,8 +18,8 @@ D1 (Laezel) dialogue:
 4- What is this place?
 
 Loot:
-speed potion
-skull
+speed potion - ok
+skull - ok
 2 bombs: spike and force
 sword
 axe
@@ -54,4 +57,16 @@ fire
 auto-dialogue D1
 
 creature (stronger than dung eater)
+more d.eater
+
+gem
+
+light crossbow
+
+knife
+
+cinematic to show controls
+
+
+
 

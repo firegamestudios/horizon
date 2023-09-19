@@ -42,13 +42,15 @@ namespace MalbersAnimations.Utilities
 
         /// <summary>Smoothness between Enabled and Disable</summary>
         [Tooltip("Use the LookAt only when there's a Force Target on the Aim... use this when the Animal is AI Controlled")]
-        [SerializeField] private BoolReference onlyTargets = new BoolReference(false)    ;
-
-        public BoolEvent OnLookAtActive = new BoolEvent();
+        [SerializeField] private BoolReference onlyTargets = new(false)    ;
 
         [Space]
         public BoneRotation[] Bones;      //Bone Chain    
         private  Quaternion[] LocalRot;      //Bone Chain    
+
+        public BoolEvent OnLookAtActive = new();
+
+
         public bool debug = true;
         private float SP_Weight;
         /// <summary>Angle created between the transform.Forward and the LookAt Point   </summary>
@@ -70,7 +72,7 @@ namespace MalbersAnimations.Utilities
         {
             get
             {
-                var check = Active && CameraTarget && ActiveByAnimation && (angle < LimitAngle);
+                var check = Active && CameraAndTarget && ActiveByAnimation && (angle < LimitAngle);
 
                 if (check != isAiming)
                 {
@@ -86,31 +88,28 @@ namespace MalbersAnimations.Utilities
             } 
         }
 
-        bool CameraTarget;
+    
 
         /// <summary> Enable Disable the Look At </summary>
         public bool Active
         {
             get => active;
-            set
-            {
-                active.Value = value;
-
-                //enable disable also the Aimer
-                // if (aimer != null) aimer.Active = value;
-            }
+            set => active.Value = value;
         }
 
         /// <summary> Enable/Disable the LookAt by the Animator</summary>
         public bool ActiveByAnimation { get; set; }
 
 
+        /// <summary>The Character is using a Camera to Look?</summary>
+        bool CameraAndTarget { get; set; }
+
         /// <summary>When set to True the Look At will only function with Targets gameobjects only instead of the Camera forward Direction</summary>
         public bool OnlyTargets { get => onlyTargets.Value; set => onlyTargets.Value = value; }
 
         void Awake()
         {
-            a_UpVector = gameObject.FindInterface<IGravity>();     //Get Up Vector
+            a_UpVector = gameObject.FindInterface<IGravity>(); //Get Up Vector
 
             if (aimer == null)
                 aimer = gameObject.FindInterface<Aim>();  //Get the Aim Component
@@ -131,10 +130,8 @@ namespace MalbersAnimations.Utilities
 
         void Start()
         {
-            
-
             if (Bones != null && Bones.Length > 0) 
-                EndBone = Bones[Bones.Length - 1].bone;
+                EndBone = Bones[^1].bone;
 
             if (aimer.AimOrigin == null || aimer.AimOrigin == EndBone) 
                 aimer.AimOrigin = Bones[0].bone.parent;
@@ -158,10 +155,24 @@ namespace MalbersAnimations.Utilities
 
         void LateUpdate()
         {
-            if (Time.time < float.Epsilon || Time.timeScale <=0) return;
+            if (Time.time < float.Epsilon || Time.timeScale <= 0) return; //Do not look when the game is paused
 
-            if (OnlyTargets) CameraTarget = (aimer.AimTarget != null);        //If Only Target is true then Disable it because we do not have any target
-            if (!OnlyTargets) CameraTarget = (aimer.MainCamera != null);      //If Only Target is false and there's no Camera then Disable it because we do not have any target
+            if (!aimer.UseCamera && aimer.AimTarget == null) { CameraAndTarget = false; }
+            else
+            {
+                //If Only Target is true then Disable it because we do not have any target
+                if (OnlyTargets)
+                {
+                    CameraAndTarget = (aimer.AimTarget != null);
+                }
+                //If Only Target is false and there's no Camera then Disable it because we do not have any target
+                else
+                {
+                    CameraAndTarget = (aimer.MainCamera != null) || !aimer.UseCamera;
+                }
+            }
+
+
 
             angle = Vector3.Angle(transform.forward, AimDirection);
             SP_Weight = Mathf.MoveTowards(SP_Weight, IsAiming ? 1 : 0, Time.deltaTime * Smoothness / 2);
@@ -256,35 +267,6 @@ namespace MalbersAnimations.Utilities
             }
         }
 
-        //private void CalculateAiming()
-        //{
-        //   IsAiming =  Active && CameraTarget && ActiveByAnimation && (angle < LimitAngle);
-        //}
-
-        //void LookAtBoneSet_AnimatePhysics_Lerp()
-        //{
-        //    Anim.Update(0); //Sadly this needs to be done first
-
-        //    for (int i = 0; i < Bones.Length; i++)
-        //    {
-        //        var bn = Bones[i];
-
-        //        if (!bn.bone) continue;
-
-        //        if (IsAiming)
-        //        {
-        //            var TargetTotation = Quaternion.LookRotation(AimDirection, UpVector) * Quaternion.Euler(bn.offset);
-        //            bn.nextRotation = Quaternion.Lerp(bn.bone.rotation, TargetTotation, bn.weight);
-        //        }
-
-        //        if (SP_Weight != 0)
-        //        {
-        //            if (!bn.external || bn.external && IsAiming)
-        //                bn.bone.rotation = Quaternion.Lerp(bn.bone.rotation, bn.nextRotation, SP_Weight);
-        //        }
-        //    }
-        //}
-
         /// <summary>This is used to listen the Animator asociated to this gameObject </summary>
         public virtual bool OnAnimatorBehaviourMessage(string message, object value) => this.InvokeWithParams(message, value);
 
@@ -337,17 +319,39 @@ namespace MalbersAnimations.Utilities
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-            EditorGUI.BeginDisabledGroup(true);
-            if (Application.isPlaying)
-            {
-                EditorGUILayout.Toggle("Active by Animation", M.ActiveByAnimation);
-                EditorGUILayout.IntField("Enable Priority", M.EnablePriority);
-                EditorGUILayout.IntField("Disable Priority", M.DisablePriority);
-                Repaint();
-            }
-            EditorGUI.EndDisabledGroup();
 
+            if (M.aimer  && M.Bones != null)
+            {
+                var origin = M.aimer.AimOrigin;
+
+                if (origin == null)
+                {
+                    EditorGUILayout.HelpBox($" Please add a Aim Origin to the Aimer Component", MessageType.Error);
+                }
+                else
+                    foreach (var bn in M.Bones)
+                    {
+                        if (bn.bone != null && origin.SameHierarchy(bn.bone))
+                        {
+                            EditorGUILayout.HelpBox($"Aimer Origin [{origin.name}] is child of [{bn.bone.name}]." +
+                                $" Use a different Aimer Origin that is not child of [{bn.bone.name}]", MessageType.Error);
+                            break;
+                        }
+                    }
+            }
+            base.OnInspectorGUI();
+
+            if (Application.isPlaying && M.debug)
+            {
+                using (new EditorGUI.DisabledGroupScope(true))
+                {
+                    EditorGUI.BeginDisabledGroup(true);
+                    EditorGUILayout.Toggle("Active by Animation", M.ActiveByAnimation);
+                    EditorGUILayout.IntField("Enable Priority", M.EnablePriority);
+                    EditorGUILayout.IntField("Disable Priority", M.DisablePriority);
+                    Repaint();
+                }
+            }
         }
     }
 #endif

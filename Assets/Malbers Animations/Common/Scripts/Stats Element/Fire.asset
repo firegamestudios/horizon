@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: Fire
   ID: 1
-  color: {r: 1, g: 0.3220339, b: 0, a: 1}
+  color: {r: 1, g: 0.53115976, b: 0.30588233, a: 1}

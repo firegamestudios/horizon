@@ -990,9 +990,11 @@ namespace MalbersAnimations
 
                 if (m_Transitions.Length > 0)
                 {
-                    if (controller)
+                    if (controller && controller.parameters.Length > 0)
                     {
                         string[] Params = new string[controller.parameters.Length];
+
+                         
 
                         for (int i = 0; i < Params.Length; i++)
                         {

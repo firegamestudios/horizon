@@ -21,7 +21,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   UpdateInterval: 0.2
   WaitForPreviousTask: 0
-  SetAimOn: 0
+  SetLookAtOn: 0
   LookAtTargetS: 0
   LookAtTargetT: 0
   TargetVar: {fileID: 0}
@@ -30,3 +30,4 @@ MonoBehaviour:
   tag: {fileID: 0}
   DisableOnExit: 1
   showTransformVar: 0
+  ShowOption1: 1

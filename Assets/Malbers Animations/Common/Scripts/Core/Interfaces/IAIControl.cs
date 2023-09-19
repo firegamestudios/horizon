@@ -82,6 +82,8 @@ namespace MalbersAnimations
         /// <summary>The Character will assign and go to a new Target (Given by the current Target) when it arrives to the current target</summary>
         bool AutoNextTarget { get; set; } 
 
+        bool AIReady { get; } 
+
         /// <summary>is the AI Enabled/Active?</summary>
         bool Active { get;} 
         
@@ -117,10 +119,10 @@ namespace MalbersAnimations
         float SlowDistance();
 
         /// <summary>Returns the AI Destination on an AI Target</summary>
-        Vector3 GetPosition();
+        Vector3 GetCenterPosition();
 
         /// <summary>Returns the AI Destination + the Height</summary>
-        Vector3 GetCenter();
+        Vector3 GetCenterY();
 
         /// <summary>Where is the Target Located, Ground, Water, Air? </summary>
         WayPointType TargetType { get; }

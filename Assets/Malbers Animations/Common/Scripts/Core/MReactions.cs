@@ -12,6 +12,7 @@ namespace MalbersAnimations.Reactions
     public class MReactions : MonoBehaviour
     {
         [Tooltip("Try to find a target on Enable. (Search first in the hierarchy then in the parents)")]
+        [ContextMenuItem("Find Target", "GetTarget on Enable")]
         public bool FindTarget = false;
 
         [SerializeField] private Component Target;
@@ -26,7 +27,7 @@ namespace MalbersAnimations.Reactions
         }
 
         [ContextMenu("Find Target")]
-        private void GetTarget()
+        public void GetTarget()
         {
             Target = GetComponent(reaction.ReactionType) ?? GetComponentInParent(reaction.ReactionType);
             MTools.SetDirty(this);
@@ -59,7 +60,6 @@ namespace MalbersAnimations.Reactions
         }
 
         public void React(GameObject newAnimal) => React(newAnimal.transform);
-
     }
 
 #if UNITY_EDITOR
@@ -70,31 +70,59 @@ namespace MalbersAnimations.Reactions
         SerializedProperty FindTarget, Target, reaction;
 
         private GUIContent _SearchIcon;
+        private GUIContent _ReactIcon;
+        MReactions M;
+
 
         private void OnEnable()
         {
+            M = (MReactions)target;
             FindTarget = serializedObject.FindProperty("FindTarget");
             Target = serializedObject.FindProperty("Target");
-            reaction = serializedObject.FindProperty("reaction"); 
+            reaction = serializedObject.FindProperty("reaction");
         }
- 
+
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-
-
-            using (new GUILayout.HorizontalScope(EditorStyles.helpBox))
+            if (M.reaction != null)
             {
-                EditorGUILayout.PropertyField(Target);
-
-                if (_SearchIcon == null)
+                using (new GUILayout.HorizontalScope(EditorStyles.helpBox))
+            {
+                if (_ReactIcon == null)
                 {
-                    _SearchIcon = EditorGUIUtility.IconContent("Search Icon");
-                    _SearchIcon.tooltip = "Find Target On Enable";
+                    _ReactIcon = EditorGUIUtility.IconContent("d_PlayButton@2x");
+                    _ReactIcon.tooltip = "React at Runtime";
                 }
 
-                FindTarget.boolValue =  GUILayout.Toggle(FindTarget.boolValue, _SearchIcon, EditorStyles.miniButton, GUILayout.Width(28),GUILayout.Height(20));
+                
+                    var width = 28f;
+
+                    if (Application.isPlaying)
+                    {
+                        if (GUILayout.Button(_ReactIcon, EditorStyles.miniButton, GUILayout.Width(width), GUILayout.Height(20)))
+                        {
+                            (target as MReactions).React();
+                        }
+                    }
+
+                    EditorGUILayout.PropertyField(Target);
+
+                    FindTarget.boolValue = GUILayout.Toggle(FindTarget.boolValue, new GUIContent("E", "GetTarget on Enable"),
+                        EditorStyles.miniButton, GUILayout.Width(width), GUILayout.Height(20));
+
+                    if (_SearchIcon == null)
+                    {
+                        _SearchIcon = EditorGUIUtility.IconContent("Search Icon");
+                        _SearchIcon.tooltip = "Find Target in hierarchy";
+                    }
+
+                    if (GUILayout.Button(_SearchIcon, EditorStyles.miniButton, GUILayout.Width(width), GUILayout.Height(20)))
+                    {
+                        (target as MReactions).GetTarget();
+                    }
+                }
             }
 
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
@@ -105,9 +133,6 @@ namespace MalbersAnimations.Reactions
             }
             serializedObject.ApplyModifiedProperties();
         }
-
-
     }
 #endif
 }
-

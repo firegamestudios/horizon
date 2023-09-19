@@ -4,7 +4,7 @@ using MalbersAnimations.Controller;
 namespace MalbersAnimations.Reactions
 {
     [System.Serializable]
-    [AddTypeMenu("Malbers/Animal Controller/Animal Modes")]
+    [AddTypeMenu("Malbers/Animal/Mode")]
     public class ModeReaction : MReaction
     {
         public Mode_Reaction type = Mode_Reaction.Activate;
@@ -35,6 +35,7 @@ namespace MalbersAnimations.Reactions
         public float AbilityTime = 3f;
 
         [Hide("type", (int)Mode_Reaction.Activate, (int)Mode_Reaction.ActivateForever, (int)Mode_Reaction.ForceActivate)]
+        [Tooltip("Mode Power Value for the Animator Controller")]
         public float ModePower = 0;
   
         

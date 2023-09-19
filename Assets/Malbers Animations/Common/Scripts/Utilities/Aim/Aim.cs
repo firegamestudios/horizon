@@ -2,6 +2,7 @@
 using MalbersAnimations.Scriptables;
 using MalbersAnimations.Events;
 using UnityEngine.Events;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,8 +19,8 @@ namespace MalbersAnimations.Utilities
         [SerializeField, Tooltip("Is the Aim Active")]
         private BoolReference m_active = new(true);
 
-        [SerializeField, Tooltip("Aim Origin Reference"), ContextMenuItem("Head as AimOrigin", "HeadAimOrigin")]
-        private Transform m_aimOrigin;
+        [SerializeField, Tooltip("Aim Origin Reference (Required)"), ContextMenuItem("Head as AimOrigin", "HeadAimOrigin")]
+      [RequiredField]  private Transform m_aimOrigin;
         [SerializeField, Tooltip("Smoothness Lerp value to change from Active to Disable")]
         private float m_Smoothness = 10f;
 
@@ -186,25 +187,7 @@ namespace MalbersAnimations.Utilities
             }
         }
 
-        public void EnterAim()
-        {
-            CalculateAiming();
-            OnAiming.Invoke(true);
-            if (AimPosition) AimPosition.gameObject.SetActive(true); //Hide the Helper
-        }
-
-        public void ExitAim()
-        {
-            GetCenterScreen();
-            OnScreenCenter.Invoke(ScreenCenter);
-            OnAimRayTarget.Invoke(null);
-            AimSide = AimSide.None;
-
-            OnAiming.Invoke(false);
-
-            if (AimPosition)
-                AimPosition.gameObject.SetActive(false); //Hide the Helper
-        }
+      
 
         /// <summary> Last Raycast stored for calculating the Aim</summary>
         private RaycastHit aimHit;
@@ -259,13 +242,14 @@ namespace MalbersAnimations.Utilities
                         //if (!m_UseCamera.Value) { enabled = false; return; } //Do not Use AimState if is only meant to be use on Targets
                     }
 
+                    if (debug) Debug.Log($"<B>[{name}]</B> - New Target Set <B>[{value}]</B>",this);
+
                     OnSetTarget.Invoke(value);
                     OnUsingTarget.Invoke(value != null);
                     OnAimRayTarget.Invoke(value);
                 }
             }
         }
-
 
         /// <summary>Tranform Helper use to Ping the Hit Point</summary>
         public Transform AimPosition { get => m_AimPosition.Value; set => m_AimPosition.Value = value; }
@@ -301,17 +285,7 @@ namespace MalbersAnimations.Utilities
 
         void Awake()
         {
-            //Find the Main Camera on the Scene
-            if (MainCamera == null)
-            {
-                cam = MTools.FindMainCamera();
-                if (cam) MainCamera = cam.transform;
-            }
-            else
-            {
-                cam = MainCamera.GetComponent<Camera>();
-            }
-
+            FindCamera();
 
             m_Animator = GetComponentInParent<Animator>();
 
@@ -333,6 +307,20 @@ namespace MalbersAnimations.Utilities
             CurrentCycles = UnityEngine.Random.Range(0, 999999);
         }
 
+        private void FindCamera()
+        {
+            //Find the Main Camera on the Scene
+            if (MainCamera == null)
+            {
+                cam = MTools.FindMainCamera();
+                if (cam) MainCamera = cam.transform;
+            }
+            else
+            {
+                cam = MainCamera.GetComponent<Camera>();
+            }
+        }
+
         private int TryOptionalParameter(string param)
         {
             var AnimHash = Animator.StringToHash(param);
@@ -348,16 +336,27 @@ namespace MalbersAnimations.Utilities
 
         void OnEnable()
         {
-            //  if (!m_UseCamera.Value && !AimTarget) { enabled = false; return; } //Do not Use AimState if is only meant to be use on Targets
-
             CalculateAiming();
 
             var newT = m_AimTarget.Value;
             m_AimTarget.Value = null;
             AimTarget = newT;     //Call the Events on the Aim Target
 
+            if (!m_camera.UseConstant && m_camera.Variable)
+            {
+                m_camera.Variable.OnValueChanged += SearchCamera;
+            }
         }
 
+        private void OnDisable()
+        {
+            if (!m_camera.UseConstant && m_camera.Variable)
+            {
+                m_camera.Variable.OnValueChanged -= SearchCamera;
+            }
+        }
+
+        private void SearchCamera(Transform obj) => FindCamera();
 
         private void FixedUpdate()
         {
@@ -368,7 +367,7 @@ namespace MalbersAnimations.Utilities
 
         private void LateUpdate()
         {
-            if (updateMode == UpdateType.LateUpdate)
+             if (updateMode == UpdateType.LateUpdate)
                 UpdateLogic(Time.deltaTime);
         }
 
@@ -376,6 +375,7 @@ namespace MalbersAnimations.Utilities
         private void UpdateLogic(float time)
         {
             if (!Active) return;
+ 
 
             CurrentCycles++;
             var UseRay = UseRaycasting && (CurrentCycles % m_cycles == 0);
@@ -392,7 +392,25 @@ namespace MalbersAnimations.Utilities
             }
         }
 
+        public void EnterAim()
+        {
+            CalculateAiming();
+            OnAiming.Invoke(true);
+            if (AimPosition) AimPosition.gameObject.SetActive(true); //Hide the Helper
+        }
 
+        public void ExitAim()
+        {
+            GetCenterScreen();
+            OnScreenCenter.Invoke(ScreenCenter);
+            OnAimRayTarget.Invoke(null);
+            AimSide = AimSide.None;
+
+            OnAiming.Invoke(false);
+
+            if (AimPosition)
+                AimPosition.gameObject.SetActive(false); //Hide the Helper
+        }
 
         public virtual void TryAnimParameter(int Hash, float value)
         {
@@ -406,7 +424,7 @@ namespace MalbersAnimations.Utilities
                 aimHit = DirectionFromTarget(useRaycasting);
                 RawPoint = UseRaycasting ? aimHit.point : TargetCenter;
             }
-            else if (UseCamera && MainCamera)
+            else if (UseCamera && MainCamera && cam != null)
             {
                 aimHit = DirectionFromCamera(useRaycasting);
                 RawPoint = aimHit.point;
@@ -416,8 +434,6 @@ namespace MalbersAnimations.Utilities
                 aimHit = DirectionFromDirection(useRaycasting);
                 RawPoint = aimHit.point;
             }
-
-
 
             if (useRaycasting) //Invoke the OnHit Option
             {
@@ -527,7 +543,6 @@ namespace MalbersAnimations.Utilities
 
             return CalculateRayCasting(UseRaycasting, ray, ref hit);
         }
-
 
 
         public RaycastHit DirectionFromDirection(bool UseRaycasting)
@@ -698,14 +713,13 @@ namespace MalbersAnimations.Utilities
                         Gizmos.DrawWireSphere(AimPoint, radius);
                         Gizmos.DrawSphere(AimPoint, radius);
 
-
                         Gizmos.DrawLine(AimOrigin.position, AimPoint);
                         Gizmos.color = Color.black;
                         Gizmos.DrawLine(AimOrigin.position, RawPoint);
 
                         if (UseRaycasting)
                         {
-                            GUIStyle style = new GUIStyle(UnityEditor.EditorStyles.label)
+                            GUIStyle style = new(EditorStyles.label)
                             {
                                 fontStyle = FontStyle.Bold,
                                 fontSize = 10
@@ -713,7 +727,7 @@ namespace MalbersAnimations.Utilities
 
                             style.normal.textColor = Color.green;
 
-                            UnityEditor.Handles.Label(AimPoint, hitName, style);
+                            Handles.Label(AimPoint, hitName, style);
                         }
                     }
                 }

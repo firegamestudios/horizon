@@ -2,6 +2,7 @@
 using MalbersAnimations.Events;
 using MalbersAnimations.Controller;
 using System.Collections.Generic;
+using MalbersAnimations.Scriptables;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,6 +19,9 @@ namespace MalbersAnimations.PathCreation
         public MAnimal animal;
 
         public MPath m_Path;
+
+        [Tooltip("It will move automatically when is on a spline, no Input Needed")]
+        public BoolReference AutoMove = new(false);
 
         public MPath Path { get => m_Path; set => m_Path = value; }
 
@@ -37,7 +41,7 @@ namespace MalbersAnimations.PathCreation
         public float ForwardOffset = 0.3f;
 
         public float OrientSmoothness = 5f;
-        public float AlignSmoothness = 1f;
+        public float AlignSmoothness = 5f;
 
         //[Tooltip("Reference to Position a Transform to follow the Path")]
         //public TransformReference PathPosition;
@@ -98,7 +102,8 @@ namespace MalbersAnimations.PathCreation
         // public Vector3 PathDirection { get; private set; }
 
         /// <summary> Real Direction of the Path regarding the Character From Start to End </summary>
-        public Vector3 PathStartEndDirection { get; private set; }
+        public Vector3 RootPathDirection { get; private set; }
+        public Vector3 FrontPathDirection { get; private set; }
 
         private void OnEnable()
         {
@@ -127,6 +132,9 @@ namespace MalbersAnimations.PathCreation
             animal.PreStateMovement -= PreStateMovement;
             animal.OnStateChange.RemoveListener(OnStateChange);
             animal.OnModeStart.RemoveListener(OnModeStart);
+
+
+          if (Path)  ExitPath();
         }
 
         private void OnModeStart(int arg0, int arg1)
@@ -259,8 +267,8 @@ namespace MalbersAnimations.PathCreation
 
                 Debugging("Enter");
 
-                StartRotation = animal.transform.rotation;
-                StartPosition = animal.transform.position;
+                StartRotation = animal.Rotation;
+                StartPosition = animal.Position;
             }
         }
 
@@ -274,8 +282,10 @@ namespace MalbersAnimations.PathCreation
             if (TryExitPath()) return; //Check if we can exit the path
 
 
-            var position = animal.transform.position;
-            var rotation = animal.transform.rotation;
+            var scaleFactor = animal.ScaleFactor;
+
+            var position = animal.Position;
+            var rotation = animal.Rotation;
 
             var FrontPivot = position + (animal.Forward * (ForwardOffset * animal.ScaleFactor));
 
@@ -286,27 +296,22 @@ namespace MalbersAnimations.PathCreation
             RootPos = Path.Path.GetPointAtTime(m_PathRootPoint);         // Apply the offset to get the new position Root Position 
             FrontPos = Path.Path.GetPointAtTime(m_PathFrontPoint);       // Apply the offset to get the new position Front Position
 
-            Quaternion newPathOrientation = Path.Path.GetPathRotation(m_PathRootPoint); //Get the Orientation of the Path
-            var PosOffset = newPathOrientation * Path.AlignmentOffset;
+            Quaternion RootRotation = Path.Path.GetPathRotation(m_PathRootPoint); //Get the Orientation of the Path
+           // Quaternion FrontRotation = Path.Path.GetPathRotation(m_PathFrontPoint); //Get the Orientation of the Path
+            
+          
+            var PathPosOffset = RootRotation * Path.AlignmentOffset;
 
-            PathStartEndDirection = newPathOrientation * Vector3.forward;
-            if (debug) MDebug.Draw_Arrow(animal.Position, PathStartEndDirection, Color.cyan); //Real Path Direction From Start to End
+             RootPathDirection = RootRotation * Vector3.forward;
+           // RootPathDirection = FrontRotation * Vector3.forward;
+         
+            Path.PathPosition.SetPositionAndRotation(RootPos, RootRotation); //Transform Reference to store the Position and Rotation
 
-
-            Path.PathPosition.SetPosition(RootPos);
-            Path.PathPosition.SetRotation(newPathOrientation);
-
-            if (debug)
-            {
-                MDebug.DrawWireSphere(RootPos + PosOffset, Color.cyan, 0.05f);
-                MDebug.DrawWireSphere(FrontPos, Color.white, 0.05f);
-            }
-
-            Vector3 PathDirection;
+            Vector3 PathDirection = RootPathDirection; //USE THE REAL PATH DIRECTION FROM START TO END
 
             if (Path.LockRotation) //Find the Correct Path Rotation 
             {
-                PathDirection = PathStartEndDirection; //USE THE REAL PATH DIRECTION FROM START TO END
+               // PathDirection = RootPathDirection; //USE THE REAL PATH DIRECTION FROM START TO END
 
                 if (Path.FollowDirection == PathFollowDir.None)
                 {
@@ -318,45 +323,80 @@ namespace MalbersAnimations.PathCreation
             }
             else
             {
-                PathDirection = (FrontPos - RootPos); //Get the Animal Relative Path Direction
+                PathDirection = (FrontPos - RootPos).normalized; //Get the Animal Relative Path Direction
             }
 
-            var DebugColor = Color.yellow;
-            MDebug.DrawWireSphere(RootPos, DebugColor, 0.1f);
 
-            //PathDirection.Normalize();
+            var PathNormal = RootRotation * Vector3.up; //Get the Up vector of the Path 
+         
+
+            if (debug)
+            {
+                //Real Path Direction From Start to End
+                MDebug.Draw_Arrow(animal.Position, RootPathDirection, Color.cyan); 
+
+                MDebug.DrawWireSphere(RootPos + PathPosOffset, Color.white, 0.1f * scaleFactor);
+                
+                MDebug.DrawWireSphere(FrontPos, Color.white, 0.1f * scaleFactor);
+                MDebug.DrawWireSphere(RootPos, Color.white, 0.1f * scaleFactor);
 
 
+                MDebug.Draw_Arrow(RootPos, PathDirection.normalized, Color.green);  
+                MDebug.Draw_Arrow(RootPos, PathNormal.normalized, Color.blue);
+            }
+
+            var PathDirectionNoY = PathDirection;
 
             //Clean the Path Rotation on Y
-            PathDirection = Vector3.ProjectOnPlane(PathDirection, animal.UpVector).normalized;
-
-            Debug.DrawRay(RootPos, PathDirection * 3, DebugColor);
-            Debug.DrawRay(RootPos, PathDirection, Color.green);
+            if (Path.IgnoreVertical)
+            {
+                PathDirectionNoY = Vector3.ProjectOnPlane(PathDirection, animal.UpVector).normalized; 
+            }
 
             //Disable Grounded
             if (Path.IgnoreGrounded)
                 animal.Grounded = false;
 
-            var AlignRot = Quaternion.FromToRotation(animal.Forward, PathDirection) * rotation;  //Calculate the orientation to Terrain 
+            var AlignRot = Quaternion.FromToRotation(animal.Forward, PathDirectionNoY) * rotation;  //Calculate the orientation to Terrain 
             var Inverse_Rot = Quaternion.Inverse(rotation);
             var Target = Inverse_Rot * AlignRot;
             var Delta = Quaternion.Slerp(Quaternion.identity, Target, OrientSmoothness * animal.DeltaTime); //Calculate the Delta Align Rotation
 
             var Dot = Vector3.Dot(animal.Move_Direction, PathDirection);
 
-
             //FIRST ORIENTATION ON THE PATH 
             if (weight < 1)
             {
-                animal.transform.rotation = Quaternion.Lerp(StartRotation, AlignRot, weight);
-                animal.transform.position = Vector3.Lerp(StartPosition, (RootPos + PosOffset), weight);
+                animal.Rotation = Quaternion.Lerp(StartRotation, AlignRot, weight);
+
+                var TargetPos = (RootPos + PathPosOffset);
+
+                if (Path.IgnoreVertical)
+                {
+                    TargetPos.y = StartPosition.y; //Orient Correctly when Ignore vertical (HACK WITHOUT NO GRAVITY CHANGE)
+                }
+
+                animal.Position = Vector3.Lerp(StartPosition, TargetPos, weight);
+
                 return;
             }
 
+            //Align the Character to the Path Normal
+            if (Path.usePathRotation.Value)
+            {
+                animal.UseCustomRotation = true;
+                animal.SlopeNormal = PathNormal;
+                AlignRotation(PathNormal, animal.DeltaTime, OrientSmoothness);
+            }
+
+
+            if (AutoMove.Value)
+            {
+                animal.MoveFromDirection(PathDirection.normalized);
+            }
 
             //Don't turn around the character if Lock Rotation is enabled
-            if (Path.LockRotation)
+            else if (Path.LockRotation)
             {
                 var For = Dot > 0 ? 1 : -1;
                 if (Mathf.Abs(Dot) < 0.05f) For = 0;
@@ -365,25 +405,14 @@ namespace MalbersAnimations.PathCreation
                 animal.SetMovementAxis(MoveWorldV3);
                 animal.UseAdditiveRot = false;
 
-                animal.transform.rotation *= Delta;
+                animal.Rotation *= Delta;
             }
 
             else if (Dot > 0) //Make the Animal able to turn 180 degree on the Path
             {
                 animal.MoveFromDirection(PathDirection);
-                animal.transform.rotation *= Delta;
+                animal.Rotation *= Delta;
             }
-
-
-
-
-
-            //Quick Rotation of the Animal to align to the Spline on start
-            if (JustEnter)
-            {
-
-            }
-
 
             //Remove Forward Movement if the Char cannot exit on Start or End
             if (Path.ReachStart && !Path.CanExitOnStart
@@ -391,31 +420,19 @@ namespace MalbersAnimations.PathCreation
             {
                 animal.MovementAxis.z = 0;
             }
-
-
-
-
-            //Align the Character to the Path Normal
-            if (Path.usePathRotation)
-            {
-                var PathNormal = newPathOrientation * Vector3.up; //Get the Up vector of the Path 
-                Debug.DrawRay(position, PathNormal * 2, Color.cyan);
-                animal.UseCustomRotation = true;
-                animal.AlignRotation(PathNormal, animal.DeltaTime, OrientSmoothness);
-            }
-
-
-
-            Vector3 Difference = (RootPos + PosOffset) - position; //What need to be substract to the Position of the animal
+             
+            Vector3 Difference = (RootPos + PathPosOffset) - position; //What need to be substract to the Position of the animal
 
             if (Path.IgnoreVertical)
             {
                 Difference = Vector3.ProjectOnPlane(Difference, animal.UpVector); //IGNORE VERTICAL
             }
+             
+            Difference = Vector3.ProjectOnPlane(Difference, Vector3.ProjectOnPlane(PathDirection, animal.UpVector)); //IGNORE Forward
 
             Vector3 AlignPos = Vector3.Lerp(Vector3.zero, Difference, weight);
 
-            animal.transform.position += AlignPos;
+            animal.Position += AlignPos;
         }
 
         public void ExitPath(MPath newPath = null)
@@ -516,18 +533,18 @@ namespace MalbersAnimations.PathCreation
                     }
                     else
                     {
-                        var GoingDirection = Vector3.Dot(PathStartEndDirection, animal.Move_Direction);
+                        var GoingDirection = Vector3.Dot(RootPathDirection, animal.Move_Direction);
 
                         if (Path.FollowDirection == PathFollowDir.Forward)
                         {
-                            if (Path.CanExitOnStart && m_PathRootPoint <= 0.001f && GoingDirection < 0)
+                            if (Path.CanExitOnStart && m_PathRootPoint <= 0.001f && GoingDirection <= 0)
                             {
                                 Debugging("Exit on the Path-Start LockRotation (FORWARD)");
                                 ExitPath();
                                 return true;
                             }
 
-                            if (Path.CanExitOnEnd && m_PathFrontPoint >= 0.999f && GoingDirection > 0)
+                            if (Path.CanExitOnEnd && m_PathFrontPoint >= 0.999f && GoingDirection >= 0)
                             {
                                 Debugging("Exit on the Path-End LockRotation (FORWARD)");
                                 ExitPath();
@@ -536,14 +553,14 @@ namespace MalbersAnimations.PathCreation
                         }
                         else
                         {
-                            if (Path.CanExitOnStart && m_PathFrontPoint <= 0.001f && GoingDirection < 0)
+                            if (Path.CanExitOnStart && m_PathFrontPoint <= 0.001f && GoingDirection <= 0)
                             {
                                 Debugging("Exit on the Path-Start LockRotation (Backwards)");
                                 ExitPath();
                                 return true;
                             }
 
-                            if (Path.CanExitOnEnd && m_PathRootPoint >= 0.999f && GoingDirection > 0)
+                            if (Path.CanExitOnEnd && m_PathRootPoint >= 0.999f && GoingDirection >= 0)
                             {
                                 Debugging("Exit on the Path-End LockRotation (Backwards)");
                                 ExitPath();
@@ -589,8 +606,31 @@ namespace MalbersAnimations.PathCreation
 
         }
 
+
+        /// <summary>Align the Animal to a Custom </summary>
+        /// <param name="align">True: Aling to UP, False Align to Terrain</param>
+        public virtual void AlignRotation(Vector3 normal, float time, float Smoothness)
+        {
+            var rot = animal.Rotation;
+            //Calculate the orientation to Terrain 
+            Quaternion AlignRot = Quaternion.FromToRotation(animal.Up, normal) * animal.Rotation;  
+            Quaternion Inverse_Rot = Quaternion.Inverse(rot);
+            Quaternion Target = Inverse_Rot * AlignRot;
+
+            Quaternion Delta = Quaternion.Lerp(Quaternion.identity, Target, animal.DeltaTime * Smoothness); //Calculate the Delta Align Rotation
+
+            Debug.DrawRay(animal.Position, normal * 5);
+            Debug.DrawRay(animal.Position, animal.Up * 5);
+                
+
+            animal.Rotation *= Delta;
+        }
+
+
         public virtual bool OnAnimatorBehaviourMessage(string message, object value) => this.InvokeWithParams(message, value);
 
+        
+        
         public void Debugging(string value)
         {
 #if UNITY_EDITOR
@@ -607,9 +647,14 @@ namespace MalbersAnimations.PathCreation
                 Gizmos.DrawWireSphere(Offset, Radius);
 
                 Gizmos.color = Color.white;
-                Gizmos.DrawWireSphere(Vector3.forward * ForwardOffset, 0.1f * animal.transform.localScale.y);
+                Gizmos.DrawWireSphere(Vector3.forward * ForwardOffset, 0.1f);
                 Gizmos.DrawLine(Vector3.zero, Vector3.forward * ForwardOffset);
             }
+        }
+
+        private void Reset()
+        {
+            animal = this.FindComponent<MAnimal>();
         }
 
         //float m_PreviousHipPos;
@@ -666,7 +711,7 @@ namespace MalbersAnimations.PathCreation
     {
         string[] Tabs = new string[2] { "General", "Events" };
 
-        SerializedProperty Editor_Tabs1, animal, m_Path, //PathPosition,
+        SerializedProperty Editor_Tabs1, animal, m_Path, AutoMove, //PathPosition,
             Radius, Offset, ForwardOffset, OrientSmoothness, AlignSmoothness,
 
 
@@ -690,6 +735,7 @@ namespace MalbersAnimations.PathCreation
 
             Radius = serializedObject.FindProperty("Radius");
             Offset = serializedObject.FindProperty("Offset");
+            AutoMove = serializedObject.FindProperty("AutoMove");
             ForwardOffset = serializedObject.FindProperty("ForwardOffset");
             OrientSmoothness = serializedObject.FindProperty("OrientSmoothness");
             AlignSmoothness = serializedObject.FindProperty("AlignSmoothness");
@@ -722,6 +768,7 @@ namespace MalbersAnimations.PathCreation
                     MalbersEditor.DrawDebugIcon(debug);
                 }
                 EditorGUILayout.PropertyField(m_Path);
+                EditorGUILayout.PropertyField(AutoMove);
                 // EditorGUILayout.PropertyField(PathPosition);
             }
 

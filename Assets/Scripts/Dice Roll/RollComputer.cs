@@ -51,7 +51,7 @@ public class RollComputer : BaseRoll
     {
         string results = $"Test Computer: {DC}\nRolled: {diceManager.total}\n{resultText}";
         uiManager.diceResultText.text = results;
-        uiManager.uiFollowTransform.WorldTransform = transform;
+        
         uiManager.resultPanel.enabled = true;
         StartCoroutine(ClearResults());
     }

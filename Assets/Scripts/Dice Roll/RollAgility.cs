@@ -13,13 +13,14 @@ public class RollAgility : BaseRoll
     private bool rolling = false;
     private int DC;
 
+   
     
     [Serializable] public class MyEvent : UnityEvent { } // UnityEvent with no arguments
     [Header("Roll Events")]
     public MyEvent OnSuccessEvent; // Event for success
     public MyEvent OnFailEvent;    // Event for failure
 
-  
+   
 
     public void OnAgilityRolled(GameObject pc)
     {
@@ -52,7 +53,6 @@ public class RollAgility : BaseRoll
     {
         string results = $"Test Agility: {DC}\nRolled: {diceManager.total}\n{resultText}";
         uiManager.diceResultText.text = results;
-        uiManager.uiFollowTransform.WorldTransform = transform;
         uiManager.resultPanel.enabled = true;
         StartCoroutine(ClearResults());
     }

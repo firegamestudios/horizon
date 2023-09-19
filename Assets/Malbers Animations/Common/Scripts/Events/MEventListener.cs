@@ -217,21 +217,22 @@ namespace MalbersAnimations.Events
 
             list = new ReorderableList(serializedObject, eventsListeners, true, true, true, true)
             {
-                drawElementCallback = drawElementCallback,
+                drawElementCallback = DrawElementCallback,
                 drawHeaderCallback = HeaderCallbackDelegate,
                 onAddCallback = OnAddCallBack
             };
+
         }
 
+
+        GUIStyle TypeStyle;
 
         void HeaderCallbackDelegate(Rect rect)
         {
-            EditorGUI.LabelField(rect, "   Event Listeners");
-            //Rect R_3 = new Rect(rect.width -17, rect.y-1, 50, EditorGUIUtility.singleLineHeight+2);
-            //debug.boolValue = GUI.Toggle(R_3, debug.boolValue, new GUIContent("Debug" ), EditorStyles.miniButton);
+            EditorGUI.LabelField(rect, "   Malbers Events");
         }
 
-        void drawElementCallback(Rect rect, int index, bool isActive, bool isFocused)
+        void DrawElementCallback(Rect rect, int index, bool isActive, bool isFocused)
         {
             rect.y += 2;
             rect.height -= 5;
@@ -242,22 +243,18 @@ namespace MalbersAnimations.Events
 
         void OnAddCallBack(ReorderableList list)
         {
-            if (M.Events == null)
-            {
-                M.Events = new List<MEventItemListener>();
-            }
-
+            if (M.Events == null)  M.Events = new List<MEventItemListener>();
             M.Events.Add(new MEventItemListener());
         }
 
-        GUIStyle style;
+        GUIStyle Description_Style;
 
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
 
-            MalbersEditor.DrawDescription("Events Listeners. It uses MEvents asset to response when those events are called");
+           // MalbersEditor.DrawDescription("Listen to [MEvents] and reacts when those events are invoked");
             using (new GUILayout.VerticalScope())
             {
                 list.DoLayoutList();
@@ -302,8 +299,7 @@ namespace MalbersAnimations.Events
 
                                     if (Descp != string.Empty)
                                     {
-                                        if (style == null)
-                                            style = new GUIStyle(MTools.StyleGreen)
+                                        Description_Style ??= new GUIStyle(MTools.StyleGreen)
                                             {
                                                 fontSize = 12,
                                                 fontStyle = FontStyle.Bold,
@@ -311,9 +307,9 @@ namespace MalbersAnimations.Events
                                                 stretchWidth = true
                                             };
 
-                                        style.normal.textColor = EditorStyles.label.normal.textColor;
+                                        Description_Style.normal.textColor = EditorStyles.label.normal.textColor;
 
-                                        M.Events[list.index].Event.Description = UnityEditor.EditorGUILayout.TextArea(Descp, style);
+                                        M.Events[list.index].Event.Description = UnityEditor.EditorGUILayout.TextArea(Descp, Description_Style);
                                     }
                                     EditorGUILayout.Space();
                                 }
@@ -331,8 +327,12 @@ namespace MalbersAnimations.Events
                                 useVector2 = Element.FindPropertyRelative("useVector2");
                                 useSprite = Element.FindPropertyRelative("useSprite");
 
-                                var TypeStyle = new GUIStyle(EditorStyles.objectField);
 
+                                TypeStyle ??= new GUIStyle(EditorStyles.objectField)
+                                {
+                                    alignment = TextAnchor.MiddleCenter,
+                                    fontStyle = FontStyle.Bold,
+                                };
 
                                 using (new GUILayout.HorizontalScope())
                                 {
@@ -502,10 +502,10 @@ namespace MalbersAnimations.Events
 
                     int SelectedAbility = Reo_AbilityList.index; 
 
-                    if (SelectedAbility != -1)
+                    if (SelectedAbility != -1 && SelectedAbility < Reo_AbilityList.count)
                     {
                         var element = compare.GetArrayElementAtIndex(SelectedAbility);
-                        if (element != null)
+                        if (element != null) 
                         {
                             var Response = element.FindPropertyRelative("Response");
                             var name = element.FindPropertyRelative("name").stringValue;

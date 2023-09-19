@@ -148,6 +148,11 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {fileID: 190716, guid: 58b3b7a5c5273e24aa8931f09e57c303, type: 3}
     Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 0}
   DestroyHitEffect: 10
   dontHitOwner:
     UseConstant: 1
@@ -297,6 +302,7 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   impactBehaviour: 2
   rotation: 1
   TrajectoryRoll: 0
@@ -307,7 +313,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   gravity:
     UseConstant: 1
-    ConstantValue: {x: 0, y: -9.81, z: 0}
+    ConstantValue: {x: 0, y: 0, z: 0}
     Variable: {fileID: 0}
   Life:
     UseConstant: 1
@@ -350,7 +356,7 @@ MonoBehaviour:
         m_CallState: 2
   rb: {fileID: 0}
   m_collider: {fileID: 0}
-  Editor_Tabs1: 0
+  Editor_Tabs1: 2
   references:
     version: 2
     RefIds:
@@ -370,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultSound:
     UseConstant: 1
-    ConstantValue: {fileID: 0}
+    ConstantValue: {fileID: 8300000, guid: 654d1ed270c714ddb8c934ac5fef5edc, type: 3}
     Variable: {fileID: 0}
   materialSounds:
   - Sounds:
@@ -388,8 +394,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 654d1ed270c714ddb8c934ac5fef5edc, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

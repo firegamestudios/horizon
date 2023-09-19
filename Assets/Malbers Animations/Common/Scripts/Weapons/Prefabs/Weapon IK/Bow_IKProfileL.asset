@@ -19,7 +19,7 @@ MonoBehaviour:
   EyesWeight: 0
   ClampWeight: 0
   Distance: 200
-  HorizontalOffset: 29.5
+  HorizontalOffset: 30
   horizontalToVOffset:
     serializedVersion: 2
     m_Curve:
@@ -91,20 +91,20 @@ MonoBehaviour:
   - name: AdditiveOffset [LeftUpperArm]
     rotationType: 0
     bone: 13
-    RotationOffset: {x: 4.67, y: -2, z: 5}
+    RotationOffset: {x: 5, y: -2, z: 5}
     Weight: 1
   - name: OffsetOnly [LeftHand]
     rotationType: 1
     bone: 17
-    RotationOffset: {x: -80.17, y: 15, z: 6}
+    RotationOffset: {x: -80, y: 15, z: 6}
     Weight: 1
   - name: RootRotation [Spine]
     rotationType: 3
     bone: 7
     RotationOffset: {x: 0, y: -65, z: -92.61}
-    Weight: 0.159
+    Weight: 1
   - name: AdditiveOffset [RightShoulder]
     rotationType: 0
     bone: 12
-    RotationOffset: {x: 1.97, y: 3, z: -5.98}
+    RotationOffset: {x: -10, y: 3, z: -10}
     Weight: 1

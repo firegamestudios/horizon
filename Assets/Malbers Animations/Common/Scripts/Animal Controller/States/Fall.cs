@@ -9,6 +9,7 @@ namespace MalbersAnimations.Controller
         //TODO: DO Fall Rotator
 
         public override string StateName => "Fall";
+        public override string StateIDName => "Fall";
         public enum FallBlending { DistanceNormalized, Distance, VerticalVelocity }
 
         /// <summary>Air Resistance while falling</summary>
@@ -111,7 +112,7 @@ namespace MalbersAnimations.Controller
 
             // fall_Pivot += animal.DeltaPos; //Check for the Next Frame
 
-            float Multiplier = animal.Pivot_Multiplier * lengthMultiplier * 0.999f;
+            float Multiplier = animal.Pivot_Multiplier * lengthMultiplier * 0.999f * ScaleFactor;
             return TryFallRayCasting(fall_Pivot, Multiplier);
         }
 
@@ -313,7 +314,6 @@ namespace MalbersAnimations.Controller
 
                     CurrentSpeedPos = Mathf.Lerp(CurrentSpeedPos, AirMovement, (AirSmooth != 0 ? (deltaTime * AirSmooth) : 1));
                 }
-
                // if (!CanExit) TryExitState(deltaTime);
             }
         }
@@ -323,10 +323,10 @@ namespace MalbersAnimations.Controller
             var Radius = animal.RayCastRadius * ScaleFactor;
 
             float SprintMultiplier = (animal.VerticalSmooth);
-            var FallPoint = animal.Main_Pivot_Point + (animal.Forward * Offset * ScaleFactor) +
+            var FallPoint = animal.Main_Pivot_Point + (Offset * ScaleFactor * animal.Forward) +
                (animal.Forward * (SprintMultiplier * MoveMultiplier * ScaleFactor)); //Calculate ahead the falling ray
  
-            var Gravity = this.Gravity;
+          //  var Gravity = this.Gravity;
            // var Gravity = animal.DeepSlope ? this.Gravity :  -animal.Up;
 
             //fall_Pivot += animal.DeltaPos; //Check for the Next Frame
@@ -429,8 +429,6 @@ namespace MalbersAnimations.Controller
                             //IMPORTANT HACk FOR when the Animal is falling to fast
                             var GroundedPos = Vector3.Project(FallRayCast.point - animal.transform.position, Gravity);
 
-                           // Debug.Log("TELEPORT");
-
                             //SUPER IMPORTANT!!! this is when the Animal is falling from a great height
                             animal.Teleport_Internal(animal.transform.position + GroundedPos); 
                             animal.ResetUPVector(); //IMPORTANT!
@@ -446,7 +444,6 @@ namespace MalbersAnimations.Controller
                     }
                 }
             }
-
             ResetRigidbody(DeltaTime, Gravity);
         }
 
@@ -483,7 +480,7 @@ namespace MalbersAnimations.Controller
                 var NewDMagn = RBNewDown.magnitude;
                 var Old_DMagn = RBOldDown.magnitude;
 
-                MDebug.Draw_Arrow(animal.Main_Pivot_Point+Forward*0.02f, RBOldDown*0.5f,Color.red);
+                MDebug.Draw_Arrow(animal.Main_Pivot_Point+Forward*0.02f, RBOldDown*0.5f,Color.white);
                 MDebug.Draw_Arrow(animal.Main_Pivot_Point + Forward * 0.04f, RBNewDown*0.5f, Color.green);
 
                 ResetCount++;
@@ -555,9 +552,9 @@ namespace MalbersAnimations.Controller
 
 
         /// <summary>This is Executed when the Asset is created for the first time </summary>
-        private void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("Fall");
+            base.Reset();
             General = new AnimalModifier()
             {
                 RootMotion = false,

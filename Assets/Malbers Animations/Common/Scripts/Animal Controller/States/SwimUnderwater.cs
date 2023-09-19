@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using MalbersAnimations.Utilities;
+﻿using UnityEngine; 
 using MalbersAnimations.Scriptables;
 using System.Collections.Generic;
 
@@ -9,6 +8,7 @@ namespace MalbersAnimations.Controller
     public class SwimUnderwater : State
     {
         public override string StateName => "UnderWater";
+        public override string StateIDName => "UnderWater";
 
         [Header("UnderWater Parameters")]
         [Range(0, 90)]
@@ -37,7 +37,7 @@ namespace MalbersAnimations.Controller
  
             if (SwimState == null)
             {
-                Debug.LogError("UnderWater State needs Swim State in order to work, please add the Swim State to the Animal");
+                Debug.LogError($"UnderWater State needs Swim State in order to work, please add the Swim State to {animal.name}",animal);
             }
         }
 
@@ -45,9 +45,10 @@ namespace MalbersAnimations.Controller
         {
             base.Activate();
             Inertia = animal.DeltaPos;
-          //  EnterWaterTime = Time.time;
         }
 
+       
+     
 
         public override Vector3 Speed_Direction() => animal.FreeMovement ?  animal.PitchDirection : animal.Forward;
        
@@ -55,17 +56,23 @@ namespace MalbersAnimations.Controller
         {
            if (SwimState == null) return false;
 
-            if (!SwimState.IsActiveState)  //If we are not already swimming we need to check is we are on water
-                SwimState.CheckWater();
-
-
-            if (SwimState.IsInWater)
+            if (SwimState.IsActiveState)
             {
-                if (animal.RawInputAxis.y < -0.25f) //Means that Key Down is Pressed;
+                if (SwimState.CheckWater() && animal.RawInputAxis.y < -0.25f) //Means that Key Down is Pressed;
                 {
                     IgnoreLowerStates = true;
                     return true;
                 }
+            }
+            else
+            { 
+                //var insideWater = SwimState.CheckWater();
+
+                //if (insideWater)
+                //{
+
+                //}
+                //return SwimState.CheckWater();
             }
             return false;
         }
@@ -75,33 +82,49 @@ namespace MalbersAnimations.Controller
         {
             animal.FreeMovementRotator(Ylimit, Bank);
             animal.AddInertia(ref Inertia, EnterWaterDrag);
+            animal.UseGravity = false; //Hack to remove gravity
         }
 
 
         public override void TryExitState(float DeltaTime)
         {
-          //  if (MTools.ElapsedTime(EnterWaterTime, TryExitTime)) //do not try to exit if the animal just enter the water
+            var checkWater = SwimState.CheckWater();
+            var WaterLevel = SwimState.FindWaterLevel2();
+
+            var radius = SwimState.m_Radius;
+
+            //If we  touched the waterLevel
+            if (animal.UpDownSmooth > 0f && MTools.DoSpheresIntersect(SwimState.WaterLevel, radius, SwimState.WaterPivotPoint, radius))
             {
-                SwimState.CheckWater();
-                SwimState.FindWaterLevel();
+                Debugging("[Allow Exit to Swim]");
+                SwimState.Activate();
+                SwimState.BounceDown = Vector3.zero;
+            }
+            if (!checkWater)
+            {
+                Debugging("[Allow Exit]");
+                AllowExit();
 
-                if ( SwimState.PivotAboveWater ||  !SwimState.IsInWater)
+                //check if we can go to Swim
+                if (  SwimState.TryActivate())
+                    SwimState.Activate();
+                else
+              
+
+                if (AllowFallOnExit && animal.Sprint && animal.UpDownSmooth > 0)
                 {
-                    Debugging("[Allow Exit]");
-                    AllowExit();
-
-                    if (AllowFallOnExit && animal.Sprint && animal.UpDownSmooth > 0)
-                    {
-                        animal.State_Activate(StateEnum.Fall);
-                    }
+                    animal.State_Activate(StateEnum.Fall);
                 }
             }
         }
 
+
+        
+
+
         public override void ResetStateValues()
         {
             Inertia = Vector3.zero;
-            //EnterWaterTime = 0;
         }
 
         public override void RestoreAnimalOnExit()
@@ -132,9 +155,9 @@ namespace MalbersAnimations.Controller
         }
 
 
-        void Reset()
+        internal override void Reset()
         {
-            ID = MTools.GetInstance<StateID>("UnderWater");
+            base.Reset();
 
             General = new AnimalModifier()
             {

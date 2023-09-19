@@ -13,6 +13,7 @@ namespace MalbersAnimations
         {
             CreateLayer("Animal", 20);
             CreateLayer("Enemy", 23);
+            CreateLayer("BodyPart", 15);
             CreateLayer("Item", 30);
             CreateTag("Fly");
             CreateTag("Climb");
