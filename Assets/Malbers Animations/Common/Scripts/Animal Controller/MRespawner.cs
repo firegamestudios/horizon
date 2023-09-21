@@ -107,7 +107,7 @@ namespace MalbersAnimations.Controller
                 {
                     if (player.TryGetComponent(out activeAnimal))
                     {
-                        //Debug.Log("activeAnimal = " + activeAnimal);
+                        Debug.Log("activeAnimal = " + activeAnimal);
 
                         activeAnimal.OnStateChange.AddListener(OnCharacterDead);        //Listen to the Animal changes of states
                         activeAnimal.OverrideStartState = RespawnState;
@@ -144,11 +144,11 @@ namespace MalbersAnimations.Controller
 
                 }
             }
-            //else
-            //{
-            //    Debug.LogWarning("[Respawner Removed]. There's no Character assigned", this);
-            //    Destroy(gameObject); //Destroy This GO since is already a Spawner in the scene
-            //}
+            else
+            {
+                Debug.LogWarning("[Respawner Removed]. There's no Character assigned", this);
+                Destroy(gameObject); //Destroy This GO since is already a Spawner in the scene
+            }
         }
 
         private void SceneAnimal()

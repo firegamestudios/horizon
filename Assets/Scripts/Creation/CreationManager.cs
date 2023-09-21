@@ -55,14 +55,16 @@ public class CreationManager : MonoBehaviour
     public TMP_Text skillsText;
     public List<TMP_Text> skillsTexts;
     public TMP_InputField playerNameInput;
+    public Button skillsButton;
 
-  
 
     GameObject startButton;
 
     PlayerData playerData;
     SaveLoadManager saveLoadManager;
     public SkillsPanel skillsPanel;
+
+    public List<Transform> classSkillPanels;
 
     private void Awake()
     {
@@ -90,7 +92,7 @@ public class CreationManager : MonoBehaviour
         RaceRandomizer();
         ClasseRandomizer();
         RandomizeAttributes();
-        
+        RandomizeFeats();
     }
 
     #region Randomizers
@@ -153,6 +155,41 @@ public class CreationManager : MonoBehaviour
         SendToPlayerData();
         saveLoadManager.SavePlayerData();
        
+    }
+
+    public void RandomizeFeats()
+    {
+        switch (classe)
+        {
+            case "Engineer":
+                int d1 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[0] = classSkillPanels[0].GetChild(d1).name;
+                int d2 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[1] = classSkillPanels[0].GetChild(d2).name;
+                break;
+            case "Biologist":
+                int d3 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[0] = classSkillPanels[1].GetChild(d3).name;
+                int d4 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[1] = classSkillPanels[1].GetChild(d4).name;
+                break;
+                     case "Hunter":
+                int d5 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[0] = classSkillPanels[2].GetChild(d5).name;
+                int d6 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[1] = classSkillPanels[2].GetChild(d6).name;
+                break;
+            case "Hacker":
+                int d7 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[0] = classSkillPanels[3].GetChild(d7).name;
+                int d8 = Random.Range(0, classSkillPanels[0].childCount);
+                feats[1] = classSkillPanels[3].GetChild(d8).name;
+                break;
+            default:
+                break;
+        }
+
+        UpdateFeatIcons();
     }
     #endregion
 
@@ -466,6 +503,14 @@ public class CreationManager : MonoBehaviour
     public void OnStartButton()
     {
         SendToPlayerData();
+
+        for (int i = 0; i < feats.Count; i++)
+        {
+            if (feats[i] == "None")
+            {
+                return;
+            }
+        }
 
         if(saveLoadManager.SavePlayerData())
         SceneManager.LoadScene("Junk Processing Plant");

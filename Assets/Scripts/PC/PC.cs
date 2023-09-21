@@ -33,7 +33,7 @@ public class PC : MonoBehaviour
     Stats stats;
     MDamageable damageable;
     MalbersInput malbersInput;
-
+   
     //Damage
     private GameObject weapon;
     Reaction customReaction;
@@ -69,6 +69,7 @@ public class PC : MonoBehaviour
         poisonTex = Resources.Load<Texture>("Textures/poison");
         damageable = GetComponent<MDamageable>();
         malbersInput = GetComponent<MalbersInput>();
+       
     }
 
     // Start is called before the first frame update
@@ -85,6 +86,7 @@ public class PC : MonoBehaviour
         playerData = saveLoadManager.playerData;
         print("Name: " + playerData.playerName);
         InworldAI.User.Name = playerData.playerName;
+       
         SetupStats();
     }
 
@@ -258,6 +260,18 @@ public class PC : MonoBehaviour
         transform.Find("Internal Components").Find("Effects").Find("Speed").GetComponent<ParticleSystem>().Play();
         print("SPEED INCREASED");
         OnSpeed(speedPower, timer);
+    }
+    #endregion
+
+    #region OnHurt and OnDeath
+    public void OnHurt()
+    {
+
+    }
+
+    public void OnDeath()
+    {
+        
     }
     #endregion
 

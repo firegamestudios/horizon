@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 8043714}
   - component: {fileID: 8043713}
   - component: {fileID: 8043716}
+  - component: {fileID: 8043717}
   m_Layer: 5
   m_Name: Fix Drone
   m_TagString: Untagged
@@ -257,6 +258,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8043717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8043711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Fix Drone
+  description: Broken drone? Not while you are around. Fix any drone to fight for
+    you or give you information.
+  offset: {x: 500, y: 0}
 --- !u!114 &17710307 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5176533483574855435, guid: 166ba5ee357253d4d967eb44719bdd7c, type: 3}
@@ -689,6 +706,7 @@ GameObject:
   - component: {fileID: 63907805}
   - component: {fileID: 63907804}
   - component: {fileID: 63907807}
+  - component: {fileID: 63907808}
   m_Layer: 5
   m_Name: Acid Vial
   m_TagString: Untagged
@@ -810,6 +828,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &63907808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63907802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Acid Vial
+  description: You always carry a vial of acid with you, to throw on enemies and
+    lower their resistances to damage and diseases.
+  offset: {x: 500, y: 0}
 --- !u!1 &78393815
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +857,7 @@ GameObject:
   - component: {fileID: 78393818}
   - component: {fileID: 78393817}
   - component: {fileID: 78393820}
+  - component: {fileID: 78393821}
   m_Layer: 5
   m_Name: Nitrobomb
   m_TagString: Untagged
@@ -944,6 +979,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &78393821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78393815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Nitrobomb
+  description: Liquid Nitrogen is always so sexy. Throw this baby and watch your
+    enemies break into pieces.
+  offset: {x: 500, y: 0}
 --- !u!1 &88538193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1120,7 @@ GameObject:
   - component: {fileID: 93684789}
   - component: {fileID: 93684788}
   - component: {fileID: 93684791}
+  - component: {fileID: 93684792}
   m_Layer: 5
   m_Name: Hack Turret
   m_TagString: Untagged
@@ -1190,6 +1242,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &93684792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93684786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Hack Turret
+  description: Approach a turret and quickly reprogram it to fight for you and not
+    against you.
+  offset: {x: 500, y: 0}
 --- !u!1 &107931964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,6 +1410,7 @@ GameObject:
   - component: {fileID: 112624308}
   - component: {fileID: 112624307}
   - component: {fileID: 112624310}
+  - component: {fileID: 112624311}
   m_Layer: 5
   m_Name: Fire Ammo
   m_TagString: Untagged
@@ -1463,6 +1532,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &112624311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112624305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Fire Ammo
+  description: Specialized ammo for your laser rifle or pistol. This alteration will
+    add burning damage to the damage you're already doing out there.
+  offset: {x: 500, y: 0}
 --- !u!1 &133563025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,6 +1800,7 @@ GameObject:
   - component: {fileID: 151599867}
   - component: {fileID: 151599866}
   - component: {fileID: 151599869}
+  - component: {fileID: 151599870}
   m_Layer: 5
   m_Name: Regeneration
   m_TagString: Untagged
@@ -1836,6 +1922,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &151599870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151599864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Regeneration
+  description: Advanced medicine allows you to use nanotechnology to quickly heal
+    tissue and repair organic damage.
+  offset: {x: 500, y: 0}
 --- !u!1 &155415553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1951,7 @@ GameObject:
   - component: {fileID: 155415556}
   - component: {fileID: 155415555}
   - component: {fileID: 155415558}
+  - component: {fileID: 155415559}
   m_Layer: 5
   m_Name: Nanocontrol
   m_TagString: Untagged
@@ -1970,6 +2073,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &155415559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155415553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Nanocontrol
+  description: Nanotechnology at your service to take control of your enemies motor
+    functions and make them fight for you.
+  offset: {x: 500, y: 0}
 --- !u!1 &189292531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,6 +2562,7 @@ GameObject:
   - component: {fileID: 271389816}
   - component: {fileID: 271389815}
   - component: {fileID: 271389818}
+  - component: {fileID: 271389819}
   m_Layer: 5
   m_Name: Electrical Mine
   m_TagString: Untagged
@@ -2564,6 +2684,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &271389819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271389813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Electrical Mine
+  description: You are prepared with Electrical Mines that make excellent traps against
+    fast enemies. The electricity will stun them and you can finish the job.
+  offset: {x: 500, y: 0}
 --- !u!1 &294497683
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,6 +3461,7 @@ GameObject:
   - component: {fileID: 391232095}
   - component: {fileID: 391232094}
   - component: {fileID: 391232097}
+  - component: {fileID: 391232098}
   m_Layer: 5
   m_Name: Eye Bacteria
   m_TagString: Untagged
@@ -3446,6 +3583,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &391232098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391232092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Eye Bacteria
+  description: You found a special kind of bacteria that eats the nerves in the eyes.
+    Your enemies will be blind and won't be able to aim properly at you.
+  offset: {x: 500, y: 0}
 --- !u!1 &410369505
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,6 +3972,7 @@ GameObject:
   - component: {fileID: 434403864}
   - component: {fileID: 434403863}
   - component: {fileID: 434403866}
+  - component: {fileID: 434403867}
   m_Layer: 5
   m_Name: Viral Charge
   m_TagString: Untagged
@@ -3940,6 +4094,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &434403867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434403861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Viral Charge
+  description: Nothing like a dangerous virus to debilitate your enemies. They will
+    be weaker and slower with this virus.
+  offset: {x: 500, y: 0}
 --- !u!114 &447336991 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5176533483574855435, guid: 166ba5ee357253d4d967eb44719bdd7c, type: 3}
@@ -3996,7 +4166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee6325a2748cdd4aa4cb3290ab39d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  featsLeft: 2
   feats:
   - None
   - None
@@ -4035,7 +4204,13 @@ MonoBehaviour:
   - {fileID: 1803163980}
   - {fileID: 1850870696}
   playerNameInput: {fileID: 2097391537}
+  skillsButton: {fileID: 854166874}
   skillsPanel: {fileID: 1985139757}
+  classSkillPanels:
+  - {fileID: 1631604776}
+  - {fileID: 297707743}
+  - {fileID: 923087314}
+  - {fileID: 698419143}
 --- !u!1 &467340062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,6 +4224,7 @@ GameObject:
   - component: {fileID: 467340065}
   - component: {fileID: 467340064}
   - component: {fileID: 467340067}
+  - component: {fileID: 467340068}
   m_Layer: 5
   m_Name: Repair System
   m_TagString: Untagged
@@ -4170,6 +4346,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &467340068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467340062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Repair System
+  description: Fix any broken system to retrieve information, open locks or simply
+    access its functions.
+  offset: {x: 500, y: 0}
 --- !u!1001 &479000898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4304,6 +4496,7 @@ GameObject:
   - component: {fileID: 480940093}
   - component: {fileID: 480940092}
   - component: {fileID: 480940095}
+  - component: {fileID: 480940096}
   m_Layer: 5
   m_Name: Insulation
   m_TagString: Untagged
@@ -4425,6 +4618,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &480940096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480940090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Insulation
+  description: Your research paid off and you found out a good way to insulate yourself
+    against fire damage.
+  offset: {x: 500, y: 0}
 --- !u!1001 &515318501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5764,7 +5973,7 @@ GameObject:
   - component: {fileID: 791538418}
   - component: {fileID: 791538417}
   m_Layer: 5
-  m_Name: Classe Randomizer Button
+  m_Name: Feats Randomizer Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5836,7 +6045,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 455061122}
         m_TargetAssemblyTypeName: CreationManager, Assembly-CSharp
-        m_MethodName: ClasseRandomizer
+        m_MethodName: RandomizeFeats
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5897,6 +6106,7 @@ GameObject:
   - component: {fileID: 803841475}
   - component: {fileID: 803841474}
   - component: {fileID: 803841477}
+  - component: {fileID: 803841478}
   m_Layer: 5
   m_Name: Poison Ammo
   m_TagString: Untagged
@@ -6018,6 +6228,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &803841478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803841472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Poison Ammo
+  description: Specialized ammo for your laser rifle or pistol. This alteration will
+    add poison damage to the damage you're already doing out there.
+  offset: {x: 500, y: 0}
 --- !u!1 &851408077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6247,6 +6473,7 @@ GameObject:
   - component: {fileID: 860718258}
   - component: {fileID: 860718257}
   - component: {fileID: 860718260}
+  - component: {fileID: 860718261}
   m_Layer: 5
   m_Name: Organic Transmutation
   m_TagString: Untagged
@@ -6368,6 +6595,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &860718261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860718255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Organic Transmutation
+  description: A little research into several alien genomas led to a discovery that
+    allows you to alter your own and become a formidable creature with increased
+    strength and speed.
+  offset: {x: 500, y: 0}
 --- !u!1001 &864152941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7010,6 +7254,7 @@ GameObject:
   - component: {fileID: 898982697}
   - component: {fileID: 898982696}
   - component: {fileID: 898982699}
+  - component: {fileID: 898982700}
   m_Layer: 5
   m_Name: Regeneration
   m_TagString: Untagged
@@ -7131,6 +7376,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &898982700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898982694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Regeneration
+  description: Advanced medicine allows you to use nanotechnology to quickly heal
+    tissue and repair organic damage.
+  offset: {x: 500, y: 0}
 --- !u!1 &923087313
 GameObject:
   m_ObjectHideFlags: 0
@@ -7503,6 +7764,7 @@ GameObject:
   - component: {fileID: 1008030476}
   - component: {fileID: 1008030475}
   - component: {fileID: 1008030478}
+  - component: {fileID: 1008030479}
   m_Layer: 5
   m_Name: Nitro Trap
   m_TagString: Untagged
@@ -7624,6 +7886,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1008030479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008030473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Nitro Trap
+  description: A trap with liquid nitrogen to freeze your enemies and give you a
+    chance to break them into pieces.
+  offset: {x: 500, y: 0}
 --- !u!1 &1008928086
 GameObject:
   m_ObjectHideFlags: 0
@@ -7637,6 +7915,7 @@ GameObject:
   - component: {fileID: 1008928089}
   - component: {fileID: 1008928088}
   - component: {fileID: 1008928091}
+  - component: {fileID: 1008928092}
   m_Layer: 5
   m_Name: Flamethrower
   m_TagString: Untagged
@@ -7758,6 +8037,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1008928092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008928086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Flamethrower
+  description: A sophisticated flamethrower that causes burning damage over time.
+    Why not add more damage to the damage you're already doing?
+  offset: {x: 500, y: 0}
 --- !u!1 &1017967722
 GameObject:
   m_ObjectHideFlags: 0
@@ -7771,6 +8066,7 @@ GameObject:
   - component: {fileID: 1017967725}
   - component: {fileID: 1017967724}
   - component: {fileID: 1017967727}
+  - component: {fileID: 1017967728}
   m_Layer: 5
   m_Name: Build Drone
   m_TagString: Untagged
@@ -7892,6 +8188,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1017967728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017967722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Build Drone
+  description: Provided you find some scraps and electronic parts, you can quickly
+    put a drone together to fight by your side.
+  offset: {x: 500, y: 0}
 --- !u!1 &1037209063
 GameObject:
   m_ObjectHideFlags: 0
@@ -8040,6 +8352,7 @@ GameObject:
   - component: {fileID: 1078297556}
   - component: {fileID: 1078297555}
   - component: {fileID: 1078297558}
+  - component: {fileID: 1078297559}
   m_Layer: 5
   m_Name: Reprogram Droid
   m_TagString: Untagged
@@ -8161,6 +8474,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1078297559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078297553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Reprogram Droid
+  description: Even during combat, you are quick to reprogram droids and make them
+    think you are their ally instead of enemy.
+  offset: {x: 500, y: 0}
 --- !u!1 &1124958016
 GameObject:
   m_ObjectHideFlags: 0
@@ -8334,6 +8663,7 @@ GameObject:
   - component: {fileID: 1136313432}
   - component: {fileID: 1136313431}
   - component: {fileID: 1136313434}
+  - component: {fileID: 1136313435}
   m_Layer: 5
   m_Name: EMP Attack
   m_TagString: Untagged
@@ -8455,6 +8785,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1136313435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136313429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: EMP Attack
+  description: This EMP Attack will damage any electronic circuit - drone or droid.
+  offset: {x: 500, y: 0}
 --- !u!1 &1163454779
 GameObject:
   m_ObjectHideFlags: 0
@@ -8603,6 +8948,7 @@ GameObject:
   - component: {fileID: 1169143404}
   - component: {fileID: 1169143403}
   - component: {fileID: 1169143406}
+  - component: {fileID: 1169143407}
   m_Layer: 5
   m_Name: Holosphere
   m_TagString: Untagged
@@ -8724,6 +9070,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1169143407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169143401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Holosphere
+  description: A hologram that will attract your enemies attacks temporarily.
+  offset: {x: 500, y: 0}
 --- !u!1 &1173520713
 GameObject:
   m_ObjectHideFlags: 0
@@ -9998,6 +10359,7 @@ GameObject:
   - component: {fileID: 1508157839}
   - component: {fileID: 1508157838}
   - component: {fileID: 1508157841}
+  - component: {fileID: 1508157842}
   m_Layer: 5
   m_Name: Acidthrower
   m_TagString: Untagged
@@ -10119,6 +10481,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1508157842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508157836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Acidthrower
+  description: With a little research on materials and acid, you managed to craft
+    an Acidthrower. This highly corrosive acid will decrease the resistance of any
+    unfortunate soul that comes in contact with it.
+  offset: {x: 500, y: 0}
 --- !u!1 &1509821796
 GameObject:
   m_ObjectHideFlags: 0
@@ -10259,6 +10638,7 @@ GameObject:
   - component: {fileID: 1551415305}
   - component: {fileID: 1551415304}
   - component: {fileID: 1551415307}
+  - component: {fileID: 1551415308}
   m_Layer: 5
   m_Name: Bacterial Fever
   m_TagString: Untagged
@@ -10380,6 +10760,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1551415308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551415302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Bacterial Fever
+  description: This vial is full with a dangerous bacteria that eats flesh and gives
+    organic enemies a fever that slows them down. Just throw and let the little guys
+    do the work for you.
+  offset: {x: 500, y: 0}
 --- !u!1 &1614451668
 GameObject:
   m_ObjectHideFlags: 0
@@ -10666,6 +11063,7 @@ MonoBehaviour:
     itemsCount: 0
     itemNames: []
     itemsAmount: 
+    feats: []
   isCreation: 1
 --- !u!1001 &1661983242
 PrefabInstance:
@@ -10741,6 +11139,7 @@ GameObject:
   - component: {fileID: 1687419977}
   - component: {fileID: 1687419976}
   - component: {fileID: 1687419979}
+  - component: {fileID: 1687419980}
   m_Layer: 5
   m_Name: Flaming Arrow
   m_TagString: Untagged
@@ -10862,6 +11261,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1687419980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687419974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Flaming Arrow
+  description: Specialized arrows for your bow. This alteration will add burning
+    damage to the damage you're already doing out there.
+  offset: {x: 500, y: 0}
 --- !u!1 &1688056040
 GameObject:
   m_ObjectHideFlags: 0
@@ -11145,6 +11560,7 @@ GameObject:
   - component: {fileID: 1703857211}
   - component: {fileID: 1703857210}
   - component: {fileID: 1703857213}
+  - component: {fileID: 1703857214}
   m_Layer: 5
   m_Name: Wolf Trap
   m_TagString: Untagged
@@ -11266,6 +11682,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1703857214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703857208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Wolf Trap
+  description: Back on Earth, there was a creature called "wolf". Humans used this
+    trap to... well, trap the wolf. It's an old concept, but works.
+  offset: {x: 500, y: 0}
 --- !u!1 &1708609497
 GameObject:
   m_ObjectHideFlags: 0
@@ -12387,6 +12819,7 @@ GameObject:
   - component: {fileID: 1776693936}
   - component: {fileID: 1776693935}
   - component: {fileID: 1776693938}
+  - component: {fileID: 1776693939}
   m_Layer: 5
   m_Name: Disable Drone
   m_TagString: Untagged
@@ -12508,6 +12941,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1776693939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776693933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Disable Drone
+  description: Your technical expertise allows you to identify weak spots and immediately
+    disable drones.
+  offset: {x: 500, y: 0}
 --- !u!1 &1780968452
 GameObject:
   m_ObjectHideFlags: 0
@@ -12521,6 +12970,7 @@ GameObject:
   - component: {fileID: 1780968455}
   - component: {fileID: 1780968454}
   - component: {fileID: 1780968457}
+  - component: {fileID: 1780968458}
   m_Layer: 5
   m_Name: Disable System
   m_TagString: Untagged
@@ -12642,6 +13092,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1780968458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780968452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Disable System
+  description: There is no code too complicated and no system too difficult for you
+    to completely disable.
+  offset: {x: 500, y: 0}
 --- !u!1 &1789127630
 GameObject:
   m_ObjectHideFlags: 0
@@ -12991,6 +13457,7 @@ GameObject:
   - component: {fileID: 1809742816}
   - component: {fileID: 1809742815}
   - component: {fileID: 1809742818}
+  - component: {fileID: 1809742819}
   m_Layer: 5
   m_Name: Poison Arrow
   m_TagString: Untagged
@@ -13112,6 +13579,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1809742819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809742813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Poison Arrow
+  description: Specialized arrows for your bow. This alteration will add poison damage
+    to the damage you're already doing out there.
+  offset: {x: 500, y: 0}
 --- !u!1 &1825436156
 GameObject:
   m_ObjectHideFlags: 0
@@ -13125,6 +13608,7 @@ GameObject:
   - component: {fileID: 1825436159}
   - component: {fileID: 1825436158}
   - component: {fileID: 1825436161}
+  - component: {fileID: 1825436162}
   m_Layer: 5
   m_Name: Hack Lock
   m_TagString: Untagged
@@ -13246,6 +13730,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1825436162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825436156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Hack Lock
+  description: There's no electronic lock you can't hack. It's nearly impossible
+    for you to fail opening an electronic lock.
+  offset: {x: 500, y: 0}
 --- !u!1 &1827992274
 GameObject:
   m_ObjectHideFlags: 0
@@ -13259,6 +13759,7 @@ GameObject:
   - component: {fileID: 1827992277}
   - component: {fileID: 1827992276}
   - component: {fileID: 1827992279}
+  - component: {fileID: 1827992280}
   m_Layer: 5
   m_Name: Poison Shot
   m_TagString: Untagged
@@ -13380,6 +13881,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1827992280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827992274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Poison Shot
+  description: Your research revelead a poisonous plant that can seriously damage
+    nerve tissue in organic enemies. It doesn't work on droids and machines, though.
+  offset: {x: 500, y: 0}
 --- !u!1 &1841837767
 GameObject:
   m_ObjectHideFlags: 0
@@ -13393,6 +13910,7 @@ GameObject:
   - component: {fileID: 1841837770}
   - component: {fileID: 1841837769}
   - component: {fileID: 1841837772}
+  - component: {fileID: 1841837773}
   m_Layer: 5
   m_Name: Autoturret
   m_TagString: Untagged
@@ -13514,6 +14032,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1841837773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841837767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Autoturret
+  description: This is the reason you became an engineer, to watch your fully automated
+    turret do all the killing while you just sit back.
+  offset: {x: 500, y: 0}
 --- !u!1 &1850253169
 GameObject:
   m_ObjectHideFlags: 0
@@ -13943,6 +14477,7 @@ GameObject:
   - component: {fileID: 1888304257}
   - component: {fileID: 1888304256}
   - component: {fileID: 1888304259}
+  - component: {fileID: 1888304260}
   m_Layer: 5
   m_Name: Tripwire
   m_TagString: Untagged
@@ -14064,6 +14599,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1888304260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888304254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Tripwire
+  description: A tripwire connected to explosives - a classic. Just prepare the trap
+    and watch your enemies blow to pieces.
+  offset: {x: 500, y: 0}
 --- !u!1 &1898045599
 GameObject:
   m_ObjectHideFlags: 0
@@ -15151,6 +15702,7 @@ GameObject:
   - component: {fileID: 2081120396}
   - component: {fileID: 2081120395}
   - component: {fileID: 2081120398}
+  - component: {fileID: 2081120399}
   m_Layer: 5
   m_Name: Grease Trap
   m_TagString: Untagged
@@ -15272,6 +15824,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2081120399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081120393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Grease Trap
+  description: Prepare a trap that will spread grease on the ground so your enemies
+    have a hard time just trying to stand up.
+  offset: {x: 500, y: 0}
 --- !u!1 &2083643150
 GameObject:
   m_ObjectHideFlags: 0
@@ -15351,6 +15919,7 @@ GameObject:
   - component: {fileID: 2090463931}
   - component: {fileID: 2090463930}
   - component: {fileID: 2090463933}
+  - component: {fileID: 2090463934}
   m_Layer: 5
   m_Name: Glider
   m_TagString: Untagged
@@ -15472,6 +16041,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b618cf246bbb1947afe2ebbc70f628b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2090463934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090463928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca6da62c6e26eb43825d886d1cf8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Glider
+  description: 'This glider is perfectly safe. Just drop from a high altitude and
+    trust me: I''m an engineer.'
+  offset: {x: 500, y: 0}
 --- !u!1 &2094220785
 GameObject:
   m_ObjectHideFlags: 0

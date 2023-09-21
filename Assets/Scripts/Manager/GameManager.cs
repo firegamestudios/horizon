@@ -25,15 +25,12 @@ namespace Droidzone.Core
 
         public static GameManager Instance;
 
-        MRespawner respawner;
-
         #region Initialization
         private void Awake()
         {
             saveLoadManager = FindAnyObjectByType<SaveLoadManager>();
             musicManager = FindAnyObjectByType<MusicManager>();
-            respawner = FindAnyObjectByType<MRespawner>();
-
+           
             //Singleton
             if (Instance == null)
             {
@@ -64,13 +61,13 @@ namespace Droidzone.Core
             {
                 case "Droid":
                     pcs[0].gameObject.SetActive(true);
-                    respawner.SetPlayer(pcs[0].gameObject); break;
+                    break;
                 case "Alien":
                     pcs[1].gameObject.SetActive(true);
-                    respawner.SetPlayer(pcs[1].gameObject); break;
+                     break;
                 case "Male Human":
                      pcs[2].gameObject.SetActive(true); 
-                     respawner.SetPlayer(pcs[2].gameObject);break;
+                     break;
                 case "Female Human":
                 /// pcs[3].gameObject.SetActive(true); 
                 ///  respawner.SetPlayer(pcs[3].gameObject);break;
