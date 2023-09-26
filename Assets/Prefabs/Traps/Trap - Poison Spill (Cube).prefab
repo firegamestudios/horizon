@@ -4963,7 +4963,7 @@ Transform:
   m_GameObject: {fileID: 3213244845780155714}
   m_LocalRotation: {x: 0, y: 0, z: -0.03376569, w: 0.9994298}
   m_LocalPosition: {x: 9.7, y: -15.469, z: -86.87}
-  m_LocalScale: {x: 6.954119, y: 6.954119, z: 6.954119}
+  m_LocalScale: {x: 10.150232, y: 10.150232, z: 10.150232}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7944146625404079741}
@@ -5043,7 +5043,7 @@ MonoBehaviour:
     ConstantValue:
       serializedVersion: 2
       m_Bits: 4294967295
-    Variable: {fileID: 11400000, guid: f489db1856e43dc47b175dd125135bdc, type: 2}
+    Variable: {fileID: 11400000, guid: a12dbfa8470d80f42af187941ce83da5, type: 2}
   triggerInteraction: 1
   owner: {fileID: 3213244845780155714}
   m_HitEffect:

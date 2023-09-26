@@ -29,6 +29,3 @@ MonoBehaviour:
   boolValue: 0
   intValue: 0
   floatValue: 0
-  showFloatValue: 0
-  showBoolValue: 1
-  showIntValue: 0

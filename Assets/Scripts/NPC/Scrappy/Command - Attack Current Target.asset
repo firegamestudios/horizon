@@ -1,30 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6761699758924740554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d3d1733a62f5c34fb6428f471a453b0, type: 3}
-  m_Name: T_Play Bark Audio
-  m_EditorClassIdentifier: 
-  active: 1
-  Description: Play Bark
-  MessageID:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  UpdateInterval: 0.2
-  WaitForPreviousTask: 0
-  Clips:
-    UseConstant: 1
-    ConstantValue: {fileID: 8300000, guid: 031d5541a1659a04186f46095580e87c, type: 3}
-    Variable: {fileID: 0}
-  AudioSource: BrainAudio
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,7 +19,6 @@ MonoBehaviour:
   tasks:
   - {fileID: 5184083841544283548}
   - {fileID: 4125226742305141141}
-  - {fileID: -6761699758924740554}
   - {fileID: 11400000, guid: 92bcce1dba62e824ab1e082a09ee53a3, type: 2}
   transitions:
   - decision: {fileID: 6358448696188827996}
@@ -157,9 +131,14 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0.5
     Variable: {fileID: 0}
+  slowingDistance:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   direction: 0
   arcsCount: 12
   LookAtTarget: 1
+  FleeForever: 1
   debugColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.25}
 --- !u!114 &6358448696188827996
 MonoBehaviour:
@@ -186,6 +165,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   WaitForAllTasks: 0
   waitForTask: -1
+  LookMultiplier: 0.9
   LookRange:
     UseConstant: 1
     ConstantValue: 50
@@ -201,6 +181,7 @@ MonoBehaviour:
   AssignTarget: 0
   MoveToTarget: 0
   RemoveTarget: 0
+  ChooseRandomly: 0
   UnityTag: 
   GameObjectName: 
   transform: {fileID: 0}

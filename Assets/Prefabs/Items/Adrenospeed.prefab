@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5506779974387343992}
   - component: {fileID: 1820449267007109300}
   - component: {fileID: 4819463354360307719}
+  - component: {fileID: 1959775416066892997}
   m_Layer: 3
   m_Name: Adrenospeed
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 2844480827566653491}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4933352028459907023
 MeshFilter:
@@ -176,6 +177,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1959775416066892997}
+          m_TargetAssemblyTypeName: UpdateInventory, Assembly-CSharp
+          m_MethodName: UpdateInventoryDisplay
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnInteractWith:
       m_PersistentCalls:
         m_Calls: []
@@ -211,7 +224,7 @@ MonoBehaviour:
         m_CallState: 2
   Description: Invoke events when an Interactor interacts with it
   ShowDescription: 1
-  Editor_Tabs1: 1
+  Editor_Tabs1: 0
 --- !u!114 &4819463354360307719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,8 +241,20 @@ MonoBehaviour:
   Quantity: 1
   RemainingQuantity: 1
   PickableIfInventoryIsFull: 0
-  DisableObjectWhenDepleted: 1
+  DisableObjectWhenDepleted: 0
   RequirePlayerTag: 0
+--- !u!114 &1959775416066892997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399019186607309505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2c589ae195be945b4e799efba15eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3974433077422140807
 PrefabInstance:
   m_ObjectHideFlags: 0

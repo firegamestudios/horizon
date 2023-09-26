@@ -133,9 +133,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4584185353263182130}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 35, y: -0.22000122, z: 43.6}
-  m_LocalScale: {x: 3.2627, y: 3.2627, z: 3.2627}
+  m_LocalScale: {x: 6.838619, y: 6.838619, z: 6.838619}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 182212698825673682}
@@ -228,14 +228,14 @@ MonoBehaviour:
   index: 1
   m_Active:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 1
     Variable: {fileID: 0}
   m_hitLayer:
     UseConstant: 0
     ConstantValue:
       serializedVersion: 2
       m_Bits: 4294967295
-    Variable: {fileID: 11400000, guid: f489db1856e43dc47b175dd125135bdc, type: 2}
+    Variable: {fileID: 11400000, guid: a12dbfa8470d80f42af187941ce83da5, type: 2}
   triggerInteraction: 1
   owner: {fileID: 4584185353263182130}
   m_HitEffect:
@@ -408,7 +408,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   DebugColor: {r: 1, g: 0.25, b: 0, a: 0.15}
-  Editor_Tabs1: 1
+  Editor_Tabs1: 0
   references:
     version: 2
     RefIds:

@@ -66,9 +66,14 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0.5
     Variable: {fileID: 0}
+  slowingDistance:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   direction: 0
   arcsCount: 12
   LookAtTarget: 0
+  FleeForever: 1
   debugColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.25}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -123,6 +128,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   WaitForAllTasks: 0
   waitForTask: -1
+  LookMultiplier: 0.9
   LookRange:
     UseConstant: 1
     ConstantValue: 15
@@ -138,6 +144,7 @@ MonoBehaviour:
   AssignTarget: 1
   MoveToTarget: 1
   RemoveTarget: 0
+  ChooseRandomly: 0
   UnityTag: 
   GameObjectName: 
   transform: {fileID: 0}

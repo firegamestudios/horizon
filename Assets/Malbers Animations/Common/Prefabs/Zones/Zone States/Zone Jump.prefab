@@ -172,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 1096059932767738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.343951, y: 0.47915345, z: 2}
+  m_LocalScale: {x: 12.546574, y: 1.5882999, z: 3.2200708}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224408640260567328}
@@ -270,6 +270,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   tags:
+  - {fileID: 11400000, guid: 47b9fe94735ecba44a6bf84861a3d536, type: 2}
   - {fileID: 11400000, guid: 9d80b30d48e415e4daefefb2e359ad3d, type: 2}
   modeID: {fileID: 0}
   stateID: {fileID: 11400000, guid: 9ae07cd2f8f4c054687fecf634f8e5b3, type: 2}

@@ -109,7 +109,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   GraphTimeMultiplier: 15
   GraphIntensityMultiplier: 1
-  TimeDelay: 0
+  TimeDelay: 120
 --- !u!114 &3136605153127355642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_DecalLayerMask: 1
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0.65, y: 0.4, z: 0.65}
+  m_Size: {x: 2, y: 2, z: 2.1081696}
   m_FadeFactor: 1
   m_Version: 2
 --- !u!1 &3136605153214515430
@@ -178,5 +178,5 @@ Transform:
   m_Children:
   - {fileID: 3136605153127355643}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

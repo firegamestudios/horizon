@@ -8,6 +8,7 @@ using MoreMountains.InventoryEngine;
 using MalbersAnimations;
 using Cinemachine;
 using Inworld;
+using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
@@ -42,6 +43,22 @@ public class UIManager : MonoBehaviour
     public PC pc;
     MalbersInput malbersInput;
     public CinemachineBrain brain;
+    PlayerData playerData;
+
+    public List<TMP_Text> attributesTexts;
+
+    public List<TMP_Text> skillsTexts;
+
+    public Transform featsGrid;
+    public GameObject featPrefab;
+
+    public ActionBarPanel actionBarPanel;
+
+    //Holosign
+    public GameObject holosignUI;
+    public TMP_Text holosignText;
+
+    public GameObject crossHair;
 
     private void Awake()
     {
@@ -103,7 +120,47 @@ public class UIManager : MonoBehaviour
     {
         playerNameText.text = myName + ", " + myRace + " " + myClass;
     }
+    public void SetupAttributes(int[] _atts)
+    {
+        attributesTexts[0].text = "Strength: " + _atts[0].ToString();
+        attributesTexts[1].text = "Agility: " + _atts[1].ToString();
+        attributesTexts[2].text = "Endurance: " + _atts[2].ToString();
+        attributesTexts[3].text = "Crafting: " + _atts[3].ToString();
+        attributesTexts[4].text = "Computer: " + _atts[4].ToString();
+    }
+    public void SetupSkills(PlayerData _playerData)
+    {
+        skillsTexts[0].text = "Melee Damage: " + _playerData.MeleeDamage.ToString();
+        skillsTexts[1].text = "Ranged Damage: " + _playerData.RangedDamage.ToString();
+        skillsTexts[2].text = "Hacking: " + _playerData.Hacking.ToString();
+        skillsTexts[3].text = "Healing: " + _playerData.Healing.ToString();
+        skillsTexts[4].text = "Leadership: " + _playerData.Leadership.ToString();
+        skillsTexts[5].text = "Genetic Engineering: " + _playerData.GenEngineering.ToString();
+        skillsTexts[6].text = "Piloting: " + _playerData.Piloting.ToString();
+        skillsTexts[7].text = "Tracking: " + _playerData.Tracking.ToString();
+        skillsTexts[8].text = "Taming: " + _playerData.Taming.ToString();
+        skillsTexts[9].text = "Hack Lock: " + _playerData.HackLock.ToString();
+
+        playerData = _playerData;
+
+    }
+
+    public void SetupFeats()
+    {
+        for (int i = 0; i < playerData.feats.Length; i++)
+        {
+            print("Setting up feat in Inventory UI number: " + i.ToString());
+            GameObject featGameObject = Instantiate(featPrefab, Vector3.zero, Quaternion.identity, featsGrid);
+            featGameObject.name = playerData.feats[i];
+            featGameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Feats/"+featGameObject.name);
+            featGameObject.GetComponent<FeatTooltipButton>().SetupThisTooltip();
+            //try to add icon to action bar
+            actionBarPanel.AddFeatToActionBar(featGameObject.name);
+        }
+    }
     #endregion
+
+    #region Messages
 
     public void InputAndCamera(bool _input, bool _camera)
     {
@@ -145,10 +202,32 @@ public class UIManager : MonoBehaviour
         transMessageAnim.SetBool("on", false);
         transMessageAnim.transform.GetComponent<TransformMessage>().transformInWorld = null;
     }
+    #endregion
+
     #region Inventory
     public void UpdateInventoryDisplay()
     {
         inventoryDisplay.RedrawInventoryDisplay();
+    }
+    #endregion
+
+    #region Holosign
+    public void Holosign(string myText)
+    {
+        holosignText.text = myText;
+        holosignUI.SetActive(true);
+    }
+    public void CloseHolosign()
+    {
+        holosignUI.SetActive(false);
+        EnableCrosshair(true);
+    }
+    #endregion
+
+    #region Generic Tools
+    public void EnableCrosshair(bool on)
+    {
+        crossHair.SetActive(on);
     }
     #endregion
 }

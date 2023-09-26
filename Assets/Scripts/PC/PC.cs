@@ -9,7 +9,9 @@ using Inworld;
 using Inworld.Runtime;
 using Inworld.Util;
 using MalbersAnimations.Reactions;
+using Cinemachine;
 
+[RequireComponent(typeof(FeatsSystem))]
 public class PC : MonoBehaviour
 {
     //Conditions
@@ -33,6 +35,12 @@ public class PC : MonoBehaviour
     Stats stats;
     MDamageable damageable;
     MalbersInput malbersInput;
+
+    //My Components
+    FeatsSystem featsSystem;
+
+    //Camera
+    CinemachineFreeLook cinemachineFreeLook;
    
     //Damage
     private GameObject weapon;
@@ -69,7 +77,8 @@ public class PC : MonoBehaviour
         poisonTex = Resources.Load<Texture>("Textures/poison");
         damageable = GetComponent<MDamageable>();
         malbersInput = GetComponent<MalbersInput>();
-       
+        featsSystem = GetComponent<FeatsSystem>();
+        cinemachineFreeLook = GameObject.Find("CM FreeLook Main").GetComponent<CinemachineFreeLook>();
     }
 
     // Start is called before the first frame update
@@ -84,7 +93,7 @@ public class PC : MonoBehaviour
     {
         saveLoadManager.LoadPlayerData();
         playerData = saveLoadManager.playerData;
-        print("Name: " + playerData.playerName);
+        //print("Name: " + playerData.playerName);
         InworldAI.User.Name = playerData.playerName;
        
         SetupStats();
@@ -108,6 +117,12 @@ public class PC : MonoBehaviour
         attackTriggerKick.statModifier.MaxValue = playerData.MeleeDamage + playerData.Leadership + playerData.MeleeBonus;
 
         uiManager.SetupPlayerName(playerData.playerName, playerData.classe, playerData.race);
+
+        uiManager.SetupAttributes(playerData.attributes);
+
+        uiManager.SetupSkills(playerData);
+
+        uiManager.SetupFeats();
     }
 
     #endregion
@@ -176,15 +191,22 @@ public class PC : MonoBehaviour
     {
         print("Freeze Player()");
         animal.State_Force(0);
-        animal.LockInput = true;
-        animal.LockMovement = true;
+      
+        malbersInput.enabled = false;
+    }
+    public void FreezeCamera()
+    {
+        cinemachineFreeLook.enabled = false;
     }
     public void UnfreezePlayer()
     {
         malbersInput.enabled = true;
-        animal.LockInput = false;
-        animal.LockMovement = false;
        
+        malbersInput.enabled = true;
+    }
+    public void UnfreezeCamera()
+    {
+        cinemachineFreeLook.enabled = true;
     }
     #endregion
 

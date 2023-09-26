@@ -73,9 +73,14 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0.5
     Variable: {fileID: 0}
+  slowingDistance:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   direction: 0
   arcsCount: 12
   LookAtTarget: 0
+  FleeForever: 1
   debugColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.25}
 --- !u!114 &-2578923712362846892
 MonoBehaviour:
@@ -157,8 +162,7 @@ MonoBehaviour:
   - {fileID: -3388137151226898769}
   - {fileID: 11400000, guid: 375657336a803e24e8cd26015c8e6e96, type: 2}
   transitions:
-  - decision: {fileID: 3260110051006137647, guid: a62f7427844772f43b1088f2b08953a9,
-      type: 2}
+  - decision: {fileID: 3260110051006137647, guid: a62f7427844772f43b1088f2b08953a9, type: 2}
     trueState: {fileID: 11400000, guid: 4d361877d37787a44b7a5bcb4eef75ae, type: 2}
     falseState: {fileID: 0}
   - decision: {fileID: 619284880665400157}

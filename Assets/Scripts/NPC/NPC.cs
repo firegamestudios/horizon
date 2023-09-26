@@ -16,6 +16,7 @@ public class NPC : MonoBehaviour
     protected MAnimal animal;
     MDamageable damageable;
     Rigidbody rb;
+    BloodDecal bloodDecal;
     
     Animator anim;
     Blood blood;
@@ -87,7 +88,9 @@ public class NPC : MonoBehaviour
     private void Awake()
     {
         animal = GetComponent<MAnimal>();
-        
+        bloodDecal = GetComponentInChildren<BloodDecal>();
+        if(bloodDecal)
+        bloodDecal.gameObject.SetActive(false);
         damageable = GetComponent<MDamageable>();
         anim = GetComponent<Animator>();
         manager = FindAnyObjectByType<GameManager>();
@@ -138,6 +141,7 @@ public class NPC : MonoBehaviour
     }
 
     #endregion
+
     #region Update Methods
 
     private void Update()
@@ -265,7 +269,12 @@ public class NPC : MonoBehaviour
         {
             animal.State_Force(10);
         }
-        
+
+        //Bloood
+        if (bloodDecal)
+        {
+            bloodDecal.gameObject.SetActive(true);
+        }
 
     }
 
@@ -292,7 +301,7 @@ public class NPC : MonoBehaviour
         {
             return;
         }
-        print("Conversation started with " + gameObject.name);
+        //print("Conversation started with " + gameObject.name);
         GameManager.Pc.FreezePlayer();
         Freeze();
         CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
@@ -308,7 +317,7 @@ public class NPC : MonoBehaviour
         {
             return;
         }
-        print("Conversation ended with " + gameObject.name);
+        //print("Conversation ended with " + gameObject.name);
         CinemachineVirtualCamera MyVirtualCam = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
         MyVirtualCam.Priority = -50;
         GameManager.Pc.UnfreezePlayer();

@@ -11,6 +11,8 @@ public class BaseRoll : MonoBehaviour
     protected GameObject myOnFocused;
     protected Transform resulsWP;
 
+    public bool isFeatsSystem;
+
     private void Awake()
     {
         // Find DiceManager GameObject using tag
@@ -23,6 +25,7 @@ public class BaseRoll : MonoBehaviour
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
         //OnFocused
+        if(!isFeatsSystem)
         myOnFocused = transform.Find("OnFocused").gameObject;
 
         resulsWP = transform.Find("Results WP");

@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010290526256}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4000010051801208}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33000010291608134
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
   debug: 0
   m_audio: {fileID: 0}
   impactBehaviour: 2
-  rotation: 1
+  rotation: 3
   TrajectoryRoll: 0
   Penetration: 0.002
   m_KeepDamageValues:
@@ -329,7 +329,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   torque:
     UseConstant: 1
-    ConstantValue: 50
+    ConstantValue: 0
     Variable: {fileID: 0}
   torqueAxis: {x: 0, y: 1, z: 0}
   m_PosOffset: {x: 0, y: 0, z: 0}
@@ -356,7 +356,7 @@ MonoBehaviour:
         m_CallState: 2
   rb: {fileID: 0}
   m_collider: {fileID: 0}
-  Editor_Tabs1: 2
+  Editor_Tabs1: 0
   references:
     version: 2
     RefIds:
