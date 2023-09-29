@@ -959,8 +959,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2813315388795279130}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Parent
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: SetParent
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2340576201246499319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.671588, y: 1.4399745, z: -3.6545784}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,6 +155,10 @@ MonoBehaviour:
   BottomClamp:
     UseConstant: 1
     ConstantValue: -60
+    Variable: {fileID: 0}
+  LerpRotation:
+    UseConstant: 1
+    ConstantValue: 15
     Variable: {fileID: 0}
 --- !u!114 &2340576201246499317
 MonoBehaviour:

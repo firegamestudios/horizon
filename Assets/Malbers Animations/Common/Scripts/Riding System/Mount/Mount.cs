@@ -170,8 +170,10 @@ namespace MalbersAnimations.HAP
         /// <summary>Rider that is near the Mount</summary>
         public MRider NearbyRider { get; set; }
 
-        /// <summary> Ignore Mounting Animations </summary>
+        /// <summary> Ignore Mount Animations </summary>
         public bool InstantMount { get => instantMount.Value; set => instantMount.Value = value; }
+
+        /// <summary> Ignore Dismount Animations </summary>
         public bool InstantDismount { get => instantDismount.Value; set => instantDismount.Value = value; }
         #endregion
 

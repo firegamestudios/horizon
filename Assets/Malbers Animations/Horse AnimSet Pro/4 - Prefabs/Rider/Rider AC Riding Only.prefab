@@ -2052,6 +2052,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224977343424481242, guid: 0580b7605afecd446ad04336b26b5228,
         type: 3}
+      propertyPath: colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 3200151710045938485}
+    - target: {fileID: 1224977343424481242, guid: 0580b7605afecd446ad04336b26b5228,
+        type: 3}
+      propertyPath: colliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 1369269669592566615}
+    - target: {fileID: 1224977343424481242, guid: 0580b7605afecd446ad04336b26b5228,
+        type: 3}
+      propertyPath: colliders.Array.data[2]
+      value: 
+      objectReference: {fileID: 131577247950039189}
+    - target: {fileID: 1224977343424481242, guid: 0580b7605afecd446ad04336b26b5228,
+        type: 3}
       propertyPath: m_CanDismount.UseConstant
       value: 1
       objectReference: {fileID: 0}

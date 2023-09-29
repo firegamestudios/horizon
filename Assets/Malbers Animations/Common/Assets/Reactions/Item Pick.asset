@@ -13,18 +13,17 @@ MonoBehaviour:
   m_Name: Item Pick
   m_EditorClassIdentifier: 
   reaction:
-    rid: 8954300177504272386
+    rid: 1087322728279048224
   references:
     version: 2
     RefIds:
-    - rid: 8954300177504272386
-      type: {class: ModeReaction, ns: MalbersAnimations.Reactions, asm: Assembly-CSharp}
+    - rid: 1087322728279048224
+      type: {class: ModeReaction, ns: MalbersAnimations.Reactions, asm: MalbersAnimations}
       data:
         Active: 1
-        delay: 0
         type: 0
         ID: {fileID: 11400000, guid: c0d938e24e7fe1f4a8f00633ce81a5b1, type: 2}
-        Ability: -99
+        Ability: 1
         HasCoolDown: 1
         coolDown: 0
         abilityStatus: 0

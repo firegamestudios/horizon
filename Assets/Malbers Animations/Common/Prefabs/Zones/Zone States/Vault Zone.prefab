@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1968653433842188468}
   - component: {fileID: 1968653433842188469}
   - component: {fileID: 1968653433842188457}
-  - component: {fileID: 3118820285456110058}
   m_Layer: 2
   m_Name: Vault Zone
   m_TagString: Untagged
@@ -31,13 +30,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1968653435351113245}
   - {fileID: 1968653435339463563}
   - {fileID: 1968653434677285496}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1968653433842188459
 MonoBehaviour:
@@ -56,10 +54,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  Limit:
-    UseConstant: 1
-    ConstantValue: -1
-    Variable: {fileID: 0}
   DisableAfterUsed:
     UseConstant: 1
     ConstantValue: 0
@@ -73,9 +67,7 @@ MonoBehaviour:
   BoneName: Head
   zoneType: 0
   stateAction: 0
-  stateActionExit: 6
-  stanceActionEnter: 0
-  stanceActionExit: 1
+  stanceAction: 0
   Layer:
     UseConstant: 1
     ConstantValue:
@@ -122,7 +114,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  ForceMode: 0
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -160,17 +151,9 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968653433842188471}
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Size: {x: 5, y: 1.6, z: 1.4}
   m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &1968653433842188469
@@ -243,22 +226,6 @@ MonoBehaviour:
   DoubleSided: 1
   AlignLookAt: 0
   DebugColor: {r: 1, g: 0.7176559, b: 0.18396229, a: 1}
---- !u!208 &3118820285456110058
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968653433842188471}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 2.15, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1968653434677285497
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +252,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -2.5, y: 0.1, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1968653433842188470}
   m_RootOrder: 2
@@ -316,7 +282,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 2.5, y: 0.1, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1968653433842188470}
   m_RootOrder: 1
@@ -350,7 +315,6 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.0000004768371, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 0.25}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1968653433842188470}
   m_RootOrder: 0
@@ -371,17 +335,9 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968653435351113246}
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1968653435351113244
@@ -395,7 +351,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

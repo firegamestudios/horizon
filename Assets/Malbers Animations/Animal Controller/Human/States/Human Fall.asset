@@ -93,7 +93,7 @@ MonoBehaviour:
   SleepFromStance: []
   stances:
   - {fileID: 11400000, guid: 87ae38bfe93fc3f449ecd25863e2a6fe, type: 2}
-  tryLoop:
+  TryLoop:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
@@ -127,7 +127,7 @@ MonoBehaviour:
   SpeedSets: []
   ID: {fileID: 11400000, guid: 8078fbdb01991b44b9c1351f444b5efe, type: 2}
   AirControl:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: 1
     Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
   AirRotation:

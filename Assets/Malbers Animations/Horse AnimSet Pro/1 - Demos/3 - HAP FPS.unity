@@ -1051,12 +1051,47 @@ PrefabInstance:
     - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
         type: 3}
       propertyPath: Editor_Tabs2
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
+        type: 3}
+      propertyPath: Runtime_Tabs2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
         type: 3}
       propertyPath: useCameraInput.ConstantValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
+        type: 3}
+      propertyPath: speedSets.Array.data[0].m_RootMotionRot.ConstantValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
+        type: 3}
+      propertyPath: speedSets.Array.data[0].Speeds.Array.data[0].rotation.ConstantValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
+        type: 3}
+      propertyPath: speedSets.Array.data[0].Speeds.Array.data[1].rotation.ConstantValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
+        type: 3}
+      propertyPath: speedSets.Array.data[0].Speeds.Array.data[2].rotation.ConstantValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
+        type: 3}
+      propertyPath: speedSets.Array.data[0].Speeds.Array.data[3].rotation.ConstantValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733572446583450217, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
+        type: 3}
+      propertyPath: speedSets.Array.data[0].Speeds.Array.data[4].rotation.ConstantValue
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3737209509590417087, guid: 6865107d925eac74eb4e4f6fa0aea5bb,
         type: 3}

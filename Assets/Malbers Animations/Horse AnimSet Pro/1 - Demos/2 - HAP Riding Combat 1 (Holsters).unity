@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1355568772}
-  m_IndirectSpecularColor: {r: 0.7304493, g: 0.7985106, b: 0.8354521, a: 1}
+  m_IndirectSpecularColor: {r: 0.4849924, g: 0.5915705, b: 0.65520734, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7639,7 +7639,7 @@ PrefabInstance:
     - target: {fileID: 1863971561695705686, guid: 3c753f6872830434c84cdc8ea6be6c8e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.347178
+      value: -28.306562
       objectReference: {fileID: 0}
     - target: {fileID: 1863971561695705686, guid: 3c753f6872830434c84cdc8ea6be6c8e,
         type: 3}
@@ -8367,17 +8367,17 @@ PrefabInstance:
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 122.99744
+      value: 116.99744
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 98.39818
+      value: 93.59816
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1287.1163
+      value: -1215.1163
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
@@ -20719,10 +20719,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 699840666}
     m_Modifications:
-    - target: {fileID: 620550574, guid: 04c1fd6f4d1402f43a3283633875dc8c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.30004883
-      objectReference: {fileID: 0}
     - target: {fileID: 1936816509490896, guid: 04c1fd6f4d1402f43a3283633875dc8c, type: 3}
       propertyPath: m_Name
       value: Inventory
@@ -22107,15 +22103,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 122.99744
+      value: 116.99744
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 98.39818
+      value: 93.59816
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1287.1163
+      value: -1215.1163
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalRotation.x
@@ -22684,6 +22680,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: Freeze
     key: 27
@@ -22749,6 +22749,10 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
+        Variable: {fileID: 0}
       type: 1
       input: Freeze
       key: 27
@@ -22810,6 +22814,10 @@ MonoBehaviour:
       active:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      ignoreOnPause:
+        UseConstant: 1
+        ConstantValue: 0
         Variable: {fileID: 0}
       type: 1
       input: Freeze
@@ -23606,17 +23614,32 @@ PrefabInstance:
     - target: {fileID: 7155565977642425220, guid: d3aa6de16e8fb9a4ca8d48506859e701,
         type: 3}
       propertyPath: Editor_Tabs1
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7155565977642425220, guid: d3aa6de16e8fb9a4ca8d48506859e701,
         type: 3}
       propertyPath: Editor_Tabs2
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7155565977642425220, guid: d3aa6de16e8fb9a4ca8d48506859e701,
         type: 3}
       propertyPath: SelectedMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155565977642425220, guid: d3aa6de16e8fb9a4ca8d48506859e701,
+        type: 3}
+      propertyPath: SmoothVertical.UseConstant
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155565977642425220, guid: d3aa6de16e8fb9a4ca8d48506859e701,
+        type: 3}
+      propertyPath: TurnMultiplier.UseConstant
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155565977642425220, guid: d3aa6de16e8fb9a4ca8d48506859e701,
+        type: 3}
+      propertyPath: useCameraInput.UseConstant
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7155565977642425220, guid: d3aa6de16e8fb9a4ca8d48506859e701,
         type: 3}
@@ -29746,6 +29769,21 @@ PrefabInstance:
     - target: {fileID: 794286157042513271, guid: 3713da0b703b90c46965625018868bfd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 797631423224758284, guid: 3713da0b703b90c46965625018868bfd,
+        type: 3}
+      propertyPath: Editor_Tabs1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 797631423224758284, guid: 3713da0b703b90c46965625018868bfd,
+        type: 3}
+      propertyPath: SmoothVertical.UseConstant
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 797631423224758284, guid: 3713da0b703b90c46965625018868bfd,
+        type: 3}
+      propertyPath: TurnMultiplier.UseConstant
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 797631423224758285, guid: 3713da0b703b90c46965625018868bfd,

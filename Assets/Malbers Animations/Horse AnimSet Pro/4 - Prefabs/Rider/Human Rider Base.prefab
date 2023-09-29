@@ -2660,7 +2660,7 @@ PrefabInstance:
     - target: {fileID: 219446923077049980, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 745503348127730168, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
@@ -2786,7 +2786,7 @@ PrefabInstance:
     - target: {fileID: 4165762096131601940, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4661966628746135893, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
@@ -2998,6 +2998,10 @@ MonoBehaviour:
   RiderAudio: {fileID: 6587860063686988632}
   MainCollider: {fileID: 5986889165979713372}
   MountCollider: {fileID: 11400000, guid: 2c259b2d172a70b41a9c00fa4ef2e05a, type: 2}
+  colliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   OnFindMount:
     m_PersistentCalls:
       m_Calls: []

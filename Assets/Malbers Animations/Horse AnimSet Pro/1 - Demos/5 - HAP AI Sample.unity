@@ -1573,12 +1573,12 @@ PrefabInstance:
     - target: {fileID: 7175180477090272577, guid: aec39908c6f0b8e4e882d49039c80a24,
         type: 3}
       propertyPath: Editor_Tabs1
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7175180477090272577, guid: aec39908c6f0b8e4e882d49039c80a24,
         type: 3}
       propertyPath: Editor_Tabs2
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7178251677666897893, guid: aec39908c6f0b8e4e882d49039c80a24,
         type: 3}
@@ -3877,12 +3877,12 @@ PrefabInstance:
     - target: {fileID: 7175180477090272577, guid: aec39908c6f0b8e4e882d49039c80a24,
         type: 3}
       propertyPath: Editor_Tabs1
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7175180477090272577, guid: aec39908c6f0b8e4e882d49039c80a24,
         type: 3}
       propertyPath: Editor_Tabs2
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aec39908c6f0b8e4e882d49039c80a24, type: 3}
@@ -7720,6 +7720,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3314853264784305934, guid: 3713da0b703b90c46965625018868bfd,
         type: 3}
+      propertyPath: startWeapon.ConstantValue
+      value: 
+      objectReference: {fileID: 4890517734742950502, guid: ac80b7c40c2e6ba48b61a9325b0ecc2f,
+        type: 3}
+    - target: {fileID: 3314853264784305934, guid: 3713da0b703b90c46965625018868bfd,
+        type: 3}
       propertyPath: holsters.Array.data[0].Weapon
       value: 
       objectReference: {fileID: 302472354151661360, guid: bcff32db73dac7344b4cac585b0ef97f,
@@ -7734,8 +7740,7 @@ PrefabInstance:
         type: 3}
       propertyPath: holsters.Array.data[2].Weapon
       value: 
-      objectReference: {fileID: 4776089527113506134, guid: ac80b7c40c2e6ba48b61a9325b0ecc2f,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3314853264784305934, guid: 3713da0b703b90c46965625018868bfd,
         type: 3}
       propertyPath: holsters.Array.data[0].AutoEquip.ConstantValue

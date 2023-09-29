@@ -853,7 +853,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 0}
-  m_Tag: RagdollDeath
+  m_Tag: Death
   m_SpeedParameter: SpeedMultiplier
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -968,7 +968,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5071327052007528473}
-    m_Position: {x: 310, y: 110, z: 0}
+    m_Position: {x: 250, y: 100, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -6736,8 +6736,6 @@ AnimatorStateMachine:
   - {fileID: 4503505719202987749}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1107739256524328638}
-    second: []
   - first: {fileID: 1107469501483250876}
     second:
     - {fileID: -1085240756628014901}
@@ -6750,6 +6748,8 @@ AnimatorStateMachine:
   - first: {fileID: 1107725768359318366}
     second: []
   - first: {fileID: 1107558205811323176}
+    second: []
+  - first: {fileID: 1107739256524328638}
     second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 70, y: -100, z: 0}

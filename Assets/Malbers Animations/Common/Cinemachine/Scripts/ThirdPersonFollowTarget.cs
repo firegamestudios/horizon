@@ -86,11 +86,18 @@ namespace MalbersAnimations
             if (TPF != null)
                 TPF.CameraDistance = CameraDistance;
 
-            ActiveCamera = null;
+
+            transform.position = CamPivot.position;
+
+            //transform.position = Vector3.zero;
+
         }
+
 
         private void OnEnable()
         {
+            
+
             Brain.m_CameraActivatedEvent.AddListener(CameraChanged);
 
             CameraPosition();

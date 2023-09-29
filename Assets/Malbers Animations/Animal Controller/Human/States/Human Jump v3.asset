@@ -168,9 +168,9 @@ MonoBehaviour:
       Variable: {fileID: 0}
     StartGravityTime: 20
     AirControl:
-      UseConstant: 1
+      UseConstant: 0
       ConstantValue: 1
-      Variable: {fileID: 0}
+      Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
     WaitForAnimation: 1
   - name: Walk
     LastState: {fileID: 0}
@@ -187,9 +187,9 @@ MonoBehaviour:
       Variable: {fileID: 0}
     StartGravityTime: 10
     AirControl:
-      UseConstant: 1
+      UseConstant: 0
       ConstantValue: 1
-      Variable: {fileID: 0}
+      Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
     WaitForAnimation: 1
   - name: Run
     LastState: {fileID: 0}
@@ -206,9 +206,9 @@ MonoBehaviour:
       Variable: {fileID: 0}
     StartGravityTime: 10
     AirControl:
-      UseConstant: 1
+      UseConstant: 0
       ConstantValue: 1
-      Variable: {fileID: 0}
+      Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
     WaitForAnimation: 1
   - name: WallRun
     LastState: {fileID: 11400000, guid: 2f7727669c8fcdf4999e66cb669e2608, type: 2}
@@ -226,8 +226,8 @@ MonoBehaviour:
     StartGravityTime: 10
     AirControl:
       UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
+      ConstantValue: 0
+      Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
     WaitForAnimation: 0
   - name: Slide Jump
     LastState: {fileID: 11400000, guid: e71f5adec2f2e10438b86050fb7f94c6, type: 2}
@@ -246,7 +246,7 @@ MonoBehaviour:
     AirControl:
       UseConstant: 1
       ConstantValue: 0
-      Variable: {fileID: 0}
+      Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
     WaitForAnimation: 0
   multipleJumps:
   - name: Double Jump
@@ -262,9 +262,9 @@ MonoBehaviour:
       Variable: {fileID: 0}
     StartGravityTime: 5
     AirControl:
-      UseConstant: 1
+      UseConstant: 0
       ConstantValue: 1
-      Variable: {fileID: 0}
+      Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
     WaitForAnimation: 0
   - name: Triple Jump
     JumpNumber: 3
@@ -279,7 +279,7 @@ MonoBehaviour:
       Variable: {fileID: 0}
     StartGravityTime: 5
     AirControl:
-      UseConstant: 1
+      UseConstant: 0
       ConstantValue: 1
-      Variable: {fileID: 0}
+      Variable: {fileID: 11400000, guid: f39bbadf72c684c4d804bfe47b409b80, type: 2}
     WaitForAnimation: 0
