@@ -7,7 +7,6 @@ using MalbersAnimations.Weapons;
 using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Droidzone.Core;
 public class NPC : MonoBehaviour
@@ -16,6 +15,7 @@ public class NPC : MonoBehaviour
     protected MAnimal animal;
     MDamageable damageable;
     Rigidbody rb;
+    Stats stats;
     
     Animator anim;
     Blood blood;
@@ -28,6 +28,7 @@ public class NPC : MonoBehaviour
      */
     private GameObject weapon;
     Reaction customReaction;
+    StatElement damagedByElement;
 
     private float regularAnimSpeed;
 
@@ -47,6 +48,30 @@ public class NPC : MonoBehaviour
 
     float minPoisonDamage;
     float maxPoisonDamage;
+
+    //ACID VARIABLES.
+    [Tooltip("Smaller number, stronger acid")]
+    float acidPotency;
+    float acidReset;
+    float acidDuration;
+    float acidDurationReset;
+
+    [SerializeField] bool acidified;
+
+    float minAcidDamage;
+    float maxAcidDamage;
+
+    //BACTERIA VARIABLES
+    [Tooltip("Smaller number, stronger acid")]
+    float feverPotency;
+    float feverReset;
+    float feverDuration;
+    float feverDurationReset;
+
+    [SerializeField] bool fever;
+
+    float minFeverDamage;
+    float maxFeverDamage;
 
     // PARALYZE VARIABLES.
     private float paralyzedTimer;
@@ -68,10 +93,6 @@ public class NPC : MonoBehaviour
     private float electrifiedTimer;
     [SerializeField] private bool electrified;
 
-    // Acid VARIABLES.
-    private float acidTimer;
-    [SerializeField] private bool acidified;
-
     [Header("NPC Control")]
 
     public bool stayFrozenAfterDialogue = false;
@@ -82,18 +103,26 @@ public class NPC : MonoBehaviour
    
    MProjectileThrower projThrow;
 
+    //material
+   
+    public Material matBody;
+
+    Texture poisonTex;
+    Texture bloodTex;
+
     protected PC Pc { get => pc ??= FindAnyObjectByType<PC>(); set => pc = value; }
 
     private void Awake()
     {
         animal = GetComponent<MAnimal>();
-        
+        stats = GetComponent<Stats>();
         damageable = GetComponent<MDamageable>();
         anim = GetComponent<Animator>();
         manager = FindAnyObjectByType<GameManager>();
         blood = GetComponentInChildren<Blood>();
-       projThrow = GetComponentInChildren<MProjectileThrower>();
+        projThrow = GetComponentInChildren<MProjectileThrower>();
         rb = GetComponent<Rigidbody>();
+        poisonTex = Resources.Load<Texture>("Textures/poison");
     }
 
     private void Start()
@@ -118,19 +147,53 @@ public class NPC : MonoBehaviour
     }
 
     #region Called from Battle
-    public void OnCauseDamage(float minDamage, float maxDamage, StatElement statElement, float _poisonPotency, float _poisonDuration)
+    public void OnCauseDamage(float minDamage, float maxDamage, StatElement statElement, float _potency, float _duration)
     {
         string elementName = statElement.DisplayName;
+        print("OnCauseDamage(): " + statElement.DisplayName);
+        damagedByElement = statElement;
 
-        poisonPotency = _poisonPotency;
-        poisonReset = _poisonPotency;
-        poisonDuration = _poisonDuration;
-        poisonDurationReset = _poisonDuration;
-        
         switch (elementName)
         {
             case "Poison":
                 poisoned = true;
+                poisonPotency = _potency;
+                poisonReset = _potency;
+                poisonDuration = _duration;
+                poisonDurationReset = _duration;
+                minPoisonDamage = minDamage;
+                maxPoisonDamage = maxDamage;
+                weapon = damageable.LastDamage.Damager;
+                //trocar material
+
+                matBody.SetFloat("_BloodIntensity", 1f);
+               
+                matBody.SetTexture("_BloodMap", poisonTex);
+                break;
+            case "Acid":
+                acidified = true; 
+                acidPotency = _potency;
+                acidReset = _potency;
+                acidDuration = _duration;
+                acidDurationReset = _duration;
+                minAcidDamage = minDamage;
+                maxAcidDamage = maxDamage;
+                weapon = damageable.LastDamage.Damager;
+                //trocar material
+                print("OnCaused Acid Damage");
+                matBody.SetFloat("_BloodIntensity", 1f);
+                matBody.SetTexture("_BloodMap", poisonTex);
+                break;
+            case "Bacteria":
+                fever = true;
+                feverPotency = _potency;
+                feverReset = _potency;
+                feverDuration = _duration;
+                feverDurationReset = _duration;
+                minFeverDamage = minDamage;
+                maxFeverDamage = maxDamage;
+                weapon = damageable.LastDamage.Damager;
+                transform.Find("Internal Components").Find("Effects").Find("Fever").gameObject.SetActive(true);
                 break;
         }
 
@@ -138,14 +201,17 @@ public class NPC : MonoBehaviour
     }
 
     #endregion
+
     #region Update Methods
 
     private void Update()
     {
         Poisoned();
+        Acidified();
         Paralyzed();
         Burned();
         Frozen();
+        Fever();
 
         //To be called in children classes
         UpdateNPC();
@@ -178,6 +244,83 @@ public class NPC : MonoBehaviour
                 poisonPotency = poisonReset;
             }
         }
+    }
+    void Acidified()
+    {
+       
+        if (acidified)
+        {
+            if (stats.stats[0].Value <= 0)
+            {
+                EndAcid();
+            }
+
+            acidDuration -= Time.deltaTime;
+
+            if (acidDuration < 0)
+            {
+                EndAcid();
+            }
+
+            acidPotency -= Time.deltaTime;
+
+            if (acidPotency <= 0)
+            {
+                StatModifier acidDamage = new StatModifier();
+                acidDamage.MinValue.Value = minAcidDamage;
+                acidDamage.MaxValue.Value = maxAcidDamage;
+                //change ID to stamina
+                acidDamage.ID = stats.stats[1].ID;
+                print("StatID to take acid damage: " + acidDamage.ID.DisplayName);
+                customReaction = damageable.reaction;
+                             
+                print("acidDamage.Value " + acidDamage.Value);
+               
+                //and cause damage again
+               
+                damageable.ReceiveDamage(Vector3.forward, weapon, acidDamage, false, true, customReaction, false, damagedByElement);
+                acidPotency = acidReset;
+            }
+        }
+    }
+    void EndAcid()
+    {
+        acidified = false;
+       
+        matBody.SetFloat("_BloodIntensity", 0f);
+    }
+
+    void Fever()
+    {
+
+        if (fever)
+        {
+           feverDuration -= Time.deltaTime;
+
+            if (feverDuration < 0)
+            {
+                EndFever();
+            }
+
+            feverPotency -= Time.deltaTime;
+
+            if (feverPotency <= 0)
+            {
+                StatModifier feverDamage = new StatModifier();
+                feverDamage.MinValue.Value = minFeverDamage;
+                feverDamage.MaxValue.Value = maxFeverDamage;
+                feverDamage.ID = stats.stats[1].ID;
+                damageable.ReceiveDamage(Vector3.forward, weapon, feverDamage, false, true, customReaction, false, damagedByElement);
+                animal.AnimatorSpeed = 0.5f;
+                feverPotency = feverReset;
+            }
+        }
+    }
+    void EndFever()
+    {
+        fever = false;
+        animal.AnimatorSpeed = 1f;
+        transform.Find("Internal Components").Find("Effects").Find("Fever").gameObject.SetActive(false);
     }
 
     void Burned()
@@ -256,6 +399,7 @@ public class NPC : MonoBehaviour
     /// </summary>
     public void OnHit()
     {
+        //print("OnHit() called!");
        
         blood.ActivateBlood();
     }

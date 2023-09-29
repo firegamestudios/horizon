@@ -8,6 +8,7 @@ using MoreMountains.InventoryEngine;
 using MalbersAnimations;
 using Cinemachine;
 using Inworld;
+using Droidzone.Core;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,6 +29,13 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text playerNameText;
 
+    public Image xpBar;
+
+    //feats
+    public GameObject featButtonPrefab;
+    public Transform featsGrid;
+    public ActionBar actionBar;
+
     //Ai Inworld
     public GameObject globalChatCanvas;
     public AudioCapture audioCapture;
@@ -39,28 +47,31 @@ public class UIManager : MonoBehaviour
     public InventoryDisplay inventoryDisplay;
     public InventoryInputManager inventoryInputManager;
 
-    public PC pc;
-    MalbersInput malbersInput;
-    public CinemachineBrain brain;
+    
+    PlayerData playerData;
+   
+    public List<TMP_Text> attributeTexts;
 
-    private void Awake()
-    {
-       malbersInput = pc.GetComponent<MalbersInput>();
-    }
+    public List<TMP_Text> skillTexts;
 
+    
     private void Update()
     {
+       /// UI Manager is responsible for the control of player input
+
        //Inventory priority
         if (inventoryDisplay.IsOpen)
         {
-            InputAndCamera(false, false);
+            //InputAndCamera(false, false);
+            FreezePlayer();
         }
         else
         {
-            //if Inventory Closed, Check Dialogue Box
+            //if Inventory Closed, Check if Dialogue Box is open and freeze
             if(globalChatCanvas.activeInHierarchy == true)
             {
-                InputAndCamera(false, false);
+                FreezePlayer();
+
                 inventoryInputManager.enabled = false;
 
                 if(aiCanvas.activeInHierarchy == false)
@@ -71,7 +82,7 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                InputAndCamera(true, true);
+                UnfreezePlayer();
                 inventoryInputManager.enabled = true;
                 aiCanvasTimer -= Time.deltaTime;
                 if(aiCanvasTimer < 0)
@@ -83,33 +94,82 @@ public class UIManager : MonoBehaviour
 
         }
 
-        //AudioCapture push to Talk
-        if(Input.GetKey(KeyCode.Y))
-        {
-            audioCapture.enabled = true;
-        }
-        else
-        {
-            if(audioCapture.enabled == true)
-            {
-                audioCapture.enabled = false;
-            }
-           
-        }
+      
     }
 
+    void FreezePlayer()
+    {
+        GameManager.Pc.FreezeCamera(false);
+        GameManager.Pc.FreezePlayer();
+    }
+    void UnfreezePlayer()
+    {
+        GameManager.Pc.FreezeCamera(true);
+        GameManager.Pc.UnfreezePlayer();
+    }
     #region SetupPlayer
     public void SetupPlayerName(string myName, string myClass, string myRace)
     {
         playerNameText.text = myName + ", " + myRace + " " + myClass;
     }
+
+    public void SetupAttributes(PlayerData _playerData)
+    {
+        playerData = _playerData;
+        attributeTexts[0].text = "Strength: " + playerData.attributes[0];
+        attributeTexts[1].text = "Agility: " + playerData.attributes[1];
+        attributeTexts[2].text = "Endurance: " + playerData.attributes[2];
+        attributeTexts[3].text = "Crafting: " + playerData.attributes[3];
+        attributeTexts[4].text = "Computer: " + playerData.attributes[4];
+
+        //skills
+        skillTexts[0].text = "Melee Damage: " + playerData.MeleeDamage.ToString();
+        skillTexts[1].text = "Ranged Damage: " + playerData.RangedDamage.ToString();
+        skillTexts[2].text = "Hacking: " + playerData.Hacking.ToString();
+        skillTexts[3].text = "Healing: " + playerData.Healing.ToString();
+        skillTexts[4].text = "Leadership: " + playerData.Leadership.ToString();
+        skillTexts[5].text = "Genetic Engineering: " + playerData.GenEngineering.ToString();
+        skillTexts[6].text = "Piloting: " + playerData.Piloting.ToString();
+        skillTexts[7].text = "Tracking: " + playerData.Tracking.ToString();
+        skillTexts[8].text = "Taming: " + playerData.Taming.ToString();
+        skillTexts[9].text = "Hack Lock: " + playerData.HackLock.ToString();
+
+        if(GameManager.Pc.nextLevelXP > 0)
+        {
+            print("fillAmount = " + playerData.XP / GameManager.Pc.nextLevelXP);
+            xpBar.fillAmount = playerData.XP / GameManager.Pc.nextLevelXP;
+        }
+
+        //add feats to sheet and action bar
+        for (int i = 0; i < playerData.feats.Length; i++)
+        {
+            GameObject newIcon = Instantiate(featButtonPrefab, featsGrid);
+            newIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Feats/" + playerData.feats[i]);
+            newIcon.name = playerData.feats[i].ToString();
+            newIcon.GetComponent<TooltipFeat>().SetupFeatTooltip();
+            AddFeatToActionBar(newIcon.name);
+        }
+      
+    }
+
+    public void AddFeatToActionBar(string _feat)
+    {
+        for (int i = 0; i < actionBar.transform.childCount; i++)
+        {
+            if(actionBar.transform.GetChild(i).name == "None")
+            {
+               Image actionBarIcon = actionBar.transform.GetChild(i).GetComponent<Image>();
+                actionBarIcon.sprite = Resources.Load<Sprite>("Feats/" + playerData.feats[i]);
+                actionBarIcon.name = _feat;
+                actionBarIcon.GetComponent<TooltipFeat>().SetupFeatTooltip();
+                break;
+            }
+        }
+    }
+
     #endregion
 
-    public void InputAndCamera(bool _input, bool _camera)
-    {
-        malbersInput.enabled = _input;
-        brain.enabled = _camera;
-    }
+   
 
     public void AutoMessage(string message)
     {

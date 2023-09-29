@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class RollAgility : BaseRoll
 {
-    [SerializeField] private int difficulty;
+    [SerializeField] private int myAttribute;
    
 
     private bool rolling = false;
@@ -24,8 +24,8 @@ public class RollAgility : BaseRoll
 
     public void OnAgilityRolled(GameObject pc)
     {
-        difficulty = saveLoadManager.playerData.attributes[1];
-        DC = 20 - difficulty;
+        myAttribute = saveLoadManager.playerData.attributes[1];
+        DC = 20 - myAttribute;
         rolling = true;
         diceManager.Roll(pc.transform);
     }

@@ -152,7 +152,6 @@ MonoBehaviour:
   - {fileID: -3742761694754523325}
   - {fileID: -8424466867942724737}
   - {fileID: 11400000, guid: ff56f4762056add468aeb3b0679896b4, type: 2}
-  - {fileID: 11400000, guid: b59e3d9f479a7c946ab9d83ef0251dd8, type: 2}
   transitions:
   - decision: {fileID: 2943419024565079828}
     trueState: {fileID: 0}

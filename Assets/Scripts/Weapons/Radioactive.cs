@@ -4,7 +4,6 @@ using MalbersAnimations.Reactions;
 using MalbersAnimations.Weapons;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Radioactive : MonoBehaviour
@@ -24,10 +23,25 @@ public class Radioactive : MonoBehaviour
 
     MAnimal animal;
 
+    public float potency;
+    public float duration;
+
     private void Start()
     {
         originalMin = damage.MinValue.Value;
         originalMax = damage.MaxValue.Value;
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<NPC>() != null)
+        {
+            NPC npc = other.GetComponent<NPC>();
+            damage.MinValue.Value = originalMin;
+            damage.MaxValue.Value = originalMax;
+            npc.OnCauseDamage(damage.MinValue.Value, damage.MaxValue.Value, statElement, potency, duration);
+        }
 
     }
 
@@ -41,25 +55,24 @@ public class Radioactive : MonoBehaviour
 
         if (timer < 0f)
         {
-            //if other has tags
-            if (other.GetComponent<Tags>() != null)
+            if (other.GetComponent<NPC>() != null)
             {
-                Tags otherTags = other.GetComponent<Tags>();
-
-                for (int i = 0; i < targetTags.Count; i++)
-                {
-                    if (otherTags.tags[0].DisplayName == targetTags[i].DisplayName)
-                    {
-                        if (other.GetComponent<MDamageable>() != null)
-                        {
-                            MDamageable damageable = other.GetComponent<MDamageable>();
-                            damage.MinValue.Value = originalMin;
-                            damage.MaxValue.Value = originalMax;
-                            damageable.ReceiveDamage(Vector3.forward, gameObject, damage, false, true, customReaction, false, statElement);
-                            print("Current minValue: " + damage.MinValue.Value + " and MaxValue: " + damage.MaxValue.Value);
-                        }
-                    }
-                }
+                NPC npc = other.GetComponent<NPC>();
+                damage.MinValue.Value = originalMin;
+                damage.MaxValue.Value = originalMax;
+                npc.OnCauseDamage(damage.MinValue.Value, damage.MaxValue.Value, statElement, potency, duration);
+            }
+            else if (other.GetComponent<PC>() != null)
+            {
+                MDamageable damageable = other.GetComponent<MDamageable>();
+                damage.MinValue.Value = originalMin;
+                damage.MaxValue.Value = originalMax;
+                damageable.ReceiveDamage(Vector3.forward, gameObject, damage, false, true, customReaction, false, statElement);
+                print("Current minValue: " + damage.MinValue.Value + " and MaxValue: " + damage.MaxValue.Value);
+            }
+            else
+            {
+                //do nothing
             }
             timer = Random.Range(1,2);
         }

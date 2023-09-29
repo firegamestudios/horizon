@@ -3,7 +3,17 @@ guid: 938d3cbafefb0d6438f13cf1cd71b277
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_DungEater_Creature
+    second: {fileID: 2100000, guid: 4d8407036263321479e38aa55967d0d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_DungEater_Furr
+    second: {fileID: 2100000, guid: 2d7bfb44d6bc7974ab1f65b80b0df0fa, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

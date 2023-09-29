@@ -9,6 +9,7 @@ using Inworld;
 using Inworld.Runtime;
 using Inworld.Util;
 using MalbersAnimations.Reactions;
+using Cinemachine;
 
 public class PC : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PC : MonoBehaviour
     float speedTimerReset;
     float speedDuration;
     float speedPower;
+
+    public int nextLevelXP;
 
     SaveLoadManager saveLoadManager;
     PlayerData playerData;
@@ -58,8 +61,12 @@ public class PC : MonoBehaviour
     //Elements
     //0 = poison
     public List<StatElement> statElements;
+
+    //Camera
+    CinemachineVirtualCamera virtualCamera;
     private void Awake()
     {
+        virtualCamera = transform.Find("Internal Components").Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         saveLoadManager = FindAnyObjectByType<SaveLoadManager>();
         bulletTimeManager = FindAnyObjectByType<BulletTimeManager>();
         stats = GetComponent<Stats>();
@@ -107,7 +114,12 @@ public class PC : MonoBehaviour
         attackTriggerKick.statModifier.MinValue = playerData.MeleeDamage + playerData.MeleeBonus;
         attackTriggerKick.statModifier.MaxValue = playerData.MeleeDamage + playerData.Leadership + playerData.MeleeBonus;
 
+        nextLevelXP = (int)playerData.XP + 150 * (playerData.Level * playerData.Level);
+
         uiManager.SetupPlayerName(playerData.playerName, playerData.classe, playerData.race);
+        uiManager.SetupAttributes(playerData);
+
+       
     }
 
     #endregion
@@ -176,15 +188,27 @@ public class PC : MonoBehaviour
     {
         print("Freeze Player()");
         animal.State_Force(0);
-        animal.LockInput = true;
-        animal.LockMovement = true;
+        malbersInput.enabled = false;
     }
     public void UnfreezePlayer()
     {
         malbersInput.enabled = true;
-        animal.LockInput = false;
-        animal.LockMovement = false;
        
+    }
+    public void FreezeCamera(bool isOrbitInputActive)
+    {
+       
+        if (virtualCamera != null)
+        {
+            if (isOrbitInputActive)
+            {
+                virtualCamera.Priority = -100;
+            }
+            else
+            {
+                virtualCamera.Priority = 100;
+            }
+        }
     }
     #endregion
 

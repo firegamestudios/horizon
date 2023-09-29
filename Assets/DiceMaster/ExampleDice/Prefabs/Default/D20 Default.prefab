@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 422378}
   - component: {fileID: 3377344}
   - component: {fileID: 2302252}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135884}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 437902}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3377344
 MeshFilter:
@@ -97,9 +97,9 @@ GameObject:
   - component: {fileID: 6427882}
   - component: {fileID: 11413430}
   - component: {fileID: 8267014}
-  - component: {fileID: -2794706999305318697}
-  - component: {fileID: -2603669398127033225}
-  m_Layer: 0
+  - component: {fileID: 5015849825269404347}
+  - component: {fileID: -5789679112294550633}
+  m_Layer: 2
   m_Name: D20 Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +113,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150472}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 6, z: -3}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
@@ -120,7 +121,6 @@ Transform:
   m_Children:
   - {fileID: 422378}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11407858
 MonoBehaviour:
@@ -298,7 +298,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-2794706999305318697
+--- !u!114 &5015849825269404347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   autoDestroy: 0
   axis: {x: 0, y: 1, z: 0}
   randomAxisOffset: 0.1
---- !u!114 &-2603669398127033225
+--- !u!114 &-5789679112294550633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,8 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e201af98245caa044bd01037e28ce335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwStrength: 0.1
+  throwStrength: 1
   triggerOnStart: 1
   autoDestroy: 0
-  direction: {x: 0, y: 1, z: 0.1}
+  direction: {x: 0, y: 0.1, z: 0}
   randomDirectionOffset: 0.1

@@ -20,7 +20,7 @@ namespace Inworld.Sample
         [SerializeField] RectTransform m_ContentRT;
         [SerializeField] ChatBubble m_BubbleLeft;
         [SerializeField] ChatBubble m_BubbleRight;
-        [SerializeField] protected TMP_InputField m_InputField;
+        [SerializeField] TMP_InputField m_InputField;
         #endregion
 
         #region Private Variables
@@ -43,7 +43,6 @@ namespace Inworld.Sample
             }
             InworldController.Instance.CurrentCharacter.SendText(m_InputField.text);
             m_InputField.text = null;
-            m_InputField.ActivateInputField();
         }
         public void RegisterCharacter(InworldCharacter character) => character.InteractionEvent.AddListener(OnInteractionStatus);
         

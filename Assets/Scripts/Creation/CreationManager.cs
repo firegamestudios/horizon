@@ -114,6 +114,7 @@ public class CreationManager : MonoBehaviour
                 break;
 
         }
+        RandomizeAttributes();
         UpdateAttributes();
     }
     public void ClasseRandomizer()
@@ -137,6 +138,8 @@ public class CreationManager : MonoBehaviour
                 SetupClasse("Hacker");
                 break;
         }
+        RandomizeFeats();
+        RandomizeAttributes();
         UpdateAttributes();
     }
     public void RandomizeAttributes()
@@ -375,6 +378,7 @@ public class CreationManager : MonoBehaviour
        
         raceText.text = race;
 
+        RandomizeAttributes();
         UpdateAttributes();
     }
 
@@ -382,10 +386,11 @@ public class CreationManager : MonoBehaviour
     {
         classe = _classe;
 
-        classeText.text = "level 1 " + classe;
+        classeText.text = "Level 1 " + classe;
 
         ClearFeats();
-
+        RandomizeFeats();
+        RandomizeAttributes();
         UpdateAttributes();
     }
 
@@ -416,12 +421,19 @@ public class CreationManager : MonoBehaviour
         {
             if (feats[i] == "None")
             {
+                if (feats[0] == _feat)
+                {
+                    print("We already have this feat, choose another");
+                    RemoveFeat(0);
+                    RandomizeAttributes();
+                    return;
+                }
                 feats[i] = _feat;
-                UpdateFeatIcons();
+               
                 break;
             }
         }
-               
+        UpdateFeatIcons();
     }
 
     void UpdateFeatIcons()
@@ -429,7 +441,9 @@ public class CreationManager : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             featsIcons[i].sprite = Resources.Load<Sprite>("Feats/" + feats[i]);
-
+            featsIcons[i].name = featsIcons[i].sprite.name;
+            featsIcons[i].gameObject.GetComponent<TooltipFeat>().SetupFeatTooltip();
+           
         }
     }
 

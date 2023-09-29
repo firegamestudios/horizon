@@ -24,7 +24,7 @@ public class Roller : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(0))
         {
             if (thrower) thrower.Trigger();
             if (spinner) spinner.Trigger();
