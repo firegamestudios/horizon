@@ -190,7 +190,7 @@ public class UIManager : MonoBehaviour
         transformMessageText.text = message;
         transMessageAnim.SetBool("on", true);
         transMessageAnim.transform.GetComponent<TransformMessage>().transformInWorld = trans;
-        float timer = (float)message.Length / 3;
+        float timer = (float)message.Length / 5;
         StartCoroutine(ClearTransMessage(timer));
     }
 

@@ -48720,6 +48720,11 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1.5
       Variable: {fileID: 0}
+  - element: {fileID: 11400000, guid: f0f79a83f2188bc458355690c26d64d9, type: 2}
+    multiplier:
+      UseConstant: 1
+      ConstantValue: 0.5
+      Variable: {fileID: 0}
   profiles: []
   Editor_Tabs1: 0
   First_Change: 1
@@ -49950,33 +49955,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   OnUnequipWeapon:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnWeaponAction:
     m_PersistentCalls:
       m_Calls: []
@@ -50009,7 +49990,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Editor_Tabs1: 0
+  Editor_Tabs1: 3
   Editor_Tabs2: 5
 --- !u!114 &836279769356518553
 MonoBehaviour:
@@ -50125,6 +50106,7 @@ MonoBehaviour:
   RiderAudio: {fileID: 1392335691804106589}
   MainCollider: {fileID: 3344343001316693166}
   MountCollider: {fileID: 11400000, guid: 2c259b2d172a70b41a9c00fa4ef2e05a, type: 2}
+  colliders: []
   OnFindMount:
     m_PersistentCalls:
       m_Calls: []

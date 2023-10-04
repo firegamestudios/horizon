@@ -4,27 +4,24 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Stair
-  - WallRun
-  - Climb
   - Fly
-  - CinemachineTarget
-  - PW - Prop
-  - Animal
-  - Water
-  - DiceManager
   - UIManager
+  - Animal
+  - DiceManager
+  - Climb
+  - WallRun
+  - Stair
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Item
+  - 
   - Water
   - UI
-  - Environment
   - 
-  - PostProcessing
-  - Not in Reflection
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -38,15 +35,15 @@ TagManager:
   - Animal
   - 
   - 
-  - 
-  - 
-  - 
   - Enemy
-  - MovingPlatform
-  - VisualEffect
-  - Overlay
-  - SubCharacter
-  - Character
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Item
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0

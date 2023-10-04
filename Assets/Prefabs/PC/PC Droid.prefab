@@ -39471,6 +39471,11 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 0.5
       Variable: {fileID: 0}
+  - element: {fileID: 11400000, guid: f0f79a83f2188bc458355690c26d64d9, type: 2}
+    multiplier:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
   profiles: []
   Editor_Tabs1: 0
   First_Change: 1
@@ -40852,6 +40857,7 @@ MonoBehaviour:
   RiderAudio: {fileID: 3366845047724116084}
   MainCollider: {fileID: 1854225476510047693}
   MountCollider: {fileID: 11400000, guid: 2c259b2d172a70b41a9c00fa4ef2e05a, type: 2}
+  colliders: []
   OnFindMount:
     m_PersistentCalls:
       m_Calls: []

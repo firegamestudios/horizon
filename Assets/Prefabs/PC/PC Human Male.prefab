@@ -30618,8 +30618,8 @@ MonoBehaviour:
   SelectedState: 8
   SelectedStance: 1
   ShowStateInInspector: 1
-  Editor_Tabs1: 2
-  Editor_Tabs2: 4
+  Editor_Tabs1: 4
+  Editor_Tabs2: 2
   Mode_Tabs1: 2
   Ability_Tabs: 4
   Editor_EventTabs: 0
@@ -39616,6 +39616,11 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1.5
       Variable: {fileID: 0}
+  - element: {fileID: 11400000, guid: f0f79a83f2188bc458355690c26d64d9, type: 2}
+    multiplier:
+      UseConstant: 1
+      ConstantValue: 0.5
+      Variable: {fileID: 0}
   profiles: []
   Editor_Tabs1: 0
   First_Change: 1
@@ -40846,33 +40851,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   OnUnequipWeapon:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnWeaponAction:
     m_PersistentCalls:
       m_Calls: []
@@ -40905,7 +40886,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Editor_Tabs1: 0
+  Editor_Tabs1: 3
   Editor_Tabs2: 5
 --- !u!114 &5184323642857321965
 MonoBehaviour:
@@ -41021,6 +41002,7 @@ MonoBehaviour:
   RiderAudio: {fileID: 1901875038744525970}
   MainCollider: {fileID: 4302812181096242921}
   MountCollider: {fileID: 11400000, guid: 2c259b2d172a70b41a9c00fa4ef2e05a, type: 2}
+  colliders: []
   OnFindMount:
     m_PersistentCalls:
       m_Calls: []

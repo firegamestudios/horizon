@@ -187,6 +187,7 @@ public class PC : MonoBehaviour
     public void FreezePlayer()
     {
         print("Freeze Player()");
+        if(animal.State_Get(0).Active == false)
         animal.State_Force(0);
         malbersInput.enabled = false;
     }

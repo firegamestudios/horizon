@@ -7,14 +7,7 @@ using UnityEngine.Rendering;
 
 public class MusicManager : MonoBehaviour
 {
-    public float combatDistance;
-
-    public GameObject[] animalObjs;
-    public List<MAnimal> enemies = new();
-    PC pc;
-
-    public Tag mTag;
-
+   
     float timer = 5;
     float reset;
 
@@ -30,7 +23,7 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        pc = FindAnyObjectByType<PC>();
+      
         mAudioSource = GetComponent<AudioSource>();
     }
 
@@ -38,20 +31,6 @@ public class MusicManager : MonoBehaviour
     {
         reset = timer;
 
-        animalObjs =  GameObject.FindGameObjectsWithTag("Animal");
-
-        for (int i = 0; i < animalObjs.Length; i++)
-        {
-            if (animalObjs[i].GetComponent<Tags>() != null)
-            {
-                if (animalObjs[i].GetComponent<Tags>().HasTag(mTag))
-                {
-                    enemies.Add(animalObjs[i].GetComponent<MAnimal>());
-                }
-                
-            }
-           
-        }
 
         EndBattle();
     }

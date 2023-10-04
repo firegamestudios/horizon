@@ -59,18 +59,21 @@ namespace Droidzone.Core
         {
             switch (_race)
             {
-                case "Droid":
+                case "Alien":
                     pcs[0].gameObject.SetActive(true);
                     break;
-                case "Alien":
+                case "Droid":
                     pcs[1].gameObject.SetActive(true);
-                     break;
-                case "Male Human":
-                     pcs[2].gameObject.SetActive(true); 
-                     break;
+                    break;
                 case "Female Human":
-                /// pcs[3].gameObject.SetActive(true); 
-                ///  respawner.SetPlayer(pcs[3].gameObject);break;
+                /// pcs[2].gameObject.SetActive(true); 
+                ///  respawner.SetPlayer(pcs[3].gameObject);
+                break;
+
+                case "Male Human":
+                     pcs[3].gameObject.SetActive(true); 
+                     break;
+              
                 default:
                     break;
             }
