@@ -175,8 +175,8 @@
     <Compile Include="Assets\Scripts\Weapons\Radioactive.cs" />
     <Compile Include="Assets\MeshCombineStudio\Scripts\Octree\BaseOctree.cs" />
     <Compile Include="Assets\MeshCombineStudio\Scripts\Misc\Collections\Collections.cs" />
-    <Compile Include="Assets\MeshCombineStudio\Scripts\SectorGrid\SectorGrid3D.cs" />
     <Compile Include="Assets\MeshCombineStudio\Scripts\Examples\SceneStreaming\StreamedSceneCombiner.cs" />
+    <Compile Include="Assets\MeshCombineStudio\Scripts\SectorGrid\SectorGrid3D.cs" />
     <Compile Include="Assets\DiceMaster\ExampleScenes\ExampleScripts\ResultUI.cs" />
     <Compile Include="Assets\Scripts\Creation\CreationManager.cs" />
     <Compile Include="Assets\Scripts\NPC\Scrappy\NPC_ScrappyIntro.cs" />

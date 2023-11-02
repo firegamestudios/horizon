@@ -140,8 +140,8 @@
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\Material\UIBlocks\DistortionUIBlock.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\Material\AxF\AxFGUI.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\Material\Unlit\ShaderGraph\HDUnlitData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\RenderPipeline\Camera\HDCameraUI.ContextualMenu.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\Material\Water\ShaderGraph\Node\PackVertexData_Water.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\RenderPipeline\Camera\HDCameraUI.ContextualMenu.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\Lighting\Reflection\HDReflectionProbeEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\Water\WaterSurfaceEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.render-pipelines.high-definition@14.0.8\Editor\Material\Eye\ShaderGraph\Node\ScleraUVLocation.cs" />
@@ -880,11 +880,11 @@
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
     </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
     <Reference Include="MeshExtension">
       <HintPath>Assets\MeshCombineStudio\Plugins\MeshExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>

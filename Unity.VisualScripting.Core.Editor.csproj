@@ -219,8 +219,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Utilities\ScriptReferenceReplacement.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Interface\Fuzzy\FuzzyOptionTreeExtensionAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Variables\VariableDeclarationInspector.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugins\PluginContainer.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\ResourceProviders\EditorAssetResourceProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugins\PluginContainer.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Dependencies\SQLite\SQLite.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugin\Migrations\Migration_1_2_4_to_1_3_0.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugin\Changelogs\LegacyLudiqGraphs\Changelog_1_1_0.cs" />
@@ -362,8 +362,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugin\Migrations\Migration_1_6_to_1_7.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Description\MachineDescription.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugins\PluginAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Dependencies\ReorderableList\ReorderableListStyles.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Descriptors\IDescriptor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Dependencies\ReorderableList\ReorderableListStyles.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugin\Changelogs\LegacyLudiqGraphs\Changelog_1_2_0.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Description\GraphDescription.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Serialization\TypeExtensions.cs" />
@@ -388,8 +388,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Inspection\Primitives\CharInspector.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Platforms\AotPreBuilder.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Platforms\AotStubWriterProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Interface\Dropdowns\IDropdownOption.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Inspection\Special\SystemObjectInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Interface\Dropdowns\IDropdownOption.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Utilities\ScriptReferenceResolver.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Inspection\Reflection\TypeInspector.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Plugins\PluginChangelog.cs" />
@@ -845,11 +845,11 @@
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
     </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
     <Reference Include="MeshExtension">
       <HintPath>Assets\MeshCombineStudio\Plugins\MeshExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
