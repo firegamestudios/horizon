@@ -589,14 +589,9 @@ namespace MalbersAnimations.Controller
                     Gizmos.color = DColorFlat;
                     Gizmos.DrawWireSphere(_C.center, _C.radius);
                 }
-            }
-
-            //Trigger.enabled = isen;
-
+            } 
         }
-
-
-
+         
 #endif
 
         public void Debugging(string value, Object obj)
@@ -720,7 +715,7 @@ namespace MalbersAnimations.Controller
         protected MDamager MD;
         protected SerializedProperty Force, minForce, forceMode, index, statModifier, onhit, OnHitPosition, OnHitInteractable, OnProfileChanged, dontHitOwner, owner, m_Active, debug, m_audio,
             hitLayer, triggerInteraction, m_cChance, cMultiplier, element,  pureDamage, react, CustomReaction, interact ,
-            m_HitEffect, HitEffects, hitSound,
+            m_HitEffect, HitEffects, hitSound, 
             interactorID, DestroyHitEffect, Profiles,
             StopAnimator, AnimatorSpeed, AnimatorStopTime, animator;
 
@@ -734,6 +729,7 @@ namespace MalbersAnimations.Controller
             MD = (MDamager)target;
             index = serializedObject.FindProperty("index");
             hitSound = serializedObject.FindProperty("hitSound");
+          
             m_HitEffect = serializedObject.FindProperty("m_HitEffect");
             HitEffects = serializedObject.FindProperty("hitEffects");
             OnHitPosition = serializedObject.FindProperty("OnHitPosition");
@@ -947,7 +943,6 @@ namespace MalbersAnimations.Controller
             if (drawbox) EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
             react.isExpanded = MalbersEditor.Foldout(react.isExpanded, "Interactions");
-
             if (react.isExpanded)
             {
                 EditorGUILayout.PropertyField(react);
@@ -959,15 +954,20 @@ namespace MalbersAnimations.Controller
 
                 if (MD.interact.Value)
                     EditorGUILayout.PropertyField(interactorID);
+            }
 
+            HitEffects.isExpanded = MalbersEditor.Foldout(HitEffects.isExpanded, "Effects");
 
+            if (HitEffects.isExpanded)
+            { 
                 var p = " [Prefab]";
                 if (MD.HitEffect == null
                     || !MD.HitEffect.IsPrefab()) p = "";
 
-                EditorGUILayout.PropertyField(m_HitEffect, new GUIContent(m_HitEffect.displayName + p));
+                EditorGUILayout.PropertyField(m_audio, new GUIContent("Audio Source"));
                 EditorGUILayout.PropertyField(hitSound);
 
+                EditorGUILayout.PropertyField(m_HitEffect, new GUIContent(m_HitEffect.displayName + p));
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(HitEffects);
                 EditorGUI.indentLevel--;
@@ -1000,9 +1000,6 @@ namespace MalbersAnimations.Controller
                     EditorGUILayout.PropertyField(animator);
                 }
             }
-
-            EditorGUILayout.PropertyField(m_audio);
-
             if (drawbox) EditorGUILayout.EndVertical();
         }
 

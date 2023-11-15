@@ -885,8 +885,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 447518047194153948, guid: 9133169553a02d0418a8c61561fcc4bb,
         type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447518047194153948, guid: 9133169553a02d0418a8c61561fcc4bb,
+        type: 3}
       propertyPath: EditorTab1
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 447518047194153948, guid: 9133169553a02d0418a8c61561fcc4bb,
         type: 3}
@@ -2426,6 +2431,7 @@ MonoBehaviour:
   Name: If is there a Focused Enemy?
   invert: 1
   OrAnd: 0
+  UpdateTarget: 1
   Target:
     UseConstant: 0
     ConstantValue: {fileID: 0}
@@ -2537,6 +2543,7 @@ MonoBehaviour:
   Name: Or there is a Locked Target
   invert: 1
   OrAnd: 1
+  UpdateTarget: 1
   Target:
     UseConstant: 0
     ConstantValue: {fileID: 0}
@@ -3236,6 +3243,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 51
@@ -3329,6 +3340,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -3431,6 +3446,10 @@ MonoBehaviour:
         m_Calls: []
   - name: Go to Position
     active:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
+    ignoreOnPause:
       UseConstant: 1
       ConstantValue: 0
       Variable: {fileID: 0}
@@ -4807,8 +4826,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimAssist: 1
+  m_AimCenter: {fileID: 1737125610}
   UseOnTriggerEnter: 0
-  m_AimPoint: {fileID: 1737125610}
+  layer:
+    UseConstant: 1
+    ConstantValue:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    Variable: {fileID: 0}
+  Tags: []
   OnAimEnter:
     m_PersistentCalls:
       m_Calls:
@@ -5105,17 +5131,17 @@ PrefabInstance:
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.138679
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10.404319
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
@@ -5239,8 +5265,11 @@ MonoBehaviour:
   character: {fileID: 0}
   reaction:
     rid: 5723820268394905601
+  criticalReaction:
+    rid: -2
   damagerReaction:
     rid: -2
+  surface: {fileID: 0}
   ignoreDamagerReaction:
     UseConstant: 1
     ConstantValue: 0
@@ -5282,6 +5311,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  AlignOffset:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Root: {fileID: 0}
   events:
     OnReceivingDamage:
@@ -5583,8 +5616,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimAssist: 1
+  m_AimCenter: {fileID: 1973030452}
   UseOnTriggerEnter: 1
-  m_AimPoint: {fileID: 1973030452}
+  layer:
+    UseConstant: 1
+    ConstantValue:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    Variable: {fileID: 0}
+  Tags: []
   OnAimEnter:
     m_PersistentCalls:
       m_Calls:
@@ -5857,8 +5897,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimAssist: 1
+  m_AimCenter: {fileID: 2002397101}
   UseOnTriggerEnter: 1
-  m_AimPoint: {fileID: 2002397101}
+  layer:
+    UseConstant: 1
+    ConstantValue:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    Variable: {fileID: 0}
+  Tags: []
   OnAimEnter:
     m_PersistentCalls:
       m_Calls:
@@ -6157,8 +6204,11 @@ MonoBehaviour:
   character: {fileID: 0}
   reaction:
     rid: 5723820268394905602
+  criticalReaction:
+    rid: -2
   damagerReaction:
     rid: -2
+  surface: {fileID: 0}
   ignoreDamagerReaction:
     UseConstant: 1
     ConstantValue: 0
@@ -6200,6 +6250,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  AlignOffset:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Root: {fileID: 0}
   events:
     OnReceivingDamage:
@@ -6640,7 +6694,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086987250463649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -12.138679, y: 0.73, z: -10.404319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6776,7 +6830,7 @@ PrefabInstance:
     - target: {fileID: 4762625840887667203, guid: 9a587b4e2c8fb6647bd797a576ae43c2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.098851
+      value: -10.82
       objectReference: {fileID: 0}
     - target: {fileID: 4762625840887667203, guid: 9a587b4e2c8fb6647bd797a576ae43c2,
         type: 3}
@@ -6786,7 +6840,7 @@ PrefabInstance:
     - target: {fileID: 4762625840887667203, guid: 9a587b4e2c8fb6647bd797a576ae43c2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.056508
+      value: -3.51
       objectReference: {fileID: 0}
     - target: {fileID: 4762625840887667203, guid: 9a587b4e2c8fb6647bd797a576ae43c2,
         type: 3}
@@ -6861,8 +6915,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimAssist: 1
+  m_AimCenter: {fileID: 579169982}
   UseOnTriggerEnter: 0
-  m_AimPoint: {fileID: 579169982}
+  layer:
+    UseConstant: 1
+    ConstantValue:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    Variable: {fileID: 0}
+  Tags: []
   OnAimEnter:
     m_PersistentCalls:
       m_Calls:

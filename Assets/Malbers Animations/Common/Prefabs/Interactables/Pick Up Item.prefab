@@ -94,7 +94,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5578bdf27ee7bf743bd72e8e4172913c, type: 2}
+  - {fileID: 2100000, guid: d4082d27720f3074cb96901279733fd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,11 +156,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  SceneRoot:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  m_Value:
+  m_Amount:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}

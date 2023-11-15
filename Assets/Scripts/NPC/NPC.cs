@@ -16,6 +16,7 @@ public class NPC : MonoBehaviour
     MDamageable damageable;
     Rigidbody rb;
     Stats stats;
+    MAnimalBrain animalBrain;
     
     Animator anim;
     Blood blood;
@@ -73,6 +74,12 @@ public class NPC : MonoBehaviour
     float minFeverDamage;
     float maxFeverDamage;
 
+    //CONTROL VARIABLES
+    float controlDuration;
+    float controlDurationReset;
+    [SerializeField] bool controlled;
+    Transform vfxNanocontrol;
+
     // PARALYZE VARIABLES.
     private float paralyzedTimer;
     [SerializeField] private bool paralyzed;
@@ -123,6 +130,8 @@ public class NPC : MonoBehaviour
         projThrow = GetComponentInChildren<MProjectileThrower>();
         rb = GetComponent<Rigidbody>();
         poisonTex = Resources.Load<Texture>("Textures/poison");
+        animalBrain = GetComponentInChildren<MAnimalBrain>();
+        vfxNanocontrol = transform.Find("Internal Components").Find("Effects").Find("VFX_Nanocontrol");
     }
 
     private void Start()
@@ -200,6 +209,14 @@ public class NPC : MonoBehaviour
        
     }
 
+    public void OnControlAttempt(float _duration)
+    {
+        controlDuration = _duration;
+        controlled = true;
+        animalBrain.Play(manager.companionState);
+        vfxNanocontrol.gameObject.SetActive(true);
+    }
+
     #endregion
 
     #region Update Methods
@@ -212,6 +229,7 @@ public class NPC : MonoBehaviour
         Burned();
         Frozen();
         Fever();
+        Controlled();
 
         //To be called in children classes
         UpdateNPC();
@@ -321,6 +339,24 @@ public class NPC : MonoBehaviour
         fever = false;
         animal.AnimatorSpeed = 1f;
         transform.Find("Internal Components").Find("Effects").Find("Fever").gameObject.SetActive(false);
+    }
+
+    void Controlled()
+    {
+        if(controlled)
+        {
+            controlDuration -= Time.deltaTime;
+
+            if(controlDuration < 0)
+            {
+                EndControl();
+            }
+        }
+    }
+    void EndControl()
+    {
+        if(controlled)
+        controlled = false;
     }
 
     void Burned()

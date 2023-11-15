@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e63ce81d1de48343862dbb33f4fda3d, type: 3}
+  m_Name: Meat
+  m_EditorClassIdentifier: 
+  ID: 2
+  type: {fileID: 11400000, guid: 4e5a472575f9c9440a7753d5aa08c156, type: 2}
+  icon: {fileID: 21300000, guid: b8c1365df7a52a647bf4126790211a26, type: 3}
+  itemName: Meat
+  description: Increases health when eaten
+  subtitleText: Meat. Just Meat.
+  Stackable: 1
+  maxStacks: 99
+  inWorldPrefab: {fileID: 5878821165099468606, guid: 2e0efcd98c09cbf40b7dbc99802eb32d,
+    type: 3}
+  Equippable: 0
+  Usable: 1
+  Droppable: 1
+  Discardable: 1
+  OnItemUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemUnEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemDropped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  UseReaction:
+    name: Use
+    reaction:
+      rid: 8575921824635027456
+  EquipReaction:
+    name: 
+    reaction:
+      rid: 7059134390279864333
+  UnequipReaction:
+    name: 
+    reaction:
+      rid: 7059134390279864333
+  DropReaction:
+    name: Drop
+    reaction:
+      rid: 4353134888231370752
+  RemoveReaction:
+    name: Remove
+    reaction:
+      rid: 6255402565496209414
+  Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 4353134888231370752
+      type: {class: DropItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 6255402565496209414
+      type: {class: RemoveItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 6255402565496209426
+      type: {class: UseItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 7059134390279864333
+      type: {class: DropItemReaction, ns: MalbersAnimations.Reactions, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 8575921824635027456
+      type: {class: ListReaction, ns: MalbersAnimations.Reactions, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+        reactions:
+        - rid: 6255402565496209426
+        - rid: 8575921824635027458
+    - rid: 8575921824635027458
+      type: {class: StatReaction, ns: MalbersAnimations.Reactions, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+        modifiers:
+        - ID: {fileID: 11400000, guid: d6b3e636d59a6c547a2cad40b69f4432, type: 2}
+          modify: 1
+          MinValue:
+            UseConstant: 1
+            ConstantValue: 7
+            Variable: {fileID: 0}
+          MaxValue:
+            UseConstant: 1
+            ConstantValue: 10
+            Variable: {fileID: 0}
+          enable:
+            UseConstant: 1
+            ConstantValue: 1
+            Variable: {fileID: 0}

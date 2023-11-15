@@ -152,10 +152,11 @@ namespace MalbersAnimations.Controller
         }
 
 
-        //void OnDrawGizmos()
-        //{
-        //    DrawTriggers(transform, Trigger, DebugColor, false);
-        //}
+        void OnDrawGizmos()
+        {
+            if (Application.isPlaying)
+                DrawTriggers(transform, Trigger, DebugColor, false);
+        }
 
         void OnDrawGizmosSelected()
         {

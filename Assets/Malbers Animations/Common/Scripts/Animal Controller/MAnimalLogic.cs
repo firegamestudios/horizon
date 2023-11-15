@@ -96,8 +96,8 @@ namespace MalbersAnimations.Controller
             UpdateCacheState();
 
             //Clear the ModeQuee and Ability Input
-            ModeQueueInput = new HashSet<Mode>();
-            AbilityQueueInput = new HashSet<Ability>();
+            ModeQueueInput = new();
+            AbilityQueueInput = new();
 
             GroundRootPosition = true;
 
@@ -127,7 +127,9 @@ namespace MalbersAnimations.Controller
 
             //if (currentStance == null) currentStance = defaultStance; //Set the current Stance
 
-            GetAnimalColliders();
+            FindInternalColliders();
+            SetDefaultMainColliderValues();
+
 
             for (int i = 0; i < states.Count; i++)
             {
@@ -202,7 +204,7 @@ namespace MalbersAnimations.Controller
 
         private void AwakeAllModes()
         {
-            modes_Dict = new Dictionary<int, Mode>();
+            modes_Dict = new();
 
             for (int i = 0; i < modes.Count; i++)
             {
@@ -215,7 +217,7 @@ namespace MalbersAnimations.Controller
 
         private void CacheAllModes()
         {
-            modes_Dict = new Dictionary<int, Mode>();
+            modes_Dict = new();
 
             for (int i = 0; i < modes.Count; i++)
             {
@@ -228,9 +230,15 @@ namespace MalbersAnimations.Controller
             FindCamera();
             UpdateDamagerSet();
 
+            //Reset All Mode Cooldowns
+            foreach (var mode in modes)
+            {
+               // mode.InCoolDown = false;
+            }
+
             //Clear the ModeQuee and Ability Input
-            ModeQueueInput = new HashSet<Mode>();
-            AbilityQueueInput = new HashSet<Ability>();
+            ModeQueueInput = new();
+            AbilityQueueInput = new();
 
             if (Anim)
             {
@@ -338,6 +346,8 @@ namespace MalbersAnimations.Controller
                 }
             }
 
+         
+
 
             LastPosition = Position; //Store Last Animal Position
 
@@ -408,7 +418,6 @@ namespace MalbersAnimations.Controller
             if (Has_Pivot_Hip) Pivot_Multiplier = Pivot_Hip.multiplier;
             if (Has_Pivot_Chest) Pivot_Multiplier = Mathf.Max(Pivot_Multiplier, Pivot_Chest.multiplier);
             if (NoPivot) Pivot_Multiplier = Height;
-
         }
     
 
@@ -796,12 +805,8 @@ namespace MalbersAnimations.Controller
             TargetSpeed = DeltaTime * Mode_Multiplier * ScaleFactor * Speed_Modifier * TargetDir;   //Calculate these Once per Cycle Extremely important 
 
             //TargetSpeed = Vector3.Lerp(TargetSpeed, TargetDir * Speed_Modifier * DeltaTime * ScaleFactor, lerp);   //Calculate these Once per Cycle Extremely important 
-
-
-
             HorizontalVelocity = Vector3.ProjectOnPlane(Inertia + SlopeDirectionSmooth, SlopeNormal);
             HorizontalSpeed = HorizontalVelocity.magnitude ;
-
 
             if (debugGizmos) MDebug.Draw_Arrow(Position, TargetSpeed, Color.green);
         }
@@ -1036,12 +1041,11 @@ namespace MalbersAnimations.Controller
             hit_Hip = new RaycastHit();                                 //Clean the Raycasts every time 
             hit_Chest.distance = hit_Hip.distance = Height;            //Reset the Distances to the Heigth of the animal
 
-            if (distance == 0) distance = Pivot_Multiplier; //IMPORTANT 
+            if (distance == 0) distance = Pivot_Multiplier  *ScaleFactor; //IMPORTANT 
 
-            //var Direction = Gravity;
-            var Direction = -t.up;
+          //  Debug.Log($"Main_Pivot_Point: {Main_Pivot_Point} ");
 
-            if (Physics.Raycast(Main_Pivot_Point, Direction, out hit_Chest, distance, GroundLayer, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(Main_Pivot_Point, -Up, out hit_Chest, distance, GroundLayer, QueryTriggerInteraction.Ignore))
             {
                 FrontRay = true;
 
@@ -1074,11 +1078,9 @@ namespace MalbersAnimations.Controller
                 if (debugGizmos)
                 {
                     Debug.DrawRay(hit_Chest.point, 0.2f * ScaleFactor * SlopeNormal, Color.green);
-                    MDebug.DrawWireSphere(Main_Pivot_Point + Direction * (hit_Chest.distance - RayCastRadius), Color.green, RayCastRadius * ScaleFactor);
+                    MDebug.DrawWireSphere(Main_Pivot_Point + -Up * (hit_Chest.distance - RayCastRadius), Color.green, RayCastRadius * ScaleFactor);
                     MDebug.Draw_Arrow(hit_Chest.point, SlopeDirection * 0.5f, Color.black, 0, 0.1f);
                 }
-
-
 
                 SetPlatform(hit_Chest.transform);
 
@@ -1095,7 +1097,7 @@ namespace MalbersAnimations.Controller
             {
                 var hipPoint = Pivot_Hip.World(t) + DeltaVelocity;
 
-                if (Physics.Raycast(hipPoint, Direction, out hit_Hip, distance, GroundLayer, QueryTriggerInteraction.Ignore))
+                if (Physics.Raycast(hipPoint, -Up, out hit_Hip, distance, GroundLayer, QueryTriggerInteraction.Ignore))
                 {
 
                     MainRay = true;
@@ -1103,7 +1105,7 @@ namespace MalbersAnimations.Controller
                     if (debugGizmos)
                     {
                         Debug.DrawRay(hit_Hip.point, 0.2f * ScaleFactor * hit_Hip.normal, Color.green);
-                        MDebug.DrawWireSphere(hipPoint + Direction * (hit_Hip.distance - RayCastRadius), Color.green, RayCastRadius * ScaleFactor);
+                        MDebug.DrawWireSphere(hipPoint + -Up * (hit_Hip.distance - RayCastRadius), Color.green, RayCastRadius * ScaleFactor);
                     }
 
                     SetPlatform(hit_Hip.transform);               //Platforming logic
@@ -1133,11 +1135,14 @@ namespace MalbersAnimations.Controller
             else
             {
                 MainRay = FrontRay; //Just in case you dont have HIP RAY IMPORTANT FOR HUMANOID CHARACTERS
-                hit_Hip = hit_Chest;  //In case there's no Hip Ray
+                hit_Hip= hit_Chest;  //In case there's no Hip Ray
             }
 
+
+         //   Debug.Log($"hit_Hip {hit_Hip.distance}: hit_Chest {hit_Chest.distance}");
             if (ground_Changes_Gravity)
                 Gravity = -hit_Hip.normal;
+
 
             CalculateSurfaceNormal();
         }
@@ -1238,17 +1243,13 @@ namespace MalbersAnimations.Controller
         {
             float difference = Height - distance;
 
-             if (!Mathf.Approximately(distance, Height))
+            if (!Mathf.Approximately(distance, Height))
             {
                 AlignPosLerpDelta = Mathf.Lerp(AlignPosLerpDelta, AlignPosLerp * 2, time * AlignPosDelta);
 
                 var DeltaDiference = Mathf.Lerp(0, difference, time * AlignPosLerpDelta);
                 Vector3 align = Rotation * new Vector3(0, DeltaDiference, 0); //Rotates with the Transform to better alignment
-
-
-                //AdditivePosition += align;
-                  Position += align; //WORKS WITH THIS!! 
-               // hit_Hip.distance += DeltaDiference; //Why?????
+                Position += align; //WORKS WITH THIS!! 
             }
         }
 
@@ -1287,17 +1288,14 @@ namespace MalbersAnimations.Controller
             //Can't remember why is this here
             if (Grounded)
                 SlopeDirectionSmooth = Vector3.ProjectOnPlane(SlopeDirectionSmooth, SlopeNormal);
-            else
-
 
             SlopeDirectionSmooth = Vector3.SmoothDamp(
                     SlopeDirectionSmooth, slide * SlopeAngleDifference * SlopeDirection, 
                     ref vectorSmoothDamp,DeltaTime * slideDamp);
 
-            //use this instead of Additive position so the calculation is done correclty
-             Position += SlopeDirectionSmooth;
-          // AdditivePosition += SlopeDirectionSmooth;  
-           // RB.velocity += SlopeDirectionSmooth;
+          if (debugGizmos)  MDebug.Draw_Arrow(Position, SlopeDirectionSmooth, Color.yellow);
+
+            Position += SlopeDirectionSmooth;
         }
 
         private Vector3 vectorSmoothDamp = Vector3.zero;

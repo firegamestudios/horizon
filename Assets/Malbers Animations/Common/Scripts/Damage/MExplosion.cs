@@ -9,7 +9,7 @@ namespace MalbersAnimations
 {
     [DefaultExecutionOrder(1000)]
     /// <summary> Explosion Logic</summary>
-    [AddComponentMenu("Malbers/Damage/Explosion")]
+    [AddComponentMenu("Malbers/Damage/Explosion Force")]
 
     public class MExplosion : MDamager
     {

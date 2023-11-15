@@ -268,7 +268,8 @@ namespace MalbersAnimations.Utilities
     {
 
         SerializedProperty
-            AlignPos, AlignRot, AlignLookAt, AlingPoint1, AlingPoint2, AlignTime, AlignCurve, DoubleSided, LookAtRadius, DebugColor, LookAtRadiusTime, AngleOffset;
+            AlignPos, AlignRot, AlignLookAt, AlingPoint1, AlingPoint2, AlignTime, 
+            AlignCurve, DoubleSided, LookAtRadius, DebugColor, AngleOffset;
 
         // MonoScript script;
         private void OnEnable()
@@ -287,7 +288,7 @@ namespace MalbersAnimations.Utilities
             LookAtRadius = serializedObject.FindProperty("LookAtRadius");
             DebugColor = serializedObject.FindProperty("DebugColor");
             //PosOffset = serializedObject.FindProperty("PosOffset");
-            LookAtRadiusTime = serializedObject.FindProperty("LookAtRadiusTime");
+           // LookAtRadiusTime = serializedObject.FindProperty("LookAtRadiusTime");
         }
 
 

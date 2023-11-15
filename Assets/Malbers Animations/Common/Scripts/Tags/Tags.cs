@@ -23,8 +23,7 @@ namespace MalbersAnimations
 
         void OnEnable()
         {
-            if (TagsHolders == null) 
-                TagsHolders = new List<Tags>();
+            TagsHolders ??= new List<Tags>();
 
             //Save the GameObject who has this Tags on the global TagsHolders list //Better for saving performance
             TagsHolders.Add(this);              

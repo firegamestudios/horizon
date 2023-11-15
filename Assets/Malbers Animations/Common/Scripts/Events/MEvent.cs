@@ -1,6 +1,10 @@
 ﻿using MalbersAnimations.Scriptables;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System.Reflection;
+using System.Linq;
+using System.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -214,6 +218,7 @@ namespace MalbersAnimations.Events
         public virtual void LogDeb(string value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>",this);
         public virtual void LogDeb(bool value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
         public virtual void LogDeb(Vector3 value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
+        public virtual void LogDeb(Vector2 value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
         public virtual void LogDeb(int value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
         public virtual void LogDeb(float value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
         public virtual void LogDeb(object value) => Debug.Log($"<color=white><B>{name} : [{value}] </B></color>");
@@ -280,96 +285,16 @@ namespace MalbersAnimations.Events
                 MalbersEditor.DrawDebugIcon(debug);
                 //debug.boolValue = GUILayout.Toggle(debug.boolValue, "Debug", EditorStyles.miniButton);
 
+                if (GUILayout.Button("Find Invokers", GUILayout.Width(100)))
+                {
+                    FindAllInvokers();
+                }
+
                 if (Application.isPlaying)
                 {
                     if (GUILayout.Button("Find Listeners", GUILayout.Width(100)))
                     {
-                        // Get all the listeners of the event
-                        // EventTrigger.Entry[] entries = eventSystem.GetEventTrigger(eventName).triggers.ToArray();
-
-                        // Loop through the listeners and log their game object names
-                        foreach (var eventItem in ev.eventListeners)
-                        {
-
-                            //Debug Void Responses
-                            for (int i = 0; i < eventItem.Response.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.Response.GetPersistentTarget(i);
-                                var what = eventItem.Response.GetPersistentMethodName(i);
-                                Debuggin($"Void -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseBool.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseBool.GetPersistentTarget(i);
-                                var what = eventItem.ResponseBool.GetPersistentMethodName(i);
-                                Debuggin($"Bool -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseInt.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseInt.GetPersistentTarget(i);
-                                var what = eventItem.ResponseInt.GetPersistentMethodName(i);
-                                Debuggin($"Int -> [{what}]", item);  
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseFloat.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseFloat.GetPersistentTarget(i);
-                                var what = eventItem.ResponseFloat.GetPersistentMethodName(i);
-                                Debuggin($"Float -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseString.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseString.GetPersistentTarget(i);
-                                var what = eventItem.ResponseString.GetPersistentMethodName(i);
-                                Debuggin($"String -> [{what}]", item);
-                            }
-
-
-                            for (int i = 0; i < eventItem.ResponseTransform.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseTransform.GetPersistentTarget(i);
-                                var what = eventItem.ResponseTransform.GetPersistentMethodName(i);
-                                Debuggin($"Transform -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseComponent.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseComponent.GetPersistentTarget(i);
-                                var what = eventItem.ResponseComponent.GetPersistentMethodName(i);
-                                Debuggin($"Component -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseGO.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseGO.GetPersistentTarget(i);
-                                var what = eventItem.ResponseGO.GetPersistentMethodName(i);
-                                Debuggin($"GameObject -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseVector2.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseVector2.GetPersistentTarget(i);
-                                var what = eventItem.ResponseVector2.GetPersistentMethodName(i);
-                                Debuggin($"Vector2 -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseVector3.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseVector3.GetPersistentTarget(i);
-                                var what = eventItem.ResponseVector3.GetPersistentMethodName(i);
-                                Debuggin($"Vector3 -> [{what}]", item);
-                            }
-
-                            for (int i = 0; i < eventItem.ResponseSprite.GetPersistentEventCount(); i++)
-                            {
-                                var item = eventItem.ResponseSprite.GetPersistentTarget(i);
-                                var what = eventItem.ResponseSprite.GetPersistentMethodName(i);
-                                Debuggin($"Sprite -> [{what}]", item);
-                            }
-                        }
+                        FindListeners();
                     }
                 }
             }
@@ -468,6 +393,189 @@ namespace MalbersAnimations.Events
             }
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+
+        public class EventReferenceInfo
+        {
+            public MonoBehaviour Owner { get; set; }
+            public UnityEventBase Event { get; set; }  
+
+            public string name { get; set; }
+           // public List<string> MethodNames { get; set; } = new List<string>();
+        }
+
+        private void FindAllInvokers()
+        {
+            //find all objects in current opened scene
+            var allObjects = GameObject.FindObjectsOfType(typeof(MonoBehaviour));
+          //  Debug.Log("All MOno = " + allObjects.Length);
+
+            var events = new List<EventReferenceInfo>();
+
+            foreach (var b in allObjects)
+            {
+                var info = b.GetType().GetTypeInfo();
+
+                //This only finds the Top Events
+                var FoundUnityEvents = info.DeclaredFields.Where(f => f.FieldType.IsSubclassOf(typeof(UnityEventBase))).ToList();
+
+                foreach (var e in FoundUnityEvents)
+                {
+                    events.Add(new EventReferenceInfo()
+                    {
+                        Owner = b as MonoBehaviour,
+                        Event = (e.GetValue(b) as UnityEventBase),
+                        name = e.Name
+                    });
+                }
+
+                //Find all the List values with events inside
+                var ListsFields = info.DeclaredFields.Where(x => typeof(IEnumerable).IsAssignableFrom(x.FieldType) && x.IsPublic).ToList();
+
+                foreach (var item in ListsFields)
+                {
+                    if (item.FieldType.IsGenericType && item.GetValue(b) is IEnumerable)
+                    {
+                      //  Debug.Log($"item : {item.Name}, OWNER {b.name} {b.GetType().Name}");
+
+                        foreach (var prop in item.GetValue(b) as IEnumerable)
+                        {
+                           // Debug.Log($"Internal : {prop.GetType().Name}");
+
+                            //Unity Event inside lists
+                            var EventsInsideList = 
+                                prop.GetType().GetTypeInfo().DeclaredFields.Where(f => f.FieldType.IsSubclassOf(typeof(UnityEventBase))).ToList();
+
+                            foreach (var e in EventsInsideList)
+                            {
+                                events.Add(new EventReferenceInfo()
+                                {
+                                    Owner = b as MonoBehaviour,
+                                    Event = (e.GetValue(prop) as UnityEventBase),
+                                    name = e.Name
+                                });
+
+                              //  Debug.Log($"EVENT NAME : {e.Name}");
+                            }
+                        }
+                    }
+                }
+            }
+
+            ///NEED TO FIND EVENTS IN SUBCLASSES
+
+
+
+            //PRINT ALL EVENTS
+            foreach (var e in events)
+            {
+                int count = e.Event.GetPersistentEventCount();
+
+                for (int i = 0; i < count; i++)
+                {
+                    var obj = e.Event.GetPersistentTarget(i);
+
+                    if (obj == target)
+                    {
+                        Debug.Log($"<color=cyan><B>[{target.name}]</B>. Invoker:" +
+                            $" <B>[{e.Owner.name}]</B>→<B>[{e.Owner.GetType().Name}]→[{e.name}]</B></color>", e.Owner);
+                    }
+                }
+            }
+
+
+           // Debug.Log("All Events = " + events.Count);
+        }
+
+        private void FindListeners()
+        {
+            // Get all the listeners of the event
+            // EventTrigger.Entry[] entries = eventSystem.GetEventTrigger(eventName).triggers.ToArray();
+
+            // Loop through the listeners and log their game object names
+            foreach (var eventItem in ev.eventListeners)
+            {
+
+                //Debug Void Responses
+                for (int i = 0; i < eventItem.Response.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.Response.GetPersistentTarget(i);
+                    var what = eventItem.Response.GetPersistentMethodName(i);
+                    Debuggin($"Void -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseBool.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseBool.GetPersistentTarget(i);
+                    var what = eventItem.ResponseBool.GetPersistentMethodName(i);
+                    Debuggin($"Bool -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseInt.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseInt.GetPersistentTarget(i);
+                    var what = eventItem.ResponseInt.GetPersistentMethodName(i);
+                    Debuggin($"Int -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseFloat.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseFloat.GetPersistentTarget(i);
+                    var what = eventItem.ResponseFloat.GetPersistentMethodName(i);
+                    Debuggin($"Float -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseString.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseString.GetPersistentTarget(i);
+                    var what = eventItem.ResponseString.GetPersistentMethodName(i);
+                    Debuggin($"String -> [{what}]", item);
+                }
+
+
+                for (int i = 0; i < eventItem.ResponseTransform.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseTransform.GetPersistentTarget(i);
+                    var what = eventItem.ResponseTransform.GetPersistentMethodName(i);
+                    Debuggin($"Transform -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseComponent.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseComponent.GetPersistentTarget(i);
+                    var what = eventItem.ResponseComponent.GetPersistentMethodName(i);
+                    Debuggin($"Component -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseGO.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseGO.GetPersistentTarget(i);
+                    var what = eventItem.ResponseGO.GetPersistentMethodName(i);
+                    Debuggin($"GameObject -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseVector2.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseVector2.GetPersistentTarget(i);
+                    var what = eventItem.ResponseVector2.GetPersistentMethodName(i);
+                    Debuggin($"Vector2 -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseVector3.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseVector3.GetPersistentTarget(i);
+                    var what = eventItem.ResponseVector3.GetPersistentMethodName(i);
+                    Debuggin($"Vector3 -> [{what}]", item);
+                }
+
+                for (int i = 0; i < eventItem.ResponseSprite.GetPersistentEventCount(); i++)
+                {
+                    var item = eventItem.ResponseSprite.GetPersistentTarget(i);
+                    var what = eventItem.ResponseSprite.GetPersistentMethodName(i);
+                    Debuggin($"Sprite -> [{what}]", item);
+                }
+            }
         }
     }
 #endif

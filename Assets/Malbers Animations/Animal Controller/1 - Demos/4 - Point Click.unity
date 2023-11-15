@@ -1009,6 +1009,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  OneTimeUse:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   trigger: {fileID: 0}
   Editor_Tabs1: 0
 --- !u!114 &261874669
@@ -1174,6 +1178,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280905854}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &351287969
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 722761611}
+    m_Modifications:
+    - target: {fileID: 1687954435391512, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_Name
+      value: Respawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.5630865
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.520609
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4314a73211c85fd4492c1bd44c74fc62, type: 3}
+--- !u!4 &351287970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4455119416797234, guid: 4314a73211c85fd4492c1bd44c74fc62,
+    type: 3}
+  m_PrefabInstance: {fileID: 351287969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &417326681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,6 +2919,7 @@ Transform:
   m_Children:
   - {fileID: 1047585915}
   - {fileID: 3661778875071156750}
+  - {fileID: 351287970}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7066,6 +7134,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  AlignOffset:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Root: {fileID: 0}
   events:
     OnReceivingDamage:
@@ -10565,6 +10637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 2148381889379906539}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 0}
   m_Trigger: {fileID: 3692663317283528154}
@@ -10801,6 +10874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 2148381889379906539}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 0}
   m_Trigger: {fileID: 3692590987620950310}
@@ -11035,6 +11109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 2148381889379906539}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 0}
   m_Trigger: {fileID: 3692101103808611446}
@@ -11052,6 +11127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 2148381889379906539}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 0}
   m_Trigger: {fileID: 3691935396242039634}
@@ -12805,6 +12881,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   currentAnimTag: 0
   platform: {fileID: 0}
+  MainCollider: {fileID: 0}
   colliders: []
   OnAnimationChange:
     m_PersistentCalls:
@@ -13023,6 +13100,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  OneTimeUse:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   trigger: {fileID: 0}
   Editor_Tabs1: 0
 --- !u!4 &4451895324576058351
@@ -13153,6 +13234,7 @@ MonoBehaviour:
   agent: {fileID: 7767756432531524887}
   animal: {fileID: 3696115591853623534}
   disableInput: 1
+  enableInput: 1
   StopAgentOn:
   - {fileID: 11400000, guid: 8078fbdb01991b44b9c1351f444b5efe, type: 2}
   - {fileID: 11400000, guid: c44e7e8d6840aa243b6c33ec85052763, type: 2}
@@ -13161,6 +13243,9 @@ MonoBehaviour:
   stoppingDistance: 1.5
   PointStoppingDistance: 0.6
   slowingDistance: 0
+  UseScale: 1
+  targetHeight: 5
+  StopOnTargetTooHigh: 1
   LookAtOffset: 1
   slowingLimit: 0.3
   target: {fileID: 971969478}

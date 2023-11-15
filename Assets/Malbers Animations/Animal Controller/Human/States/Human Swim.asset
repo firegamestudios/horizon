@@ -31,7 +31,7 @@ MonoBehaviour:
   resetInputOnFailed: 0
   ResetLastState: 0
   General:
-    modify: -1
+    modify: 7423
     RootMotion: 1
     Sprint: 1
     Gravity: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   MovementStrafe: 1
   IdleStrafe: 1
   m_debug: 0
-  Editor_Tabs1: 4
+  Editor_Tabs1: 1
   SpeedSets:
   - name: Swim
     StartVerticalIndex:

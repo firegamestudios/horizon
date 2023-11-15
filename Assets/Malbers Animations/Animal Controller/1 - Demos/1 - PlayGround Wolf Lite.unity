@@ -646,6 +646,104 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -14.274
       objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: EditorTabs
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: DropDelay.ConstantValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: m_Collectable.ConstantValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnDropped.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPreDropped.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnDropped.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnDropped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 733239757}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPrePicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: bcb58886db7b9714498cad6f9c231044,
+        type: 2}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnDropped.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPreDropped.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: c2c1c34c851e3d845a1cadefbdc409df,
+        type: 2}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnDropped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unequip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPreDropped.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPrePicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: React
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPreDropped.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: React
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnDropped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MalbersAnimations.Weapons.MWeapon, MalbersAnimations
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPrePicked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MalbersAnimations.Reactions.MReactionsVar, MalbersAnimations
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPreDropped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MalbersAnimations.Controller.Reactions.Reaction`1[[MalbersAnimations.Controller.MAnimal,
+        Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnDropped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646787235392800871, guid: faf70d6d36bbba44a83f3ad874746fff,
+        type: 3}
+      propertyPath: OnPreDropped.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faf70d6d36bbba44a83f3ad874746fff, type: 3}
 --- !u!4 &138837358 stripped
@@ -2948,6 +3046,18 @@ MonoBehaviour:
         m_CallState: 2
   Description: 
   ShowDescription: 0
+--- !u!114 &733239757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1389279387942567009, guid: faf70d6d36bbba44a83f3ad874746fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 138837357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68ae3fe8f7441a4295233abdec97784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &764454233
 GameObject:
   m_ObjectHideFlags: 0
@@ -4990,7 +5100,7 @@ PrefabInstance:
     - target: {fileID: 302472354151661360, guid: bcff32db73dac7344b4cac585b0ef97f,
         type: 3}
       propertyPath: Editor_Tabs2
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 406475058203906938, guid: bcff32db73dac7344b4cac585b0ef97f,
         type: 3}
@@ -5060,7 +5170,12 @@ PrefabInstance:
     - target: {fileID: 8470208101587527749, guid: bcff32db73dac7344b4cac585b0ef97f,
         type: 3}
       propertyPath: EditorTabs
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470208101587527749, guid: bcff32db73dac7344b4cac585b0ef97f,
+        type: 3}
+      propertyPath: DropDelay.ConstantValue
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8470208101587527749, guid: bcff32db73dac7344b4cac585b0ef97f,
         type: 3}
@@ -6779,6 +6894,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  CameraDistance:
+    UseConstant: 1
+    ConstantValue: 6
+    Variable: {fileID: 0}
   XMultiplier:
     UseConstant: 1
     ConstantValue: 1
@@ -6794,6 +6913,10 @@ MonoBehaviour:
   BottomClamp:
     UseConstant: 1
     ConstantValue: -30
+    Variable: {fileID: 0}
+  LerpRotation:
+    UseConstant: 1
+    ConstantValue: 15
     Variable: {fileID: 0}
 --- !u!4 &5097984354739213814
 Transform:
@@ -6956,6 +7079,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 0
     input: Mouse X
     key: 48
@@ -7011,6 +7138,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 0
     input: Mouse Y

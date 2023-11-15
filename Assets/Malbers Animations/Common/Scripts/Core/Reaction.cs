@@ -21,7 +21,7 @@ namespace MalbersAnimations.Reactions
         [HideInInspector] public bool Active = true;
 
         [Tooltip("Delay the Reaction this ammount of seconds")]
-        [Min(0),HideInInspector] public float delay = 0;
+        [Min(0)] public float delay = 0;
 
         [Tooltip("The component assigned is verified. Which means is the Correct type")]
         protected Component Verified;
@@ -32,19 +32,21 @@ namespace MalbersAnimations.Reactions
         {
             Component TrueComponent;
 
-            if (ReactionType.IsAssignableFrom(component.GetType()))
+            if (ReactionType.IsAssignableFrom(component.GetType())) //Find if the component is the same 
             {
                 TrueComponent = component;
             }
             else
             {
-                TrueComponent = component.GetComponentInParent(ReactionType);
+                //Debug.Log($"Component {component.name} REACTION TYPE: {ReactionType.Name}");
 
+                TrueComponent = component.GetComponent(ReactionType);
+               
+                if (TrueComponent == null)
+                    TrueComponent = component.GetComponentInParent(ReactionType);
                 if (TrueComponent == null)
                     TrueComponent = component.GetComponentInChildren(ReactionType);
             }
-
-            Verified = TrueComponent; //Store if that component is verified.
 
             return TrueComponent;
         }
@@ -72,6 +74,20 @@ namespace MalbersAnimations.Reactions
                 }
             }
             return false;
+        }
+
+        //React to multiple components
+        public bool TryReact(params Component[] components)
+        {
+            if (Active && components != null && components.Length>0)
+            {
+                foreach (var component in components)
+                {
+                    var comp = VerifyComponent(component);
+                   _TryReact(comp);
+                }
+            }
+            return true;
         }
     }
 }

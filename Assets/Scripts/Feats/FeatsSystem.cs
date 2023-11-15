@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
-
+using Droidzone.Core;
 public class FeatsSystem : BaseRoll
 {
     //rolling variables
@@ -91,7 +91,7 @@ public class FeatsSystem : BaseRoll
 
                 break;
             case "Nanocontrol":
-
+                OnNanocontrol();
                 break;
             case "Nitrotrap":
 
@@ -160,6 +160,23 @@ public class FeatsSystem : BaseRoll
             {
                 HandleTestResult("FAILED...");
                 OnFailEvent?.Invoke(); // Invoke the OnFail event
+            }
+        }
+    }
+
+    public void OnNanocontrol()
+    {
+        print("OnNanocontrol started");
+        Collider[] cols = Physics.OverlapSphere(transform.position, 10f);
+        foreach (Collider col in cols)
+        {
+            print(col.name + " has Collided in Nanocontrol");
+            NPC npc = col.gameObject.GetComponent<NPC>();
+            if(col.gameObject.GetComponent<NPC>() != null)
+            {
+                PC pc = GameManager.Pc;
+                npc.OnControlAttempt(pc.PlayerData.Energy);
+                uiManager.TransformMessage("Nanocontrol stabilished: " + pc.PlayerData.Energy + " seconds (Energy)", transform);
             }
         }
     }

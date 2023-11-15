@@ -1189,17 +1189,17 @@ PrefabInstance:
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.999997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -85.888565
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4119520939028466838, guid: 720829b02a1ccb84a8307ef4b36695d3,
         type: 3}
@@ -15610,6 +15610,7 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -15673,8 +15674,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 903612983}
   Editor_Tabs1: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!4 &903612985
 Transform:
   m_ObjectHideFlags: 0
@@ -22632,6 +22644,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  OneTimeUse:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   trigger: {fileID: 0}
   Editor_Tabs1: 0
 --- !u!1 &1297366104
@@ -24926,6 +24942,7 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -24989,8 +25006,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 1520165682}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1520165682
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25418,15 +25446,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.999997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -85.888565
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4973453112627144, guid: 7721b17458de7274da9fb6df12db1326, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25464,7 +25492,7 @@ PrefabInstance:
     - target: {fileID: 114794346622778406, guid: 7721b17458de7274da9fb6df12db1326,
         type: 3}
       propertyPath: m_ShowDebugText
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114794346622778406, guid: 7721b17458de7274da9fb6df12db1326,
         type: 3}
@@ -27571,6 +27599,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -27646,8 +27675,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 1784810346}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &1784810348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30962,6 +31002,7 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -30989,8 +31030,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 1968653434352500396}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &1968653434400092955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34910,6 +34962,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   currentAnimTag: 0
   platform: {fileID: 0}
+  MainCollider: {fileID: 0}
   colliders: []
   OnAnimationChange:
     m_PersistentCalls:
@@ -35341,6 +35394,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  AlignOffset:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Root: {fileID: 0}
   events:
     OnReceivingDamage:

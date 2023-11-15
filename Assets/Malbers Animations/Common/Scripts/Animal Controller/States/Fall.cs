@@ -15,7 +15,7 @@ namespace MalbersAnimations.Controller
         /// <summary>Air Resistance while falling</summary>
         [Header("Fall Parameters")]
         [Tooltip("Can the Animal be controller while falling?")]
-        public BoolReference AirControl = new BoolReference(true);
+        public BoolReference AirControl = new(true);
         [Tooltip("Rotation while falling")]
         public FloatReference AirRotation = new(10);
         [Tooltip("Maximum Movement while falling")]
@@ -100,10 +100,6 @@ namespace MalbersAnimations.Controller
             animalStats = animal.FindComponent<Stats>(); //Find the Stats
         }
 
-
-     
-
-
         public override bool TryActivate()
         {
             float SprintMultiplier = (animal.VerticalSmooth);
@@ -116,9 +112,6 @@ namespace MalbersAnimations.Controller
             return TryFallRayCasting(fall_Pivot, Multiplier);
         }
 
-
-
-
         private bool TryFallRayCasting(Vector3 fall_Pivot, float Multiplier)
         {
             FallHits = new RaycastHit[RayHits];
@@ -126,13 +119,13 @@ namespace MalbersAnimations.Controller
            // var Direction = animal.TerrainSlope > 0 ? Gravity : -transform.up;
             var Direction = Gravity;
           //  var Direction =   -transform.up;
-            Debug.DrawRay(fall_Pivot, Direction * Multiplier, Color.black);
 
             var Radius = animal.RayCastRadius * ScaleFactor;
             Hits = Physics.SphereCastNonAlloc(fall_Pivot, Radius, Direction, FallHits, Multiplier, GroundLayer, IgnoreTrigger);
 
-            if (m_debug && animal.debugGizmos)
+            if (GizmoDebug)
             {
+                Debug.DrawRay(fall_Pivot, Direction * Multiplier, Color.black);
                 Debug.DrawRay(fall_Pivot, Direction * Multiplier, Color.magenta);
                 Debug.DrawRay(FallRayCast.point, FallRayCast.normal * ScaleFactor * 0.2f, Color.magenta);
             }
@@ -286,7 +279,8 @@ namespace MalbersAnimations.Controller
 
         public override Vector3 Speed_Direction()
         {
-            MDebug.Draw_Arrow(transform.position, StartingSpeedDirection, Color.magenta);
+           if (GizmoDebug)
+                MDebug.Draw_Arrow(transform.position, StartingSpeedDirection, Color.magenta);
 
             if (!KeepForwardFall)
             {
@@ -341,7 +335,7 @@ namespace MalbersAnimations.Controller
                 FallCurrentDistance += DeltaDistance;
             }
 
-            if (animal.debugGizmos && m_debug)
+            if (GizmoDebug)
             {
                 MDebug.DrawWireSphere(FallPoint, Color.magenta, Radius);
                 MDebug.DrawWireSphere(FallPoint + Gravity * Height, (Color.red + Color.blue) / 2, Radius);
@@ -358,7 +352,7 @@ namespace MalbersAnimations.Controller
             {
                 DistanceToGround = FallRayCast.distance;
 
-                if (animal.debugGizmos && m_debug)
+                if (GizmoDebug)
                 {
                     MDebug.DrawWireSphere(FallRayCast.point, (Color.blue + Color.red) / 2, Radius);
                     MDebug.DrawWireSphere(FallPoint, (Color.red), Radius);
@@ -479,9 +473,12 @@ namespace MalbersAnimations.Controller
                 var RBNewDown = Vector3.Project(animal.DesiredRBVelocity, Gravity);
                 var NewDMagn = RBNewDown.magnitude;
                 var Old_DMagn = RBOldDown.magnitude;
-
-                MDebug.Draw_Arrow(animal.Main_Pivot_Point+Forward*0.02f, RBOldDown*0.5f,Color.white);
-                MDebug.Draw_Arrow(animal.Main_Pivot_Point + Forward * 0.04f, RBNewDown*0.5f, Color.green);
+              
+                if (GizmoDebug)
+                {
+                    MDebug.Draw_Arrow(animal.Main_Pivot_Point + Forward * 0.02f, RBOldDown * 0.5f, Color.white);
+                    MDebug.Draw_Arrow(animal.Main_Pivot_Point + Forward * 0.04f, RBNewDown * 0.5f, Color.green);
+                }
 
                 ResetCount++;
 

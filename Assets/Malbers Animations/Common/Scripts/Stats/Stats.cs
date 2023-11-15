@@ -18,7 +18,9 @@ namespace MalbersAnimations
         /// <summary>List of Stats</summary>
         public List<Stat> stats = new();
         /// <summary>List of Stats Converted to Dictionary</summary>
-        public Dictionary<int, Stat> stats_D;
+        private Dictionary<int, Stat> stats_D;
+
+        public Dictionary<int, Stat> Stats_Dictionary() => stats_D;
 
         /// <summary>Stored Stat to use the 'Pin' Methods</summary>
         public Stat PinnedStat;

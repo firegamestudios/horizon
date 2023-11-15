@@ -6,7 +6,6 @@ namespace MalbersAnimations.Scriptables
     ///<summary> Make basic math op </summary>
     public class FloatMath : MonoBehaviour
     {
-        public enum MathOperation { Add, Substract, Multiply, Divide }
 
         public FloatReference Value1 = new FloatReference();
         public MathOperation operation = MathOperation.Add;
@@ -52,8 +51,7 @@ namespace MalbersAnimations.Scriptables
                 case MathOperation.Divide:
                     if (Value2 != 0) Result.Invoke(Value1 / Value2);
                     break;
-                default:
-                    break;
+                default:  break;
             }
         }
     }

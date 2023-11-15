@@ -70,7 +70,7 @@ public class SaveLoadManager : MonoBehaviour
         if(isCreation == false)
         {
             LoadPlayerData();
-            print("Loaded race: " + playerData.race);
+          //  print("Loaded race: " + playerData.race);
             GameManager.playerData = playerData;
             gameManager.Initialize();
         }

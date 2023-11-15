@@ -46,11 +46,27 @@ namespace MalbersAnimations
                 TargetZoom = Mathf.Clamp(TargetZoom + ZoomStep, ZoomMin, ZoomMax);
         }
 
+
+        public void SetZoom(bool zoom)
+        {
+            if (zoom)
+            {
+                ZoomOut();
+            }
+            else
+            {
+                ZoomIn();
+            }
+        }
+
+        public void SetZoom(float zoom) => SetZoom(zoom < 0);
+
+
         private void FixedUpdate()
         {
             if (updateMode == UpdateType.FixedUpdate)
             {
-                Zoom(Time.fixedDeltaTime);
+                CalculateZoom(Time.fixedDeltaTime);
             }
         }
 
@@ -58,11 +74,11 @@ namespace MalbersAnimations
         {
             if (updateMode == UpdateType.LateUpdate)
             {
-                Zoom(Time.deltaTime);
+                CalculateZoom(Time.deltaTime);
             }
         }
 
-        private void Zoom(float deltaTime)
+        private void CalculateZoom(float deltaTime)
         {
             if (TPF)
                 TPF.CameraDistance = Mathf.Lerp(TPF.CameraDistance, TargetZoom, ZoomLerp * deltaTime);

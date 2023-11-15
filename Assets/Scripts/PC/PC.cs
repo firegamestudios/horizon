@@ -4,12 +4,13 @@ using UnityEngine;
 using MalbersAnimations;
 using TMPro;
 using MalbersAnimations.Controller;
-using MoreMountains.InventoryEngine;
+
 using Inworld;
 using Inworld.Runtime;
 using Inworld.Util;
 using MalbersAnimations.Reactions;
 using Cinemachine;
+using MalbersAnimations.InventorySystem;
 
 public class PC : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PC : MonoBehaviour
     Stats stats;
     MDamageable damageable;
     MalbersInput malbersInput;
+    InventoryMaster inv;
    
     //Damage
     private GameObject weapon;
@@ -55,9 +57,7 @@ public class PC : MonoBehaviour
     public Texture poisonTex;
     Texture bloodTex;
 
-    //Inventory
-    [HideInInspector] public Inventory inv;
-
+   
     //Elements
     //0 = poison
     public List<StatElement> statElements;
@@ -72,7 +72,9 @@ public class PC : MonoBehaviour
         stats = GetComponent<Stats>();
         animal = GetComponent<MAnimal>();
         uiManager = FindAnyObjectByType<UIManager>();
-        inv = GameObject.Find("RogueMainInventory").GetComponent<Inventory>();
+        inv = GameObject.Find("Inventory Master").GetComponent<InventoryMaster>();
+        inv.character = transform;
+        inv.enabled = true;
         poisonTex = Resources.Load<Texture>("Textures/poison");
         damageable = GetComponent<MDamageable>();
         malbersInput = GetComponent<MalbersInput>();

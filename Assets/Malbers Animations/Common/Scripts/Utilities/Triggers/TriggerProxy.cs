@@ -18,26 +18,31 @@ namespace MalbersAnimations.Utilities
     [AddComponentMenu("Malbers/Utilities/Colliders/Trigger Proxy")]
     public class TriggerProxy : MonoBehaviour
     {
-        //[Tooltip("Proxy ID, can be used to Identify which is the Proxy Trigger used")]
-        //[SerializeField] private IntReference m_ID = new IntReference(0);
+      
         [Tooltip("Hit Layer for the Trigger Proxy")]
-        [SerializeField] private LayerReference hitLayer = new LayerReference(-1);
+        [SerializeField] private LayerReference hitLayer = new(-1);
+        public LayerMask Layer { get => hitLayer.Value; set => hitLayer.Value = value; }
+
+
         [SerializeField] private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Ignore;
         [Tooltip("Search only Tags")]
         public Tag[] Tags;
 
-        public ColliderEvent OnTrigger_Enter = new ColliderEvent();
-        public ColliderEvent OnTrigger_Exit = new ColliderEvent();
-        public ColliderEvent OnTrigger_Stay = new ColliderEvent();
+        public ColliderEvent OnTrigger_Enter = new();
+        public ColliderEvent OnTrigger_Exit =  new();
+        public ColliderEvent OnTrigger_Stay =  new();
 
-        public GameObjectEvent OnGameObjectEnter = new GameObjectEvent();
-        public GameObjectEvent OnGameObjectExit = new GameObjectEvent();
-        public GameObjectEvent OnGameObjectStay = new GameObjectEvent();
-        public UnityEvent OnEmpty = new UnityEvent();
+        public GameObjectEvent OnGameObjectEnter =new();
+        public GameObjectEvent OnGameObjectExit = new();
+        public GameObjectEvent OnGameObjectStay = new();
+        public UnityEvent OnEmpty = new();
 
         [SerializeField] private bool m_debug = false;
 
         public BoolReference useOnTriggerStay = new();
+
+        [Tooltip("Trigger will be disabled the first time")]
+        public BoolReference OneTimeUse = new();
 
 
         internal List<Collider> m_colliders = new();
@@ -50,7 +55,7 @@ namespace MalbersAnimations.Utilities
         public bool Active { get => enabled; set => enabled = value; }
 
         //public int ID { get => m_ID.Value; set => m_ID.Value = value; }
-        public LayerMask Layer { get => hitLayer.Value; set => hitLayer.Value = value; }
+      
         public QueryTriggerInteraction TriggerInteraction { get => triggerInteraction; set => triggerInteraction = value; }
 
         /// <summary> Collider Component used for the Trigger Proxy </summary>
@@ -86,7 +91,6 @@ namespace MalbersAnimations.Utilities
             {
                 GameObject realRoot = FindRealRoot(other);
 
-
                 OnTrigger_Enter.Invoke(other); //Invoke when a Collider enters the Trigger
 
                 if (m_debug) Debug.Log($"<b>{name}</b> [Entering Collider] -> [{other.name}]", this);
@@ -110,6 +114,8 @@ namespace MalbersAnimations.Utilities
                     EnteringGameObjects.Add(realRoot); 
                     OnGameObjectEnter.Invoke(realRoot);
                     if (m_debug) Debug.Log($"<b>{name}</b> [Entering GameObject] -> [{realRoot.name}]", this);
+
+                    if (OneTimeUse.Value) enabled = false;
                 }
             }
         }
@@ -330,7 +336,7 @@ namespace MalbersAnimations.Utilities
     [CanEditMultipleObjects, CustomEditor(typeof(TriggerProxy))]
     public class TriggerProxyEditor : Editor
     {
-        SerializedProperty debug, OnTrigger_Enter, OnTrigger_Exit, OnEmpty, useOnTriggerStay, OnTrigger_Stay, Editor_Tabs1,
+        SerializedProperty debug, OnTrigger_Enter, OnTrigger_Exit, OnEmpty, useOnTriggerStay, OnTrigger_Stay, Editor_Tabs1, OneTimeUse,
             triggerInteraction, hitLayer, OnGameObjectEnter, OnGameObjectExit, OnGameObjectStay, Tags;
 
         TriggerProxy m;
@@ -353,6 +359,7 @@ namespace MalbersAnimations.Utilities
             OnGameObjectStay = serializedObject.FindProperty("OnGameObjectStay");
             OnTrigger_Stay = serializedObject.FindProperty("OnTrigger_Stay");
             Editor_Tabs1 = serializedObject.FindProperty("Editor_Tabs1");
+            OneTimeUse = serializedObject.FindProperty("OneTimeUse");
         }
 
 
@@ -412,6 +419,7 @@ namespace MalbersAnimations.Utilities
 
                 EditorGUILayout.PropertyField(triggerInteraction);
                 EditorGUILayout.PropertyField(useOnTriggerStay);
+                EditorGUILayout.PropertyField(OneTimeUse);
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(Tags, true);
                 EditorGUI.indentLevel--;

@@ -31,7 +31,7 @@ MonoBehaviour:
   resetInputOnFailed: 0
   ResetLastState: 0
   General:
-    modify: -1
+    modify: 7423
     RootMotion: 1
     Sprint: 0
     Gravity: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   TagModifiers:
   - AnimationTag: Land
     modifier:
-      modify: 4095
+      modify: 3327
       RootMotion: 1
       Sprint: 1
       Gravity: 0
@@ -105,6 +105,6 @@ MonoBehaviour:
   MovementStrafe: 0
   IdleStrafe: 0
   m_debug: 1
-  Editor_Tabs1: 0
+  Editor_Tabs1: 1
   SpeedSets: []
   ID: {fileID: 11400000, guid: 7370df9c769c2764381ad7c76eb3d949, type: 2}

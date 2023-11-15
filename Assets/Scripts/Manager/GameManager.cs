@@ -1,4 +1,7 @@
 using MalbersAnimations.Controller;
+using MalbersAnimations.Controller.AI;
+using MalbersAnimations.InventorySystem;
+using MalbersAnimations.Scriptables;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +27,12 @@ namespace Droidzone.Core
         public static PC Pc { get => pc ??= FindAnyObjectByType<PC>(); set => pc = value; }
 
         public static GameManager Instance;
+
+        public MAIState companionState;
+
+        public InventoryMaster inventoryMaster;
+
+        public List<TransformReference> transformRefs;
 
         #region Initialization
         private void Awake()
@@ -61,18 +70,21 @@ namespace Droidzone.Core
             {
                 case "Alien":
                     pcs[0].gameObject.SetActive(true);
+                   
                     break;
                 case "Droid":
                     pcs[1].gameObject.SetActive(true);
+                    
                     break;
                 case "Female Human":
-                /// pcs[2].gameObject.SetActive(true); 
-                ///  respawner.SetPlayer(pcs[3].gameObject);
-                break;
+                    pcs[2].gameObject.SetActive(true);
+                   
+                    break;
 
                 case "Male Human":
-                     pcs[3].gameObject.SetActive(true); 
-                     break;
+                     pcs[3].gameObject.SetActive(true);
+                   
+                    break;
               
                 default:
                     break;

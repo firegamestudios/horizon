@@ -19,7 +19,7 @@ namespace MalbersAnimations.Conditions
         public int Size;
         public GameObjectReference item;
         /// <summary>Set target on the Conditions</summary>
-        public override void SetTarget(Object target)
+        protected override void _SetTarget(Object target)
         {
             if (target == null && target is RuntimeGameObjects)
                 Target = target as RuntimeGameObjects;

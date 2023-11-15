@@ -9,6 +9,8 @@ namespace MalbersAnimations.Conditions
     {
         public override string DisplayName => "Animal/Animal AI";
 
+       // public override System.Type ConditionType => typeof(MAnimalAIControl);
+
         [RequiredField] public MAnimalAIControl AI;
         public enum AnimalAICondition { enabled, HasTarget, HasNextTarget, Arrived, Waiting, InOffMesh, CurrentTarget, NextTarget }
         public AnimalAICondition Condition;
@@ -34,6 +36,8 @@ namespace MalbersAnimations.Conditions
             return false;
         }
 
+        protected override void _SetTarget(Object target) => VerifyTarget(target, ref AI);
+
 
         private void Reset() => Name = "New Animal AI Condition";
 
@@ -42,11 +46,6 @@ namespace MalbersAnimations.Conditions
         {
             base.OnValidate();
             showTarg = Condition == AnimalAICondition.CurrentTarget || Condition == AnimalAICondition.NextTarget;
-        }
-
-        public override void SetTarget(Object target)
-        {
-            if (target is MAnimalAIControl) this.AI = target as MAnimalAIControl;
         }
     }
 }

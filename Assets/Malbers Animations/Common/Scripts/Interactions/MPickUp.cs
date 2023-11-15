@@ -2,7 +2,6 @@
 using MalbersAnimations.Scriptables;
 using MalbersAnimations.Utilities;
 using UnityEngine;
-using UnityEngine.Serialization;
 using MalbersAnimations.Reactions;
 
 #if UNITY_EDITOR
@@ -205,7 +204,7 @@ namespace MalbersAnimations.Controller
                         StartCoroutine(MTools.AlignTransformRadius(Root, FocusedItem.transform.position, FocusedItem.AlignTime, FocusedItem.AlignDistance));
                     }
 
-                    FocusedItem.OnPrePicked.Invoke(gameObject); //Do the On Picked First  
+                   FocusedItem.OnPrePicked.Invoke(gameObject); //Do the On Picked First  
                 }
                 Debugging("Try Pick Up");
 
@@ -396,25 +395,22 @@ namespace MalbersAnimations.Controller
             serializedObject.Update();
             MalbersEditor.DrawDescription("Pick Up Logic for Pickable Items");
 
-            //EditorGUILayout.BeginVertical(MTools.StyleGray);
+
+            Editor_Tabs1.intValue = GUILayout.Toolbar(Editor_Tabs1.intValue, Tabs1);
+            if (Editor_Tabs1.intValue == 0) DrawGeneral();
+            else DrawEvents();
+
+            if (debug.boolValue)
             {
-                Editor_Tabs1.intValue = GUILayout.Toolbar(Editor_Tabs1.intValue, Tabs1);
-                if (Editor_Tabs1.intValue == 0) DrawGeneral();
-                else DrawEvents();
-
-                if (debug.boolValue)
+                EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
                 {
-                    EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
-                    {
-                        EditorGUILayout.PropertyField(DebugRadius);
-                        EditorGUILayout.PropertyField(DebugColor, GUIContent.none, GUILayout.MaxWidth(40));
-                    }
-                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.PropertyField(DebugRadius);
+                    EditorGUILayout.PropertyField(DebugColor, GUIContent.none, GUILayout.MaxWidth(40));
                 }
-
-                serializedObject.ApplyModifiedProperties();
+                EditorGUILayout.EndHorizontal();
             }
-            // EditorGUILayout.EndVertical();
+
+            serializedObject.ApplyModifiedProperties();
         }
 
         private void DrawGeneral()
@@ -440,7 +436,7 @@ namespace MalbersAnimations.Controller
 
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                EditorGUILayout.PropertyField(Holder);
+                EditorGUILayout.PropertyField(Holder,new GUIContent("Default Holder"));
                 if (Holder.objectReferenceValue)
                 {
                     EditorGUILayout.LabelField("Offsets", EditorStyles.boldLabel);

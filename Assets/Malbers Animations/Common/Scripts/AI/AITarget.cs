@@ -36,7 +36,7 @@ namespace MalbersAnimations
         public WayPointType TargetType => pointType;
 
         [Space]
-        public GameObjectEvent OnTargetArrived = new();
+        public GameObjectEvent OnTargetArrived = new ();
 
         /// <summary>Center of the Animal to be used for AI and Targeting  </summary>
         public Vector3 Center
@@ -64,14 +64,14 @@ namespace MalbersAnimations
         public void SetWater() => pointType = WayPointType.Water;
 
 #if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            StopDistanceGizmo(Color.red);
-        }
+        //private void OnDrawGizmos()
+        //{
+        //    StopDistanceGizmo(Color.red);
+        //}
 
         private void OnDrawGizmosSelected()
         {
-            StopDistanceGizmo(Color.yellow);
+            StopDistanceGizmo(Color.red);
 
             if (stoppingDistance < slowingDistance)
             {

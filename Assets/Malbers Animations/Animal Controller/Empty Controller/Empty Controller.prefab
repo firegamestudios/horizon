@@ -1337,6 +1337,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: Fly
     key: 113
@@ -1381,6 +1385,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 1
     input: InputValue
     key: 32
@@ -1424,6 +1432,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -1480,6 +1492,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -1603,12 +1619,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee1fbf4dd84c7d4faf7900812b348a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowOnPlay: 0
   PivotPosDir: 0
   SelectedMode: -1
   SelectedState: 1
   SelectedStance: 0
   ShowStateInInspector: 0
-  Editor_Tabs1: 2
+  Editor_Tabs1: 0
   Editor_Tabs2: 4
   Mode_Tabs1: 0
   Ability_Tabs: 0
@@ -2312,6 +2329,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   currentAnimTag: 0
   platform: {fileID: 0}
+  MainCollider: {fileID: 136563349588773418}
   colliders: []
   OnAnimationChange:
     m_PersistentCalls:
@@ -3349,6 +3367,7 @@ MonoBehaviour:
   agent: {fileID: 1375431225551235940}
   animal: {fileID: 114485145315289786}
   disableInput: 1
+  enableInput: 1
   StopAgentOn:
   - {fileID: 11400000, guid: 8078fbdb01991b44b9c1351f444b5efe, type: 2}
   - {fileID: 11400000, guid: 9ae07cd2f8f4c054687fecf634f8e5b3, type: 2}
@@ -3358,6 +3377,9 @@ MonoBehaviour:
   stoppingDistance: 1.07
   PointStoppingDistance: 0.6
   slowingDistance: 2.08
+  UseScale: 1
+  targetHeight: 5
+  StopOnTargetTooHigh: 1
   LookAtOffset: 1
   slowingLimit: 0.3
   target: {fileID: 0}

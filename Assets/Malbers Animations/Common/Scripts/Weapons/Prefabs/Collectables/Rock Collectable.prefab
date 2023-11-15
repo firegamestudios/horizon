@@ -440,8 +440,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rb: {fileID: 1862501093}
-  m_colliders: []
-  EditorTabs: 1
+  m_colliders:
+  - {fileID: 2089280119934715393}
+  EditorTabs: 0
 --- !u!1001 &5488026014005920402
 PrefabInstance:
   m_ObjectHideFlags: 0

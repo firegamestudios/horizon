@@ -1681,7 +1681,7 @@ PrefabInstance:
     - target: {fileID: 8140637814876227737, guid: 9133169553a02d0418a8c61561fcc4bb,
         type: 3}
       propertyPath: stats.Array.data[0].debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8140637814876227737, guid: 9133169553a02d0418a8c61561fcc4bb,
         type: 3}
@@ -1895,6 +1895,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 1
     input: InputValue
@@ -2327,6 +2331,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: -30
     Variable: {fileID: 0}
+  LerpRotation:
+    UseConstant: 1
+    ConstantValue: 15
+    Variable: {fileID: 0}
 --- !u!1 &1556737152928106939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2368,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 0
     input: Mouse X
@@ -2416,6 +2428,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 0
     input: Mouse Y

@@ -67,6 +67,11 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: {fileID: 1947218636460032601}
     Variable: {fileID: 0}
+  hitEffects: []
+  hitSound:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 0}
   DestroyHitEffect: 0
   dontHitOwner:
     UseConstant: 1
@@ -285,6 +290,7 @@ MonoBehaviour:
       rid: -2
     element: {fileID: 0}
   debug: 0
+  m_audio: {fileID: 0}
   m_UI: {fileID: 0}
   description:
     UseConstant: 1
@@ -358,7 +364,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  UseStrafe:
+  strafeOnEquip:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -389,7 +395,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5d57cd60566a34d429591148beecc370, type: 3}
   - {fileID: 8300000, guid: 68c1c6ee9ddcd0341a672e9f7ecbbef0, type: 3}
   - {fileID: 0}
-  WeaponSound: {fileID: 0}
   OnEquiped:
     m_PersistentCalls:
       m_Calls:
@@ -704,6 +709,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  OneTimeUse:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   trigger: {fileID: 0}
   Editor_Tabs1: 0
 --- !u!1 &7458751067517391639
@@ -749,7 +758,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

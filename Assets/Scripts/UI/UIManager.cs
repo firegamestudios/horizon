@@ -4,11 +4,15 @@ using TMPro;
 using UnityEngine;
 using MalbersAnimations.UI;
 using UnityEngine.UI;
-using MoreMountains.InventoryEngine;
 using MalbersAnimations;
 using Cinemachine;
 using Inworld;
 using Droidzone.Core;
+using PixelCrushers;
+
+/// <summary>
+/// UI Manager holds all references to the UI and Observes these references to manage the player accordingly
+/// </summary>
 
 public class UIManager : MonoBehaviour
 {
@@ -39,64 +43,45 @@ public class UIManager : MonoBehaviour
     //Ai Inworld
     public GameObject globalChatCanvas;
     public AudioCapture audioCapture;
-    public GameObject aiCanvas;
-    float aiCanvasTimer = 5f;
-    float aiCanvasTimerReset = 5f;
-
-    [HideInInspector]
-    public InventoryDisplay inventoryDisplay;
-    public InventoryInputManager inventoryInputManager;
-
-    
+   
+  
     PlayerData playerData;
    
     public List<TMP_Text> attributeTexts;
 
     public List<TMP_Text> skillTexts;
 
-    
+    //quests
+    public UIPanel questPanel;
+  
+    private void Awake()
+    {
+       // questsPanel = questsGrid.parent.gameObject;
+       // questsPanelCanvas = questsPanel.GetComponent<CanvasGroup>();
+    }
+
     private void Update()
     {
        /// UI Manager is responsible for the control of player input
+       /// 
 
-       //Inventory priority
-        if (inventoryDisplay.IsOpen)
+        //Quests Journal
+        if(Input.GetKeyDown(KeyCode.J))
         {
-            //InputAndCamera(false, false);
-            FreezePlayer();
-        }
-        else
-        {
-            //if Inventory Closed, Check if Dialogue Box is open and freeze
-            if(globalChatCanvas.activeInHierarchy == true)
+            if (questPanel.isOpen)
             {
-                FreezePlayer();
-
-                inventoryInputManager.enabled = false;
-
-                if(aiCanvas.activeInHierarchy == false)
-                {
-                    aiCanvas.SetActive(true);
-                }
-                
+                questPanel.Close();
             }
             else
             {
-                UnfreezePlayer();
-                inventoryInputManager.enabled = true;
-                aiCanvasTimer -= Time.deltaTime;
-                if(aiCanvasTimer < 0)
-                {
-                    aiCanvasTimer = aiCanvasTimerReset;
-                    aiCanvas.SetActive(false);
-                }
+                questPanel.Open();
             }
-
+          
         }
 
-      
     }
 
+    #region Player Control
     void FreezePlayer()
     {
         GameManager.Pc.FreezeCamera(false);
@@ -107,6 +92,14 @@ public class UIManager : MonoBehaviour
         GameManager.Pc.FreezeCamera(true);
         GameManager.Pc.UnfreezePlayer();
     }
+    #endregion
+
+    /// <summary>
+    /// Here you can feed the UI with player information
+    /// </summary>
+    /// <param name="myName"></param>
+    /// <param name="myClass"></param>
+    /// <param name="myRace"></param>
     #region SetupPlayer
     public void SetupPlayerName(string myName, string myClass, string myRace)
     {
@@ -169,8 +162,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-   
-
+    #region Messages System
     public void AutoMessage(string message)
     {
         systemMessageText.text = message;
@@ -204,11 +196,6 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(timer);
         transMessageAnim.SetBool("on", false);
         transMessageAnim.transform.GetComponent<TransformMessage>().transformInWorld = null;
-    }
-    #region Inventory
-    public void UpdateInventoryDisplay()
-    {
-        inventoryDisplay.RedrawInventoryDisplay();
     }
     #endregion
 }

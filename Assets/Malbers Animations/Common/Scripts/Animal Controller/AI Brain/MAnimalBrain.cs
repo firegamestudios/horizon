@@ -153,10 +153,11 @@ namespace MalbersAnimations.Controller.AI
         void Awake()
         {
             if (Animal == null) Animal = gameObject.FindComponent<MAnimal>();
-            if (AIControl == null) AIControl = gameObject.FindInterface<IAIControl>();
+
+            AIControl ??= gameObject.FindInterface<IAIControl>();
 
             var AnimalStatscomponent = Animal.FindComponent<Stats>();
-            if (AnimalStatscomponent) AnimalStats = AnimalStatscomponent.stats_D;
+            if (AnimalStatscomponent) AnimalStats = AnimalStatscomponent.Stats_Dictionary(); 
 
             Animal.isPlayer.Value = false; //If is using a brain... disable that he is the main player
                                            // ResetVarsOnNewState();
@@ -443,7 +444,7 @@ namespace MalbersAnimations.Controller.AI
                 var TargetStatsC = target.FindComponent<Stats>();// ?? target.GetComponentInChildren<Stats>();
 
                 TargetHasStats = TargetStatsC != null;
-                if (TargetHasStats) TargetStats = TargetStatsC.stats_D;
+                if (TargetHasStats) TargetStats = TargetStatsC.Stats_Dictionary();
             }
         }
 

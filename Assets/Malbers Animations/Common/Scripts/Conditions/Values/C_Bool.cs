@@ -19,11 +19,8 @@ namespace MalbersAnimations.Conditions
 
         public override bool _Evaluate() => Target.Value == Value.Value;
 
+        protected override void _SetTarget(Object target) => VerifyTarget(target, ref Target.Variable);
 
-        public override void SetTarget(Object target)
-        {
-            if (target is BoolVar) this.Target.Value = target as BoolVar;
-        }
 
         private void Reset() => Name = "New Bool Comparer";
     }

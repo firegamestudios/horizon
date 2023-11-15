@@ -79,7 +79,38 @@ MonoBehaviour:
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
-  items: []
+  items:
+  - id: 1
+    fields:
+    - title: Name
+      value: Save Scrappy
+      type: 0
+      typeString: 
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: You found a nice little droid trapped in some cables. You could try
+        to untangle him so he doesn't fall to a horrible death.
+      type: 0
+      typeString: 
+    - title: Success Description
+      value: 
+      type: 0
+      typeString: 
+    - title: Failure Description
+      value: 
+      type: 0
+      typeString: 
+    - title: State
+      value: unassigned
+      type: 0
+      typeString: 
+    - title: Is Item
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
   locations:
   - id: 1
     fields:
@@ -369,7 +400,7 @@ MonoBehaviour:
         priority: 2
       conditionsString: Variable["ScrappyIntro"] == true and (Variable["ScrappyFell"]
         == false)
-      userScript: 
+      userScript: SetQuestState("Save Scrappy", "active")
       onExecute:
         m_PersistentCalls:
           m_Calls: []

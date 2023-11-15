@@ -825,8 +825,7 @@ namespace MalbersAnimations
 
             if (args != null) argType = args.GetType();
 
-
-            MethodInfo methodPtr = null;
+            MethodInfo methodPtr;
 
             if (argType != null)
             {

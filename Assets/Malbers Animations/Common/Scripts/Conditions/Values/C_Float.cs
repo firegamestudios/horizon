@@ -20,10 +20,8 @@ namespace MalbersAnimations.Conditions
 
         public override bool _Evaluate() => Target.Value.CompareFloat(Value.Value, Condition);
 
-        public override void SetTarget(Object target)
-        {
-            if (target is FloatVar) this.Target.Value = target as FloatVar;
-        }
+        protected override void _SetTarget(Object target) => VerifyTarget(target, ref Target.Variable);
+
 
         private void Reset() => Name = "New Float Comparer";
     }

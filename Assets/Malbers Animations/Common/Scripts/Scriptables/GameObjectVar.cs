@@ -35,11 +35,9 @@ namespace MalbersAnimations.Scriptables
 
     [System.Serializable]
     public class GameObjectReference : ReferenceVar
-    { 
-#pragma warning disable CA2235 // Mark all non-serializable fields
+    {
         public GameObject ConstantValue;
         [RequiredField] public GameObjectVar Variable;
-#pragma warning restore CA2235 // Mark all non-serializable fields
 
         public GameObjectReference() => UseConstant = true;
         public GameObjectReference(GameObject value) => Value = value;

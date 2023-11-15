@@ -2,6 +2,8 @@
 using UnityEngine;
 using MalbersAnimations.Scriptables;
 using UnityEngine.Serialization;
+using MalbersAnimations.Reactions;
+using MalbersAnimations.Conditions;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -16,16 +18,16 @@ namespace MalbersAnimations.Controller
         public bool debug;
 
         [Tooltip("As soon as the animal enters the zone it will execute the logic. If False then Call the Method Zone.Activate()")]
-        public BoolReference automatic = new BoolReference();
+        public BoolReference automatic = new();
 
         [Tooltip("How many characters can use this zone at the same time.\nNegative values: The zone has no character limit")]
-        public IntReference Limit = new IntReference(-1);
+        public IntReference Limit = new(-1);
 
 
 
         [Tooltip("Disable the Zone after it was used")]
         /// <summary>Disable the Zone after it was used</summary>
-        public BoolReference DisableAfterUsed = new BoolReference();
+        public BoolReference DisableAfterUsed = new();
 
 
         //[Tooltip("Use it to re-eneable the zone after finishing a mode")]
@@ -70,10 +72,10 @@ namespace MalbersAnimations.Controller
 
 
         [Tooltip("Layer to detect the Animal")]
-        public LayerReference Layer = new LayerReference(1048576); //Animal Layer
+        public LayerReference Layer = new(1048576); //Animal Layer
 
         [Tooltip("State Status. If is set to [-1] the Status will be ignored")]
-        public IntReference stateStatus = new IntReference(0);
+        public IntReference stateStatus = new(0);
 
         [SerializeField] private List<Tag> tags;
 
@@ -99,26 +101,28 @@ namespace MalbersAnimations.Controller
 
 
         [Tooltip("Amount of Force that will be applied to the Animal")]
-        public FloatReference Force = new FloatReference(10);
+        public FloatReference Force = new(10);
         [Tooltip("Aceleration to applied the Force when the Animal enters the zone")]
         [FormerlySerializedAs("EnterDrag")]
-        public FloatReference EnterAceleration = new FloatReference(2);
+        public FloatReference EnterAceleration = new(2);
         [Tooltip("Exit Drag to decrease the Force when the Animal exits the zone")]
-        public FloatReference ExitDrag = new FloatReference(4);
+        public FloatReference ExitDrag = new(4);
 
         [Tooltip("Limit the Current Force the animal may have")]
         [FormerlySerializedAs("Bounce")]
-        public FloatReference LimitForce = new FloatReference(8);
+        public FloatReference LimitForce = new(8);
 
         [Tooltip("Change if the Animal is Grounded when entering the Force Zone")]
-        public BoolReference ForceGrounded = new BoolReference();
+        public BoolReference ForceGrounded = new();
 
         [Tooltip("Can the Animal be controller while on the Air?")]
-        public BoolReference ForceAirControl = new BoolReference(true);
+        public BoolReference ForceAirControl = new(true);
 
         [Tooltip("Plays a mode no matter if another mode is already playing")]
         public bool ForceMode = false;
 
+        [Tooltip("Extra conditions to check in case you want to activate the Zone")]
+        public Conditions.MConditions CheckConditions;
 
         /// <summary>Currents Animals inside the zone</summary>
         public HashSet<MAnimal> AnimalsInZone { get; internal set; }
@@ -137,12 +141,18 @@ namespace MalbersAnimations.Controller
         public bool RemoveAnimalOnActive = false;
 
 
-        public AnimalEvent OnEnter = new AnimalEvent();
-        public AnimalEvent OnExit = new AnimalEvent();
-        public AnimalEvent OnZoneActivation = new AnimalEvent();
+        public AnimalEvent OnEnter = new();
+        public AnimalEvent OnExit = new();
+        public AnimalEvent OnZoneActivation = new();
+        public AnimalEvent OnZoneFailed = new();
 
 
-        public AnimalEvent OnZoneFailed = new AnimalEvent();
+        [SubclassSelector, SerializeReference]
+        public Reaction EnterReaction;
+        [SubclassSelector, SerializeReference]
+        public Reaction ExitReaction;
+        [SubclassSelector, SerializeReference]
+        public Reaction ActivationReaction;
 
 
         //public UnityEvent OnZoneStarted = new UnityEvent();
@@ -223,6 +233,7 @@ namespace MalbersAnimations.Controller
             {
                 ResetStoredAnimal(animal);
                 OnExit.Invoke(animal);
+                ExitReaction?.React(animal);
             }
             if (ZoneCollider) ZoneCollider.enabled = false;
 
@@ -281,6 +292,8 @@ namespace MalbersAnimations.Controller
 
                     AnimalsInZone.Add(animal);                                     //Set a new Animal
                     OnEnter.Invoke(animal);
+                    EnterReaction?.React(animal);
+
 
                     Debugging($"[Enter Animal] -> [{animal.name}]", "yellow");
 
@@ -317,7 +330,9 @@ namespace MalbersAnimations.Controller
                 {
                     if (!m_Colliders.Exists(col => col != null && col.transform.SameHierarchy(animal.transform)))  //Check if the Collider was removed
                     {
-                        OnExit.Invoke(animal);                                      //Invoke On Exit when all animal's colliders has exited the Zone
+                        OnExit.Invoke(animal);                //Invoke On Exit when all animal's colliders has exited the Zone
+                        ExitReaction?.React(animal);        //React Exit when all animal's colliders has exited the Zone
+
                         ResetStoredAnimal(animal);
 
                         AnimalsInZone.Remove(animal);
@@ -371,25 +386,30 @@ namespace MalbersAnimations.Controller
                 AnimalsUsingZone.Add(animal);
             }
 
-
-
-            var prob = Random.Range(0, 1);
-
-            if (Weight != 1 && Weight < prob)
+            if (CheckConditions != null)
             {
-                if (debug) Debug.Log($"<b>{name}</b> [Zone Failed to activate] -> <b>[{prob:F2}]</b>", this);
-                return false; //Do not Activate the Zone with low Probability.
+                CheckConditions.SetTarget(animal);
+
+                //foreach (var cond in CheckConditions.conditions)
+                //{
+                //    cond.SetTarget(animal);
+                //    Debug.Log("lkjahsdlfkajhsdflkjh");
+                //}
+                if (!CheckConditions.TryEvaluate()) 
+                    return false; //If the conditions are not fullfilled
             }
 
-            var flip = (Flip ? 1 : -1);
+            if (Weight != 1)
+            {
+                var prob = Random.Range(0, 1);
+                if (Weight < prob)
+                {
+                    if (debug) Debug.Log($"<b>{name}</b> [Zone Failed to activate] -> <b>[{prob:F2}]</b>", this);
+                    return false; //Do not Activate the Zone with low Probability.
+                }
+            }
 
-            var EntrySideAngle = Vector3.Angle(transform.forward * flip, animal.Forward) * 2;
-            var OtherSideAngle = EntrySideAngle;
-
-            if (DoubleSide) OtherSideAngle = Vector3.Angle(-transform.forward * flip, animal.Forward) * 2;
-
-            var side = Vector3.Dot((animal.transform.position - transform.position).normalized, transform.forward) * -1; //Calculate the correct side
-            if (Angle == 360 || (EntrySideAngle < Angle && side < 0) || (OtherSideAngle < Angle && side > 0))
+            if (CheckAngle(animal))
             {
                 var isZoneActive = false;
 
@@ -416,13 +436,8 @@ namespace MalbersAnimations.Controller
                 {
                     Debugging($"[Zone Activate] <b>[{animal.name}]</b>");
                     OnZoneActive(animal);
-
                     return true;
                 }
-                //else
-                //{
-                //    Debugging($"[Zone Failed] <b>[{zoneType}]</b>");
-                //}
             }
 
             return false;
@@ -434,6 +449,20 @@ namespace MalbersAnimations.Controller
             {
                 ActivateZone(animal);
             }
+        }
+
+        /// <summary> Check if the Animal is in the right angle to activate the zone </summary>
+        protected bool CheckAngle(MAnimal animal)
+        {
+            var flip = (Flip ? 1 : -1);
+
+            var EntrySideAngle = Vector3.Angle(transform.forward * flip, animal.Forward) * 2;
+            var OtherSideAngle = EntrySideAngle;
+
+            if (DoubleSide) OtherSideAngle = Vector3.Angle(-transform.forward * flip, animal.Forward) * 2;
+
+            var side = Vector3.Dot((animal.transform.position - transform.position).normalized, transform.forward) * -1; //Calculate the correct side
+            return (Angle == 360 || (EntrySideAngle < Angle && side < 0) || (OtherSideAngle < Angle && side > 0));
         }
 
         protected virtual void PrepareZone(MAnimal animal)
@@ -473,8 +502,7 @@ namespace MalbersAnimations.Controller
                 case StateAction.Activate:
                     if (animal.ActiveStateID != ZoneID)
                     {
-                        animal.State_Activate(ZoneID);
-                        if (stateStatus != -1) animal.State_SetEnterStatus(stateStatus);
+                        animal.State_Activate(ZoneID, stateStatus);
                         Succesful = true;
                     }
                     break;
@@ -486,8 +514,7 @@ namespace MalbersAnimations.Controller
                     }
                     break;
                 case StateAction.ForceActivate:
-                    animal.State_Force(ZoneID);
-                    if (stateStatus != -1) animal.State_SetEnterStatus(stateStatus);
+                    animal.State_Force(ZoneID, stateStatus);
                     Succesful = true;
                     break;
                 case StateAction.Enable:
@@ -599,6 +626,7 @@ namespace MalbersAnimations.Controller
         internal void OnZoneActive(MAnimal animal)
         {
             OnZoneActivation.Invoke(animal);
+            ActivationReaction?.React(animal);
 
             if (RemoveAnimalOnActive)
             {
@@ -687,6 +715,7 @@ namespace MalbersAnimations.Controller
                     }
 
 
+                    if (debug)
                     MDebug.Draw_Arrow(animal.transform.position + Vector3.up * 0.05f, animal.Forward, DColor);
                 }
             }
@@ -736,14 +765,18 @@ namespace MalbersAnimations.Controller
         private Zone m;
 
 
-        protected string[] Tabs1 = new string[] { "General", "Events" };
+        protected string[] Tabs1 = new string[] { "General", "Events" ,"Reactions" };
 
 
         SerializedProperty
             HeadOnly, stateAction, stateActionExit,
+
+            EnterReaction, ExitReaction, ActivationReaction,
+
             HeadName, zoneType, stateID, modeID, modeIndex, ActionID, auto, DisableAfterUsed, //reEnableOnModeEnd,
             Limit, ShowActionID, debug, m_abilityStatus, AbilityTime, Editor_Tabs1, ForceMode,
-            OnZoneActivation, OnExit, OnEnter, ForceGrounded, OnZoneFailed, Angle, DoubleSide, Weight, Flip, ForceAirControl, ZoneCollider,
+            OnZoneActivation, OnExit, OnEnter, ForceGrounded, OnZoneFailed, Angle, CheckConditions,
+            DoubleSide, Weight, Flip, ForceAirControl, ZoneCollider,
             stanceActionEnter, stanceActionExit, layer, stanceID, RemoveAnimalOnActive, m_tag, ModeFloat, Force, EnterAceleration, ExitAceleration, stateStatus, Bounce;
 
         //MonoScript script;
@@ -751,6 +784,12 @@ namespace MalbersAnimations.Controller
         {
             m = ((Zone)target);
             //script = MonoScript.FromMonoBehaviour((MonoBehaviour)target);
+
+            EnterReaction = serializedObject.FindProperty("EnterReaction");
+            ExitReaction = serializedObject.FindProperty("ExitReaction");
+            ActivationReaction = serializedObject.FindProperty("ActivationReaction");
+            CheckConditions = serializedObject.FindProperty("CheckConditions");
+
 
             HeadOnly = serializedObject.FindProperty("BoneOnly");
             HeadName = serializedObject.FindProperty("BoneName");
@@ -833,15 +872,14 @@ namespace MalbersAnimations.Controller
 
             EditorGUI.BeginChangeCheck();
 
-            if (Editor_Tabs1.intValue == 0)
+            switch (Editor_Tabs1.intValue)
             {
-                DrawGeneral();
+                case 0: DrawGeneral(); break;
+                case 1: DrawEvents(); break;
+                case 2: DrawReactions(); break;
+                default: break;
             }
-            else
-            {
-                DrawEvents();
-            }
-
+ 
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Zone Changed");
@@ -886,6 +924,18 @@ namespace MalbersAnimations.Controller
             serializedObject.ApplyModifiedProperties();
         }
 
+        private void DrawReactions()
+        {
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(ActivationReaction);
+                EditorGUILayout.PropertyField(EnterReaction);
+                EditorGUILayout.PropertyField(ExitReaction);
+                EditorGUI.indentLevel--;
+            }
+        }
+
         private void DrawGeneral()
         {
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
@@ -893,7 +943,9 @@ namespace MalbersAnimations.Controller
                 EditorGUILayout.PropertyField(auto, new GUIContent("Automatic"));
 
                 EditorGUILayout.PropertyField(DisableAfterUsed);
-                ZoneType zone = (ZoneType)zoneType.intValue;
+                EditorGUILayout.PropertyField(RemoveAnimalOnActive,
+                        new GUIContent("Reset on Active", "Remove the stored Animal on the Zone when the Zones gets Active, Reseting it to its default state"));
+
 
                 //if (zone == ZoneType.Mode)
                 //    EditorGUILayout.PropertyField(reEnableOnModeEnd);
@@ -901,10 +953,15 @@ namespace MalbersAnimations.Controller
                 EditorGUILayout.PropertyField(Limit);
 
                 EditorGUILayout.PropertyField(ZoneCollider, new GUIContent("Trigger"));
-                EditorGUILayout.PropertyField(layer);
 
+
+            }
+
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+
+            {
                 EditorGUILayout.PropertyField(zoneType);
-
+                ZoneType zone = (ZoneType)zoneType.intValue;
 
 
                 switch (zone)
@@ -992,32 +1049,36 @@ namespace MalbersAnimations.Controller
 
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                EditorGUILayout.PropertyField(Weight);
-                EditorGUILayout.PropertyField(Angle);
+                Weight.isExpanded = MalbersEditor.Foldout(Weight.isExpanded, "Conditions");
 
-                if (Angle.floatValue != 360)
+                if (Weight.isExpanded)
                 {
-                    EditorGUILayout.PropertyField(DoubleSide);
-                    EditorGUILayout.PropertyField(Flip);
+                    EditorGUILayout.PropertyField(layer);
+                    EditorGUILayout.PropertyField(Weight);
+                    EditorGUILayout.PropertyField(Angle);
+                    EditorGUILayout.PropertyField(CheckConditions);
+
+                    if (Angle.floatValue != 360)
+                    {
+                        EditorGUILayout.PropertyField(DoubleSide);
+                        EditorGUILayout.PropertyField(Flip);
+                    }
+
+
+
+                    EditorGUI.indentLevel++;
+                    EditorGUILayout.PropertyField(m_tag,
+                        new GUIContent("Tags", "Set this parameter if you want the zone to Interact only with gameObject with that tag"));
+                    EditorGUI.indentLevel--;
+
+                    EditorGUILayout.PropertyField(HeadOnly,
+                        new GUIContent("Bone Only", "Activate when a bone enter the Zone.\nThat Bone needs a collider!!"));
+
+                    if (HeadOnly.boolValue)
+                        EditorGUILayout.PropertyField(HeadName,
+                            new GUIContent("Bone Name", "Name for the Bone you need to check if it has enter the zone"));
                 }
-
-                EditorGUILayout.PropertyField(RemoveAnimalOnActive,
-                    new GUIContent("Reset on Active", "Remove the stored Animal on the Zone when the Zones gets Active, Reseting it to its default state"));
-
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(m_tag,
-                    new GUIContent("Tags", "Set this parameter if you want the zone to Interact only with gameObject with that tag"));
-                EditorGUI.indentLevel--;
-
-                EditorGUILayout.PropertyField(HeadOnly,
-                    new GUIContent("Bone Only", "Activate when a bone enter the Zone.\nThat Bone needs a collider!!"));
-
-                if (HeadOnly.boolValue)
-                    EditorGUILayout.PropertyField(HeadName,
-                        new GUIContent("Bone Name", "Name for the Bone you need to check if it has enter the zone"));
             }
-
-
         }
 
         private void DrawEvents()

@@ -31,7 +31,7 @@ MonoBehaviour:
   resetInputOnFailed: 0
   ResetLastState: 1
   General:
-    modify: -1
+    modify: 7423
     RootMotion: 1
     Sprint: 0
     Gravity: 0

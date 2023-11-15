@@ -9,6 +9,9 @@ namespace MalbersAnimations
         [RequiredField]
         public StepsManager m_StepsManager;
 
+        [Tooltip("Re Parent this GameObject to a new Bone on Awake")]
+        public Transform parent;
+
         public float WaitNextStep = 0.2f;
         public AudioSource StepAudio;
 
@@ -32,6 +35,10 @@ namespace MalbersAnimations
                 Destroy(gameObject);
                 return;
             }
+
+            //Reparent
+            if (parent != null)
+                transform.SetParent(parent, true);
 
             m_Trigger.isTrigger = true;
 

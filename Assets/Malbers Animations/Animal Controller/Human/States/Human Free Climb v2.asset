@@ -31,7 +31,7 @@ MonoBehaviour:
   resetInputOnFailed: 0
   ResetLastState: 0
   General:
-    modify: 4095
+    modify: 3327
     RootMotion: 1
     Sprint: 1
     Gravity: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   TagModifiers:
   - AnimationTag: ClimbStart
     modifier:
-      modify: -1
+      modify: 7423
       RootMotion: 1
       Sprint: 1
       Gravity: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   MovementStrafe: 1
   IdleStrafe: 1
   m_debug: 1
-  Editor_Tabs1: 4
+  Editor_Tabs1: 1
   SpeedSets: []
   ID: {fileID: 11400000, guid: 975403cc10f8cec46a3caa6ed4e3d6c5, type: 2}
   ClimbLayer:

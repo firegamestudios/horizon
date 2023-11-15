@@ -22,10 +22,8 @@ namespace MalbersAnimations.Conditions
 
         public override bool _Evaluate() => Target.Value.CompareInt(Value.Value, Condition);
 
-        public override void SetTarget(Object target)
-        {
-            if (target is IntVar) this.Target.Value = target as IntVar;
-        }
+        protected override void _SetTarget(Object target) => VerifyTarget(target, ref Target.Variable);
+
 
         private void Reset() => Name = "New Integer Comparer";
     }

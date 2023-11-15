@@ -123,6 +123,103 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 899bea4082a9d824ebf741d13ec658ac, type: 2}
+--- !u!1 &37838306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 37838308}
+  - component: {fileID: 37838307}
+  m_Layer: 30
+  m_Name: Player Focusing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &37838307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37838306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74a3408f572894eaeb236ed7386467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowEvents: 0
+  ID:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Auto: 1
+  InvokeOnEnable: 1
+  Description: 
+  ShowDescription: 0
+  debug: 0
+  value:
+    UseConstant: 1
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 0}
+  Condition: 2
+  compareTo:
+    UseConstant: 0
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 0c45a2c5e368c004eb9efaa6152aa0ea, type: 2}
+  T_Name:
+    UseConstant: 1
+    ConstantValue: 
+    Variable: {fileID: 0}
+  Then:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1700862161}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  Else:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1700862161}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &37838308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37838306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8942318350600416923}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &54300318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,111 +2024,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 583639479}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1197785077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1197785078}
-  - component: {fileID: 1197785080}
-  - component: {fileID: 1197785079}
-  m_Layer: 30
-  m_Name: Check Player Picking
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1197785078
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197785077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8942318350600416923}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1197785079
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197785077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eabe036b1c50fd43b27ec46d5364532, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Check if the Picker is Player
-  invert: 0
-  OrAnd: 0
-  Target:
-    UseConstant: 1
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 0}
-  Condition: 2
-  Value:
-    UseConstant: 0
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 11400000, guid: 0c45a2c5e368c004eb9efaa6152aa0ea, type: 2}
-  checkName: 
---- !u!114 &1197785080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197785077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb769e7b671f1642b42d0a739c994ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditions:
-  - {fileID: 1197785079}
-  Then:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1700862161}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  Else:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1700862161}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Pinned: {fileID: 0}
-  debug: 0
-  SelectedState: 0
 --- !u!1 &1215228315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5972,22 +5964,11 @@ MonoBehaviour:
   OnFocusedBy:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1197785080}
-        m_TargetAssemblyTypeName: MalbersAnimations.Conditions.MConditions, Assembly-CSharp
+      - m_Target: {fileID: 37838307}
+        m_TargetAssemblyTypeName: MalbersAnimations.Scriptables.TransformComparer,
+          MalbersAnimations
         m_MethodName: SetTarget
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1197785080}
-        m_TargetAssemblyTypeName: MalbersAnimations.Conditions.MConditions, Assembly-CSharp
-        m_MethodName: Evaluate
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5999,18 +5980,6 @@ MonoBehaviour:
   OnPicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8942318350600416924}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: set_Value
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 0
       - m_Target: {fileID: 8942318350600416929}
         m_TargetAssemblyTypeName: MalbersAnimations.Scriptables.TransformComparer,
           MalbersAnimations
@@ -6220,7 +6189,7 @@ Transform:
   m_Children:
   - {fileID: 1700862164}
   - {fileID: 500118197}
-  - {fileID: 1197785078}
+  - {fileID: 37838308}
   m_Father: {fileID: 1215228316}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6613,7 +6582,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Editor_Tabs1: 0
-  Editor_Tabs2: 3
+  Editor_Tabs2: 4
   releaseProjectile: 3
   CancelAim: 1
   m_Projectile:
@@ -6742,8 +6711,8 @@ MonoBehaviour:
     Variable: {fileID: 0}
   Auto: 1
   InvokeOnEnable: 1
-  Description: 
-  ShowDescription: 0
+  Description: The Picker was the Player
+  ShowDescription: 1
   debug: 0
   value:
     UseConstant: 1
@@ -6760,7 +6729,32 @@ MonoBehaviour:
     Variable: {fileID: 0}
   Then:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8942318350600416924}
+        m_TargetAssemblyTypeName: MalbersAnimations.BoolVarListener, MalbersAnimations
+        m_MethodName: set_Value
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8942318350600416929}
+        m_TargetAssemblyTypeName: MalbersAnimations.Scriptables.TransformComparer,
+          MalbersAnimations
+        m_MethodName: ClearTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   Else:
     m_PersistentCalls:
       m_Calls: []

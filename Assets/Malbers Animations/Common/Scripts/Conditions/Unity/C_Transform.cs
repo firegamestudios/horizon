@@ -25,7 +25,6 @@ namespace MalbersAnimations.Conditions
         [Tooltip("Name to compare"), SerializeField]
         private string checkName;
 
-
         public override bool _Evaluate()
         {
             if (Condition == TransformCondition.Null) return Target.Value == null;
@@ -47,37 +46,15 @@ namespace MalbersAnimations.Conditions
             return false;
         }
 
-        public override void SetTarget(Object target)
+        protected override void _SetTarget(Object target)
         {
-            if (target == null)
-            {
-                Target.Value = null; //Check Null First
-            }
-            else if (target is Component)
-            {
-                Target.Value = (target as Component).transform;
-            }
-            else if (target is GameObject)
-            {
-                Target.Value = (target as GameObject).transform;
-            }
+            var Tar = Target.Value;
+            VerifyTarget<Transform>(target, ref Tar);
+            Target.Value = Tar;
         }
 
-        public void SetValue(Object target)
-        {
-            if (target == null)
-            {
-                Value.Value = null; //Check Null First
-            }
-            else if (target is Component)
-            {
-                Value.Value = (target as Component).transform;
-            }
-            else if (target is GameObject)
-            {
-                Value.Value = (target as GameObject).transform;
-            }
-        }
+        public void SetValue(Object target) => _SetTarget(target);
+        
 
         private void Reset() => Name = "New Transform Condition";
     }

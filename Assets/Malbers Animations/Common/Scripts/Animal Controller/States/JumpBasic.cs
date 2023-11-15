@@ -166,6 +166,18 @@ namespace MalbersAnimations.Controller
             }
         }
 
+
+        /// <summary> Use this to lock jumps profiles and not use the Vertical to check which is the valid profile </summary>
+        public void LockJumpProfile(int index)
+        {
+            Debug.Log("LSAKJGDSALKDsssssssssHJALSKDHJALKSHDJLAKSJHDLSAKJHDSLKAJHD");
+
+            index = Mathf.Clamp(index, 0, profiles.Count - 1);
+            activeJump = profiles[index];
+            animal.VerticalSmooth = activeJump.VerticalSpeed;
+            animal.SetAnimParameter(animal.hash_Vertical, animal.VerticalSmooth);
+        }
+
         private void FindJumpProfile()
         {
             activeJump = (profiles != null && profiles.Count > 0) ? profiles[0] : new JumpBasicProfile() { };
@@ -407,7 +419,7 @@ namespace MalbersAnimations.Controller
                 JumpsPerformanced = 0;          //Reset the amount of jumps performanced
             }
             //If we were not jumping then increase the Double Jump factor when falling from locomotion
-            else if (newState == StateEnum.Fall && animal.LastState.ID != ID)
+            else if (newState == StateEnum.Fall && animal.LastState && animal.LastState.ID != ID)
             {
                 JumpsPerformanced++; //If we are in fall animation then increase a Jump perfomanced
             }

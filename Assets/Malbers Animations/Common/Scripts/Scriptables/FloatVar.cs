@@ -8,7 +8,7 @@ namespace MalbersAnimations.Scriptables
     public class FloatVar : ScriptableVar
     {
         /// <summary>The current value</summary>
-        [SerializeField,HideInInspector] private float value = 0;
+        [SerializeField] protected float value = 0;
 
         /// <summary> Invoked when the value changes</summary>
         public Action<float> OnValueChanged = delegate { };

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using MalbersAnimations.Events;
 using UnityEngine.Events;
 using System;
 
@@ -13,14 +11,14 @@ using UnityEditorInternal;
 namespace MalbersAnimations.Conditions
 {
     [HelpURL("https://malbersanimations.gitbook.io/animal-controller/global-components/conditions")]
-    [AddComponentMenu("Malbers/Interactions/Conditions"),DisallowMultipleComponent]
+    [AddComponentMenu("Malbers/Interactions/Conditions"), DisallowMultipleComponent]
     public class MConditions : MonoBehaviour
     {
         [SerializeReference]
         public List<MCondition> conditions;
 
-        public UnityEvent Then = new UnityEvent();
-        public UnityEvent Else = new UnityEvent();
+        public UnityEvent Then = new();
+        public UnityEvent Else = new();
 
         public MCondition Pinned;
 
@@ -53,7 +51,7 @@ namespace MalbersAnimations.Conditions
         [ContextMenu("Hide Conditions")]
         private void HideAllConditions()
         {
-            var conditions = GetComponents<MCondition>(); 
+            var conditions = GetComponents<MCondition>();
 
             foreach (var item in conditions)
             {
@@ -82,7 +80,7 @@ namespace MalbersAnimations.Conditions
                 else Else.Invoke();
 
 
-                if (debug) Debug.Log($"[{name}] → Conditions Result → <B><color={(result ? "green" : "red")}>[{result}] </color></B>",this);
+                if (debug) Debug.Log($"[{name}] → Conditions Result → <B><color={(result ? "green" : "red")}>[{result}] </color></B>", this);
 
                 return result;
             }
@@ -94,7 +92,7 @@ namespace MalbersAnimations.Conditions
 
         private void Debuggin(MCondition c, bool result)
         {
-            if (debug) Debug.Log($"[{name}] →  Cond: <B>[{c.GetType().Name}] {(c.invert ? "[!]" : " ")}  → <color={(result ? "green" : "red")}>[{result}] </color></B>."); 
+            if (debug) Debug.Log($"[{name}] →  Cond: <B>[{c.GetType().Name}] {(c.invert ? "[!]" : " ")}  → <color={(result ? "green" : "red")}>[{result}] </color></B>.");
         }
     }
 
@@ -125,7 +123,7 @@ namespace MalbersAnimations.Conditions
             Reo_List_States = new ReorderableList(serializedObject, conditions, true, true, true, true)
             {
                 drawHeaderCallback = Draw_Header_State,
-                drawElementCallback = Draw_Element_State, 
+                drawElementCallback = Draw_Element_State,
                 //onReorderCallbackWithDetails = OnReorderCallback_States_Details,
                 onAddCallback = OnAddCallback_State,
                 onRemoveCallback = OnRemove_Condition,
@@ -164,10 +162,10 @@ namespace MalbersAnimations.Conditions
 
                 var name = elementSo.FindProperty("Name");
                 var OrAnd = elementSo.FindProperty("OrAnd");
-               // var invert = elementSo.FindProperty("invert");
+                // var invert = elementSo.FindProperty("invert");
 
                 var AndORWidth = 38;
-               // var InvertWidth = 45;
+                // var InvertWidth = 45;
 
                 var elRect = new Rect(rect)
                 {
@@ -183,7 +181,7 @@ namespace MalbersAnimations.Conditions
                     height = EditorGUIUtility.singleLineHeight,
                     y = rect.y + 2,
                     width = AndORWidth,
-                }; 
+                };
 
                 var dC = GUI.color;
                 if (index != 0)
@@ -212,7 +210,7 @@ namespace MalbersAnimations.Conditions
                 }
             }
         }
-         
+
         private void OnAddCallback_State(ReorderableList list)
         {
             var addMenu = new GenericMenu();
@@ -226,7 +224,7 @@ namespace MalbersAnimations.Conditions
                 var name = cond.DisplayName;
                 DestroyImmediate(cond);
 
-                addMenu.AddItem(new GUIContent(name), false, () => AddCondition(st,list.count));
+                addMenu.AddItem(new GUIContent(name), false, () => AddCondition(st, list.count));
             }
 
             addMenu.ShowAsContext();
@@ -240,7 +238,7 @@ namespace MalbersAnimations.Conditions
 
             conditions.serializedObject.Update();
 
-            var ind = Mathf.Clamp( conditions.arraySize, 0 ,conditions.arraySize);
+            var ind = Mathf.Clamp(conditions.arraySize, 0, conditions.arraySize);
 
             cond.Name += $"({ind})";
 
@@ -261,7 +259,7 @@ namespace MalbersAnimations.Conditions
                 DestroyImmediate(state);
             }
             conditions.DeleteArrayElementAtIndex(list.index);
-          
+
             list.index -= 1;
             SelectedState.intValue = list.index;
             EditorUtility.SetDirty(target);
@@ -302,10 +300,10 @@ namespace MalbersAnimations.Conditions
 
                             EditorGUI.indentLevel++;
                             element.isExpanded = GUILayout.Toggle(element.isExpanded,
-                                $"Condition [{index}] : [{M.conditions[index].Name}] ", 
+                                $"Condition [{index}] : [{M.conditions[index].Name}] ",
                                 EditorStyles.foldoutHeader, GUILayout.MinWidth(40));
                             EditorGUI.indentLevel--;
-                             
+
 
                             SerializedObject elementSo = new SerializedObject(element.objectReferenceValue);
                             var invert = elementSo.FindProperty("invert");

@@ -2424,6 +2424,21 @@ PrefabInstance:
       objectReference: {fileID: 9219519176949247614}
     - target: {fileID: 95444453729787667, guid: 5150b221c7eed6c42a7b46ee90209efa,
         type: 3}
+      propertyPath: colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 7408435979805949026}
+    - target: {fileID: 95444453729787667, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: colliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 2474301391582169305}
+    - target: {fileID: 95444453729787667, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
+      propertyPath: colliders.Array.data[2]
+      value: 
+      objectReference: {fileID: 3353652113506103871}
+    - target: {fileID: 95444453729787667, guid: 5150b221c7eed6c42a7b46ee90209efa,
+        type: 3}
       propertyPath: SmoothVertical.UseConstant
       value: 0
       objectReference: {fileID: 0}

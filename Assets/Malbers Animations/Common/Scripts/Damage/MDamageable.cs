@@ -4,8 +4,6 @@ using MalbersAnimations.Scriptables;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
-using System.Collections;
-using MalbersAnimations.Controller;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -107,10 +105,10 @@ namespace MalbersAnimations
             profiles ??= new();
 
 
-          //  PointAround = 
+            //  PointAround = 
         }
 
-        private Vector3 PointAround;
+        // private Vector3 PointAround;
 
 
         /// <summary> Restore the Default Damageable profile </summary>
@@ -277,92 +275,11 @@ namespace MalbersAnimations
             if (!Direction.IsDestroyed())
             {
                 StopAllCoroutines();
-                StartCoroutine(AlignLookAtTransform(character.transform, Direction.transform.position, AlignTime.Value));
+                StartCoroutine(MTools.AlignLookAtTransform(
+                    character.transform, Direction.transform.position, AlignOffset, AlignTime.Value,
+                    stats.transform.localScale.y, AlignCurve));
             }
         }
-
-
-        public  IEnumerator AlignLookAtTransform(Transform t1, Vector3 target, float time)
-        {
-            float elapsedTime = 0;
-            var wait = new WaitForFixedUpdate();
-
-            Quaternion CurrentRot = t1.rotation;
-            Vector3 direction = (target - t1.position);
-
-            direction = Vector3.ProjectOnPlane(direction, t1.up);  
-            Quaternion FinalRot = Quaternion.LookRotation(direction);
-          //  var TargetPosition = t1.position;
-
-            var scale = transform.localScale.y;
-            Vector3 Offset = t1.position + AlignOffset * scale * t1.forward; //Use Offset
-
-            if (AlignOffset != 0)
-            {
-                //Calculate Real Direction at the End! 
-                Quaternion TargetInverse_Rot = Quaternion.Inverse(t1.rotation);
-                Quaternion TargetDelta = TargetInverse_Rot * FinalRot;
-
-                var TargetPosition = t1.position + t1.DeltaPositionFromRotate(Offset, TargetDelta);
-                direction = ((target) - TargetPosition);
-
-                MDebug.Draw_Arrow(TargetPosition, direction, Color.yellow, 5f);
-              //  MDebug.DrawWireSphere(t1.position, 0.1f, Color.yellow, 2f);
-                MDebug.DrawWireSphere(TargetPosition, 0.1f, Color.green, 5f);
-                MDebug.DrawWireSphere(target, 0.1f, Color.yellow, 5f);
-                direction = Vector3.ProjectOnPlane(direction, t1.up); //Remove Y values
-            }
-
-            if (direction.CloseToZero())
-            {
-                Debug.LogWarning("Direction is Zero. Please set a correct rotation", t1);
-                yield return null;
-
-            } 
-            else
-            {
-                direction = Vector3.ProjectOnPlane(direction, t1.up); //Remove Y values
-                FinalRot = Quaternion.LookRotation(direction);
-
-
-
-                Quaternion Last_Platform_Rot = t1.rotation;
-
-                while ((time > 0) && (elapsedTime <= time))
-                {
-                    float result = AlignCurve != null ? AlignCurve.Evaluate(elapsedTime / time) : elapsedTime / time;               //Evaluation of the Pos curve
-
-                    t1.rotation = Quaternion.SlerpUnclamped(CurrentRot, FinalRot, result);
-
-                    if (AlignOffset != 0)
-                    {
-                        Quaternion Inverse_Rot = Quaternion.Inverse(Last_Platform_Rot);
-                        Quaternion Delta = Inverse_Rot * t1.rotation;
-                        t1.position += t1.DeltaPositionFromRotate(Offset, Delta);
-                    }
-
-                    elapsedTime += Time.fixedDeltaTime;
-
-
-                    Debug.DrawRay(Offset, Vector3.up, Color.white);
-                    MDebug.DrawWireSphere(t1.position, t1.rotation, 0.05f * scale, Color.white,0.2f);
-                    MDebug.DrawWireSphere(t1.position, t1.rotation, 0.05f * scale, Color.white,0.2f);
-                    MDebug.DrawWireSphere(Offset, 0.05f * scale, Color.white,0.2f);
-                    MDebug.Draw_Arrow(t1.position, t1.forward, Color.white, 0.2f);
-                     
-                    Last_Platform_Rot = t1.rotation;
-
-                    yield return wait;
-                }
-
-                //t1.rotation = FinalRot;
-                //t1.position = TargetPosition;
-            }
-        }
-
-
-        
-
 
         /// <summary>  Receive Damage from external sources simplified </summary>
         /// <param name="stat"> What stat will be modified</param>
@@ -459,7 +376,7 @@ namespace MalbersAnimations
 
 
             /// <summary> Final value who modified the Stat</summary>
-            public float Damage => stat.modify != StatOption.None ? stat.Value  : 0f;
+            public float Damage => stat.modify != StatOption.None ? stat.Value : 0f;
 
             /// <summary>Store if the Damage was Critical</summary>
             public bool WasCritical;
@@ -568,7 +485,7 @@ namespace MalbersAnimations
             this.surface = surface;
             this.reaction = reaction;
             this.DamagerReaction = DamagerReaction;
-            this.multiplier = multiplier; 
+            this.multiplier = multiplier;
             this.criticalReaction = criticalReaction;
             this.AlignToDamage = AlignToDamage;
             this.elements = elements;
@@ -581,8 +498,8 @@ namespace MalbersAnimations
     public class MDamageableEditor : Editor
     {
         SerializedProperty reaction, damagerReaction, criticalReaction, surface,
-            stats, 
-            multiplier, ignoreDamagerReaction, events, Root, 
+            stats,
+            multiplier, ignoreDamagerReaction, events, Root,
             AlignTime, AlignCurve, AlignToDamage, AlignOffset,
             Editor_Tabs1, elements, profiles;
         MDamageable M;
@@ -603,7 +520,7 @@ namespace MalbersAnimations
             multiplier = serializedObject.FindProperty("multiplier");
             events = serializedObject.FindProperty("events");
             Root = serializedObject.FindProperty("Root");
-            
+
             AlignToDamage = serializedObject.FindProperty("AlignToDamage");
             AlignCurve = serializedObject.FindProperty("AlignCurve");
             AlignTime = serializedObject.FindProperty("AlignTime");
@@ -684,7 +601,7 @@ namespace MalbersAnimations
                         EditorGUILayout.PropertyField(AlignTime);
                         EditorGUILayout.PropertyField(AlignCurve, GUIContent.none, GUILayout.MaxWidth(75));
                     }
-                        EditorGUILayout.PropertyField(AlignOffset);
+                    EditorGUILayout.PropertyField(AlignOffset);
                 }
             }
         }

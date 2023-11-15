@@ -571,19 +571,19 @@ namespace MalbersAnimations.Utilities
 
         void HeaderCallbackDelegate(Rect rect)
         {
-            Rect R_0 = new Rect(rect.x, rect.y, 15, EditorGUIUtility.singleLineHeight);
-            Rect R_01 = new Rect(rect.x + 14, rect.y, 35, EditorGUIUtility.singleLineHeight);
-            Rect R_1 = new Rect(rect.x + 14 + 25, rect.y, (rect.width - 10) / 2, EditorGUIUtility.singleLineHeight);
-            Rect R_2 = new Rect(rect.x + 35 + ((rect.width - 30) / 2), rect.y, rect.width - ((rect.width) / 2) - 25, EditorGUIUtility.singleLineHeight);
+            Rect R_0 = new(rect.x, rect.y, 15, EditorGUIUtility.singleLineHeight);
+            Rect R_01= new(rect.x + 14, rect.y, 35, EditorGUIUtility.singleLineHeight);
+            Rect R_1 = new(rect.x + 14 + 25, rect.y, (rect.width - 10) / 2, EditorGUIUtility.singleLineHeight);
+            Rect R_2 = new(rect.x + 35 + ((rect.width - 30) / 2), rect.y, rect.width - ((rect.width) / 2) - 25, EditorGUIUtility.singleLineHeight);
             showMeshesList.boolValue = EditorGUI.ToggleLeft(R_0, new GUIContent("", "Show the Material Items when Selected"), showMeshesList.boolValue);
 
             EditorGUI.LabelField(R_01, new GUIContent(" #", "Index"), EditorStyles.miniLabel);
             EditorGUI.LabelField(R_1, "Material Items", EditorStyles.miniLabel);
-            EditorGUI.LabelField(R_2, "CURRENT", EditorStyles.centeredGreyMiniLabel);
-            Rect R_3 = new Rect(rect.width + 5, rect.y + 1, 20, EditorGUIUtility.singleLineHeight - 2);
+            EditorGUI.LabelField(R_2, "Current", EditorStyles.centeredGreyMiniLabel);
+            Rect R_3 = new(rect.width + 5, rect.y + 1, 20, EditorGUIUtility.singleLineHeight - 2);
 
-            Rect R_4 = new Rect(rect.width - 25, rect.y + 1, 30, EditorGUIUtility.singleLineHeight - 2);
-            random.boolValue = GUI.Toggle(R_3, random.boolValue, new GUIContent("R", "On Start Assigns a Random Material"), EditorStyles.miniButton);
+            Rect R_4 = new(rect.width - 25, rect.y + 1, 30, EditorGUIUtility.singleLineHeight - 2);
+            random.boolValue = GUI.Toggle(R_3, random.boolValue, new GUIContent("R", "Random Material on Start"), EditorStyles.miniButton);
             changeHidden.boolValue = GUI.Toggle(R_4, changeHidden.boolValue, new GUIContent("CH", "Change Material on Hidden Objects"), EditorStyles.miniButton);
         }
 
@@ -592,9 +592,9 @@ namespace MalbersAnimations.Utilities
             var element = materialList.GetArrayElementAtIndex(index);
             rect.y += 2;
 
-            Rect R_0 = new Rect(rect.x, rect.y, (rect.width - 65) / 2, EditorGUIUtility.singleLineHeight);
-            Rect R_1 = new Rect(rect.x + 25, rect.y, (rect.width - 65) / 2, EditorGUIUtility.singleLineHeight);
-            Rect R_2 = new Rect(rect.x + 25 + ((rect.width - 30) / 2), rect.y, rect.width - ((rect.width) / 2) - 8, EditorGUIUtility.singleLineHeight);
+            Rect R_0 = new(rect.x, rect.y, (rect.width - 65) / 2, EditorGUIUtility.singleLineHeight);
+            Rect R_1 = new(rect.x + 25, rect.y, (rect.width - 65) / 2, EditorGUIUtility.singleLineHeight);
+            Rect R_2 = new(rect.x + 25 + ((rect.width - 30) / 2), rect.y, rect.width - ((rect.width) / 2) - 8, EditorGUIUtility.singleLineHeight);
 
             EditorGUI.LabelField(R_0, "(" + index.ToString() + ")", EditorStyles.label);
 

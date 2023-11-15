@@ -34,6 +34,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1944933968092355648, guid: d520239042c144f438232f9375004dc2,
         type: 3}
+      propertyPath: FrontOffet
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944933968092355648, guid: d520239042c144f438232f9375004dc2,
+        type: 3}
       propertyPath: Layer.ConstantValue.m_Bits
       value: 8388608
       objectReference: {fileID: 0}
@@ -41,6 +46,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UseRaycasting.ConstantValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923439836254422781, guid: d520239042c144f438232f9375004dc2,
+        type: 3}
+      propertyPath: Distance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923439836254422781, guid: d520239042c144f438232f9375004dc2,
+        type: 3}
+      propertyPath: FrontOffet
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5586380530138476068, guid: d520239042c144f438232f9375004dc2,
         type: 3}

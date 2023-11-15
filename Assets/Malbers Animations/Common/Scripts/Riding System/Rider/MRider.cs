@@ -46,11 +46,11 @@ namespace MalbersAnimations.HAP
 
         [Tooltip("Gravity Direction." +
             "This is used to properly orient the Rider back to the Defult Gravity when dismounting. E.g. When the Animal is on a Slope.")]
-        public Vector3Reference Gravity = new Vector3Reference(Vector3.down);
+        public Vector3Reference Gravity = new(Vector3.down);
 
-        [SerializeField] private BoolReference m_CanMount = new BoolReference(false);
-        [SerializeField] private BoolReference m_CanDismount = new BoolReference(false);
-        [SerializeField] private BoolReference m_CanCallAnimal = new BoolReference(false);
+        [SerializeField] private BoolReference m_CanMount = new(false);
+        [SerializeField] private BoolReference m_CanDismount = new(false);
+        [SerializeField] private BoolReference m_CanCallAnimal = new(false);
 
         /// <summary>Changes the Dismount animation on the Rider</summary>
         public DismountType DismountType = DismountType.Random;
@@ -69,10 +69,10 @@ namespace MalbersAnimations.HAP
         public Transform LeftHand;
 
         [Tooltip("Left Offset to place the Reins in the Left Hand")]
-        public Vector3Reference LeftReinOffset = new Vector3Reference();
+        public Vector3Reference LeftReinOffset = new();
 
         [Tooltip("Right Offset to place the Reins in the Right Hand")]
-        public Vector3Reference RightReinOffset = new Vector3Reference();
+        public Vector3Reference RightReinOffset = new();
 
         private bool freeRightHand = true;
         private bool freeLeftHand = true;
@@ -88,7 +88,7 @@ namespace MalbersAnimations.HAP
         public UpdateMode LinkUpdate = UpdateMode.Update | UpdateMode.FixedUpdate;
 
         /// <summary>Time to Align to the Mount Trigger Position while is playing the Mount Animation</summary>
-        public FloatReference AlingMountTrigger = new FloatReference(0.2f);
+        public FloatReference AlingMountTrigger = new(0.2f);
 
         private Hashtable animatorParams;
 
@@ -1553,7 +1553,7 @@ namespace MalbersAnimations.HAP
     [CustomEditor(typeof(MRider), true)]
     public class MRiderEd : Editor
     {
-        public readonly string version = "Riding System - HAP [v4.4.2c]";
+        public readonly string version = "Riding System - HAP [v4.4.2d]";
 
         protected MRider M;
 

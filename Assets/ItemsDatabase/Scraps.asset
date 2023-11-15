@@ -9,86 +9,86 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48417c356aa393b48a91d187acc3198e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e63ce81d1de48343862dbb33f4fda3d, type: 3}
   m_Name: Scraps
   m_EditorClassIdentifier: 
-  ItemID: Scraps
-  TargetInventoryName: RogueMainInventory
-  ForceSlotIndex: 0
-  TargetIndex: 0
-  Usable: 1
-  Consumable: 1
-  ConsumeQuantity: 1
-  Equippable: 0
-  EquippableIfInventoryIsFull: 1
-  MoveWhenEquipped: 1
+  ID: 4
+  type: {fileID: 11400000, guid: 4e5a472575f9c9440a7753d5aa08c156, type: 2}
+  icon: {fileID: 21300000, guid: fb3794da83182bd488ad66a8bb98ad83, type: 3}
+  itemName: Scraps
+  description: A sword bathed in fire!
+  subtitleText: Don't get yourself burned!
+  Stackable: 1
+  maxStacks: 99
+  inWorldPrefab: {fileID: 8275440879969161170, guid: c34840ab99ce7104780d13847115ec4e,
+    type: 3}
+  Equippable: 1
+  Usable: 0
   Droppable: 1
-  CanMoveObject: 1
-  CanSwapObject: 1
-  DisplayProperties:
-    DisplayEquipUseButton: 1
-    DisplayMoveButton: 1
-    DisplayDropButton: 1
-    DisplayEquipButton: 1
-    DisplayUseButton: 1
-    DisplayUnequipButton: 1
-  Quantity: 1
-  ItemName: Scraps
-  ShortDescription: Value 1
-  Description: Scraps can be found all over the system, but they are abundant in
-    Junk Navale. Useful especially to engineers that can craft drones, droids and
-    create heavy machinery.
-  Icon: {fileID: 21300000, guid: b42ff0902de3c314baeaf2ceb004df14, type: 3}
-  Prefab: {fileID: 180430, guid: 9656340f886d7124dbc67c8cd98349d6, type: 3}
-  ForcePrefabDropQuantity: 0
-  PrefabDropQuantity: 1
-  DropProperties:
-    Shape: 0
-    NormalToSpawnPlane: {x: 0, y: 0, z: 1}
-    MinimumSphereRadius: 1
-    MaximumSphereRadius: 2
-    MinimumCubeBaseSize: {x: 1, y: 1, z: 1}
-    MaximumCubeBaseSize: {x: 2, y: 2, z: 2}
-    MinimumNormalAxisOffset: 0
-    MaximumNormalAxisOffset: 0
-    UseNormalAxisOffsetCurve: 0
-    NormalOffsetCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    NormalOffsetCurveRemapZero: 0
-    NormalOffsetCurveRemapOne: 1
-    InvertNormalOffsetCurve: 0
-    MinimumRotation: {x: 0, y: 0, z: 0}
-    MaximumRotation: {x: 0, y: 0, z: 0}
-    MinimumScale: {x: 1, y: 1, z: 1}
-    MaximumScale: {x: 1, y: 1, z: 1}
-  MaximumStack: 99
-  ItemClass: 3
-  TargetEquipmentInventoryName: 
-  EquippedSound: {fileID: 0}
-  UsedSound: {fileID: 8300000, guid: d6654b23983ce73439bcc32434698d3c, type: 3}
-  MovedSound: {fileID: 0}
-  DroppedSound: {fileID: 0}
-  UseDefaultSoundsIfNull: 1
-  HealthBonus: 5
+  Discardable: 1
+  OnItemUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemUnEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemDropped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  UseReaction:
+    name: 
+    reaction:
+      rid: 7059134390279864324
+  EquipReaction:
+    name: Equip
+    reaction:
+      rid: 6255402565496209415
+  UnequipReaction:
+    name: Unequip
+    reaction:
+      rid: 6255402565496209416
+  DropReaction:
+    name: Drop
+    reaction:
+      rid: 6255402565496209417
+  RemoveReaction:
+    name: Remove
+    reaction:
+      rid: 6255402565496209418
+  Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6255402565496209415
+      type: {class: EquipItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 6255402565496209416
+      type: {class: UnequipItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 6255402565496209417
+      type: {class: DropItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 6255402565496209418
+      type: {class: RemoveItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 7059134390279864324
+      type: {class: EquipItemReaction, ns: MalbersAnimations.Reactions, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0

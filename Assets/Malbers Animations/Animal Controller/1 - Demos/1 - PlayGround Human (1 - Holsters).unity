@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4849924, g: 0.5915705, b: 0.65520734, a: 1}
+  m_IndirectSpecularColor: {r: 0.73045343, g: 0.79851073, b: 0.8354537, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23536,6 +23536,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  OneTimeUse:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   trigger: {fileID: 0}
   Editor_Tabs1: 0
 --- !u!1001 &1294501484
@@ -25316,6 +25320,7 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -25379,8 +25384,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 1520165682}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1520165682
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26102,12 +26118,12 @@ PrefabInstance:
     - target: {fileID: 269226259427615212, guid: 2521a30bc9f056f42b40cf453780670a,
         type: 3}
       propertyPath: Editor_Tabs1
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 269226259427615212, guid: 2521a30bc9f056f42b40cf453780670a,
         type: 3}
       propertyPath: Editor_Tabs2
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6663294981268516646, guid: 2521a30bc9f056f42b40cf453780670a,
         type: 3}
@@ -26726,6 +26742,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1624323933}
     m_Modifications:
+    - target: {fileID: 620550574, guid: 04c1fd6f4d1402f43a3283633875dc8c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.30004883
+      objectReference: {fileID: 0}
     - target: {fileID: 1936816509490896, guid: 04c1fd6f4d1402f43a3283633875dc8c, type: 3}
       propertyPath: m_Name
       value: Inventory
@@ -28781,6 +28801,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -28856,8 +28877,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 1784810346}
   Editor_Tabs1: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &1784810348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29290,6 +29322,11 @@ PrefabInstance:
       propertyPath: Editor_Tabs1
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7117139279136766616, guid: 9133169553a02d0418a8c61561fcc4bb,
+        type: 3}
+      propertyPath: startWeapon.ConstantValue
+      value: 
+      objectReference: {fileID: 2140745861}
     - target: {fileID: 8140637814876227737, guid: 9133169553a02d0418a8c61561fcc4bb,
         type: 3}
       propertyPath: stats.Array.data[0].EditorTabs
@@ -30752,6 +30789,7 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -30815,8 +30853,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 2063814158}
   Editor_Tabs1: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!4 &2063814160
 Transform:
   m_ObjectHideFlags: 0
@@ -30899,6 +30948,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319d2fe34a804e245819465c9505ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2140745861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 156205681994372542, guid: 2521a30bc9f056f42b40cf453780670a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1583615015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &29138951034362571
 GameObject:
   m_ObjectHideFlags: 0
@@ -32107,6 +32162,7 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -32134,8 +32190,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 1968653434352500396}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &1968653434400092955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36201,6 +36268,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   currentAnimTag: 0
   platform: {fileID: 0}
+  MainCollider: {fileID: 0}
   colliders: []
   OnAnimationChange:
     m_PersistentCalls:
@@ -36632,6 +36700,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  AlignOffset:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Root: {fileID: 0}
   events:
     OnReceivingDamage:

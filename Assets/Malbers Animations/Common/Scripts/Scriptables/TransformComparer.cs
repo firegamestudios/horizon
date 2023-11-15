@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace MalbersAnimations.Scriptables
 {
     [AddComponentMenu("Malbers/Variables/Transform Comparer")]
@@ -41,9 +45,11 @@ namespace MalbersAnimations.Scriptables
             {
                 case TransformCondition.Null:
                     Response(value == null);
+                    Debbuging($"Value is Null ? [{value == null}]");
                     break;
                 case TransformCondition.Equal:
                     Response(value == compareTo.Value);
+                    Debbuging($"{value} == {compareTo.Value} -> [{value == compareTo.Value}]");
                     break;
                 case TransformCondition.ChildOf:
                     if (value) Response(value.IsChildOf(compareTo.Value));
@@ -53,6 +59,7 @@ namespace MalbersAnimations.Scriptables
                     break;
                 case TransformCondition.Name:
                     if (value) Response(value.name.Contains(T_Name));
+                    Debbuging($"Name is Equal to {value}");
                     break;
                 default:
                     break;
@@ -64,43 +71,57 @@ namespace MalbersAnimations.Scriptables
 
         public void SetTarget(Component target)
         {
-            value.Value = target.transform;
+            value.Value = target ? target.transform : null;
             Invoke();
+        }
+
+        private void Debbuging(string log)
+        {
+            if (debug) Debug.Log($"{name}: <B>{log}</B>",this);
         }
 
         public void SetTarget(GameObject target)
         {
-            value.Value = target.transform;
+            value.Value = target ? target.transform: null;
             Invoke();
         }
 
-        public void SetCompareTo(Component ct)
+        public void SetCompareTo(Component target)
         {
-            compareTo.Value = ct.transform;
+            compareTo.Value = target ? target.transform : null;
             Invoke();
         }
 
-        public void SetCompareTo(GameObject ct)
+        public void SetCompareTo(GameObject target)
         {
-            compareTo.Value = ct.transform;
+            compareTo.Value = target ? target.transform : null;
             Invoke();
         }
 
         public void ClearTarget()
         {
-            value.Value = null;
-            Invoke();
+            if (value.Value != null)
+            {
+                value.Value = null;
+                Invoke();
+            }
         }
 
         public void ClearComparteTo()
         {
-            compareTo.Value = null;
-            Invoke();
+            if (compareTo.Value != null)
+            {
+                compareTo.Value = null;
+                Invoke();
+            }
         }
 
         private void Response(bool value)
         {
-            if (value) Then.Invoke(); else Else.Invoke();
+            if (value) 
+                Then.Invoke();
+            else 
+                Else.Invoke();
         }
     }
 
@@ -109,13 +130,15 @@ namespace MalbersAnimations.Scriptables
     [UnityEditor.CustomEditor(typeof(TransformComparer)), UnityEditor.CanEditMultipleObjects]
     public class TransformComparerEditor : UnityEditor.Editor
     {
-        private UnityEditor.SerializedProperty value, Then, Else, Condition, compareTo, T_Name, Description, ShowDescription, InvokeOnEnable;
+        private UnityEditor.SerializedProperty debug, value, Then, Else, 
+            Condition, compareTo, T_Name, Description, ShowDescription, InvokeOnEnable;
         protected GUIStyle style, styleDesc;
 
         void OnEnable()
         {
             
             value = serializedObject.FindProperty("value");
+            debug = serializedObject.FindProperty("debug");
             Then = serializedObject.FindProperty("Then");
             Else = serializedObject.FindProperty("Else");
             Condition = serializedObject.FindProperty("Condition");
@@ -147,32 +170,33 @@ namespace MalbersAnimations.Scriptables
                             stretchWidth = true
                         };
 
-                        style.normal.textColor = UnityEditor.EditorStyles.boldLabel.normal.textColor;
+                        style.normal.textColor = EditorStyles.boldLabel.normal.textColor;
                     }
 
-                    Description.stringValue = UnityEditor.EditorGUILayout.TextArea(Description.stringValue, style);
+                    Description.stringValue = EditorGUILayout.TextArea(Description.stringValue, style);
                 }
             }
 
+            using (new GUILayout.HorizontalScope())
+            {
+              
+                EditorGUILayout.PropertyField(value);
+                InvokeOnEnable.boolValue = GUILayout.Toggle(InvokeOnEnable.boolValue, new GUIContent("E", "Invoke on Enable"), EditorStyles.miniButton, GUILayout.Width(20));
+                MalbersEditor.DrawDebugIcon(debug);
+            }
 
-            UnityEditor.EditorGUILayout.PropertyField(value);
-
-            UnityEditor.EditorGUILayout.PropertyField(Condition);
+           EditorGUILayout.PropertyField(Condition);
 
             if (Condition.intValue != 0 && Condition.intValue != 4)
             {
-                UnityEditor.EditorGUILayout.PropertyField(compareTo);
+                EditorGUILayout.PropertyField(compareTo);
             }
 
             if (Condition.intValue == 4)
-                UnityEditor.EditorGUILayout.PropertyField(T_Name, new GUIContent("Transform Name"));
+               EditorGUILayout.PropertyField(T_Name, new GUIContent("Transform Name"));
 
-            UnityEditor.EditorGUILayout.PropertyField(InvokeOnEnable);
-
-            UnityEditor.EditorGUILayout.Space();
-
-            UnityEditor.EditorGUILayout.PropertyField(Then);
-            UnityEditor.EditorGUILayout.PropertyField(Else);
+           EditorGUILayout.PropertyField(Then);
+           EditorGUILayout.PropertyField(Else);
 
             serializedObject.ApplyModifiedProperties();
         }

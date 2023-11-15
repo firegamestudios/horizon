@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e63ce81d1de48343862dbb33f4fda3d, type: 3}
+  m_Name: LongSword
+  m_EditorClassIdentifier: 
+  ID: 1
+  type: {fileID: 11400000, guid: 4868d01f5e0dbe745ba9adfc0fa67fa0, type: 2}
+  icon: {fileID: 21300000, guid: fb3794da83182bd488ad66a8bb98ad83, type: 3}
+  itemName: Basic Sword
+  description: A basic sword that you can swing around and attack enemies with
+  subtitleText: Nothing special about it...
+  Stackable: 0
+  maxStacks: 1
+  inWorldPrefab: {fileID: 1994734137001940110, guid: afbe4a87cadf9294097c938c7329cf96,
+    type: 3}
+  Equippable: 1
+  Usable: 0
+  Droppable: 1
+  Discardable: 1
+  OnItemUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemUnEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemDropped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  UseReaction:
+    name: 
+    reaction:
+      rid: 7059134390279864337
+  EquipReaction:
+    name: Equip
+    reaction:
+      rid: 4353134888231370753
+  UnequipReaction:
+    name: Unequip
+    reaction:
+      rid: 4353134888231370754
+  DropReaction:
+    name: Drop
+    reaction:
+      rid: 4353134888231370755
+  RemoveReaction:
+    name: Remove
+    reaction:
+      rid: 4353134888231370756
+  Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 4353134888231370753
+      type: {class: EquipItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 4353134888231370754
+      type: {class: UnequipItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 4353134888231370755
+      type: {class: DropItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 4353134888231370756
+      type: {class: RemoveItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 7059134390279864337
+      type: {class: EquipItemReaction, ns: MalbersAnimations.Reactions, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0

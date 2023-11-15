@@ -6,7 +6,7 @@ namespace MalbersAnimations.Reactions
     public class ReactionBehaviour : StateMachineBehaviour
     {
         [Tooltip("List of reactions to send to the animator")]
-        public List<ReactionB> reactions = new List<ReactionB>();
+        public List<ReactionB> reactions = new();
 
         override public void OnStateEnter(Animator anim, AnimatorStateInfo stateInfo, int layerIndex)
         {

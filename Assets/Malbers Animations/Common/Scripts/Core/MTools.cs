@@ -668,6 +668,80 @@ namespace MalbersAnimations
             t1.SetPositionAndRotation(t2Pos, t2Rot);
         }
 
+        public  static IEnumerator AlignLookAtTransform(Transform t1, Vector3 target, float AlignOffset, float time, float scale, AnimationCurve AlignCurve)
+        {
+            float elapsedTime = 0;
+            var wait = new WaitForFixedUpdate();
+
+            Quaternion CurrentRot = t1.rotation;
+            Vector3 direction = (target - t1.position);
+
+            direction = Vector3.ProjectOnPlane(direction, t1.up);
+            Quaternion FinalRot = Quaternion.LookRotation(direction);
+
+
+
+            Vector3 Offset = t1.position + AlignOffset * scale * t1.forward; //Use Offset
+
+            if (AlignOffset != 0)
+            {
+                //Calculate Real Direction at the End! 
+                Quaternion TargetInverse_Rot = Quaternion.Inverse(t1.rotation);
+                Quaternion TargetDelta = TargetInverse_Rot * FinalRot;
+
+                var TargetPosition = t1.position + t1.DeltaPositionFromRotate(Offset, TargetDelta);
+                direction = ((target) - TargetPosition);
+
+                var debTime = 3f;
+
+                MDebug.Draw_Arrow(TargetPosition, direction, Color.yellow, debTime);
+                MDebug.DrawWireSphere(TargetPosition, 0.1f, Color.green, debTime);
+                MDebug.DrawWireSphere(target, 0.1f, Color.yellow, debTime);
+                direction = Vector3.ProjectOnPlane(direction, t1.up); //Remove Y values
+            }
+
+            if (direction.CloseToZero())
+            {
+                Debug.LogWarning("Direction is Zero. Please set a correct rotation", t1);
+                yield return null;
+
+            }
+            else
+            {
+                direction = Vector3.ProjectOnPlane(direction, t1.up); //Remove Y values
+                FinalRot = Quaternion.LookRotation(direction);
+
+                Quaternion Last_Platform_Rot = t1.rotation;
+
+                while ((time > 0) && (elapsedTime <= time))
+                {
+                    float result = AlignCurve != null ? AlignCurve.Evaluate(elapsedTime / time) : elapsedTime / time;               //Evaluation of the Pos curve
+
+                    t1.rotation = Quaternion.SlerpUnclamped(CurrentRot, FinalRot, result);
+
+                    if (AlignOffset != 0)
+                    {
+                        Quaternion Inverse_Rot = Quaternion.Inverse(Last_Platform_Rot);
+                        Quaternion Delta = Inverse_Rot * t1.rotation;
+                        t1.position += t1.DeltaPositionFromRotate(Offset, Delta);
+                    }
+
+                    elapsedTime += Time.fixedDeltaTime;
+                    Last_Platform_Rot = t1.rotation;
+
+
+                    Debug.DrawRay(Offset, Vector3.up, Color.white);
+                    MDebug.DrawWireSphere(t1.position, t1.rotation, 0.05f * scale, Color.white, 0.2f);
+                    MDebug.DrawWireSphere(t1.position, t1.rotation, 0.05f * scale, Color.white, 0.2f);
+                    MDebug.DrawWireSphere(Offset, 0.05f * scale, Color.white, 0.2f);
+                    MDebug.Draw_Arrow(t1.position, t1.forward, Color.white, 0.2f);
+
+                    yield return wait;
+                }
+            }
+        }
+
+
         public static IEnumerator AlignLookAtTransform(Transform t1, Transform t2, float time, AnimationCurve curve = null)
         {
             float elapsedTime = 0;
@@ -965,7 +1039,7 @@ namespace MalbersAnimations
             if (!Layer_in_LayerMask(rTransform.gameObject.layer, mask)) { return; }
 
             // if (rTransform.name.Contains(" connector", StringComparison.OrdinalIgnoreCase)) { return; }
-            // if (rTransform.gameObject.GetComponent<IWeaponCore>() != null) { return; }
+          
 
             // If this transform is closer to the hit position, use it
             float lDistance = Vector3.Distance(rPosition, rTransform.position);
@@ -1927,170 +2001,5 @@ namespace MalbersAnimations
         //        .Where(type => type.Namespace == nameSpace)
         //        .Select(type => type.Name);
         //}
-    }
-
-
-    [System.Serializable]
-    public struct OverrideCapsuleCollider
-    {
-        public bool enabled;
-        public bool isTrigger;
-        public Vector3 center;
-        public float height;
-        public int direction;
-        public float radius;
-        public PhysicMaterial material;
-
-        [Utilities.Flag]
-        public CapsuleModifier modify;
-
-        public OverrideCapsuleCollider(CapsuleCollider collider)
-        {
-            enabled = collider.enabled;
-            isTrigger = collider.isTrigger;
-            center = collider.center;
-            height = collider.height;
-            radius = collider.radius;
-            direction = collider.direction;
-            material = collider.material;
-            modify = 0;
-        }
-
-
-        public void Modify(CapsuleCollider collider)
-        {
-            if ((int)modify == 0 || collider == null) return; //Means that the animal have no modification
-
-            if (Modify(CapsuleModifier.enabled)) collider.enabled = enabled;
-            if (Modify(CapsuleModifier.isTrigger)) collider.isTrigger = isTrigger;
-            if (Modify(CapsuleModifier.center)) collider.center = center;
-            if (Modify(CapsuleModifier.height)) collider.height = height;
-            if (Modify(CapsuleModifier.radius)) collider.radius = radius;
-            if (Modify(CapsuleModifier.direction)) collider.direction = direction;
-            if (Modify(CapsuleModifier.material)) collider.material = material;
-        }
-
-
-        public bool Modify(CapsuleModifier modifier) => (modify & modifier) == modifier;
-    }
-
-    public enum CapsuleModifier
-    {
-        enabled = 1 << 0,
-        isTrigger = 1 << 1,
-        center = 1 << 2,
-        height = 1 << 3,
-        radius = 1 << 4,
-        direction = 1 << 5,
-        material = 1 << 6,
-    }
-
-#if UNITY_EDITOR
-    [CustomPropertyDrawer(typeof(OverrideCapsuleCollider))]
-    public class OverrideCapsuleColliderDrawer : PropertyDrawer
-    {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            EditorGUI.BeginProperty(position, label, property);
-
-            // GUI.Box(position, GUIContent.none, EditorStyles.helpBox);
-
-            position.x += 2;
-            position.width -= 2;
-
-            position.y += 2;
-            position.height -= 2;
-
-
-            var indent = EditorGUI.indentLevel;
-            EditorGUI.indentLevel = 0;
-
-            var height = EditorGUIUtility.singleLineHeight;
-
-            #region Serialized Properties
-            var modify = property.FindPropertyRelative("modify");
-            var enabled = property.FindPropertyRelative("enabled");
-            var isTrigger = property.FindPropertyRelative("isTrigger");
-            var radius = property.FindPropertyRelative("radius");
-            var center = property.FindPropertyRelative("center");
-            var height1 = property.FindPropertyRelative("height");
-            var direction = property.FindPropertyRelative("direction");
-            var material = property.FindPropertyRelative("material");
-
-            #endregion
-
-            var line = position;
-            var lineLabel = line;
-            line.height = height;
-
-            var foldout = lineLabel;
-            foldout.width = 10;
-            foldout.x += 10;
-
-            EditorGUIUtility.labelWidth = 16;
-            EditorGUIUtility.labelWidth = 0;
-
-            modify.intValue = (int)(CapsuleModifier)EditorGUI.EnumFlagsField(line, label, (CapsuleModifier)(modify.intValue));
-
-            line.y += height + 2;
-
-            int ModifyValue = modify.intValue;
-
-            if (Modify(ModifyValue, CapsuleModifier.enabled))
-                DrawProperty(ref line, enabled);
-
-            if (Modify(ModifyValue, CapsuleModifier.isTrigger))
-                DrawProperty(ref line, isTrigger);
-
-            if (Modify(ModifyValue, CapsuleModifier.material))
-                DrawProperty(ref line, material);
-
-            if (Modify(ModifyValue, CapsuleModifier.center))
-                DrawProperty(ref line, center);
-
-            if (Modify(ModifyValue, CapsuleModifier.radius))
-                DrawProperty(ref line, radius);
-
-            if (Modify(ModifyValue, CapsuleModifier.height))
-                DrawProperty(ref line, height1);
-
-            if (Modify(ModifyValue, CapsuleModifier.direction))
-                DrawProperty(ref line, direction);
-
-
-            EditorGUI.indentLevel = indent;
-            EditorGUI.EndProperty();
-        }
-
-        private void DrawProperty(ref Rect rect, SerializedProperty property)
-        {
-            EditorGUI.PropertyField(rect, property);
-            rect.y += EditorGUIUtility.singleLineHeight + 2;
-        }
-
-
-        private bool Modify(int modify, CapsuleModifier modifier)
-        {
-            return ((modify & (int)modifier) == (int)modifier);
-        }
-
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            int activeProperties = 0;
-
-            var modify = property.FindPropertyRelative("modify");
-            int ModifyValue = modify.intValue;
-
-            if (Modify(ModifyValue, CapsuleModifier.enabled)) activeProperties++;
-            if (Modify(ModifyValue, CapsuleModifier.center)) activeProperties++;
-            if (Modify(ModifyValue, CapsuleModifier.height)) activeProperties++;
-            if (Modify(ModifyValue, CapsuleModifier.radius)) activeProperties++;
-            if (Modify(ModifyValue, CapsuleModifier.direction)) activeProperties++;
-            if (Modify(ModifyValue, CapsuleModifier.isTrigger)) activeProperties++;
-            if (Modify(ModifyValue, CapsuleModifier.material)) activeProperties++;
-            float lines = (int)(activeProperties + 2);
-            return base.GetPropertyHeight(property, label) * lines;// + (1 * lines);
-        }
-    }
-#endif
+    } 
 }

@@ -93,7 +93,10 @@ namespace MalbersAnimations.Scriptables
 
 
         public static implicit operator Transform(TransformReference reference) => reference.Value;
-        public static implicit operator TransformReference(Transform reference) => new TransformReference(reference);
+
+        public static implicit operator GameObject(TransformReference reference) => reference.Value.gameObject;
+
+        public static implicit operator TransformReference(Transform reference) => new(reference);
     }
 
 #if UNITY_EDITOR

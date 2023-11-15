@@ -9,12 +9,9 @@ namespace MalbersAnimations.Conditions
     {
        [RequiredField] public MAnimal Target;
 
-        public virtual void _SetAnimal(MAnimal n) => Target = n;
+       // public override System.Type ConditionType => typeof(MAnimal);
 
-        public override void SetTarget(Object target)
-        {
-            if (target is MAnimal) this.Target = target as MAnimal;
-        }
-
+        public virtual void SetTarget(MAnimal n) => Target = n;
+        protected override void _SetTarget(Object target) => VerifyTarget(target, ref Target);
     } 
 }

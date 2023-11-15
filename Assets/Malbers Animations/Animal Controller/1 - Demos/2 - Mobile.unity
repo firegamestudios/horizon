@@ -3008,18 +3008,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9188779045671916146}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &889365393 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9188779046890055343, guid: 169b9ffd5ef82a74ba5778530d3ba4f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 9188779045671916146}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889365392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d21a882f4cd80da4ab7af07a21abebc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &902966110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3087,6 +3075,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
         type: 3}
+      propertyPath: OnAxisChange.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
+        type: 3}
       propertyPath: OnJoystickUp.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3109,7 +3102,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnAxisChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 889365393}
+      objectReference: {fileID: 1459296936}
     - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
         type: 3}
       propertyPath: OnJoystickDown.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3144,6 +3137,11 @@ PrefabInstance:
       objectReference: {fileID: 889365392}
     - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
         type: 3}
+      propertyPath: OnAxisChange.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
+        type: 3}
       propertyPath: OnJoystickUp.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -3155,7 +3153,7 @@ PrefabInstance:
     - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
         type: 3}
       propertyPath: OnAxisChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CameraInput
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
         type: 3}
@@ -3186,11 +3184,6 @@ PrefabInstance:
         type: 3}
       propertyPath: OnJoystickDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
-        type: 3}
-      propertyPath: OnAxisChange.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MalbersAnimations.CameraInputMapper, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
         type: 3}
@@ -4563,6 +4556,18 @@ Animation:
     type: 3}
   m_PrefabInstance: {fileID: 71486561}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1459296936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114135457143068670, guid: b8b1fb7775b90a14692b4295d424589f,
+    type: 3}
+  m_PrefabInstance: {fileID: 902966110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45ff9ab2dc0a874fb5e2ce5777bc201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1481884873
 GameObject:
   m_ObjectHideFlags: 0
@@ -7473,6 +7478,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 238742967}
     m_Modifications:
+    - target: {fileID: 1417802782832420691, guid: 169b9ffd5ef82a74ba5778530d3ba4f5,
+        type: 3}
+      propertyPath: OnAxisChange.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1417802782832420692, guid: 169b9ffd5ef82a74ba5778530d3ba4f5,
         type: 3}
       propertyPath: m_Name
@@ -7586,6 +7596,11 @@ PrefabInstance:
     - target: {fileID: 1417802782832420693, guid: 169b9ffd5ef82a74ba5778530d3ba4f5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188779046890055343, guid: 169b9ffd5ef82a74ba5778530d3ba4f5,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

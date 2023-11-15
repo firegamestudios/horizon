@@ -24,7 +24,7 @@ namespace MalbersAnimations
         public float vertical;          //Vertical   Forward & Back Axis Z
         public float upDown;            //Up Down value    
 
-        public Vector3Event MovementEvent = new Vector3Event();
+        public Vector3Event MovementEvent = new();
 
         #endregion
 

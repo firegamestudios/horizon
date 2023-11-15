@@ -31,7 +31,7 @@ MonoBehaviour:
   resetInputOnFailed: 1
   ResetLastState: 0
   General:
-    modify: -1
+    modify: 7423
     RootMotion: 1
     Sprint: 1
     Gravity: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   TagModifiers:
   - AnimationTag: TakeOff
     modifier:
-      modify: -1
+      modify: 7423
       RootMotion: 1
       Sprint: 0
       Gravity: 0

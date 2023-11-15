@@ -28,6 +28,10 @@ namespace MalbersAnimations.Controller
         }
 
 
+        /// <summary>Enter Status used while when the state was active</summary>
+        public int EnterStatus { get; set; }
+
+
         /// <summary>Debug all gizmos of the state</summary>
         public bool GizmoDebug => m_debug && animal.debugGizmos;
 
@@ -559,6 +563,14 @@ namespace MalbersAnimations.Controller
         /// <summary> Use this to connect extra inputs the State may have</summary>
         public virtual void ExtraInputs(IInputSource inputSource, bool connect) { }
 
+        public virtual void Activate(int StateStatus)
+        {
+            EnterStatus = StateStatus; //Store the Enter Status
+            animal.State_SetEnterStatus(EnterStatus);
+            Activate();
+        }
+
+
         /// <summary>Activate the State. Code is Applied on base.Activate()</summary>
         public virtual void Activate()
         {
@@ -625,13 +637,15 @@ namespace MalbersAnimations.Controller
             AllowExit();
         }
 
-        public virtual void ForceActivate()
+        public virtual void ForceActivate() => ForceActivate(-1);
+
+        public virtual void ForceActivate(int enterStatus)
         {
             Debugging("Force Activated");
 
             animal.LastState = animal.ActiveState;      //Set a new Last State
             animal.ActiveState = this;                  //Update to the Current State ?????
-            Activate();
+            Activate(enterStatus);
             SetSpeed();                                 //Set the Speed on the New State
 
             //  IsActiveState = true;                       //Set this state as the Active State
@@ -668,6 +682,7 @@ namespace MalbersAnimations.Controller
                 {
                     animal.CurrentSpeedSet = set;                   //Set a new Speed Set 
                     animal.CurrentSpeedIndex = set.CurrentIndex;                   //Set a new Speed Set 
+                  //  Debug.Log($"Animal.CurrentSpeedSet: {animal.CurrentSpeedSet.name}");
                     return;
                 }
             }
@@ -694,6 +709,8 @@ namespace MalbersAnimations.Controller
             OnActiveQueue = false;
             CurrentExitTime = Time.time;
             MovementAxisMult = Vector3.one;
+
+            EnterStatus = -1; //Reset Enter Status
             // IsActiveState = false;
 
             if (resetInputOnFailed)

@@ -100,7 +100,7 @@ namespace MalbersAnimations.Controller
 
             moveSmooth = Vector3.Lerp(moveSmooth,Vector3.Project( move,animal.Right), animal.DeltaTime * CurrentSpeed.lerpPosition);
 
-
+            if(GizmoDebug)
             MDebug.Draw_Arrow(transform.position, moveSmooth, Color.white);
 
         }
@@ -127,12 +127,13 @@ namespace MalbersAnimations.Controller
         {
             if (InCoreAnimation)
             {
-
                 var Right = Vector3.Cross(animal.Up, animal.SlopeDirection);
 
                 Right = Vector3.Project(animal.MovementAxisSmoothed, Right);
 
-              if (animal.debugGizmos)  MDebug.Draw_Arrow(transform.position, Right, Color.red );
+                if (GizmoDebug)
+                    MDebug.Draw_Arrow(transform.position, Right, Color.red );
+
 
                 
 

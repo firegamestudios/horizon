@@ -12,7 +12,7 @@ namespace MalbersAnimations.Controller
     [CustomEditor(typeof(MAnimal))]
     public class MAnimalEditor : Editor
     {
-        public readonly string version = "Animal Controller [v1.4.2c]";
+        public readonly string version = "Animal Controller [v1.4.2d]";
 
         public static GUIStyle StyleGray => MTools.Style(new Color(0.5f, 0.5f, 0.5f, 0.3f));
         public static GUIStyle StyleBlue => MTools.Style(new Color(0, 0.5f, 1f, 0.3f));
@@ -49,6 +49,7 @@ namespace MalbersAnimations.Controller
 
              m_CanStrafe, Aimer, m_strafe, OnStrafe, m_StrafeNormalize,  /*FallForward, */m_StrafeLerp, OrientToGround,
 
+            MainCollider, colliders,
 
             alwaysForward, AnimatorSpeed, m_TimeMultiplier,
             OnMovementLocked, OnMovementDetected, //OnMaxSlopeReached,
@@ -85,6 +86,11 @@ namespace MalbersAnimations.Controller
 
         private void FindSerializedProperties()
         {
+            MainCollider = serializedObject.FindProperty("MainCollider");
+            colliders = serializedObject.FindProperty("colliders");
+
+
+
             ShowOnPlay = serializedObject.FindProperty("ShowOnPlay");
             S_PivotsList = serializedObject.FindProperty("pivots");
             sleep = serializedObject.FindProperty("sleep");
@@ -463,6 +469,20 @@ namespace MalbersAnimations.Controller
 
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
             {
+                MainCollider.isExpanded = MalbersEditor.Foldout(MainCollider.isExpanded, "Colliders");
+
+                if (MainCollider.isExpanded)
+                {
+                    EditorGUILayout.PropertyField(MainCollider);
+                    EditorGUI.indentLevel++;
+                    EditorGUILayout.PropertyField(colliders,new GUIContent("Internal Colliders"), true);
+                    EditorGUI.indentLevel--;
+                }
+            }
+
+
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
                 UseCameraInput.isExpanded = MalbersEditor.Foldout(UseCameraInput.isExpanded, "Movement");
 
                 if (UseCameraInput.isExpanded)
@@ -473,7 +493,7 @@ namespace MalbersAnimations.Controller
                         EditorGUILayout.PropertyField(alwaysForward,
                             new GUIContent("Always Forward", "If true the animal will always go forward. useful for infinite runners"));
                     }
-                    if (EditorGUI.EndChangeCheck() && Application.isPlaying && Application.isEditor) 
+                    if (EditorGUI.EndChangeCheck() && Application.isPlaying && Application.isEditor)
                         m.AlwaysForward = m.AlwaysForward; //Update Always Forward Property on the Editor
 
 
@@ -729,7 +749,8 @@ namespace MalbersAnimations.Controller
                                 }
                                 editor.OnInspectorGUI();
 
-                                Repaint();
+                               if (Application.isPlaying)
+                                    Repaint();
                             }
                         }
                     }

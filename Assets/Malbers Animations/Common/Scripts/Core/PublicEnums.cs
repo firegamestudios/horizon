@@ -1,4 +1,6 @@
-﻿namespace MalbersAnimations
+﻿using UnityEngine;
+
+namespace MalbersAnimations
 {
     public enum InputType { Input, Key }
 
@@ -20,6 +22,18 @@
         Greater = 1,
         Less = 2,
         NotEqual = 3,
+    }
+
+    public enum MathOperation
+    {
+     //   [InspectorName("+")]
+        Add,
+     //   [InspectorName("-")]
+        Substract,
+       // [InspectorName("*")]
+        Multiply,
+      //  [InspectorName("/")]
+        Divide
     }
 
     public enum ComparerBool { Equal = 0, NotEqual = 1, }
@@ -136,21 +150,7 @@
         public static int Ready => 95;
 
 
-        public static string WValue(int v)
-        {
-            switch (v)
-            {
-                case 0: return "None";
-                case 95: return "Ready|Preparing";
-                case 96: return "Reload";
-                case 97: return "Aim";
-                case 98: return "Store";
-                case 99: return "Draw";
-                case 100: return "Idle";
-                case 101: return "Fire_Projectile";
-                default: return v.ToString(); ;
-            }
-        }
+        
     }
 
 }

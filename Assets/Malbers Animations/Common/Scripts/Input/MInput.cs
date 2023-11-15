@@ -497,7 +497,7 @@ namespace MalbersAnimations
         public BoolReference ignoreOnPause = new();
         public InputType type = InputType.Input;
         public string input = "Value";
-        [SearcheableEnum]
+       // [SearcheableEnum]
         public KeyCode key = KeyCode.A;
         public bool debug;
         /// <summary>Type of Button of the Row System</summary>

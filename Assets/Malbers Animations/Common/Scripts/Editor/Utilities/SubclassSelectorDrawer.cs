@@ -48,11 +48,11 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
                     popupPosition.x += EditorGUIUtility.labelWidth;
                     popupPosition.height = EditorGUIUtility.singleLineHeight;
 
-                    var indent = EditorGUI.indentLevel;
-                    EditorGUI.indentLevel = 0;
+                   // var indent = EditorGUI.indentLevel;
+                  //  EditorGUI.indentLevel = 0;
 
                     var hasActive = property.FindPropertyRelative("Active");
-                    var delay = property.FindPropertyRelative("delay");
+                  //  var delay = property.FindPropertyRelative("delay");
 
                     if (hasActive != null)
                     {
@@ -69,23 +69,23 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
                     }
 
 
-                    if (delay != null)
-                    {
-                        var pos = EditorGUI.PrefixLabel(position, label);
-                        popupPosition.width -= 30;
-                        Rect buttonRect = new(pos)
-                        {
-                            width = 30f-4,
-                            height = EditorGUIUtility.singleLineHeight,
-                           // x = popupPosition.x + popupPosition.width + 2,
-                            x = position.width-5,
+                    //if (delay != null)
+                    //{
+                    //    var pos = EditorGUI.PrefixLabel(position, label);
+                    //    popupPosition.width -= 30;
+                    //    Rect buttonRect = new(pos)
+                    //    {
+                    //        width = 30f-4,
+                    //        height = EditorGUIUtility.singleLineHeight,
+                    //       // x = popupPosition.x + popupPosition.width + 2,
+                    //        x = position.width-5,
                               
-                        };
+                    //    };
 
-                        //  hasActive.boolValue = GUI.Toggle(buttonRect, hasActive.boolValue,new GUIContent(""));
-                        delay.floatValue = EditorGUI.FloatField(buttonRect, GUIContent.none, delay.floatValue);
+                    //    //  hasActive.boolValue = GUI.Toggle(buttonRect, hasActive.boolValue,new GUIContent(""));
+                    //    delay.floatValue = EditorGUI.FloatField(buttonRect, GUIContent.none, delay.floatValue);
 
-                    }
+                    //}
 
 
 
@@ -106,7 +106,7 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
                     EditorGUI.PropertyField(position, property, label, true);
 
                      
-                    EditorGUI.indentLevel = indent;
+                 //   EditorGUI.indentLevel = indent;
                 }
                 else
                 {
@@ -184,7 +184,7 @@ namespace MalbersAnimations.SerializeReferenceExtensions.Editor
                 typeName = ObjectNames.NicifyVariableName(type.Name);
             }
 
-            GUIContent result = new GUIContent(typeName);
+            GUIContent result = new(typeName);
             m_TypeNameCaches.Add(managedReferenceFullTypename, result);
             return result;
         }

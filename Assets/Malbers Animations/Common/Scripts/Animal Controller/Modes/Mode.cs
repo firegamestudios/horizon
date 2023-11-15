@@ -16,7 +16,7 @@ namespace MalbersAnimations.Controller
         [SerializeField] private bool active = true;
 
         /// <summary>Enable Disable the modes temporarilly and internally by multiple outside sources</summary>
-        private int TemporalActivation = 1;
+        internal int TemporalActivation = 1;
 
         [SerializeField] private bool ignoreLowerModes = false;
 

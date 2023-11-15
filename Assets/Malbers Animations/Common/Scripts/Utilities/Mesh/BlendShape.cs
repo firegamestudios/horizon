@@ -10,7 +10,6 @@ namespace MalbersAnimations.Utilities
     {
         [CreateScriptableAsset]
         public BlendShapePreset preset;
-        public bool LoadPresetOnStart = true;
         [RequiredField]
         public SkinnedMeshRenderer mesh;
         public SkinnedMeshRenderer[] LODs;
@@ -31,7 +30,7 @@ namespace MalbersAnimations.Utilities
 
         private void Start()
         {
-            if (LoadPresetOnStart)
+            if (preset)
                 LoadPreset();
             else if (random)
                 Randomize();

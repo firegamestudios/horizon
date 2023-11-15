@@ -2,7 +2,6 @@ using Cinemachine;
 using MalbersAnimations.Scriptables;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace MalbersAnimations
@@ -17,9 +16,11 @@ namespace MalbersAnimations
         [Tooltip("Update mode for the Aim Logic")]
         public UpdateType updateMode = UpdateType.FixedUpdate;
 
-        /// <summary> List of all the scene Third Person Follow Cameras </summary>
+        /// <summary> List of all the scene Third Person Follow Cameras (using the same brain)! </summary>
         public static HashSet<ThirdPersonFollowTarget> TPFCameras;
-        public static ThirdPersonFollowTarget ActiveCamera;
+
+        /// <summary>  Active Camera using the same Cinemachine Brain </summary>
+        public ThirdPersonFollowTarget ActiveCamera { get; set; }
 
         [Tooltip("What object to follow")]
         public TransformReference Target;
@@ -59,10 +60,10 @@ namespace MalbersAnimations
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
         private const float _threshold = 0.00001f;
-      //  private bool isActive;
+        //  private bool isActive;
 
         private ICinemachineCamera Cam;
-      
+
 
         // Start is called before the first frame update
         void Awake()
@@ -75,8 +76,9 @@ namespace MalbersAnimations
             }
             CamPivot.parent = null;
 
-          CamPivot.hideFlags = HideFlags.HideInHierarchy;
+            CamPivot.hideFlags = HideFlags.HideInHierarchy;
 
+            //Find the Cinemachine camera
             if (TryGetComponent(out Cam))
                 Cam.Follow = CamPivot.transform;
 
@@ -96,21 +98,15 @@ namespace MalbersAnimations
 
         private void OnEnable()
         {
-            
-
             Brain.m_CameraActivatedEvent.AddListener(CameraChanged);
-
             CameraPosition();
-
             StartCameraLogic();
 
-            TPFCameras ??= new(); //Initialize the Cameras
-
+            if (TPFCameras == null) TPFCameras = new(); //Initialize the Cameras
             TPFCameras.Add(this);
-            
-        }
 
-      
+          //  Debug.Log($"TPF Camera Count, {TPFCameras.Count}");
+        }
 
         private void OnDisable()
         {
@@ -133,7 +129,7 @@ namespace MalbersAnimations
                     StartCoroutine(AfterLateUpdate());
                 }
             }
-        }   
+        }
 
         readonly WaitForFixedUpdate mWaitForFixedUpdate = new();
         readonly WaitForEndOfFrame mWaitForLateUpdate = new();
@@ -156,32 +152,6 @@ namespace MalbersAnimations
             }
         }
 
-        private void CameraChanged(ICinemachineCamera newActiveCam, ICinemachineCamera exit)
-        {
-            var isActive = Cam == newActiveCam;
-
-            if (isActive)
-            {
-                ActiveCamera = this;
-                StartCameraLogic();
-            }
-            else
-            {
-                StopAllCoroutines();
-            }
-        }
-
-        private void CheckRotation()
-        {
-            CameraPosition();
-            var EulerAngles = Brain.transform.eulerAngles; //Get the Brain Rotation to save the movement 
-
-            _cinemachineTargetYaw = ClampAngle(EulerAngles.y, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = EulerAngles.x > 180 ? EulerAngles.x - 360 : EulerAngles.x; //HACK!!!
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
-          
-            CamPivot.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
-        }
         private void CameraLogic(float deltaTime)
         {
             CameraPosition();
@@ -198,13 +168,52 @@ namespace MalbersAnimations
             //Update all the Sleep  cameras in the scene
             foreach (var c in TPFCameras)
             {
-                if (c == ActiveCamera) continue;
+                if (c == ActiveCamera || c.Brain != Brain) continue; //Skip the ones using the same brain
 
                 c.CamPivot.SetPositionAndRotation(ActiveCamera.CamPivot.position, ActiveCamera.CamPivot.rotation);
                 c._cinemachineTargetYaw = ActiveCamera._cinemachineTargetYaw;
                 c._cinemachineTargetPitch = ActiveCamera._cinemachineTargetPitch;
             }
         }
+
+
+        private void CameraChanged(ICinemachineCamera newCam, ICinemachineCamera exit)
+        {
+            var isActive = Cam == newCam;
+
+          //  Debug.Log($"This <B>[{name}]</B> Camera Changed: Brain{Brain.name}, {newCam.Name}", newCam.VirtualCameraGameObject);
+
+
+            //TPFCameras.Add(IsThirdPersonFollow);
+
+            if (isActive)
+            {
+                ActiveCamera = this;
+                StartCameraLogic();
+            }
+            else
+            {
+                //Find the current active Third Person Follow
+            //var IsThirdPersonFollow = newCam.VirtualCameraGameObject.GetComponent<ThirdPersonFollowTarget>();
+               // ActiveCamera = IsThirdPersonFollow;
+                StopAllCoroutines();
+            }
+
+           // Debug.Log($"TPF Camera Count, {TPFCameras.Count}");
+        }
+
+        private void CheckRotation()
+        {
+            CameraPosition();
+            var EulerAngles = Brain.transform.eulerAngles; //Get the Brain Rotation to save the movement 
+
+            _cinemachineTargetYaw = ClampAngle(EulerAngles.y, float.MinValue, float.MaxValue);
+            _cinemachineTargetPitch = EulerAngles.x > 180 ? EulerAngles.x - 360 : EulerAngles.x; //HACK!!!
+            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+
+            CamPivot.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
+        }
+       
 
 
 

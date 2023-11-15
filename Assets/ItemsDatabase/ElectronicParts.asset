@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e63ce81d1de48343862dbb33f4fda3d, type: 3}
+  m_Name: ElectronicParts
+  m_EditorClassIdentifier: 
+  ID: 0
+  type: {fileID: 11400000, guid: 4e5a472575f9c9440a7753d5aa08c156, type: 2}
+  icon: {fileID: 21300000, guid: 397ffa9d9d22fe54e911eeb11f42f1be, type: 3}
+  itemName: Electronic Parts
+  description: A common gemstone made of rock
+  subtitleText: Not so shiny!
+  Stackable: 1
+  maxStacks: 99
+  inWorldPrefab: {fileID: 7899620880441790712, guid: c7d40408a88d15c4788215fe77068761,
+    type: 3}
+  Equippable: 0
+  Usable: 0
+  Droppable: 1
+  Discardable: 1
+  OnItemUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemUnEquipped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemDropped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  UseReaction:
+    name: 
+    reaction:
+      rid: 7059134390279864335
+  EquipReaction:
+    name: 
+    reaction:
+      rid: 7059134390279864335
+  UnequipReaction:
+    name: 
+    reaction:
+      rid: 7059134390279864335
+  DropReaction:
+    name: Drop
+    reaction:
+      rid: 6255402565496209424
+  RemoveReaction:
+    name: Remove
+    reaction:
+      rid: 6255402565496209425
+  Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6255402565496209424
+      type: {class: DropItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 6255402565496209425
+      type: {class: RemoveItemReaction, ns: MalbersAnimations.InventorySystem, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0
+    - rid: 7059134390279864335
+      type: {class: DropItemReaction, ns: MalbersAnimations.Reactions, asm: MalbersAnimations}
+      data:
+        Active: 1
+        delay: 0

@@ -17,7 +17,7 @@ namespace MalbersAnimations.Controller
     [AddComponentMenu("Malbers/Animal Controller/Animal")]
     public partial class MAnimal : MonoBehaviour,
         IAnimatorListener, ICharacterMove, IGravity, IObjectCore,
-        IRandomizer, IMAnimator, ISleepController, IMDamagerSet,
+        IRandomizer, IMAnimator, ISleepController, IMDamagerSet, ILockCharacter,
         IAnimatorStateCycle, ICharacterAction, IDeltaRootMotion
     {
         //Animal Variables: All variables

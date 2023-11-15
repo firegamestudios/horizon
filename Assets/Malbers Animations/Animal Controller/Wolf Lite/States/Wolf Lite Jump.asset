@@ -93,7 +93,7 @@ MonoBehaviour:
   MovementStrafe: 1
   IdleStrafe: 1
   m_debug: 1
-  Editor_Tabs1: 0
+  Editor_Tabs1: 4
   SpeedSets: []
   ID: {fileID: 11400000, guid: 9ae07cd2f8f4c054687fecf634f8e5b3, type: 2}
   JumpPressed:
@@ -102,7 +102,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   ForwardPressed:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 0
     Variable: {fileID: 0}
   JumpPressedLerp: 4
   AirControl:
@@ -119,6 +119,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   ResetJump:
   - {fileID: 11400000, guid: 7e364e53b77644c47aa3abdaa2e2c08c, type: 2}
+  lockJumpProfile: -1
   jumpProfiles:
   - name: In Place
     VerticalSpeed: 0

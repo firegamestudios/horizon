@@ -77,19 +77,19 @@ namespace MalbersAnimations.Controller
 
         [Space]
 
-        public BoolReference GlideOnly = new BoolReference(false);
+        public BoolReference GlideOnly = new(false);
 
         [Tooltip("When the Forward Input is Released,this will be the movement speed the gliding will have")]
-        public FloatReference GlideOnlyIdleS = new FloatReference(0.5f);
-        public FloatReference GlideOnlyIdleV = new FloatReference(1);
+        public FloatReference GlideOnlyIdleS = new(0.5f);
+        public FloatReference GlideOnlyIdleV = new(1);
 
         [Header("Auto Glide")]
         [Tooltip("It will do Auto gliding while flying")]
-        public BoolReference AutoGlide = new BoolReference(true);
+        public BoolReference AutoGlide = new(true);
         [MinMaxRange(0, 10)]
-        public RangedFloat GlideChance = new RangedFloat(0.8f, 4);
+        public RangedFloat GlideChance = new(0.8f, 4);
         [MinMaxRange(0, 10)]
-        public RangedFloat FlapChange = new RangedFloat(0.5f, 4);
+        public RangedFloat FlapChange = new(0.5f, 4);
 
       
         [Tooltip("Variation to make Random Flap and Glide Animation")]
@@ -101,8 +101,9 @@ namespace MalbersAnimations.Controller
         protected float AutoGlide_CurrentTime = 1;
        
         [Header("Down Acceleration")]
-        public FloatReference GravityDrag = new FloatReference(0);
-        public FloatReference DownAcceleration = new FloatReference(0.5f);
+        public FloatReference GravityDrag = new(0);
+        public FloatReference DownAcceleration = new(0.5f);
+       
         private float acceleration = 0;
 
         protected Vector3 verticalInertia;
@@ -135,40 +136,23 @@ namespace MalbersAnimations.Controller
                 BlockingBone = animal.transform.FindGrandChild(BoneName);
         }
 
-        MSpeed LastSpeedModifier;
-        MSpeed NewSpeedModifier;
-
         public override void Activate()
         {
-            LastSpeedModifier = animal.CurrentSpeedModifier; //Store the current speed modifier
             base.Activate(); 
             InputValue = true; //Make sure the Input is set to True when the flying is not being activated by an input player
-
-            NewSpeedModifier = animal.CurrentSpeedModifier; //Store the current speed modifier
         }
 
         public override bool KeepForwardMovement => KeepForward.Value;
 
-        public override void EnterTagAnimation()
-        {
-            if (CurrentAnimTag == EnterTagHash)                     //Meaning its on Take Off Animation
-            {
-                animal.CurrentSpeedModifier = LastSpeedModifier;   //BUG THAT DOES NOT USE THE VerticalSpeed
-            }
-        }
-
         public override void EnterCoreAnimation()
         {
-            animal.CurrentSpeedModifier = NewSpeedModifier; //Restore the Fly Speed Modifier
-
             verticalInertia = Vector3.Project(animal.DeltaPos, animal.UpVector); //Find the Up Inertia to keep it while entering the Core Anim
             animal.PitchDirection = animal.Forward;
 
             acceleration = 0;
 
             animal.InertiaPositionSpeed = animal.HorizontalVelocity * animal.DeltaTime;
-            if (animal.LastState.ID.ID <=1)  animal.InertiaPositionSpeed = Vector3.zero; //*TIny Hack... Remove the Intertia if the last state was IDle or Locomotion.
-
+        
             if (GlideOnly.Value)
             {
                 animal.currentSpeedModifier.Vertical = GlideSpeed;
@@ -180,8 +164,6 @@ namespace MalbersAnimations.Controller
                 isGliding = true;
             }
         }
-
-        // public override bool TryActivate() => InputValue && CanBeActivated;
 
         public override Vector3 Speed_Direction()
         {
@@ -239,23 +221,24 @@ namespace MalbersAnimations.Controller
                 {
                     animal.FreeMovementRotator(limit, bank);
                 }
+
+
                 if (InertiaLerp.Value > 0)
                     animal.AddInertia(ref verticalInertia, InertiaLerp);
             }
 
 
-
-            if (Impulse > 0 && ImpulseTime > 0)
             //Takeoff Impulse Logic
+            if (InEnterAnimation)
             {
-                if (animal.LastState.ID <= 1) //Do it only if the last states were Idle or Locomotion
+                if (Impulse > 0 && ImpulseTime > 0 &&
+                   (animal.LastState.ID.ID <= 1) &&         //Do it only if the last states were Idle or Locomotion
+                   (elapsedImpulseTime <= ImpulseTime)
+                   )
                 {
-                    if (elapsedImpulseTime <= ImpulseTime)
-                    {
-                        var takeOffImp = Impulse * ImpulseCurve.Evaluate(elapsedImpulseTime / ImpulseTime);
-                        animal.AdditivePosition += animal.UpVector * takeOffImp * deltatime;
-                        elapsedImpulseTime += deltatime;
-                    }
+                    var takeOffImp = Impulse * ImpulseCurve.Evaluate(elapsedImpulseTime / ImpulseTime);
+                    animal.AdditivePosition += deltatime * takeOffImp * animal.UpVector;
+                    elapsedImpulseTime += deltatime;
                 }
             }
         }
@@ -371,7 +354,6 @@ namespace MalbersAnimations.Controller
             isGliding = false;
             InputValue = false;
             elapsedImpulseTime = 0;
-            LastSpeedModifier = new MSpeed();
         }
 
         public override void RestoreAnimalOnExit()

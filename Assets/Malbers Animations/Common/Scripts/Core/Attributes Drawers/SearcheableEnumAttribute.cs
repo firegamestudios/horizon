@@ -40,8 +40,10 @@ namespace MalbersAnimations
             if (property.type != "Enum")
             {
                 GUIStyle errorStyle = "CN EntryErrorIconSmall";
-                Rect r = new Rect(position);
-                r.width = errorStyle.fixedWidth;
+                Rect r = new(position)
+                {
+                    width = errorStyle.fixedWidth
+                };
                 position.xMin = r.xMax;
                 GUI.Label(r, "", errorStyle);
                 GUI.Label(position, TYPE_ERROR);
@@ -70,11 +72,11 @@ namespace MalbersAnimations
 
             if (DropdownButton(id, position, buttonText))
             {
-                Action<int> onSelect = i =>
+                void onSelect(int i)
                 {
                     property.enumValueIndex = i;
                     property.serializedObject.ApplyModifiedProperties();
-                };
+                }
 
                 SearchablePopup.Show(position, property.enumDisplayNames, property.enumValueIndex, onSelect);
             }

@@ -3,7 +3,12 @@ guid: 8d1c0d56da7b5614295f2a03820f2d0d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DZ_TRIPLECANNON_MAT
+    second: {fileID: 2100000, guid: fa728589adef7f44db04b552bdbb3add, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

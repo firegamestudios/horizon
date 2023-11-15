@@ -23,7 +23,7 @@ namespace Inworld.Util
         [Conditional("INWORLD_DEBUG")]
         public static void Log(string msg)
         {
-            Debug.Log(msg);
+            //Debug.Log(msg);
         }
 
         [Conditional("INWORLD_DEBUG")]

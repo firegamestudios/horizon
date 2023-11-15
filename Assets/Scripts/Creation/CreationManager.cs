@@ -7,6 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Races: 0 male human, 1 female human, 2 droid, 3 alien
 /// Classes: 0 fighter, 1 biologist, 2 hunter, 3 engineer, 4 hacker
+/// Attributes: 0 strength 1 agility 2 endurance 3 crafting 4 computer
 /// </summary>
 /// 
 
@@ -527,7 +528,7 @@ public class CreationManager : MonoBehaviour
         }
 
         if(saveLoadManager.SavePlayerData())
-        SceneManager.LoadScene("Junk Processing Plant");
+        SceneManager.LoadScene("Junk Navale Home Base");
     }
     #endregion
 

@@ -31,7 +31,7 @@ MonoBehaviour:
   resetInputOnFailed: 1
   ResetLastState: 0
   General:
-    modify: -1
+    modify: 7423
     RootMotion: 1
     Sprint: 0
     Gravity: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   ResetFrom: []
   SleepFromStance: []
   stances: []
-  tryLoop:
+  TryLoop:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   MovementStrafe: 1
   IdleStrafe: 1
   m_debug: 1
-  Editor_Tabs1: 4
+  Editor_Tabs1: 1
   SpeedSets:
   - name: Glide Wings
     StartVerticalIndex:

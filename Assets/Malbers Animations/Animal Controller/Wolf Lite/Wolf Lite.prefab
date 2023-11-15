@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 5719295148794597913}
   m_Trigger: {fileID: 135117570784751544}
@@ -479,9 +480,8 @@ MonoBehaviour:
       m_Bits: 9437184
     Variable: {fileID: 0}
   SearchRadius: 3
-  Distance: 2
+  Distance: 0
   AlignTime: 0.3
-  LookAtTime: 0.3
   FrontOffet: 1.15
   AlignCurve:
     serializedVersion: 2
@@ -534,7 +534,6 @@ MonoBehaviour:
   SearchRadius: 3
   Distance: 2
   AlignTime: 0.3
-  LookAtTime: 0.3
   FrontOffet: 1.15
   AlignCurve:
     serializedVersion: 2
@@ -599,7 +598,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7341256332303435102}
   - {fileID: 7156273184025713823}
@@ -6617,7 +6616,16 @@ MonoBehaviour:
     Variable: {fileID: 0}
   currentAnimTag: 0
   platform: {fileID: 0}
-  colliders: []
+  MainCollider: {fileID: 0}
+  colliders:
+  - {fileID: 8386452584857524215}
+  - {fileID: 7515228676983428088}
+  - {fileID: 5125502954814473465}
+  - {fileID: 4720858581418761649}
+  - {fileID: 8051970079446748472}
+  - {fileID: 6208288806163893358}
+  - {fileID: 119955408913506471}
+  - {fileID: 4530311211391690740}
   OnAnimationChange:
     m_PersistentCalls:
       m_Calls: []
@@ -8294,6 +8302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 1379845917111296713}
   m_Trigger: {fileID: 135683490331112980}
@@ -8469,6 +8478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 5719295148794597913}
   m_Trigger: {fileID: 135186047329997636}
@@ -8546,6 +8556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepsManager: {fileID: 3390758603254792585}
+  parent: {fileID: 0}
   WaitNextStep: 0.2
   StepAudio: {fileID: 1379845917111296713}
   m_Trigger: {fileID: 135832157602418992}
@@ -8860,7 +8871,10 @@ MonoBehaviour:
     life: 0
     delay: 0
     scale: 1
-    Modifier: {fileID: 0}
+    OnPlayReaction:
+      rid: -2
+    OnStopReaction:
+      rid: -2
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -8887,7 +8901,10 @@ MonoBehaviour:
     life: 0.25
     delay: 0
     scale: 1
-    Modifier: {fileID: 0}
+    OnPlayReaction:
+      rid: -2
+    OnStopReaction:
+      rid: -2
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -8914,7 +8931,10 @@ MonoBehaviour:
     life: 0.25
     delay: 0
     scale: 1
-    Modifier: {fileID: 0}
+    OnPlayReaction:
+      rid: -2
+    OnStopReaction:
+      rid: -2
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -8941,7 +8961,10 @@ MonoBehaviour:
     life: 0.25
     delay: 0
     scale: 1
-    Modifier: {fileID: 0}
+    OnPlayReaction:
+      rid: -2
+    OnStopReaction:
+      rid: -2
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -8968,7 +8991,10 @@ MonoBehaviour:
     life: 0.25
     delay: 0
     scale: 1
-    Modifier: {fileID: 0}
+    OnPlayReaction:
+      rid: -2
+    OnStopReaction:
+      rid: -2
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -8977,6 +9003,11 @@ MonoBehaviour:
         m_Calls: []
   SelectedEffect: 4
   debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &1104431049552824099
 GameObject:
   m_ObjectHideFlags: 0
@@ -9097,6 +9128,7 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   ForceMode: 0
+  CheckConditions: {fileID: 0}
   JustExitAnimal: {fileID: 0}
   ModeFloat: 0
   RemoveAnimalOnActive: 0
@@ -9208,8 +9240,19 @@ MonoBehaviour:
   OnZoneFailed:
     m_PersistentCalls:
       m_Calls: []
+  EnterReaction:
+    rid: -2
+  ExitReaction:
+    rid: -2
+  ActivationReaction:
+    rid: -2
   ZoneCollider: {fileID: 7463531622702864465}
   Editor_Tabs1: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &7463531622702864465
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10420,7 +10463,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  PowerMultiplier:
+  ForceMultiplier:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
@@ -10445,7 +10488,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  m_power: 50
+  m_Force: 50
   m_angle: 45
   gravity:
     UseConstant: 1
@@ -10817,6 +10860,7 @@ MonoBehaviour:
   agent: {fileID: 6418311578034716533}
   animal: {fileID: 114222225517902476}
   disableInput: 1
+  enableInput: 1
   StopAgentOn:
   - {fileID: 11400000, guid: 8078fbdb01991b44b9c1351f444b5efe, type: 2}
   - {fileID: 11400000, guid: 9ae07cd2f8f4c054687fecf634f8e5b3, type: 2}
@@ -10826,6 +10870,9 @@ MonoBehaviour:
   stoppingDistance: 2
   PointStoppingDistance: 0.6
   slowingDistance: 4
+  UseScale: 1
+  targetHeight: 5
+  StopOnTargetTooHigh: 1
   LookAtOffset: 1
   slowingLimit: 0.3
   target: {fileID: 0}
@@ -12059,8 +12106,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimAssist: 0
+  m_AimCenter: {fileID: 3129345868563773065}
   UseOnTriggerEnter: 0
-  m_AimPoint: {fileID: 3129345868563773065}
+  layer:
+    UseConstant: 1
+    ConstantValue:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    Variable: {fileID: 0}
+  Tags: []
   OnAimEnter:
     m_PersistentCalls:
       m_Calls: []

@@ -1702,6 +1702,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3695551657482356886, guid: cee82014b2fbce7418429456a3996ca2,
+        type: 3}
+      propertyPath: stats.Array.data[1].value.ConstantValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695551657482356886, guid: cee82014b2fbce7418429456a3996ca2,
+        type: 3}
+      propertyPath: stats.Array.data[1].maxValue.ConstantValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3696115590862623544, guid: cee82014b2fbce7418429456a3996ca2,
         type: 3}
       propertyPath: Editor_EventTabs
@@ -3910,8 +3920,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3695551657482356886, guid: cee82014b2fbce7418429456a3996ca2,
         type: 3}
+      propertyPath: stats.Array.data[1].value.ConstantValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695551657482356886, guid: cee82014b2fbce7418429456a3996ca2,
+        type: 3}
       propertyPath: stats.Array.data[0].maxValue.ConstantValue
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695551657482356886, guid: cee82014b2fbce7418429456a3996ca2,
+        type: 3}
+      propertyPath: stats.Array.data[1].maxValue.ConstantValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3696115590862623544, guid: cee82014b2fbce7418429456a3996ca2,
         type: 3}
@@ -5115,6 +5135,10 @@ MonoBehaviour:
       UseConstant: 1
       ConstantValue: 1
       Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
+      Variable: {fileID: 0}
     type: 0
     input: Mouse X
     key: 48
@@ -5170,6 +5194,10 @@ MonoBehaviour:
     active:
       UseConstant: 1
       ConstantValue: 1
+      Variable: {fileID: 0}
+    ignoreOnPause:
+      UseConstant: 1
+      ConstantValue: 0
       Variable: {fileID: 0}
     type: 0
     input: Mouse Y
@@ -19148,7 +19176,12 @@ PrefabInstance:
     - target: {fileID: 3695551657482356886, guid: cee82014b2fbce7418429456a3996ca2,
         type: 3}
       propertyPath: stats.Array.data[1].value.ConstantValue
-      value: 20
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695551657482356886, guid: cee82014b2fbce7418429456a3996ca2,
+        type: 3}
+      propertyPath: stats.Array.data[1].maxValue.ConstantValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3696115590862623544, guid: cee82014b2fbce7418429456a3996ca2,
         type: 3}
@@ -21987,6 +22020,21 @@ PrefabInstance:
       propertyPath: EditorTab1
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5861542233668488909, guid: a578de702f2191b4fa9cdcec1ad493c5,
+        type: 3}
+      propertyPath: Distance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861542233668488909, guid: a578de702f2191b4fa9cdcec1ad493c5,
+        type: 3}
+      propertyPath: AlignTime
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861542233668488909, guid: a578de702f2191b4fa9cdcec1ad493c5,
+        type: 3}
+      propertyPath: FrontOffet
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6943845348117905013, guid: a578de702f2191b4fa9cdcec1ad493c5,
         type: 3}
       propertyPath: stoppingDistance
@@ -22001,6 +22049,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Editor_Tabs1
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067840649074644080, guid: a578de702f2191b4fa9cdcec1ad493c5,
+        type: 3}
+      propertyPath: AlignTime
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067840649074644080, guid: a578de702f2191b4fa9cdcec1ad493c5,
+        type: 3}
+      propertyPath: FrontOffet
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a578de702f2191b4fa9cdcec1ad493c5, type: 3}
@@ -23741,6 +23799,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  CameraDistance:
+    UseConstant: 1
+    ConstantValue: 6
+    Variable: {fileID: 0}
   XMultiplier:
     UseConstant: 1
     ConstantValue: 1
@@ -23756,6 +23818,10 @@ MonoBehaviour:
   BottomClamp:
     UseConstant: 1
     ConstantValue: -30
+    Variable: {fileID: 0}
+  LerpRotation:
+    UseConstant: 1
+    ConstantValue: 15
     Variable: {fileID: 0}
 --- !u!4 &4119520937943305526
 Transform:

@@ -30,6 +30,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1417802783179537423}
   m_Father: {fileID: 0}
@@ -90,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45ff9ab2dc0a874fb5e2ce5777bc201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Button: 0
   invertX: 0
   invertY: 0
   deathpoint:
@@ -114,9 +116,9 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   axisValue:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 81ebbdea0e8140745b486bad86246321, type: 2}
   OnJoystickDown:
     m_PersistentCalls:
       m_Calls: []
@@ -208,6 +210,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1417802782832420693}
   m_RootOrder: 0

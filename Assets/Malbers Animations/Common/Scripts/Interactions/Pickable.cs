@@ -167,8 +167,10 @@ namespace MalbersAnimations.Controller
                 RigidBody.isKinematic = true;
             }
 
-            foreach (var c in m_colliders) c.enabled = false; //Disable all colliders
-
+            foreach (var c in m_colliders)
+            {
+                if (c) c.enabled = false; //Disable all colliders
+            }
         }
 
         public void EnablePhysics()

@@ -312,6 +312,8 @@ namespace MalbersAnimations.Weapons
 
                 yield return waitForFixedUpdate;
             }
+
+            Debug.Log("exit one");
             yield return null;
         }
        
@@ -320,7 +322,7 @@ namespace MalbersAnimations.Weapons
         {
             if (!Enabled) return;
 
-            Enabled = false; //Disable the projectile it has already impacted with something
+          
 
             Debugging($"<color=yellow> <b>[Projectile Impact] </b> [{collider.name}] </color>",this);  //Debug
 
@@ -391,6 +393,7 @@ namespace MalbersAnimations.Weapons
                     {
                         Debug.DrawRay(transform.position, rb.velocity * 5, Color.yellow, 3f);
                         rb.AddForce(Direction, ForceMode.Impulse);
+                        rb.velocity = Direction;
                     }
                     Debugging("Activate Rigid Body", null);
                     break;
@@ -403,6 +406,8 @@ namespace MalbersAnimations.Weapons
             {
                 Destroy(this.gameObject, LifeImpact.Value); //Reset after has impacted the Destroy Time
             }
+
+            Enabled = false; //Disable the projectile it has already impacted with something
         }
 
         void EnableRigidBody()

@@ -62,6 +62,7 @@ namespace MalbersAnimations.Controller
         /// <summary>Main Animal used as the player controlled by Input</summary>
         public static MAnimal MainAnimal;
         #endregion
+        
 
         #region States
         /// <summary>NECESARY WHEN YOU ARE USING MULTIPLE ANIMALS</summary>
@@ -720,11 +721,11 @@ namespace MalbersAnimations.Controller
 
         #region Alignment Ground
         /// <summary>Smoothness value to Snap to ground </summary>
-        public FloatReference AlignPosLerp = new FloatReference(15f);
+        public FloatReference AlignPosLerp = new(15f);
         /// <summary>Smoothness Position value when Entering from Non Grounded States</summary>
-        public FloatReference AlignPosDelta = new FloatReference(2.5f);
+        public FloatReference AlignPosDelta = new(2.5f);
         /// <summary>Smoothness Rotation value when Entering from Non Grounded States</summary>
-        public FloatReference AlignRotDelta = new FloatReference(2.5f);
+        public FloatReference AlignRotDelta = new(2.5f);
 
         /// <summary>Smoothness Position value when Entering from Non Grounded States </summary>
         public float AlignPosLerpDelta { get; internal set; }
@@ -734,13 +735,13 @@ namespace MalbersAnimations.Controller
 
 
         /// <summary>Smoothness value to Snap to ground  </summary>
-        public FloatReference AlignRotLerp = new FloatReference(15f);
+        public FloatReference AlignRotLerp = new(15f);
 
 
-        public IntReference AlignLoop = new IntReference(1);
+        public IntReference AlignLoop = new(1);
 
         [Tooltip("Tag your small rocks, debris,steps and stair objects  with this Tag. It will help the animal to recognize better the Terrain")]
-        public StringReference DebrisTag = new StringReference("Stair");
+        public StringReference DebrisTag = new("Stair");
 
         ///// <summary>Maximun angle on the terrain the animal can walk </summary>
         //[Range(1f, 90f), Tooltip("Maximun angle on the terrain the animal can walk. If the Terrain Angle is greater than this the animal will stop")]
@@ -753,7 +754,7 @@ namespace MalbersAnimations.Controller
 
         [Tooltip("Maximun and Minimun Angle on the terrain the animal can walk. If the Terrain Angle is higher than the Max value: the animal will stop moving, if is lower than the Min Value: the animal will fall")]
         [MinMaxRange(-90, 90)]
-        public RangedFloat TerrainSlopeLimit = new RangedFloat(-50, 45);
+        public RangedFloat TerrainSlopeLimit = new(-50, 45);
 
         [Range(10, 90)]
         [Tooltip("Maximun and Minimun Angle on the terrain the animal can walk. If the Terrain Angle is higher than the Max value: the animal will slideDown")]
@@ -1103,7 +1104,7 @@ namespace MalbersAnimations.Controller
                 }
                 sleep.Value = value;
 
-                //Debug.Log("Sleep" + Sleep);
+               //  Debug.Log("Sleep" + Sleep);
 
                 LockInput = LockMovement = value;                       //Also Set to sleep the Movement and Input
 
@@ -1318,7 +1319,7 @@ namespace MalbersAnimations.Controller
             }
             internal set
             {
-                //Debug.Log("******value = " + value.name); 
+               //  Debug.Log("******value = " + value.name); 
 
                 // if (currentSpeedModifier.name != value.name)
                 {
@@ -1347,8 +1348,9 @@ namespace MalbersAnimations.Controller
 
                 newValue = Mathf.Clamp(value, 1, newValue); // TOP INDEX CANNOT BE SET OT ZERO
 
+               
 
-                if (speedIndex != newValue)
+                //   if (speedIndex != newValue)
                 {
                     speedIndex = newValue;
 
@@ -1645,6 +1647,9 @@ namespace MalbersAnimations.Controller
             {
                 lockMovement.Value = value;
                 OnMovementLocked.Invoke(lockMovement);
+
+                //Clear all residual movement if value is true
+                if (lockMovement.Value) Reset_Movement();
             }
         }
 
@@ -1703,17 +1708,17 @@ namespace MalbersAnimations.Controller
         }
 
         [SerializeField, Tooltip("Global Orient to ground. Disable This for Humanoids")]
-        private BoolReference m_OrientToGround = new BoolReference(true);
+        private BoolReference m_OrientToGround = new (true);
 
 
         [SerializeField, Tooltip("Locks Input on the Animal, Ignore inputs like Jumps, Attacks, Actions etc")]
-        private BoolReference lockInput = new BoolReference(false);
+        private BoolReference lockInput = new (false);
 
         [SerializeField, Tooltip("Locks the Movement entries on the animal. (Horizontal, Vertical,Up Down)")]
-        private BoolReference lockMovement = new BoolReference(false);
+        private BoolReference lockMovement = new (false);
 
         [SerializeField]
-        private BoolReference useSprintGlobal = new BoolReference(true);
+        private BoolReference useSprintGlobal = new (true);
         #endregion
 
         #region Animator States Info
@@ -1722,16 +1727,6 @@ namespace MalbersAnimations.Controller
 
         /// <summary> Meaning its transitioning from one animation to another </summary>
         public bool InTransition => m_NextState.fullPathHash != 0;
-
-
-      //  internal AnimatorStateInfo m_PreviousCurrentState;    // Information about the base layer of the animator from last frame.
-      //  internal AnimatorStateInfo m_PreviousNextState;
-
-        ///// <summary> If we are  in any  animator transition Layer 0</summary>
-
-        //  internal bool FirstAnimatorTransition;
-       // protected bool m_PreviousIsAnimatorTransitioning;
-
 
         /// <summary>Returns the Current Animation State Tag of animal, if is in transition it will return the NextState Tag</summary>
         public AnimatorStateInfo AnimState { get; private set; }
@@ -1769,9 +1764,20 @@ namespace MalbersAnimations.Controller
 
         protected List<IMDamager> Attack_Triggers;      //List of all the Damage Triggers on this Animal.
 
+        #region Colliders
+        [Tooltip("Main Collider of the Animal Controller (Usually attached to the Root GameObject)")]
+        [ContextMenuItem("Find Main Collider",nameof(FindMainCollider))]
+        public CapsuleCollider MainCollider;
+
+
+     
+        private OverrideCapsuleCollider MainCapsuleDefault;
 
         /// <summary>All Colliders Inside the Animals> summary>
+        [Tooltip("Internal Colliders included in the Character (usually head, spine and limbs colliders)")]
+        [ContextMenuItem("Find Internal Colliders",nameof(FindInternalColliders))]
         public List<Collider> colliders = new();
+        #endregion
 
         /// <summary>Animator Normalized State Time for the Base Layer  </summary>
         public float StateTime { get; private set; }

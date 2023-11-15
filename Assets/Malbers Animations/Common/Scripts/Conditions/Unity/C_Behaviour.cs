@@ -28,10 +28,8 @@ namespace MalbersAnimations.Conditions
             return false;
         }
 
-        public override void SetTarget(Object target)
-        {
-            if (target is Behaviour) this.Target = target as Behaviour;
-        }
+        protected override void _SetTarget(Object target) => VerifyTarget(target, ref Target);
+
         private void Reset() => Name = "New Behaviour Condition";
     }
 }

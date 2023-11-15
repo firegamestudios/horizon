@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -15,7 +16,7 @@ namespace MalbersAnimations.Utilities
 
         [ContextMenuItem("Transfer Bones From Root", "TransferRootBone")]
         public Transform RootBone;
- 
+
 
         [ContextMenu("Transfer Bones From Root")]
         public void TransferRootBone()
@@ -28,41 +29,57 @@ namespace MalbersAnimations.Utilities
 
         private void CopyBonesSameBones()
         {
-            SkinnedMeshRenderer thisRenderer = GetComponent<SkinnedMeshRenderer>();
-            if (thisRenderer == null) return;
-
-            var OldRootBone = thisRenderer.rootBone;
-
-            Transform[] rootBone = RootBone.GetComponentsInChildren<Transform>();
-
-            Dictionary<string, Transform> boneMap = new();
-
-            foreach (Transform bone in rootBone)
+            if (TryGetComponent<SkinnedMeshRenderer>(out var thisRenderer))
             {
-                boneMap[bone.name] = bone;
-            }
+                var OldRootBone = thisRenderer.rootBone;
 
-            Transform[] boneArray = thisRenderer.bones;
+                Transform[] rootBone = RootBone.GetComponentsInChildren<Transform>();
 
+                Dictionary<string, Transform> boneMap = new();
 
-            for (int idx = 0; idx < boneArray.Length; ++idx)
-            {
-                string boneName = boneArray[idx].name;
-
-                if (false == boneMap.TryGetValue(boneName, out boneArray[idx]))
+                foreach (Transform bone in rootBone)
                 {
-                    Debug.LogError("failed to get bone: " + boneName);
+                    boneMap[bone.name] = bone;
+                }
+
+                Transform[] boneArray = thisRenderer.bones;
+
+
+                for (int idx = 0; idx < boneArray.Length; ++idx)
+                {
+                    string boneName = boneArray[idx].name;
+
+                    if (false == boneMap.TryGetValue(boneName, out boneArray[idx]))
+                    {
+                        Debug.LogError("failed to get bone: " + boneName);
+                    }
+                }
+                thisRenderer.bones = boneArray;
+
+                if (boneMap.TryGetValue(OldRootBone.name, out Transform newRoot))
+                {
+                    thisRenderer.rootBone = newRoot; //Remap the rootbone
+                }
+
+                Debug.Log($"Bone Trasfer Completed: {name}");
+            }
+        }
+
+        private void Reset()
+        {
+            if (RootBone == null)
+            {
+                var AllSkinMeshes = transform.root.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+
+                var thisRenderer = GetComponent<SkinnedMeshRenderer>();
+
+                SkinnedMeshRenderer Old = AllSkinMeshes.ToList().Find(x => x.name == name && x != thisRenderer);
+                 
+                if ( Old != null)
+                {
+                    RootBone = Old.rootBone;
                 }
             }
-            thisRenderer.bones = boneArray;
-
-            if (boneMap.TryGetValue(OldRootBone.name, out Transform newRoot))
-            {
-                thisRenderer.rootBone = newRoot; //Remap the rootbone
-            }
-
-            Debug.Log($"Bone Trasfer Completed: {name}");
-
         }
     }
 

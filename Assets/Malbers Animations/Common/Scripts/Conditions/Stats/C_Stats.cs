@@ -34,10 +34,7 @@ namespace MalbersAnimations.Conditions
             if (Target)  st = Target.Stat_Get(ID);
         }
 
-        public override void SetTarget(Object target)
-        {
-            if (target is Stats) this.Target = target as Stats;
-        }
+        protected override void _SetTarget(Object target) =>  VerifyTarget(target, ref Target);
 
         public override bool _Evaluate()
         {

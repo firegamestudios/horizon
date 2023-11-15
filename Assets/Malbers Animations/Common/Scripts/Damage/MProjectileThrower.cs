@@ -2,7 +2,7 @@
 using MalbersAnimations.Utilities;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
+using UnityEngine.Pool;
 
 namespace MalbersAnimations.Weapons
 {
@@ -15,22 +15,22 @@ namespace MalbersAnimations.Weapons
 
         [Header("Projectile")]
         [SerializeField, Tooltip("What projectile will be instantiated")]
-        private GameObjectReference m_Projectile = new GameObjectReference();
+        private GameObjectReference m_Projectile = new();
         [Tooltip("The projectile will be fired on start")]
         public BoolReference FireOnStart;
 
         [Header("Multipliers")]
 
         [Tooltip("Multiplier value to Apply to the Projectile Stat Modifier"),FormerlySerializedAs("Multiplier") ]
-        public FloatReference DamageMultiplier = new FloatReference(1);
+        public FloatReference DamageMultiplier = new(1);
         [Tooltip("Multiplier value to apply to the Projectile Scale")]
-        public FloatReference ScaleMultiplier = new FloatReference(1);
+        public FloatReference ScaleMultiplier = new(1);
         [Tooltip("Multiplier value to apply to the Projectile Launch Force")]
-        public FloatReference PowerMultiplier = new FloatReference(1);
+        public FloatReference ForceMultiplier = new(1);
 
 
         [Header("Layer Interaction")]
-        [SerializeField] private LayerReference hitLayer = new LayerReference(-1);
+        [SerializeField] private LayerReference hitLayer = new(-1);
         [SerializeField] private QueryTriggerInteraction triggerInteraction = QueryTriggerInteraction.Ignore;
 
         [Header("References")]
@@ -44,17 +44,18 @@ namespace MalbersAnimations.Weapons
         public Aim Aimer;
 
         [Tooltip("if its set to False. it will use this GameObject Forward Direction")]
-        public BoolReference useAimerDirection = new BoolReference( true);
+        public BoolReference useAimerDirection = new( true);
 
         [Header("Physics Values")]
         [SerializeField, Tooltip("Launch force for the Projectile")]
-        private float m_power = 50f;
+        [FormerlySerializedAs("m_power")]
+        private float m_Force = 50f;
         
         [Range(0, 90)]
         [SerializeField, Tooltip("Angle of the Projectile when a Target is assigned")]
         private float m_angle = 45f;
         [SerializeField, Tooltip("Gravity to apply to the Projectile. By default is set to Physics.gravity")]
-        private Vector3Reference gravity = new Vector3Reference(Physics.gravity);
+        private Vector3Reference gravity = new(Physics.gravity);
         public Vector3 Gravity { get => gravity.Value; set => gravity.Value = value; }
         public LayerMask Layer { get => hitLayer.Value; set => hitLayer.Value = value; }
         public QueryTriggerInteraction TriggerInteraction { get => triggerInteraction; set => triggerInteraction = value; }
@@ -69,7 +70,7 @@ namespace MalbersAnimations.Weapons
         public Vector3 Velocity { get; set; }
 
         /// <summary>Force to Apply to the Projectile</summary>
-        public float Power { get => m_power * PowerMultiplier; set => m_power = value; }
+        public float Power { get => m_Force * ForceMultiplier; set => m_Force = value; }
 
         /// <summary>Set if the Aimer Direction will be used or not</summary>
         public bool UseAimerDirection { get => useAimerDirection.Value; set => useAimerDirection.Value = value; }
@@ -134,9 +135,8 @@ namespace MalbersAnimations.Weapons
 
         void Prepare_Projectile(GameObject p)
         {
-            var projectile = p.GetComponent<IProjectile>();
-
-            if (projectile != null) //Means its a Malbers Projectile ^^
+            //Means its a Malbers Projectile ^^
+            if (p.TryGetComponent<IProjectile>(out var projectile)) 
             {
                 projectile.Prepare(Owner, Gravity, Velocity, Layer, TriggerInteraction);
                 projectile.SetDamageMultiplier(DamageMultiplier); //Apply Multiplier
@@ -153,7 +153,7 @@ namespace MalbersAnimations.Weapons
 
         public virtual void SetDamageMultiplier(float m) => DamageMultiplier = m;
         public virtual void SetScaleMultiplier(float m) => ScaleMultiplier = m;
-        public virtual void SetPowerMultiplier(float m) => PowerMultiplier = m;
+        public virtual void SetPowerMultiplier(float m) => ForceMultiplier = m;
 
         public virtual void CalculateVelocity()
         {

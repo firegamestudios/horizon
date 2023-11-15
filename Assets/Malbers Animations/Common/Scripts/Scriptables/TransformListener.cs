@@ -2,6 +2,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace MalbersAnimations.Scriptables
 {
     [AddComponentMenu("Malbers/Variables/Transform Listener")]
@@ -93,12 +97,19 @@ namespace MalbersAnimations.Scriptables
 
             using (new GUILayout.HorizontalScope(UnityEditor.EditorStyles.helpBox))
             {
-                UnityEditor.EditorGUILayout.PropertyField(InvokeOnEnable, GUIContent.none, GUILayout.Width(18));
-                UnityEditor.EditorGUILayout.PropertyField(value);
+               EditorGUILayout.PropertyField(InvokeOnEnable, GUIContent.none, GUILayout.Width(18));
+               EditorGUILayout.PropertyField(value);
+
+                value.isExpanded =
+                   GUILayout.Toggle(value.isExpanded,
+                   new GUIContent((value.isExpanded ? "▲" : "▼"), "Show Events"), EditorStyles.miniButton, GUILayout.Width(25));
             }
 
-            UnityEditor.EditorGUILayout.PropertyField(OnValueChanged);
-            UnityEditor.EditorGUILayout.PropertyField(OnValueNull);
+            if (value.isExpanded)
+            {
+                EditorGUILayout.PropertyField(OnValueChanged);
+                EditorGUILayout.PropertyField(OnValueNull);
+            }
             serializedObject.ApplyModifiedProperties();
         }
     }
